@@ -10,6 +10,7 @@ import { ProductService } from '../services/rest/product-service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,6 +35,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     ProductService,
+    HttpModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
