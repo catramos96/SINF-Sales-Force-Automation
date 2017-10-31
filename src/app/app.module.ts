@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { ProductPage } from '../pages/product/product';
+import { ModalContentPage } from '../pages/product/productModal';
 import { ProductService } from '../services/rest/product-service';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,7 +18,8 @@ import { HttpModule } from '@angular/http';
     MyApp,
     HomePage,
     ListPage,
-    ProductPage
+    ProductPage,
+    ModalContentPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { HttpModule } from '@angular/http';
     MyApp,
     HomePage,
     ListPage,
-    ProductPage
+    ProductPage,
+    ModalContentPage
   ],
   providers: [
     StatusBar,

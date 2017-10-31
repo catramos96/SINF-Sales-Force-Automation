@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController, NavController} from 'ionic-angular';
 import { ProductService } from '../../services/rest/product-service';
+import { ModalContentPage } from '../product/productModal';
 
 @Component({
   selector: 'page-product',
@@ -13,13 +14,21 @@ export class ProductPage {
   categoryProducts = [];
   products = [];
 
-  constructor(public navCtrl: NavController, private productService: ProductService) {
+  constructor(
+    public navCtrl: NavController, 
+    private productService: ProductService,
+    public modalCtrl : ModalController
+  ) {
 
   }
 
   ngOnInit(): void {
-    // todas as categorias
     this.categories = this.productService.getCategories();
+  }
+
+  openModal(productName) {
+    let modal = this.modalCtrl.create(ModalContentPage,{ productName: productName });
+    modal.present();
   }
 
   toggleGroup(group,category) {
@@ -53,5 +62,27 @@ export class ProductPage {
     }
     this.products = rows;
   }
-}
 
+  searchCategory(ev) {
+    //init
+    this.categories = this.productService.getCategories();    
+    //search
+    let name = ev.target.value;
+    if(name !== "")
+      this.categories = this.productService.searchCategory(name);
+  }
+
+  searchProduct(ev) {
+    let name = ev.target.value;
+    if(name !== "") this.categoryProducts = this.productService.searchProduct(name);
+    else this.categoryProducts = [];
+    this.displayProducts();
+  }
+
+  onCancel(ev){
+    this.categories = this.productService.getCategories();
+    this.categoryProducts = [];
+    this.displayProducts();
+  }
+
+}

@@ -14,13 +14,14 @@
       <!-- CATEGORIES-->
       <ion-col col-4>
         <!-- search categories -->
-        <ion-searchbar
-          [(ngModel)]="myInput"
-          [showCancelButton]="shouldShowCancel"
-          (ionInput)="onInput($event)"
-          (ionCancel)="onCancel($event)"
-          >
-        </ion-searchbar> 
+        <div >
+          <ion-searchbar placeholder="Search by category"
+            [(ngModel)]="searchC"
+            [showCancelButton]="shouldShowCancel"
+            (ionInput)="searchCategory($event)"
+            (ionCancel)="onCancel($event)">
+          </ion-searchbar> 
+        </div>
         <!-- list categories -->       
         <ion-list>
           <ion-item *ngFor="let c of categories; let i=index" text-wrap (click)="toggleGroup(i,c.category)" [ngClass]="{active: isGroupShown(i)}">
@@ -29,7 +30,7 @@
               {{c.category}}
             </h3>
             <div *ngIf="isGroupShown(i)">
-              <ion-item *ngFor="let y of categoryProducts; let j=index" text-wrap >
+              <ion-item *ngFor="let y of categoryProducts; let j=index" text-wrap>
                 {{y.name}}
               </ion-item>
             </div>
@@ -39,10 +40,10 @@
       <!-- PRODUCTS-->
       <ion-col col-8>
         <!-- search products --> 
-        <ion-searchbar
-          [(ngModel)]="myInput"
+        <ion-searchbar placeholder="Search by product"
+          [(ngModel)]="searchP"
           [showCancelButton]="shouldShowCancel"
-          (ionInput)="onInput($event)"
+          (ionInput)="searchProduct($event)"
           (ionCancel)="onCancel($event)">
         </ion-searchbar>
         <!-- list products -->
@@ -53,10 +54,10 @@
               <ion-card class="color">
 
                 <ion-card-header class="inline">
-                  <h2 >Titulo</h2>
-                  <p class=" muted">Categoria</p>
+                  <h2>{{c.name}}</h2>
+                  <p class=" muted">{{c.category}}</p>
                 </ion-card-header>
-                <button ion-button icon-right clear item-end class="right">
+                <button ion-button icon-right clear item-end class="right" (click)="openModal(c.name)">
                     <ion-icon name="open"></ion-icon>
                 </button>
               
@@ -64,8 +65,8 @@
                   <img src="../../../../resources/android/danone.jpeg"/>
                   <p>
                     <br>
-                    <b>Price: </b>0.31<br>
-                    <b>Quantity: </b>500
+                    <b>Price: </b>{{c.price}}<br>
+                    <b>Quantity: </b>{{c.units}}
                   </p>
                 </ion-card-content>
   
