@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ProductService } from '../../services/rest/product-service';
+import { ProductsProvider } from '../../providers/products/products';
 
 @Component({
   selector: 'page-product',
@@ -8,6 +8,7 @@ import { ProductService } from '../../services/rest/product-service';
 })
 export class ProductPage {
   constructor(public navCtrl: NavController) {
+
 
   }
 }
