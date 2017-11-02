@@ -1,3 +1,67 @@
-page-home {
-
+#Calendar{
 }
+
+#Routes{
+}
+
+#Leads{
+}
+
+#Prospects{
+}
+
+ion-row{
+  padding-bottom: 2%;
+}
+
+.core-button > *{
+
+  font-size: 2.3vh;
+}
+
+.core-button{
+  padding: 0%;
+  height: 6vh;
+  width:22vh;
+  margin:1rem;
+}
+
+table{
+  font-size: 2vh;
+  text-align: center;
+  width: 100%;
+}
+tbody{
+  background-color: white;
+  box-shadow: 2px 2px 25px black;
+}
+
+th:first-of-type{
+  border-top-left-radius: 1em;
+}
+th:last-of-type{
+  border-top-right-radius: 1em;
+}
+
+th{
+  color:white;
+  border-color: black;
+  background-color: black;
+}
+
+tbody tr, tbody td{
+  border-bottom: 2px solid;
+  border-color: lightgray;
+}
+
+td,tr,th{
+  padding: 4px;
+}
+
+.table-1-column{
+  width:20%;
+}
+
+
+
+

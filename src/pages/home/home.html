@@ -8,11 +8,134 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-grid>
+    <ion-row >
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+      <ion-col id="Calendar" col-9>
+
+        <button ion-button icon-start icon-end class="core-button">
+          <ion-icon name="calendar"></ion-icon>
+          Calendar
+          <ion-icon name="arrow-dropright-circle"></ion-icon>
+        </button>
+
+        <ion-grid no-padding>
+          <ion-row >
+            <ion-col col-5>
+
+            </ion-col>
+            <ion-col style="padding-right: 2%;">
+
+                <table class="table table-bordered table-responsive">
+                  <thead>
+                    <tr>
+                      <th class="table-1-column">Time</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>10:00 - 12:00</td>
+                      <td>Meeting with Mr.Smith</td>
+                    </tr>
+                    <tr>
+                      <td>12:00 - 14:00</td>
+                      <td>Board Discussion about the financial problems in the company</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-col>
+
+      <ion-col id = "Leads">
+        <button ion-button icon-start icon-end class="core-button">
+          <ion-icon name="Leads"></ion-icon>
+          Calendar
+          <ion-icon name="arrow-dropright-circle"></ion-icon>
+        </button>
+
+        <table class="table table-bordered table-responsive">
+          <thead>
+          <tr>
+            <th>Leads</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Meeting with Mr.Smith</td>
+          </tr>
+          <tr>
+            <td>Board Discussion.</td>
+          </tr>
+          </tbody>
+        </table>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col id="Routes" col-9>
+        <button ion-button icon-start icon-end class="core-button">
+          <ion-icon name="Routes"></ion-icon>
+          Routes
+          <ion-icon name="arrow-dropright-circle"></ion-icon>
+        </button>
+
+        <ion-grid no-padding>
+          <ion-row >
+            <ion-col col-5>
+
+            </ion-col>
+            <ion-col style="padding-right: 2%;">
+
+              <table class="table table-bordered table-responsive" >
+                <thead>
+                <tr>
+                  <th>Routes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Lorem ipsum dolor. Suspendisse gravida. Cras sit amet dui. Suspendisse et ligula.</td>
+                </tr>
+                <tr>
+                  <td>Vestibulum at orci. Proin non neque ultrices.</td>
+                </tr>
+                </tbody>
+              </table>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+
+      <ion-col id="Prospects">
+        <button ion-button icon-start icon-end class="core-button">
+          <ion-icon name="calendar"></ion-icon>
+          Prospects
+          <ion-icon name="arrow-dropright-circle"></ion-icon>
+        </button>
+
+        <table class="table table-bordered table-responsive">
+          <thead>
+          <tr>
+            <th>Prospects</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Lorem ipsum dolor. Suspendisse gravida. Cras sit amet dui. Suspendisse et ligula.</td>
+          </tr>
+          <tr>
+            <td>Vestibulum at orci. Proin non neque ultrices.</td>
+          </tr>
+          </tbody>
+        </table>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
