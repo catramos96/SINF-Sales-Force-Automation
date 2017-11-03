@@ -5,8 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { ProductPage } from '../pages/product/product';
+import { ModalContentPage } from '../pages/product/productModal';
 import { ContactsPage } from '../pages/contacts/contacts';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -22,9 +22,9 @@ import { CalendarModule } from 'angular-calendar';
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     ProductPage,
-    ContactsPage
+    ModalContentPage,
+    ContactsPage	
   ],
   imports: [
     BrowserModule,
@@ -32,18 +32,21 @@ import { CalendarModule } from 'angular-calendar';
     IonicModule.forRoot(MyApp),
     CalendarModule.forRoot(),
     BrowserAnimationsModule
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     ProductPage,
+    ModalContentPage,
     ContactsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    HttpModule,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ContactsProvider,
     ProductsProvider
