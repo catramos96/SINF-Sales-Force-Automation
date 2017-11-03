@@ -83,14 +83,11 @@ export class ProductPage {
     this.displayProducts();
   }
 
-<<<<<<< HEAD
   onCancel(ev){
     this.categories = this.productService.getCategories();
     this.categoryProducts = [];
     this.displayProducts();
-=======
 
->>>>>>> d334ff31959b72f770baf2b74778cde94d2f778f
   }
 
 }

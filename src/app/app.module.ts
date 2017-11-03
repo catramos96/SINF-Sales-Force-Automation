@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
 import { ContactsPage } from '../pages/contacts/contacts';
@@ -19,7 +18,6 @@ import { ProductsProvider } from '../providers/products/products';
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     ProductPage,
     ModalContentPage,
     ContactsPage	
@@ -34,7 +32,6 @@ import { ProductsProvider } from '../providers/products/products';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     ProductPage,
     ModalContentPage,
     ContactsPage
