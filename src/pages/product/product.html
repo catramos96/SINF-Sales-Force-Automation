@@ -51,7 +51,7 @@
           <ion-row *ngFor="let r of products">
             <ion-col *ngFor="let c of r.row">
               <!-- product -->
-              <ion-card class="color">
+              <ion-card class="color" *ngIf="c!=null">
 
                 <ion-card-header class="inline">
                   <h2>{{c.name}}</h2>
@@ -62,7 +62,7 @@
                 </button>
               
                 <ion-card-content>
-                  <img src="../../../../resources/android/danone.jpeg"/>
+                  <img src="assets/imgs/logo.png" />
                   <p>
                     <br>
                     <b>Price: </b>{{c.price}}<br>

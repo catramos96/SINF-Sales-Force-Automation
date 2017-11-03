@@ -46,7 +46,7 @@ export class ProductPage {
   };
 
   displayProducts(){
-    var colsLength = 3;
+    var colsLength = 2;
     var totalLength = this.categoryProducts.length;
     var rowsLength = Math.round(totalLength/colsLength);
     var rows = [];
@@ -55,9 +55,13 @@ export class ProductPage {
     {
       var cols = [];
       maxCol = (r+1)*colsLength;
-      if(maxCol > totalLength)  maxCol = totalLength;
-      for(c = r*colsLength; c < maxCol; c++)
-        cols.push(this.categoryProducts[c]);
+      //if(maxCol > totalLength)  maxCol = totalLength;
+      for(c = r*colsLength; c < maxCol; c++){
+        if(c >= maxCol)
+          cols.push(null);
+        else
+          cols.push(this.categoryProducts[c]);
+      }
       rows.push({row: cols});
     }
     this.products = rows;
