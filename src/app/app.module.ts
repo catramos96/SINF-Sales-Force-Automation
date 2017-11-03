@@ -24,14 +24,14 @@ import { CalendarModule } from 'angular-calendar';
     HomePage,
     ProductPage,
     ModalContentPage,
-    ContactsPage	
+    ContactsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
     CalendarModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
     HttpModule
   ],
   bootstrap: [IonicApp],

@@ -16,6 +16,6 @@ export function getMonthName(month){
     }
 }
 
-export function getDateString(date){
+export function getDateString(date): string{
   return date.getDay() + " " + getMonthName(date.getMonth()) + " " + date.getFullYear();
 }

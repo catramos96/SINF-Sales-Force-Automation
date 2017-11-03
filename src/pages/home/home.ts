@@ -2,7 +2,7 @@ import { NavController } from 'ionic-angular';
 import {ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
 import { Input, Output, EventEmitter } from '@angular/core';
-import {getDateString, getMonthName} from "../calendar-resources";
+import {getDateString} from "../calendar-resources";
 
 @Component({
   selector: 'page-home',
@@ -18,7 +18,6 @@ export class HomePage {
     'S', 'T', 'Q', 'Q', 'S', 'S', 'D'
   ];
 
-  clickedDate: Date;
   events: CalendarEvent[] = [];
 
   @Input() locale: string = 'en';
@@ -27,7 +26,7 @@ export class HomePage {
 
   @Output() viewDateChange: EventEmitter<Date> = new EventEmitter();
 
-  constructor(public navCtrl: NavController) {
+  constructor() {
   }
 
   getCalendarTitle(){
