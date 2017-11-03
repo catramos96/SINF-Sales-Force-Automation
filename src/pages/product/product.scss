@@ -12,19 +12,25 @@ page-product {
         font-size: 11;
     }
 
-    img{
-        width: 100px;
-        height: 100px;
-    }
-
     .modal{
         width: 100%;
         height: 100%;
     }
 
+    .litle{
+        width: 70%;
+        height: 70%;
+        display: block;
+        margin: 0 auto;
+    }
+
     .down{
         padding-top: 10px;
         padding-bottom: 20px;
+    }
+
+    .breakline{
+        white-space: initial;
     }
 
 }

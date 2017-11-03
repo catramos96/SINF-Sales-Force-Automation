@@ -13,22 +13,22 @@
     <ion-list>
         <ion-item>
             <h1 class="inline">{{product.name}}</h1>
-            <h2 class="muted inline">Category</h2>
-            <h2>ID : xxx-xxx-xxx</h2>          
+            <h2 class="muted inline">{{product.category}}</h2>
+            <h2>ID : {{product.id}}</h2>          
             <ion-grid>
                 <ion-row class="down">
                     <ion-col col-5>
                         <ion-slides pager>
-                            <ion-slide *ngFor="let slide of imgSlides">
+                            <ion-slide *ngFor="let slide of product.images">
                                 <img class="modal" [src]=slide.url>
                             </ion-slide>
                         </ion-slides>        
                     </ion-col>
                     <ion-col col-7>
-                        <b>Price : </b> 13 € <br>
-                        <b>Quantity Available : </b> 200 units <br>
-                        <b>Weight : </b> 150 g <br>
-                        <b>Description : </b> Description <br>
+                        <b>Price : </b> {{product.price}} € <br>
+                        <b>Quantity Available : </b> {{product.units}} units <br>
+                        <b>Weight : </b> {{product.weight}} g <br>
+                        <b>Description : </b><p class="breakline">{{product.description}}</p><br>
                     </ion-col>
                 </ion-row>
                 <ion-row >

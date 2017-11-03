@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController} from 'ionic-angular';
-import { ProductService } from '../../services/rest/product-service';
+import { ProductsProvider } from '../../providers/products/products';
 import { ModalContentPage } from '../product/productModal';
 
 @Component({
@@ -16,7 +16,7 @@ export class ProductPage {
 
   constructor(
     public navCtrl: NavController, 
-    private productService: ProductService,
+    private productService: ProductsProvider,
     public modalCtrl : ModalController
   ) {
 

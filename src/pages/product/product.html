@@ -52,24 +52,19 @@
             <ion-col *ngFor="let c of r.row">
               <!-- product -->
               <ion-card class="color" *ngIf="c!=null">
-
                 <ion-card-header class="inline">
                   <h2>{{c.name}}</h2>
-                  <p class=" muted">{{c.category}}</p>
+                  <p class="muted">{{c.category}}</p>
                 </ion-card-header>
                 <button ion-button icon-right clear item-end class="right" (click)="openModal(c.name)">
                     <ion-icon name="open"></ion-icon>
                 </button>
-              
-                <ion-card-content>
-                  <img src="assets/imgs/logo.png" />
-                  <p>
-                    <br>
-                    <b>Price: </b>{{c.price}}<br>
-                    <b>Quantity: </b>{{c.units}}
-                  </p>
+                <ion-card-content >
+                  <img class="litle"  align="middle" src="assets/imgs/logo.png"/>
+                  <br>
+                  <b>Price: </b>{{c.price}} €<br>
+                  <b>Quantity: </b>{{c.units}} units
                 </ion-card-content>
-  
               </ion-card>
             </ion-col>
           </ion-row>

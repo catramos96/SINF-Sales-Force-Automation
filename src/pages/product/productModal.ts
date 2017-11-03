@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, NavParams, ViewController, Slides} from 'ionic-angular';
-import { ProductService } from '../../services/rest/product-service';
+import { ProductsProvider } from '../../providers/products/products';
 
 @Component({
   selector: 'page-product',
@@ -25,7 +25,7 @@ export class ModalContentPage {
       public platform: Platform,
       public params: NavParams,
       public viewCtrl: ViewController,
-      private productService: ProductService
+      private productService: ProductsProvider
     ) {
       let name = this.params.get('productName');
       this.product = this.productService.getProduct(name);      

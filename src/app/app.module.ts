@@ -7,11 +7,11 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
-import { ProductService } from '../services/rest/product-service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { ProductsProvider } from '../providers/products/products';
 
 @NgModule({
   declarations: [
@@ -37,9 +37,9 @@ import { HttpModule } from '@angular/http';
   providers: [
     StatusBar,
     SplashScreen,
-    ProductService,
     HttpModule,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ProductsProvider
   ]
 })
 export class AppModule {}
