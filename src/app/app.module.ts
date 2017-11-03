@@ -7,10 +7,12 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
+import { ContactsPage } from '../pages/contacts/contacts';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { ContactsProvider } from '../providers/contacts/contacts';
 import { ProductsProvider } from '../providers/products/products';
 
 @NgModule({
@@ -19,10 +21,12 @@ import { ProductsProvider } from '../providers/products/products';
     HomePage,
     ListPage,
     ProductPage,
-    ModalContentPage
+    ModalContentPage,
+    ContactsPage	
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     HttpModule
   ],
@@ -32,13 +36,16 @@ import { ProductsProvider } from '../providers/products/products';
     HomePage,
     ListPage,
     ProductPage,
-    ModalContentPage
+    ModalContentPage,
+    ContactsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     HttpModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ContactsProvider,
     ProductsProvider
   ]
 })
