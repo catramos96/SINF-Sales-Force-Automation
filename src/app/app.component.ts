@@ -11,7 +11,8 @@ import { ContactsPage } from '../pages/contacts/contacts';
 
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;

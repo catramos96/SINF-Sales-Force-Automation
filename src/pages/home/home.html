@@ -9,55 +9,120 @@
 
 <ion-content padding>
 
-  <ion-grid>
+  <ion-grid class="main-content">
+
+    <!-- 1 Row: Buttons -->
     <ion-row >
 
-      <ion-col id="Calendar" col-9>
-
+      <ion-col col-4>
         <button ion-button icon-start icon-end class="core-button">
           <ion-icon name="calendar"></ion-icon>
           Calendar
           <ion-icon name="arrow-dropright-circle"></ion-icon>
         </button>
+      </ion-col>
 
-        <ion-grid no-padding>
-          <ion-row >
-            <ion-col col-5>
-
-            </ion-col>
-            <ion-col style="padding-right: 2%;">
-
-                <table class="table table-bordered table-responsive">
-                  <thead>
-                    <tr>
-                      <th class="table-1-column">Time</th>
-                      <th>Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>10:00 - 12:00</td>
-                      <td>Meeting with Mr.Smith</td>
-                    </tr>
-                    <tr>
-                      <td>12:00 - 14:00</td>
-                      <td>Board Discussion about the financial problems in the company</td>
-                    </tr>
-                  </tbody>
-                </table>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+      <ion-col col-4>
 
       </ion-col>
 
-      <ion-col id = "Leads">
+      <ion-col col-4>
         <button ion-button icon-start icon-end class="core-button">
           <ion-icon name="Leads"></ion-icon>
-          Calendar
+          Leads
           <ion-icon name="arrow-dropright-circle"></ion-icon>
         </button>
+      </ion-col>
+    </ion-row>
 
+    <!-- 2 Row: Extra  -->
+    <ion-row>
+
+      <ion-col col4>
+        <ion-grid no-padding class="calendar-menu">
+          <ion-row>
+            <ion-col col-3>
+              <button ion-button outline class="other-button">Hoje</button>
+            </ion-col>
+            <ion-col col-6>
+              {{getCalendarTitle()}}
+            </ion-col>
+            <ion-col col-1></ion-col>
+            <ion-col col-1 mwlCalendarPreviousView
+                     [view]="view"
+                     [(viewDate)]="viewDate"
+                     (viewDateChange)="viewDateChange.next(viewDate)">
+              <ion-icon name="arrow-dropup"></ion-icon>
+            </ion-col>
+            <ion-col col-1 mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                     (viewDateChange)="viewDateChange.next(viewDate)">
+              <ion-icon name="arrow-dropdown"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+
+      <ion-col col-4>
+        <button ion-button icon-only outline class="other-button" style="float:left">
+          <ion-icon name="add"></ion-icon></button>
+      </ion-col>
+      <ion-col col4>
+        <button ion-button icon-only outline class="other-button" style="float:left">
+          <ion-icon name="add"></ion-icon></button>
+      </ion-col>
+
+    </ion-row>
+
+    <!-- 3 Row Content -->
+    <ion-row>
+
+      <!-- Calendar Display -->
+      <ion-col col-4>
+        <div class="calendar-comp">
+          <template #headerTemp class="calendar-header">
+
+            <div class="cal-cell-row">
+              <div class="cal-cell cal-past columnHeader" *ngFor="let label of days_label">
+                {{label}}
+              </div>
+            </div>
+          </template>
+
+        <div>
+          <mwl-calendar-month-view id="calendar-display"
+                                   [viewDate]="viewDate" [headerTemplate]="headerTemp"
+                                   weekStartsOn="1" [events]="events"
+                                   (viewDateChange)="viewDateChange.next($event.day.date)"
+                                   (dayClicked)="viewDateChange.next($event.day.date)">
+          </mwl-calendar-month-view>
+        </div>
+        </div>
+      </ion-col>
+
+      <ion-col col-4>
+        <table class="table table-bordered table-responsive">
+
+          <thead>
+          <tr>
+            <th class="table-1-column">Time</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>10:00</td>
+            <td>Meeting with Mr.Smith</td>
+          </tr>
+          <tr>
+            <td>12:00</td>
+            <td>Board Discussion about the financial problems in the company</td>
+          </tr>
+          </tbody>
+        </table>
+      </ion-col>
+
+
+      <ion-col col-4>
         <table class="table table-bordered table-responsive">
           <thead>
           <tr>
@@ -76,49 +141,70 @@
       </ion-col>
     </ion-row>
 
+    <!-- 4 Row: Buttons -->
     <ion-row>
-
-      <ion-col id="Routes" col-9>
+      <ion-col col-4>
         <button ion-button icon-start icon-end class="core-button">
           <ion-icon name="Routes"></ion-icon>
           Routes
           <ion-icon name="arrow-dropright-circle"></ion-icon>
         </button>
-
-        <ion-grid no-padding>
-          <ion-row >
-            <ion-col col-5>
-
-            </ion-col>
-            <ion-col style="padding-right: 2%;">
-
-              <table class="table table-bordered table-responsive" >
-                <thead>
-                <tr>
-                  <th>Routes</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>Lorem ipsum dolor. Suspendisse gravida. Cras sit amet dui. Suspendisse et ligula.</td>
-                </tr>
-                <tr>
-                  <td>Vestibulum at orci. Proin non neque ultrices.</td>
-                </tr>
-                </tbody>
-              </table>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
       </ion-col>
 
-      <ion-col id="Prospects">
+      <ion-col col-4>
+
+      </ion-col>
+
+      <ion-col col-4>
         <button ion-button icon-start icon-end class="core-button">
           <ion-icon name="calendar"></ion-icon>
-          Prospects
+          Opportunities
           <ion-icon name="arrow-dropright-circle"></ion-icon>
         </button>
+      </ion-col>
+    </ion-row>
 
+    <!-- 5 Row: Extra -->
+    <ion-row>
+      <ion-col col4>
+      </ion-col>
+
+      <ion-col col-4>
+        <button ion-button icon-only outline class="other-button" style="float:left">
+          <ion-icon name="add"></ion-icon></button>
+      </ion-col>
+      <ion-col col4>
+        <button ion-button icon-only outline class="other-button" style="float:left">
+          <ion-icon name="add"></ion-icon></button>
+      </ion-col>
+
+    </ion-row>
+
+    <!-- 6 Row: Content -->
+    <ion-row>
+      <ion-col col-4>
+
+      </ion-col>
+
+      <ion-col col-4>
+        <table class="table table-bordered table-responsive" >
+          <thead>
+          <tr>
+            <th>Routes</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Lorem ipsum dolor. Suspendisse gravida. Cras sit amet dui. Suspendisse et ligula.</td>
+          </tr>
+          <tr>
+            <td>Vestibulum at orci. Proin non neque ultrices.</td>
+          </tr>
+          </tbody>
+        </table>
+      </ion-col>
+
+      <ion-col col-4>
         <table class="table table-bordered table-responsive">
           <thead>
           <tr>
