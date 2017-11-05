@@ -11,8 +11,11 @@ import { ProductsProvider } from '../../providers/products/products';
 export class ProductPage {
   shownGroup = null;
   categories = [];
-  categoryProducts = [];
+  subCategories = [];
+
+  //categoryProducts = [];
   products = [];
+
   currentSelected = -1;
 
   constructor(
@@ -36,8 +39,7 @@ export class ProductPage {
     if (this.isGroupShown(group)) {
       this.shownGroup = null;
     } else {
-      this.categoryProducts = this.productService.getProductsByCategory(category);
-      this.displayProducts();
+      this.subCategories = this.productService.getSubcategories(category);
       this.shownGroup = group;
     }
     this.currentSelected=-1;
@@ -47,9 +49,15 @@ export class ProductPage {
     return this.shownGroup === group;
   };
 
+  onItemClicked(j,category,subcategory){
+    this.products = this.productService.getProducts(category,subcategory);
+    this.displayProducts();
+    this.currentSelected = j;
+  }
+
   displayProducts(){
     var colsLength = 2;
-    var totalLength = this.categoryProducts.length;
+    var totalLength = this.products.length;
     var rowsLength = Math.round(totalLength/colsLength);
     var rows = [];
     var r,c,maxCol;
@@ -62,7 +70,7 @@ export class ProductPage {
         if(c >= maxCol)
           cols.push(null);
         else
-          cols.push(this.categoryProducts[c]);
+          cols.push(this.products[c]);
       }
       rows.push({row: cols});
     }
@@ -80,20 +88,15 @@ export class ProductPage {
 
   searchProduct(ev) {
     let name = ev.target.value;
-    if(name !== "") this.categoryProducts = this.productService.searchProduct(name);
-    else this.categoryProducts = [];
+    if(name !== "") this.products = this.productService.searchProduct(name);
+    else this.products = [];
     this.displayProducts();
   }
 
   onCancel(ev){
     this.categories = this.productService.getCategories();
-    this.categoryProducts = [];
+    this.products = [];
     this.displayProducts();
-
-  }
-
-  onItemClicked(j){
-    this.currentSelected = j;
   }
 
 }

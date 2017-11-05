@@ -32,10 +32,10 @@
               </h3>
             </ion-item>
             <div *ngIf="isGroupShown(i)">
-              <ion-item text-wrap *ngFor="let y of categoryProducts; let j=index" 
-                (click)="onItemClicked(j)" [class.selected]="j === currentSelected" 
-              >
-                <p style="padding-left:12%">{{y.name}}</p>
+              <ion-item text-wrap *ngFor="let sub of subCategories; let j=index" 
+                  (click)="onItemClicked(j,sub.category,sub.subcategory)" 
+                  [class.selected]="j === currentSelected">
+                <p style="padding-left:12%">{{sub.subcategory}}</p>
               </ion-item>
             </div>
           </div>
@@ -62,7 +62,7 @@
               <ion-card class="color" *ngIf="c!=null">
                 <ion-card-header class="inline">
                   <h2>{{c.name}}</h2>
-                  <p class="muted">{{c.category}}</p>
+                  <p class="muted">{{c.category}} , {{c.subCategory}}</p>
                 </ion-card-header>
                 <button ion-button icon-right clear item-end class="right" (click)="openModal(c.name)">
                     <ion-icon name="open"></ion-icon>

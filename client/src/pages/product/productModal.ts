@@ -28,7 +28,7 @@ export class ModalContentPage {
       private productService: ProductsProvider
     ) {
       let name = this.params.get('productName');
-      this.product = this.productService.getProduct(name);      
+      this.product = this.productService.getProductByName(name);      
     }
   
     @ViewChild(Slides) slides: Slides;
