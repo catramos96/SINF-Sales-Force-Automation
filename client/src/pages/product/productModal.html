@@ -12,23 +12,26 @@
 <ion-content>
     <ion-list>
         <ion-item>
-            <h1 class="inline">{{product.name}}</h1>
-            <h2 class="muted inline">{{product.category}} , {{product.subCategory}}</h2>
-            <h2>ID : {{product.id}}</h2>          
+            <h1 class="inline">{{product.Nome}}</h1>
+            <h2 class="muted inline">{{product.FamiliaNome}} , {{product.SubFamiliaNome}}</h2>
+            <h2>ID : {{product.ID}}</h2>          
             <ion-grid>
-                <ion-row class="down">
+                <ion-row>
                     <ion-col col-5>
                         <ion-slides pager>
-                            <ion-slide *ngFor="let slide of product.images">
+                            <ion-slide *ngFor="let slide of imgSlides">
                                 <img class="modal" [src]=slide.url>
                             </ion-slide>
                         </ion-slides>        
                     </ion-col>
                     <ion-col col-7>
-                        <b>Price : </b> {{product.price}} € <br>
-                        <b>Quantity Available : </b> {{product.units}} units <br>
-                        <b>Weight : </b> {{product.weight}} g <br>
-                        <b>Description : </b><p class="breakline">{{product.description}}</p><br>
+                        <b>Price : </b> {{product.PrecoMedio}} € <br>
+                        <b>IVA : </b> {{product.IVA}} % <br><br>
+                        <b>Actual Stock  : </b> {{product.StockAtual}} {{product.UnidadeVenda}} <br>
+                        <b>Reserved Stock  : </b> {{product.QuantidadeReservada}} {{product.UnidadeVenda}} <br><br>
+                        <b>Weight : </b> {{product.Peso}} g <br><br>
+                        <b>Delivery Estimated Time : </b> {{product.PrazoEntrega}} days<br><br>
+                        <b>Description : </b><p class="breakline">{{product.Observacoes}}</p><br>
                     </ion-col>
                 </ion-row>
                 <ion-row >

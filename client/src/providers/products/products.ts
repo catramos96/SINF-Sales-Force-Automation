@@ -16,105 +16,31 @@ export class ProductsProvider {
   }
 
   getCategories() {
-    /*var url = 'http://api.themoviedb.org/3/search/movie?query=&query=' + encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+    var url = 'http://endereco:porta/api/familias';
     var response = this.http.get(url).map(res => res.json());
-    return response;*/
-
-    return [
-      { category: "Leite"},
-      { category: "Queijo"},
-      { category: "Manteiga"},
-      { category: "Iogurte"}
-    ];
+    return response;
   }
 
-  getSubcategories(categoryName){
-    /*var url = 'http://api.themoviedb.org/3/search/movie?query=&query=' + encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+  getSubcategories(categoryID){
+    var url = 'http://endereco:porta/api/subfamilias/'+encodeURI(categoryID);
     var response = this.http.get(url).map(res => res.json());
-    return response;*/
-
-    if(categoryName === null)
-      return [];
-
-    if(categoryName === "Leite")  {
-      return [
-        { subcategory: "Normal", category: categoryName},
-        { subcategory: "Crianças", category: categoryName}
-      ];
-    }
-
-    if(categoryName === "Queijo")  {
-      return [
-        { subcategory: "Mozzarela", category: categoryName},
-        { subcategory: "Parmesao", category: categoryName},
-        { subcategory: "Fetta", category: categoryName},
-        { subcategory: "Fresco" , category: categoryName}
-      ];
-    }
-
-    if(categoryName === "Manteiga")  {
-      return [
-        { subcategory: "Manteiga", category: categoryName},
-        { subcategory: "Margarina", category: categoryName}
-      ];
-    }
-
-    if(categoryName === "Iogurte")  {
-      return [
-        { subcategory: "Sólido", category: categoryName},
-        { subcategory: "Líquido", category: categoryName},
-        { subcategory: "Grego", category: categoryName}
-      ];
-    }
+    return response;
   }
 
-  getProducts(categoryName, subCategoryName) {
-    /*var url = 'http://api.themoviedb.org/3/search/movie?query=&query=' + encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+  getProductSpecification(productID) {
+    var url = 'http://endereco:porta/api/artigos/'+encodeURI(productID);
     var response = this.http.get(url).map(res => res.json());
-    return response;*/
-
-    if(subCategoryName === null && categoryName == null)
-      return [];
-    
-    if(categoryName == "Leite" && subCategoryName === "Normal"){
-      return [
-        {name: "Magro",category: categoryName,subCategory: subCategoryName,price: "0.32", units:"500"},
-        {name: "Meio-Gordo",category: categoryName,subCategory: subCategoryName,price: "0.32", units:"500"},
-        {name: "Gordo",category: categoryName,subCategory: subCategoryName,price: "0.32", units:"500"},
-      ];
-    }  
-
-    return [
-      {name: "Nome 1",category: categoryName,subCategory: subCategoryName,price: "0.32", units:"500"},
-      {name: "Nome 2",category: categoryName,subCategory: subCategoryName,price: "0.32", units:"500"},
-      {name: "Nome 3",category: categoryName,subCategory: subCategoryName,price: "0.32", units:"500"},
-      {name: "Nome 4",category: categoryName,subCategory: subCategoryName,price: "0.32", units:"500"},
-      {name: "Nome 5",category: categoryName,subCategory: subCategoryName,price: "0.32", units:"500"},
-    ];
+    return response;
   }
 
-  getProductByName(productName) {
-    /*var url = 'http://api.themoviedb.org/3/search/movie?query=&query=' + encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+  //COMPOR ESTE
+  getProducts(subfamilia) {
+    var url = 'http://endereco:porta/api/artigos/'+encodeURI(subfamilia);
     var response = this.http.get(url).map(res => res.json());
-    return response;*/
-
-    return {
-      name: "Magro",
-      id:"A001",
-      category: "Leite",
-      subCategory: "Normal",
-      price: "0.32", 
-      units:"500",
-      weight: "150",
-      description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate elit eu cursus consequat. Duis in velit a nisi ullamcorper tincidunt eu eget justo. Duis a tortor eros. Duis ante leo, tincidunt et sagittis a, volutpat non turpis.",
-      images: [
-        {url: "assets/imgs/logo.png"},
-        {url: "assets/imgs/logo.png"},
-        {url: "assets/imgs/logo.png"}
-      ]
-    };
+    return response;
   }
 
+  //TERMINAR
   searchProduct(name) {
     /*var url = 'http://api.themoviedb.org/3/search/movie?query=&query=' + encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
     var response = this.http.get(url).map(res => res.json());
@@ -125,6 +51,7 @@ export class ProductsProvider {
     ];
   }
 
+  //TERMINAR
   searchCategory(name) {
     /*var url = 'http://api.themoviedb.org/3/search/movie?query=&query=' + encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
     var response = this.http.get(url).map(res => res.json());

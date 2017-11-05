@@ -25,17 +25,17 @@
         <!-- list categories -->      
         <ion-list>
           <div *ngFor="let c of categories; let i=index">
-            <ion-item class="item-stable" text-wrap (click)="toggleGroup(i,c.category)" [ngClass]="{active: isGroupShown(i)}">
+            <ion-item class="item-stable" text-wrap (click)="toggleGroup(i,c.ID)" [ngClass]="{active: isGroupShown(i)}">
               <h3>
                 <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-                {{c.category}}
+                {{c.ID}} : {{c.Nome}}
               </h3>
             </ion-item>
             <div *ngIf="isGroupShown(i)">
               <ion-item text-wrap *ngFor="let sub of subCategories; let j=index" 
-                  (click)="onItemClicked(j,sub.category,sub.subcategory)" 
+                  (click)="onItemClicked(j,sub.IDFamilia,sub.ID)" 
                   [class.selected]="j === currentSelected">
-                <p style="padding-left:12%">{{sub.subcategory}}</p>
+                <p style="padding-left:12%">{{sub.ID}} : {{sub.Nome}}</p>
               </ion-item>
             </div>
           </div>
@@ -61,17 +61,17 @@
               <!-- product -->
               <ion-card class="color" *ngIf="c!=null">
                 <ion-card-header class="inline">
-                  <h2>{{c.name}}</h2>
-                  <p class="muted">{{c.category}} , {{c.subCategory}}</p>
+                  <h2>{{c.ID}} : {{c.Nome}}</h2>
+                  <p class="muted">{{c.FamiliaNome}} , {{c.SubFamiliaNome}}</p>
                 </ion-card-header>
-                <button ion-button icon-right clear item-end class="right" (click)="openModal(c.name)">
+                <button ion-button icon-right clear item-end class="right" (click)="openModal(c.ID)">
                     <ion-icon name="open"></ion-icon>
                 </button>
                 <ion-card-content >
                   <img class="litle"  align="middle" src="assets/imgs/logo.png"/>
                   <br>
-                  <b>Price: </b>{{c.price}} €<br>
-                  <b>Quantity: </b>{{c.units}} units
+                  <b>Price: </b>{{c.PrecoMedio}} €<br>
+                  <b>Quantity: </b>{{c.StockAtual}} units
                 </ion-card-content>
               </ion-card>
             </ion-col>

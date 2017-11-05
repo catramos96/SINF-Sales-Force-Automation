@@ -27,19 +27,19 @@ export class ProductPage {
   }
 
   ngOnInit(): void {
-    this.categories = this.productService.getCategories();
+    this.getCategories();
   }
 
-  openModal(productName) {
-    let modal = this.modalCtrl.create(ModalContentPage,{ productName: productName });
+  openModal(productID) {
+    let modal = this.modalCtrl.create(ModalContentPage,{ productID: productID });
     modal.present();
   }
 
-  toggleGroup(group,category) {
+  toggleGroup(group,categoryID) {
     if (this.isGroupShown(group)) {
       this.shownGroup = null;
     } else {
-      this.subCategories = this.productService.getSubcategories(category);
+      this.getSubCategories(categoryID);
       this.shownGroup = group;
     }
     this.currentSelected=-1;
@@ -50,8 +50,7 @@ export class ProductPage {
   };
 
   onItemClicked(j,category,subcategory){
-    this.products = this.productService.getProducts(category,subcategory);
-    this.displayProducts();
+    this.getProducts(category,subcategory);
     this.currentSelected = j;
   }
 
@@ -65,7 +64,6 @@ export class ProductPage {
     {
       var cols = [];
       maxCol = (r+1)*colsLength;
-      //if(maxCol > totalLength)  maxCol = totalLength;
       for(c = r*colsLength; c < maxCol; c++){
         if(c >= maxCol)
           cols.push(null);
@@ -77,9 +75,11 @@ export class ProductPage {
     this.products = rows;
   }
 
+  // ---- searchs ----
+
   searchCategory(ev) {
     //init
-    this.categories = this.productService.getCategories();    
+    this.getCategories();
     //search
     let name = ev.target.value;
     if(name !== "")
@@ -94,8 +94,104 @@ export class ProductPage {
   }
 
   onCancel(ev){
-    this.categories = this.productService.getCategories();
+    this.getCategories();
     this.products = [];
+    this.displayProducts();
+  }
+
+  // ---- PROVIDERS ----
+
+  getCategories(){
+    this.categories = [
+      { Nome: "Leite", ID: "A01"},
+      { Nome: "Queijo", ID: "A02"},
+      { Nome: "Manteiga", ID: "A03"},
+      { Nome: "Iogurte", ID: "A04"}
+    ];
+    /*this.productService.getCategories().subscribe(
+      data => { 
+          this.categories = data;
+      },
+      err => {
+          console.log(err);
+      });*/
+  }
+
+  getSubCategories(categoryID){
+    
+    if(categoryID === null)
+      this.subCategories = [];
+    else if(categoryID === "A01")  {
+      this.subCategories = [
+        { Nome: "Normal", IDFamilia: categoryID, ID:"001"},
+        { Nome: "Crianças", IDFamilia: categoryID,ID:"001"}
+      ];
+    }
+    else if(categoryID === "A02")  {
+      this.subCategories = [
+        { Nome: "Mozzarela", IDFamilia: categoryID,ID:"001"},
+        { Nome: "Parmesao", IDFamilia: categoryID,ID:"001"},
+        { Nome: "Fetta", IDFamilia: categoryID,ID:"001"},
+        { Nome: "Fresco" , IDFamilia: categoryID,ID:"001"}
+      ];
+    }
+    else if(categoryID === "A03")  {
+      this.subCategories = [
+        { Nome: "Manteiga", IDFamilia: categoryID,ID:"001"},
+        { Nome: "Margarina", IDFamilia: categoryID,ID:"001"}
+      ];
+    }
+    else if(categoryID === "A04")  {
+      this.subCategories = [
+        { Nome: "Sólido", IDFamilia: categoryID,ID:"001"},
+        { Nome: "Líquido", IDFamilia: categoryID,ID:"001"},
+        { Nome: "Grego", IDFamilia: categoryID,ID:"001"}
+      ];
+    }
+    
+    /*
+    this.productService.getSubcategories(categoryID).subscribe(
+      data => { 
+          this.subCategories = data;
+      },
+      err => {
+          console.log(err);
+      });
+      */
+  }
+
+  getProducts(categoryID,subcategoryID){
+    
+    if(subcategoryID === null && categoryID == null)
+      this.products = [];
+    else if(categoryID == "A01" && subcategoryID === "001"){
+      this.products = [
+        {ID: "A021",Nome: "Magro",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"},
+        {ID: "A022",Nome: "Meio-Gordo",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"},
+        {ID: "A023",Nome: "Gordo",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"},
+      ];
+    }  
+    else
+      this.products = [
+        {ID: "A024",Nome: "Outro 1",FamiliaNome:"Queijo", SubFamiliaNome:"Parmesao",StockAtual:"500",PrecoMedio:"0.32"},
+        {ID: "A025",Nome: "Outro 2",FamiliaNome:"Queijo", SubFamiliaNome:"Parmesao",StockAtual:"500",PrecoMedio:"0.32"},
+        {ID: "A026",Nome: "Outro 3",FamiliaNome:"Queijo", SubFamiliaNome:"Parmesao",StockAtual:"500",PrecoMedio:"0.32"},
+        {ID: "A027",Nome: "Outro 4",FamiliaNome:"Queijo", SubFamiliaNome:"Parmesao",StockAtual:"500",PrecoMedio:"0.32"},
+        {ID: "A028",Nome: "Outro 5",FamiliaNome:"Queijo", SubFamiliaNome:"Parmesao",StockAtual:"500",PrecoMedio:"0.32"},
+      ];
+     
+    
+    var subfamilia = categoryID+"."+subcategoryID;
+    console.log(subfamilia);  
+    /*
+    this.productService.getProducts(subfamilia).subscribe(
+      data => { 
+        this.products = data;
+      },
+      err => {
+        console.log(err);
+      });
+    */
     this.displayProducts();
   }
 
