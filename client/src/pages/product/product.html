@@ -22,20 +22,24 @@
             (ionCancel)="onCancel($event)">
           </ion-searchbar> 
         </div>
-        <!-- list categories -->       
+        <!-- list categories -->      
         <ion-list>
-          <ion-item *ngFor="let c of categories; let i=index" text-wrap (click)="toggleGroup(i,c.category)" [ngClass]="{active: isGroupShown(i)}">
-            <h3>
-              <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-              {{c.category}}
-            </h3>
+          <div *ngFor="let c of categories; let i=index">
+            <ion-item class="item-stable" text-wrap (click)="toggleGroup(i,c.category)" [ngClass]="{active: isGroupShown(i)}">
+              <h3>
+                <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+                {{c.category}}
+              </h3>
+            </ion-item>
             <div *ngIf="isGroupShown(i)">
-              <ion-item *ngFor="let y of categoryProducts; let j=index" text-wrap>
-                {{y.name}}
+              <ion-item text-wrap *ngFor="let y of categoryProducts; let j=index" 
+                (click)="onItemClicked(j)" [class.selected]="j === currentSelected" 
+              >
+                <p style="padding-left:12%">{{y.name}}</p>
               </ion-item>
             </div>
-          </ion-item>
-        </ion-list>
+          </div>
+        </ion-list> 
       </ion-col>
       <!-- PRODUCTS-->
       <ion-col col-8>
@@ -48,6 +52,10 @@
         </ion-searchbar>
         <!-- list products -->
         <ion-grid>
+          <ion-row *ngIf="products.length == 0">
+            <br><br>
+            <p> No products to display</p>
+          </ion-row>
           <ion-row *ngFor="let r of products">
             <ion-col *ngFor="let c of r.row">
               <!-- product -->

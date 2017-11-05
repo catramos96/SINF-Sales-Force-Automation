@@ -13,6 +13,7 @@ export class ProductPage {
   categories = [];
   categoryProducts = [];
   products = [];
+  currentSelected = -1;
 
   constructor(
     public navCtrl: NavController, 
@@ -39,6 +40,7 @@ export class ProductPage {
       this.displayProducts();
       this.shownGroup = group;
     }
+    this.currentSelected=-1;
   };
 
   isGroupShown(group) {
@@ -88,6 +90,10 @@ export class ProductPage {
     this.categoryProducts = [];
     this.displayProducts();
 
+  }
+
+  onItemClicked(j){
+    this.currentSelected = j;
   }
 
 }
