@@ -255,7 +255,7 @@ namespace FirstREST.Lib_Primavera
                 else
                 {
                     objArtigo = PriEngine.Engine.Comercial.Artigos.Edita(codArtigo);
-                    
+
                     myArt.ID = objArtigo.get_Artigo();
                     myArt.Nome = objArtigo.get_Descricao();
                     myArt.UnidadeVenda = objArtigo.get_UnidadeVenda();
@@ -303,7 +303,7 @@ namespace FirstREST.Lib_Primavera
                     art.FamiliaNome = objList.Valor("Descricao");
                     art.SubFamiliaNome = objList.Valor("DescricaoSubFamilia");
                     art.PrazoEntrega = objList.Valor("PrazoEntrega");
-                    art.Peso = objList.Valor("Peso");                   
+                    art.Peso = objList.Valor("Peso");
                     art.Observacoes = objList.Valor("Observacoes");
                     art.QuantidadeReservada = objList.Valor("QtReservadaGPR");
 
@@ -325,16 +325,16 @@ namespace FirstREST.Lib_Primavera
         public static List<Model.Artigo> ListaArtigosFamiliaSubFamilia(string subfamiliaID)
         {
             StdBELista objList;
-
             Model.Artigo art = new Model.Artigo();
             List<Model.Artigo> listArts = new List<Model.Artigo>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
                 objList = PriEngine.Engine.Consulta(
-                    "select Artigo, Descricao, Familia, SubFamilia, STKActual, PCMedio "+
-                    "from Artigo "+
-                    "where SubFamilia = "+subfamiliaID+";");
+                    "select Artigo, Descricao, Familia, SubFamilia, STKActual, PCMedio " +
+                    "from Artigo " +
+                    //"where SubFamilia = '" + subfamiliaID + "' ;");
+                    "where SubFamilia = 'H01.001'");
 
                 while (!objList.NoFim())
                 {

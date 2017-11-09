@@ -10,27 +10,25 @@ namespace FirstREST.Controllers
 {
     public class ArtigosController : ApiController
     {
-        //
-        // GET: /Artigos/
-        //[Route("api/artigos")]
+        // GET: api/artigos/
         [HttpGet]
+        [Route("api/artigos")]
         public IEnumerable<Lib_Primavera.Model.Artigo> Get()
         {
             return Lib_Primavera.PriIntegration.ListaArtigos();
         }
 
-        /**
-         * NAO ESTA A FUNCIONAR MUITO BEM
-         *
-        // GET: /Artigos/SubFamilia
+        // GET: api/artigos/subfamilia/id
+        [Route("api/artigos/subfamilias/{id}")]
         [HttpGet]
-        public IEnumerable<Lib_Primavera.Model.Artigo> Get(string id)
+        public IEnumerable<Lib_Primavera.Model.Artigo> GetSubFamilias(string id)
         {
             return Lib_Primavera.PriIntegration.ListaArtigosFamiliaSubFamilia(id);
         }
-         */ 
 
-        // GET api/artigo/5    
+        // GET api/artigos/id    
+        [HttpGet]
+        [Route("api/artigos/{id}")]
         public Artigo Get(string id)
         {
             Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegration.GetArtigo(id);

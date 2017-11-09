@@ -8,7 +8,7 @@ namespace FirstREST.Lib_Primavera.Model
     public class Artigo
     {
         public string ID { get; set; }
-        public string Descricao { get; set; }
+        public string Nome { get; set; }
         public string UnidadeVenda { get; set; }
         public string IVA { get; set; }
         public double StockAtual { get; set; }
