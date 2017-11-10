@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, NavParams, ViewController, Slides} from 'ionic-angular';
+import { Platform, NavParams, ViewController, Slides, NavController} from 'ionic-angular';
 import { ProductsProvider } from '../../providers/products/products';
+import { SalesHistoryPage } from '../sales-history/sales-history';
+import { ReserveStockPage } from '../reserve-stock/reserve-stock';
+import { MakeOrderPage } from '../make-order/make-order';
 
 @Component({
   selector: 'page-product',
@@ -25,7 +28,8 @@ export class ModalContentPage {
       public platform: Platform,
       public params: NavParams,
       public viewCtrl: ViewController,
-      private productService: ProductsProvider
+      private productService: ProductsProvider,
+      private navCtrl: NavController
     ) {
       let name = this.params.get('productID');
       this.getProductSpecification(name);      
@@ -41,8 +45,21 @@ export class ModalContentPage {
       this.viewCtrl.dismiss();
     }
 
+    goToSalesHistory(){
+      this.navCtrl.push(SalesHistoryPage);
+    }
+
+    goToReserveStock(){
+      this.navCtrl.push(ReserveStockPage);
+    }
+
+    goToMakeOrder(){
+      this.navCtrl.push(MakeOrderPage);
+    }
+
     // ---- provider ----
 
+    //verificar o json
     getProductSpecification(productID){
       /*
       this.productService.getProductSpecification(productID).subscribe(
@@ -53,7 +70,7 @@ export class ModalContentPage {
           console.log(err);
       });
       */
-
+      
       this.product = {
         ID:"A001",
         Nome: "Magro",
@@ -68,6 +85,6 @@ export class ModalContentPage {
         Observacoes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate elit eu cursus consequat. Duis in velit a nisi ullamcorper tincidunt eu eget justo. Duis a tortor eros. Duis ante leo, tincidunt et sagittis a, volutpat non turpis.",
         QuantidadeReservada: "120"
       };
-  
+
     }
   }

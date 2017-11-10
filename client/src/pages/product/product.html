@@ -35,7 +35,7 @@
               <ion-item text-wrap *ngFor="let sub of subCategories; let j=index" 
                   (click)="onItemClicked(j,sub.IDFamilia,sub.ID)" 
                   [class.selected]="j === currentSelected">
-                <p style="padding-left:12%">{{sub.ID}} : {{sub.Nome}}</p>
+                <p style="padding-left:12%">{{sub.Nome}}</p>
               </ion-item>
             </div>
           </div>

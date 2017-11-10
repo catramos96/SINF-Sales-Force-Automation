@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+
+
 /*
   Generated class for the ProductsProvider provider.
 
@@ -15,27 +17,30 @@ export class ProductsProvider {
     console.log('Hello ProductsProvider Provider');
   }
 
+  //fiz -> a funcionar
   getCategories() {
-    var url = 'http://endereco:porta/api/familias';
+    var url = 'http://25.34.60.99:9608/api/familias';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
+  //fiz -> a funcionar
   getSubcategories(categoryID){
-    var url = 'http://endereco:porta/api/subfamilias/'+encodeURI(categoryID);
+    var url = 'http://25.34.60.99:9608/api/subfamilias/'+encodeURI(categoryID);
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
+  //fiz -> verificar json
   getProductSpecification(productID) {
-    var url = 'http://endereco:porta/api/artigos/'+encodeURI(productID);
+    var url = 'http://25.34.60.99:9608/api/artigos/'+encodeURI(productID);
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
   //COMPOR ESTE
   getProducts(subfamilia) {
-    var url = 'http://endereco:porta/api/artigos/'+encodeURI(subfamilia);
+    var url = 'http://25.34.60.99:9608/api/artigos/'+encodeURI(subfamilia);
     var response = this.http.get(url).map(res => res.json());
     return response;
   }

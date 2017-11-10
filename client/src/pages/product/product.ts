@@ -101,22 +101,27 @@ export class ProductPage {
 
   // ---- PROVIDERS ----
 
+  //a funcionar
   getCategories(){
+    
     this.categories = [
       { Nome: "Leite", ID: "A01"},
       { Nome: "Queijo", ID: "A02"},
       { Nome: "Manteiga", ID: "A03"},
       { Nome: "Iogurte", ID: "A04"}
     ];
-    /*this.productService.getCategories().subscribe(
+    /*
+    this.productService.getCategories().subscribe(
       data => { 
           this.categories = data;
       },
       err => {
           console.log(err);
-      });*/
+      });
+      */
   }
 
+  //a funcionar
   getSubCategories(categoryID){
     
     if(categoryID === null)
@@ -148,8 +153,8 @@ export class ProductPage {
         { Nome: "Grego", IDFamilia: categoryID,ID:"001"}
       ];
     }
-    
-    /*
+   
+   /* 
     this.productService.getSubcategories(categoryID).subscribe(
       data => { 
           this.subCategories = data;
@@ -160,6 +165,7 @@ export class ProductPage {
       */
   }
 
+  //verificar
   getProducts(categoryID,subcategoryID){
     
     if(subcategoryID === null && categoryID == null)
