@@ -1,0 +1,17 @@
+page-personal-statistics {
+  ion-grid {
+    height: 100%;
+  }
+
+  .row {
+    height: 50%;
+  }
+
+  .label {
+    height: 100%;
+    background-color: #ffe599;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
+    border: 1px solid black;
+  }
+}

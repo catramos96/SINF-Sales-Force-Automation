@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
 import { ContactsPage } from '../pages/contacts/contacts';
+import { StatisticsPage } from '../pages/statistics/statistics';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,7 +25,8 @@ import { CalendarModule } from 'angular-calendar';
     HomePage,
     ProductPage,
     ModalContentPage,
-    ContactsPage
+    ContactsPage,
+    StatisticsPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { CalendarModule } from 'angular-calendar';
     HomePage,
     ProductPage,
     ModalContentPage,
-    ContactsPage
+    ContactsPage,
+    StatisticsPage
   ],
   providers: [
     StatusBar,
