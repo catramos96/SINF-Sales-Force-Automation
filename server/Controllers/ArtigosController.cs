@@ -18,14 +18,14 @@ namespace FirstREST.Controllers
 
         public IEnumerable<Lib_Primavera.Model.Artigo> Get()
         {
-            return Lib_Primavera.PriIntegration.ListaArtigos();
+            return Lib_Primavera.PriIntegrationArtigo.ListaArtigos();
         }
 
 
         // GET api/artigo/5    
         public Artigo Get(string id)
         {
-            Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegration.GetArtigo(id);
+            Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegrationArtigo.GetArtigo(id);
             if (artigo == null)
             {
                 throw new HttpResponseException(

@@ -16,14 +16,14 @@ namespace FirstREST.Controllers
 
         public IEnumerable<Lib_Primavera.Model.Cliente> Get()
         {
-                return Lib_Primavera.PriIntegration.ListaClientes();
+                return Lib_Primavera.PriIntegrationCliente.ListaClientes();
         }
 
 
         // GET api/cliente/5    
         public Cliente Get(string id)
         {
-            Lib_Primavera.Model.Cliente cliente = Lib_Primavera.PriIntegration.GetCliente(id);
+            Lib_Primavera.Model.Cliente cliente = Lib_Primavera.PriIntegrationCliente.GetCliente(id);
             if (cliente == null)
             {
                 throw new HttpResponseException(
@@ -40,7 +40,7 @@ namespace FirstREST.Controllers
         public HttpResponseMessage Post(Lib_Primavera.Model.Cliente cliente)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
-            erro = Lib_Primavera.PriIntegration.InsereClienteObj(cliente);
+            erro = Lib_Primavera.PriIntegrationCliente.InsereClienteObj(cliente);
 
             if (erro.Erro == 0)
             {
@@ -66,7 +66,7 @@ namespace FirstREST.Controllers
 
             try
             {
-                erro = Lib_Primavera.PriIntegration.UpdCliente(cliente);
+                erro = Lib_Primavera.PriIntegrationCliente.UpdCliente(cliente);
                 if (erro.Erro == 0)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, erro.Descricao);
@@ -94,7 +94,7 @@ namespace FirstREST.Controllers
             try
             {
 
-                erro = Lib_Primavera.PriIntegration.DelCliente(id);
+                erro = Lib_Primavera.PriIntegrationCliente.DelCliente(id);
 
                 if (erro.Erro == 0)
                 {
