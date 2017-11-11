@@ -324,7 +324,7 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-        public static List<Model.Artigo> ListaArtigosFamiliaSubFamilia(string subfamiliaID)
+        public static List<Model.Artigo> ListaArtigosFamiliaSubFamilia(string familia, string subfamilia)
         {
             StdBELista objList;
             Model.Artigo art = new Model.Artigo();
@@ -333,10 +333,9 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
                 objList = PriEngine.Engine.Consulta(
-                    "select Artigo, Descricao, Familia, SubFamilia, STKActual, PCMedio " +
-                    "from Artigo " +
-                    //"where SubFamilia = '" + subfamiliaID + "' ;");
-                    "where SubFamilia = 'H01.001'");
+                    "select Artigo.Artigo, Artigo.Descricao, Artigo.Familia, Familias.Descricao AS DescricaoFamilia, Artigo.SubFamilia, SubFamilias.Descricao AS DescricaoSubFamilia, STKActual, PCMedio "+
+                    "from Artigo Join Familias ON Familias.Familia = Artigo.Familia Join SubFamilias ON SubFamilias.SubFamilia = Artigo.SubFamilia "+
+                    "where Artigo.Familia = '" + familia + "' AND Artigo.SubFamilia = '" + subfamilia + "';");
 
                 while (!objList.NoFim())
                 {
@@ -345,8 +344,8 @@ namespace FirstREST.Lib_Primavera
                     art.Nome = objList.Valor("Descricao");
                     art.StockAtual = objList.Valor("STKActual");
                     art.PrecoMedio = objList.Valor("PCMedio");
-                    art.FamiliaNome = objList.Valor("Familia");
-                    art.SubFamiliaNome = objList.Valor("SubFamilia");
+                    art.FamiliaNome = objList.Valor("DescricaoFamilia");
+                    art.SubFamiliaNome = objList.Valor("DescricaoSubFamilia");
 
                     listArts.Add(art);
                     objList.Seguinte();
@@ -413,8 +412,8 @@ namespace FirstREST.Lib_Primavera
                 while (!objList.NoFim())
                 {
                     art = new Model.SubFamilia();
-                    art.ID = objList.Valor("Familia");
-                    art.IDFamilia = objList.Valor("SubFamilia");
+                    art.ID = objList.Valor("SubFamilia");
+                    art.IDFamilia = objList.Valor("Familia");
                     art.Nome = objList.Valor("Descricao");
 
                     listArts.Add(art);
