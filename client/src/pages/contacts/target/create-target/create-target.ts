@@ -13,8 +13,16 @@ export class CreateTargetPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
     this.authForm = formBuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*'), Validators.minLength(8), Validators.maxLength(30)])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+      name: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*')])],
+      email:[''],
+      phone:[''],
+      notes:[''],
+      taxnumber:[''],
+      title:[''],
+      address:[''],
+      zipcode:[''],
+      location:[''],
+      country:[''],
   });
   }
   
