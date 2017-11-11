@@ -289,7 +289,9 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("select Artigo.Artigo, Artigo.Descricao, UnidadeVenda, Iva, STKActual, PCMedio, Familias.Descricao , SubFamilias.Descricao AS DescricaoSubFamilia, PrazoEntrega, Peso, Marca, Observacoes, QtReservadaGPR  from Artigo Join Familias ON Familias.Familia = Artigo.Familia Join SubFamilias ON SubFamilias.SubFamilia = Artigo.SubFamilia;");
+                objList = PriEngine.Engine.Consulta(
+                    "select Artigo.Artigo, Artigo.Descricao, UnidadeVenda, Iva, STKActual, PCMedio, Familias.Descricao AS DescricaoFamilia, SubFamilias.Descricao AS DescricaoSubFamilia, PrazoEntrega, Peso, Marca, Observacoes, QtReservadaGPR  "+
+                    "from Artigo Join Familias ON Familias.Familia = Artigo.Familia Join SubFamilias ON SubFamilias.SubFamilia = Artigo.SubFamilia;");
 
                 while (!objList.NoFim())
                 {
@@ -390,9 +392,9 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
-        #endregion SubFamilia // -----------------------------  END   FAMILIA    -----------------------
+        #endregion Familia // -----------------------------  END   FAMILIA    -----------------------
 
-        #region Familia
+        #region SubFamilia
 
         public static List<Model.SubFamilia> ListaSubCategoriasPorCategoria(string categoria)
         {
@@ -403,7 +405,10 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("select Familia, SubFamilia, Descricao from SubFamilias;");
+                objList = PriEngine.Engine.Consulta(
+                    "select Familia, SubFamilia, Descricao "+
+                    "from SubFamilias "+
+                    "where Familia = '"+categoria+"';");
 
                 while (!objList.NoFim())
                 {
@@ -545,7 +550,8 @@ namespace FirstREST.Lib_Primavera
         }
 
 
-        #endregion DocCompra
+        #endregion DocCompra // -----------------------------  END DOCCOMPRA    -----------------------
+
 
 
         #region DocsVenda
@@ -714,6 +720,7 @@ namespace FirstREST.Lib_Primavera
             return null;
         }
 
-        #endregion DocsVenda
+        #endregion DocsVenda // -----------------------------  END   DOCSVENDA    -----------------------
+
     }
 }
