@@ -11,7 +11,20 @@ import { MakeOrderPage } from '../make-order/make-order';
 })
 
 export class ModalContentPage {
-    product;
+    product= {
+      ID:"",
+      Nome: "",
+      UnidadeVenda: "",
+      IVA: "",
+      StockAtual: "",
+      PrecoMedio: "",
+      FamiliaNome: "",
+      SubFamiliaNome: "",
+      PrazoEntrega: "",
+      Peso: "",
+      Observacoes: "",
+      QuantidadeReservada: ""
+    };
     imgSlides: Array<any> = [
       {
         url: 'assets/imgs/logo.png'
@@ -59,18 +72,17 @@ export class ModalContentPage {
 
     // ---- provider ----
 
-    //verificar o json
     getProductSpecification(productID){
-      /*
-      this.productService.getProductSpecification(productID).subscribe(
-      data => { 
-          this.product = data;
-      },
-      err => {
-          console.log(err);
-      });
-      */
       
+      this.productService.getProductSpecification(productID).subscribe(
+        data => { 
+            this.product = data;
+        },
+        err => {
+            console.log(err);
+        });
+      
+      /*
       this.product = {
         ID:"A001",
         Nome: "Magro",
@@ -85,6 +97,6 @@ export class ModalContentPage {
         Observacoes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate elit eu cursus consequat. Duis in velit a nisi ullamcorper tincidunt eu eget justo. Duis a tortor eros. Duis ante leo, tincidunt et sagittis a, volutpat non turpis.",
         QuantidadeReservada: "120"
       };
-
+      */
     }
   }

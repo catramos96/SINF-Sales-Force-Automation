@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { AppSettings } from '../../app/app-settings';
 import 'rxjs/add/operator/map';
 
 
@@ -17,51 +18,39 @@ export class ProductsProvider {
     console.log('Hello ProductsProvider Provider');
   }
 
-  //fiz -> a funcionar
   getCategories() {
-    var url = 'http://25.34.60.99:9608/api/familias';
+    var url = AppSettings.API_ENDPOINT+'familias';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
-  //fiz -> a funcionar
   getSubcategories(categoryID){
-    var url = 'http://25.34.60.99:9608/api/subfamilias/'+encodeURI(categoryID);
+    var url = AppSettings.API_ENDPOINT+'subfamilias/'+encodeURI(categoryID);
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
-  //fiz -> verificar json
   getProductSpecification(productID) {
-    var url = 'http://25.34.60.99:9608/api/artigos/'+encodeURI(productID);
+    var url = AppSettings.API_ENDPOINT+'artigos/'+encodeURI(productID);
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
-  //COMPOR ESTE
-  getProducts(subfamilia) {
-    var url = 'http://25.34.60.99:9608/api/artigos/'+encodeURI(subfamilia);
+  getProducts(familia,subfamilia) {
+    var url = AppSettings.API_ENDPOINT+'artigos/subfamilias/'+encodeURI(familia)+'/'+encodeURI(subfamilia);
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
-  //TERMINAR
-  searchProduct(name) {
-    /*var url = 'http://api.themoviedb.org/3/search/movie?query=&query=' + encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
-    var response = this.http.get(url).map(res => res.json());
-    return response;*/
-
-    return [
-      {name: "Magro",category: "Leite",subCategory: "Normal",price: "0.32", units:"500"},
-    ];
-  }
-
-  //TERMINAR
   searchCategory(name) {
-    /*var url = 'http://api.themoviedb.org/3/search/movie?query=&query=' + encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+    var url = AppSettings.API_ENDPOINT+'familias/search/'+encodeURI(name);
     var response = this.http.get(url).map(res => res.json());
-    return response;*/
+    return response;
+  }
 
-    return [{ category: "Leite"}];
+  searchProduct(name) {
+    var url = AppSettings.API_ENDPOINT+'artigos/search/'+encodeURI(name);
+    var response = this.http.get(url).map(res => res.json());
+    return response;
   }
 }

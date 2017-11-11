@@ -24,6 +24,9 @@
         </div>
         <!-- list categories -->      
         <ion-list>
+          <ion-item *ngIf="categories.length == 0">
+            No categories to display
+          </ion-item>
           <div *ngFor="let c of categories; let i=index">
             <ion-item class="item-stable" text-wrap (click)="toggleGroup(i,c.ID)" [ngClass]="{active: isGroupShown(i)}">
               <h3>
@@ -35,7 +38,7 @@
               <ion-item text-wrap *ngFor="let sub of subCategories; let j=index" 
                   (click)="onItemClicked(j,sub.IDFamilia,sub.ID)" 
                   [class.selected]="j === currentSelected">
-                <p style="padding-left:12%">{{sub.Nome}}</p>
+                <p style="padding-left:12%">{{sub.ID}} : {{sub.Nome}}</p>
               </ion-item>
             </div>
           </div>
