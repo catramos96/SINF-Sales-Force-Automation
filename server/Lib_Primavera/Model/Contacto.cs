@@ -18,8 +18,6 @@ namespace FirstREST.Lib_Primavera.Model
         public string Localidade {get; set;}
         public string CodPostal {get; set;}
         public string Pais {get; set;}
-        public string DataNascimento {get; set;}
-        public string SexoMasculino {get; set;}
         public string NumContribuinte {get; set;}
         public string PrimeiroNome {get; set;}
         public string NomesIntermedios {get; set;}

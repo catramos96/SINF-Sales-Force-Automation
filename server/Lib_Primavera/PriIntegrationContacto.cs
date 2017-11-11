@@ -19,36 +19,33 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT Cliente, Nome, Moeda, NumContrib as NumContribuinte, Fac_Mor AS campo_exemplo, CDU_Email as Email FROM  CLIENTES");
+                objList = PriEngine.Engine.Consulta("SELECT Id, Telefone, Telemovel, Email, Notas, Contacto, Titulo, Morada, Localidade, CodPostal, Pais, DataNascimento, SexoMasculino, NumContribuinte, PrimeiroNome, NomesIntermedios, UltimoNome, CriadoPor FROM  Contactos");
 
 
-                while (!objList.NoFim())
-                {
-                    listContactos.Add(new Contacto
+                    while (!objList.NoFim())
                     {
-                        Id = objList.Valor("Id"),
-                        Telefone = objList.Valor("Telefone"),
-                        Telemovel = objList.Valor("Telemovel"),
-                        Email = objList.Valor("Email"),
-                        Notas = objList.Valor("Notas"),
-                        ContactoDef = objList.Valor("Contacto"),
-                        Titulo = objList.Valor("Titulo"),
-                        Morada = objList.Valor("Morada"),
-                        Localidade = objList.Valor("Localidade"),
-                        CodPostal = objList.Valor("CodPostal"),
-                        Pais = objList.Valor("Pais"),
-                        DataNascimento = objList.Valor("DataNascimento"),
-                        SexoMasculino = objList.Valor("SexoMasculino"),
-                        NumContribuinte = objList.Valor("NumContribuinte"),
-                        PrimeiroNome = objList.Valor("PrimeiroNome"),
-                        NomesIntermedios = objList.Valor("NomesIntermedios"),
-                        UltimoNome = objList.Valor("UltimoNome"),
-                        CriadoPor = objList.Valor("CriadoPor")
-                    });
-                    objList.Seguinte();
+                        listContactos.Add(new Contacto
+                        {
+                            Id = objList.Valor("Id"),
+                            Telefone = objList.Valor("Telefone"),
+                            Telemovel = objList.Valor("Telemovel"),
+                            Email = objList.Valor("Email"),
+                            Notas = objList.Valor("Notas"),
+                            ContactoDef = objList.Valor("Contacto"),
+                            Titulo = objList.Valor("Titulo"),
+                            Morada = objList.Valor("Morada"),
+                            Localidade = objList.Valor("Localidade"),
+                            CodPostal = objList.Valor("CodPostal"),
+                            Pais = objList.Valor("Pais"),
+                            NumContribuinte = objList.Valor("NumContribuinte"),
+                            PrimeiroNome = objList.Valor("PrimeiroNome"),
+                            NomesIntermedios = objList.Valor("NomesIntermedios"),
+                            UltimoNome = objList.Valor("UltimoNome"),
+                            CriadoPor = objList.Valor("CriadoPor")
+                        });
+                        objList.Seguinte();
 
-                }
-
+                    }
                 return listContactos;
             }
             else
