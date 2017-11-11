@@ -19,6 +19,14 @@ namespace FirstREST.Controllers
             return Lib_Primavera.PriIntegration.ListaCategorias();
         }
 
+        // GET api/familias/search/nomeFamilia    
+        [Route("api/familias/search/{search}")]
+        public IEnumerable<Lib_Primavera.Model.Familia> Get(string search)
+        {
+            Console.WriteLine(">>> " + search);
+            return Lib_Primavera.PriIntegration.SearchFamilia(search);
+        }
+
         // GET api/artigo/5    
        /*
         public Artigo Get(string id)

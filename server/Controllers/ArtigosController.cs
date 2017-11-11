@@ -18,12 +18,20 @@ namespace FirstREST.Controllers
             return Lib_Primavera.PriIntegration.ListaArtigos();
         }
 
-        // GET: api/artigos/subfamilia/id
-        [Route("api/artigos/subfamilias/{id}")]
+        // GET: api/artigos/subfamilia/{categoria}/{subcategoria}
+        [Route("api/artigos/subfamilias/{categoria}/{subcategoria}")]
         [HttpGet]
-        public IEnumerable<Lib_Primavera.Model.Artigo> GetSubFamilias(string id)
+        public IEnumerable<Lib_Primavera.Model.Artigo> GetSubFamilias(string categoria, string subcategoria)
         {
-            return Lib_Primavera.PriIntegration.ListaArtigosFamiliaSubFamilia(id);
+            return Lib_Primavera.PriIntegration.ListaArtigosFamiliaSubFamilia(categoria, subcategoria);
+        }
+
+        // GET: api/artigos/search/{search}
+        [Route("api/artigos/search/{search}")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.Artigo> SearchArtigo(string search)
+        {
+            return Lib_Primavera.PriIntegration.SearchArtigo(search);
         }
 
         // GET api/artigos/id    
