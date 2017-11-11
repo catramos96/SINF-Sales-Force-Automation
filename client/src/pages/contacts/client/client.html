@@ -12,7 +12,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>Target</ion-title>
+    <ion-title>Client</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -52,7 +52,7 @@
     <div *ngFor="let target of targets; let i = index">
       <ion-row (click)="toggleElement(i)">
         <ion-col class="column-2-lines">
-          <div class="first-line">{{target.NomeCliente}}</div>
+          <div class="first-line">{{target.PrimeiroNome}}{{target.UltimoNome}}</div>
           <div class="second-line">
             <p>Estudante</p>
           </div>

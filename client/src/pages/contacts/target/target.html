@@ -1,0 +1,103 @@
+<!--
+  Generated template for the TargetPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>Target</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <!-- *ngIf="showElement[0]" -->
+  <ion-grid class="contacts-grid">
+
+    <ion-row class="first-row">
+      <ion-col col-5 class="search-bar-col"><ion-searchbar></ion-searchbar></ion-col>
+      <ion-col class="create-btns-col">
+        <button ion-button class="create-btn">Create Group</button>
+        <button ion-button (click)="createTarget()" class="right-btn create-btn">Create Target</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="grid-header">
+      <ion-col class="column-1-line">Name</ion-col>
+
+      <ion-col class="column-1-line">Email</ion-col>
+
+      <ion-col class="column-1-line">Phone Number</ion-col>
+
+      <ion-col class="column-1-line">Country</ion-col>
+
+    </ion-row>
+    <!-- Contactos -->
+
+    <div *ngFor="let target of targets; let i = index">
+      <ion-row (click)="toggleElement(i)">
+        <ion-col class="column-1-line">{{target.PrimeiroNome}}{{target.UltimoNome}}</ion-col>
+
+        <ion-col class="column-1-line">{{target.Email}}</ion-col>
+
+        <ion-col class="column-1-line">{{target.Telemovel}}</ion-col>
+
+        <ion-col class="column-1-line">{{target.Pais}}</ion-col>
+
+      </ion-row>
+
+
+      <div *ngIf="showElement[i]">
+        <ion-row>
+          <ion-col col-2 class="element-image">
+            <!-- Image -->
+          </ion-col>
+          <ion-col col-5 class="element-info">
+            <h2>Personal Information</h2>
+            <br>
+            <p><strong>Name:</strong> {{target.PrimeiroNome}}{{target.NomesIntermedios}}{{target.UltimoNome}}</p>
+            <p *ngIf="target.Titulo" ><strong>Title:</strong> {{target.Titulo}}</p>
+			<p *ngIf="target.Morada" ><strong>Morada:</strong> {{target.Morada}}</p>
+            <p *ngIf="target.Localidade" ><strong>Location:</strong> {{target.Localidade}}</p>
+			<p *ngIf="target.Pais" ><strong>Country:</strong> {{target.Pais}}</p>
+			<p *ngIf="target.NumContribuinte" ><strong>Taxpayer Number:</strong> {{target.NumContribuinte}}</p>
+            <p *ngIf="target.Notas" ><strong>Notas:</strong> {{target.Notas}}</p>
+          </ion-col>
+          <ion-col col-4 class="element-contacts">
+            <h2>Contacts</h2>
+            <br>
+			<div *ngIf="target.Telefone || target.Telemovel" >
+            <h4>Phone Number(s)</h4>
+            <p>{{target.Telemovel}}</p>
+			<p>{{target.Telefone}}</p>
+			</div>
+            <div *ngIf="target.Email" >
+			<h4>Email</h4>
+            <p>{{target.Email}}</p>
+			</div>
+
+          </ion-col>
+        </ion-row>
+        <ion-row class="additional-info">
+          <ion-col class="additional-info-lb"><button ion-button></button></ion-col>
+          <ion-col><button ion-button></button></ion-col>
+          <ion-col>
+            <button ion-button class="right-btn">Client Activity</button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+
+
+
+  </ion-grid>
+
+</ion-content>
