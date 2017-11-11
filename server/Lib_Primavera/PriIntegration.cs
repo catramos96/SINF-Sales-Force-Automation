@@ -238,7 +238,6 @@ namespace FirstREST.Lib_Primavera
 
         #endregion Cliente;   // -----------------------------  END   CLIENTE    -----------------------
 
-
         #region Artigo
 
         public static Lib_Primavera.Model.Artigo GetArtigo(string codArtigo)
@@ -270,7 +269,6 @@ namespace FirstREST.Lib_Primavera
                     //myArt.QuantidadeReservada = objArtigo.get_QtReservada();
                     return myArt;
                 }
-
             }
             else
             {
@@ -319,9 +317,41 @@ namespace FirstREST.Lib_Primavera
             else
             {
                 return null;
-
             }
+        }
 
+        public static List<Model.Artigo> SearchArtigo(string search)
+        {
+            StdBELista objList;
+            Model.Artigo art = new Model.Artigo();
+            List<Model.Artigo> listArts = new List<Model.Artigo>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta(
+                    "select Artigo.Artigo, Artigo.Descricao, Artigo.Familia, Familias.Descricao AS DescricaoFamilia, Artigo.SubFamilia, SubFamilias.Descricao AS DescricaoSubFamilia, STKActual, PCMedio "+
+                    "from Artigo Join Familias ON Familias.Familia = Artigo.Familia Join SubFamilias ON SubFamilias.SubFamilia = Artigo.SubFamilia "+
+                    "where lower(Artigo.Artigo) LIKE lower('%"+search+"%') OR lower(Artigo.Descricao) LIKE lower('%"+search+"%')");
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Artigo();
+                    art.ID = objList.Valor("Artigo");
+                    art.Nome = objList.Valor("Descricao");
+                    art.StockAtual = objList.Valor("STKActual");
+                    art.PrecoMedio = objList.Valor("PCMedio");
+                    art.FamiliaNome = objList.Valor("DescricaoFamilia");
+                    art.SubFamiliaNome = objList.Valor("DescricaoSubFamilia");
+
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
+                return listArts;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static List<Model.Artigo> ListaArtigosFamiliaSubFamilia(string familia, string subfamilia)
@@ -383,6 +413,37 @@ namespace FirstREST.Lib_Primavera
                     objList.Seguinte();
                 }
 
+                return listArts;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static List<Model.Familia> SearchFamilia(string categoria)
+        {
+            StdBELista objList;
+
+            Model.Familia art = new Model.Familia();
+            List<Model.Familia> listArts = new List<Model.Familia>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta(
+                    "select Familia, Descricao "+
+                    "from Familias "+
+                    "where lower(Familia) LIKE lower('%" + categoria + "%') OR lower(Descricao) LIKE lower('%" + categoria + "%');");
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Familia();
+                    art.ID = objList.Valor("Familia");
+                    art.Nome = objList.Valor("Descricao");
+
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
                 return listArts;
             }
             else

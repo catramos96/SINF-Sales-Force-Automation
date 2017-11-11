@@ -12,7 +12,8 @@ namespace FirstREST.Controllers
 {
     public class SubFamiliasController : ApiController
     {
-        // GET api/subfamilia/nomeFamilia    
+        // GET api/subfamilia/nomeFamilia  
+        [Route("api/subfamilia/{id}")]
         public IEnumerable<Lib_Primavera.Model.SubFamilia> Get(string id)
          {
              return Lib_Primavera.PriIntegration.ListaSubCategoriasPorCategoria(id);
