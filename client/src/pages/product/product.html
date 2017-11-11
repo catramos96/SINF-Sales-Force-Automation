@@ -22,20 +22,27 @@
             (ionCancel)="onCancel($event)">
           </ion-searchbar> 
         </div>
-        <!-- list categories -->       
+        <!-- list categories -->      
         <ion-list>
-          <ion-item *ngFor="let c of categories; let i=index" text-wrap (click)="toggleGroup(i,c.category)" [ngClass]="{active: isGroupShown(i)}">
-            <h3>
-              <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-              {{c.category}}
-            </h3>
+          <ion-item *ngIf="categories.length == 0">
+            No categories to display
+          </ion-item>
+          <div *ngFor="let c of categories; let i=index">
+            <ion-item class="item-stable" text-wrap (click)="toggleGroup(i,c.ID)" [ngClass]="{active: isGroupShown(i)}">
+              <h3>
+                <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+                {{c.ID}} : {{c.Nome}}
+              </h3>
+            </ion-item>
             <div *ngIf="isGroupShown(i)">
-              <ion-item *ngFor="let y of categoryProducts; let j=index" text-wrap>
-                {{y.name}}
+              <ion-item text-wrap *ngFor="let sub of subCategories; let j=index" 
+                  (click)="onItemClicked(j,sub.IDFamilia,sub.ID)" 
+                  [class.selected]="j === currentSelected">
+                <p style="padding-left:12%">{{sub.ID}} : {{sub.Nome}}</p>
               </ion-item>
             </div>
-          </ion-item>
-        </ion-list>
+          </div>
+        </ion-list> 
       </ion-col>
       <!-- PRODUCTS-->
       <ion-col col-8>
@@ -48,22 +55,26 @@
         </ion-searchbar>
         <!-- list products -->
         <ion-grid>
+          <ion-row *ngIf="products.length == 0">
+            <br><br>
+            <p> No products to display</p>
+          </ion-row>
           <ion-row *ngFor="let r of products">
             <ion-col *ngFor="let c of r.row">
               <!-- product -->
               <ion-card class="color" *ngIf="c!=null">
                 <ion-card-header class="inline">
-                  <h2>{{c.name}}</h2>
-                  <p class="muted">{{c.category}}</p>
+                  <h2>{{c.ID}} : {{c.Nome}}</h2>
+                  <p class="muted">{{c.FamiliaNome}} , {{c.SubFamiliaNome}}</p>
                 </ion-card-header>
-                <button ion-button icon-right clear item-end class="right" (click)="openModal(c.name)">
+                <button ion-button icon-right clear item-end class="right" (click)="openModal(c.ID)">
                     <ion-icon name="open"></ion-icon>
                 </button>
                 <ion-card-content >
                   <img class="litle"  align="middle" src="assets/imgs/logo.png"/>
                   <br>
-                  <b>Price: </b>{{c.price}} €<br>
-                  <b>Quantity: </b>{{c.units}} units
+                  <b>Price: </b>{{c.PrecoMedio}} €<br>
+                  <b>Quantity: </b>{{c.StockAtual}} units
                 </ion-card-content>
               </ion-card>
             </ion-col>

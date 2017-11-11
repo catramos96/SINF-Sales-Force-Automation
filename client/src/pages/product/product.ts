@@ -11,8 +11,9 @@ import { ProductsProvider } from '../../providers/products/products';
 export class ProductPage {
   shownGroup = null;
   categories = [];
-  categoryProducts = [];
+  subCategories = [];
   products = [];
+  currentSelected = -1;
 
   constructor(
     public navCtrl: NavController, 
@@ -23,31 +24,36 @@ export class ProductPage {
   }
 
   ngOnInit(): void {
-    this.categories = this.productService.getCategories();
+    this.getCategories();
   }
 
-  openModal(productName) {
-    let modal = this.modalCtrl.create(ModalContentPage,{ productName: productName });
+  openModal(productID) {
+    let modal = this.modalCtrl.create(ModalContentPage,{ productID: productID });
     modal.present();
   }
 
-  toggleGroup(group,category) {
+  toggleGroup(group,categoryID) {
     if (this.isGroupShown(group)) {
       this.shownGroup = null;
     } else {
-      this.categoryProducts = this.productService.getProductsByCategory(category);
-      this.displayProducts();
+      this.getSubCategories(categoryID);
       this.shownGroup = group;
     }
+    this.currentSelected=-1;
   };
 
   isGroupShown(group) {
     return this.shownGroup === group;
   };
 
+  onItemClicked(j,category,subcategory){
+    this.getProducts(category,subcategory);
+    this.currentSelected = j;
+  }
+
   displayProducts(){
     var colsLength = 2;
-    var totalLength = this.categoryProducts.length;
+    var totalLength = this.products.length;
     var rowsLength = Math.round(totalLength/colsLength);
     var rows = [];
     var r,c,maxCol;
@@ -55,39 +61,116 @@ export class ProductPage {
     {
       var cols = [];
       maxCol = (r+1)*colsLength;
-      //if(maxCol > totalLength)  maxCol = totalLength;
       for(c = r*colsLength; c < maxCol; c++){
         if(c >= maxCol)
           cols.push(null);
         else
-          cols.push(this.categoryProducts[c]);
+          cols.push(this.products[c]);
       }
       rows.push({row: cols});
     }
+
     this.products = rows;
   }
 
+  // ---- searchs ----
+
   searchCategory(ev) {
-    //init
-    this.categories = this.productService.getCategories();    
-    //search
     let name = ev.target.value;
-    if(name !== "")
-      this.categories = this.productService.searchCategory(name);
+    if(name !== "") this.searchCategoryProvider(name);
+    else  this.getCategories();
   }
 
   searchProduct(ev) {
     let name = ev.target.value;
-    if(name !== "") this.categoryProducts = this.productService.searchProduct(name);
-    else this.categoryProducts = [];
-    this.displayProducts();
+    if(name !== "") this.searchProductProvider(name);
+    else 
+    {
+      this.products = [];
+      this.displayProducts();
+    }
   }
 
   onCancel(ev){
-    this.categories = this.productService.getCategories();
-    this.categoryProducts = [];
-    this.displayProducts();
+    this.getCategories();
+    //this.products = [];
+    //this.displayProducts();
+  }
 
+  // ---- PROVIDERS ----
+
+  getCategories(){
+    this.productService.getCategories().subscribe(
+      data => { 
+          this.categories = data;
+      },
+      err => {
+          console.log(err);
+      });
+    /*
+    this.categories = [
+      { Nome: "Leite", ID: "A01"},
+    ];
+    */
+  }
+
+  getSubCategories(categoryID){
+    this.productService.getSubcategories(categoryID).subscribe(
+      data => { 
+          this.subCategories = data;
+      },
+      err => {
+          console.log(err);
+      });
+    /*
+    if(categoryID === null)
+      this.subCategories = [];
+    else if(categoryID === "A01")  {
+      this.subCategories = [
+        { Nome: "Normal", IDFamilia: categoryID, ID:"001"},
+      ];
+    }
+   */  
+  }
+
+  getProducts(categoryID,subcategoryID){
+    this.productService.getProducts(categoryID,subcategoryID).subscribe(
+      data => { 
+        this.products = data;
+        this.displayProducts();
+      },
+      err => {
+        console.log(err);
+      });
+    /*
+    if(subcategoryID === null && categoryID == null)
+      this.products = [];
+    else if(categoryID == "A01" && subcategoryID === "001")
+      this.products = [
+        {ID: "A021",Nome: "Magro",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"}
+      ];
+    */
+  }
+
+  searchCategoryProvider(name){
+    this.productService.searchCategory(name).subscribe(
+      data => { 
+        this.categories = data;
+      },
+      err => {
+        console.log(err);
+      });
+  }
+
+  searchProductProvider(name){
+    this.productService.searchProduct(name).subscribe(
+      data => { 
+        this.products = data;
+        this.displayProducts();
+      },
+      err => {
+        console.log(err);
+      });
   }
 
 }
