@@ -53,7 +53,7 @@ namespace FirstREST.Lib_Primavera
                 return null;
         }
 
-        internal static RespostaErro InsereContactoObj(Contacto contacto)
+        public static RespostaErro InsereContactoObj(Contacto contacto)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
 
