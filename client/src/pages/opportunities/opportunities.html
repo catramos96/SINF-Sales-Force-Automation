@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Opportunities</ion-title>
+  </ion-navbar>
+    
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+      <ion-row *ngIf="opp.length == 0">
+        <br><br>
+        <p> No opportunities to display</p>
+      </ion-row>
+      <ion-row *ngFor="let r of opp">
+        <ion-col *ngFor="let c of r.row">
+          <!-- opportunity -->
+          <ion-card *ngIf="c!=null">
+            <ion-card-header class="inline">
+              {{c.DataCriacao}}
+            </ion-card-header>
+            <button ion-button icon-right clear item-end class="right" (click)="openModal(c.ID)">
+              <ion-icon name="open"></ion-icon>
+            </button>
+            <ion-card-content >
+              <b>Client</b> : {{c.NomeCliente}} <br>
+              <b>Contact</b> : {{c.ContactoCliente}} <br><br>
+              <p>{{c.Descricao}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

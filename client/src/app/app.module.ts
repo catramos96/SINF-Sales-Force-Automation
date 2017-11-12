@@ -13,15 +13,16 @@ import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { StatisticsPage } from '../pages/statistics/statistics';
-import { MakeOrderPage } from '../pages/make-order/make-order';
-import { ReserveStockPage } from '../pages/reserve-stock/reserve-stock';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
+import { OpportunitiesPage } from '../pages/opportunities/opportunities';
+import { OpportunityModalPage } from '../pages/opportunities/opportunity-modal/opportunity-modal';
 
 import { ContactsProvider } from '../providers/contacts/contacts';
 import { ProductsProvider } from '../providers/products/products';
 
 //calendar
 import { CalendarModule } from 'angular-calendar';
+import { OpportunitiesProvider } from '../providers/opportunities/opportunities';
 
 @NgModule({
   declarations: [
@@ -31,8 +32,8 @@ import { CalendarModule } from 'angular-calendar';
     ModalContentPage,
     ContactsPage,
     StatisticsPage,
-    MakeOrderPage,
-    ReserveStockPage,
+    OpportunitiesPage,
+    OpportunityModalPage,
     SalesHistoryPage
   ],
   imports: [
@@ -51,8 +52,8 @@ import { CalendarModule } from 'angular-calendar';
     ModalContentPage,
     ContactsPage,
     StatisticsPage,
-    MakeOrderPage,
-    ReserveStockPage,
+    OpportunitiesPage,
+    OpportunityModalPage,
     SalesHistoryPage
   ],
   providers: [
@@ -62,7 +63,8 @@ import { CalendarModule } from 'angular-calendar';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ContactsProvider,
-    ProductsProvider
+    ProductsProvider,
+    OpportunitiesProvider
   ]
 })
 export class AppModule {}
