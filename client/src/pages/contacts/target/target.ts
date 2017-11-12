@@ -18,13 +18,12 @@ export class TargetPage {
 
   ionViewDidLoad(){
 
-    this.contacts.getAllClients().subscribe(
+    this.contacts.getAllContacts().subscribe(
       data => { 
-          console.log(data);
           this.targets = data;
       },
       err => {
-          console.log(err);
+        
       }
   );
 
