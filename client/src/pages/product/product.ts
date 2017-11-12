@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController} from 'ionic-angular';
+import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ModalContentPage } from '../product/productModal';
 import { ProductsProvider } from '../../providers/products/products';
 
@@ -14,13 +14,15 @@ export class ProductPage {
   subCategories = [];
   products = [];
   currentSelected = -1;
+  isOpportunity = false;
 
   constructor(
     public navCtrl: NavController, 
+    private navParams: NavParams,
     private productService: ProductsProvider,
     public modalCtrl : ModalController
   ) {
-
+    this.isOpportunity = this.navParams.get('opportunity');
   }
 
   ngOnInit(): void {

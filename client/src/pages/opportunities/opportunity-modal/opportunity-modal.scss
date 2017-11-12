@@ -8,5 +8,16 @@ page-opportunity-modal {
         border-bottom:1px solid grey;
         min-height: 45px;
     }
+    .right{
+        display:inline-block;
+        float: right;
+    }
+    .inline{
+        padding-top: 70px;
+        padding-bottom: 30px;
+        margin: 0 auto;
+        text-align:center;
+        width: 100%;
+    }
 
 }

@@ -18,13 +18,16 @@
         <b>Name</b> : {{opp.NomeCliente}} <br>
         <b>Contact</b> : {{opp.ContactoCliente}} <br><br>
         <h4>Products</h4>
+        <button ion-button outline color="secondary" (click)="addProducts()" class="right">
+            <ion-icon name="add"></ion-icon>
+        </button>  
         <ion-grid>
             <ion-row align-items-center justify-content-center class="grid-header">
                 <ion-col col-4><b>Product</b></ion-col>
                 <ion-col col-2><b>Price</b></ion-col>
-                <ion-col col-2><b>Quantity</b></ion-col>
+                <ion-col col-3><b>Quantity</b></ion-col>
                 <ion-col col-2><b>Total</b></ion-col>
-                <ion-col col-2><b></b></ion-col>
+                <ion-col col-1><b></b></ion-col>
             </ion-row>
             <ion-row *ngIf="opp.Artigos.length == 0" justify-content-center>
                 <br><br>
@@ -33,22 +36,44 @@
             <ion-row *ngFor="let art of opp.Artigos"justify-content-center>
                 <ion-col col-4 class="column-lines">{{art.IDArtigo}} : {{art.NomeArtigo}}</ion-col>
                 <ion-col col-2 class="column-lines">{{art.PrecoPorUnidade}}</ion-col>
-                <ion-col col-2 class="column-lines">{{art.Quantidade}}</ion-col>
-                <ion-col col-2 class="column-lines">{{art.Preco}}</ion-col>
-                <ion-col col-2 class="column-lines">
-                    <button ion-button clear small color="danger">
+                <ion-col col-3 class="column-lines">
+                    <button ion-button clear small (click)="removeQuantity(art.IDArtigo)">
                         <ion-icon name="remove"></ion-icon>
-                    </button>  
+                    </button>
+                    {{art.Quantidade}}
+                    <button ion-button clear small (click)="addQuantity(art.IDArtigo)">
+                        <ion-icon name="add"></ion-icon>
+                    </button>
+                </ion-col>
+                <ion-col col-2 class="column-lines">{{art.Preco}}</ion-col>
+                <ion-col col-1 class="column-lines">  
+                    <button ion-button clear color="danger" small (click)="removeProduct(art.IDArtigo)">
+                        <ion-icon name="remove"></ion-icon>
+                    </button>            
                 </ion-col>
             </ion-row>
-            <ion-row *ngFor="let art of opp.Artigos" justify-content-center>
-                <ion-col col-8></ion-col>
+            <ion-row justify-content-center>
+                <ion-col col-9></ion-col>
                 <ion-col col-2><b>{{opp.PrecoTotal}}</b></ion-col>
-                <ion-col col-2></ion-col>
+                <ion-col col-1></ion-col>
             </ion-row>
         </ion-grid>
-        <button ion-button color="secondary">
-            <ion-icon name="add"></ion-icon>
+        <button ion-button clear (click)="saveOpportunity()" class="right">
+            Save Opportunity
+        </button>
+        <button ion-button color="danger" clear (click)="cancelOpportunity()" class="right">
+            Cancel
+        </button>
+    </div> 
+    <div class="inline">
+        <button ion-button outline color="danger">
+            Delete
+        </button>
+        <button ion-button outline style="text-align: center">
+            Reserve Stock
         </button> 
-    </div>      
+        <button ion-button outline style="text-align: left">
+            Make Order
+        </button> 
+    </div>   
 </ion-content>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { OpportunitiesProvider } from '../../../providers/opportunities/opportunities';
+import { ProductPage } from '../../product/product';
 
 /**
  * Generated class for the OpportunityModalPage page.
@@ -16,7 +17,7 @@ import { OpportunitiesProvider } from '../../../providers/opportunities/opportun
 export class OpportunityModalPage {
 
   opp = {
-    ID:"", NomeCliente:"", ContactoCliente:"", Descricao:"", DataCriacao:"", PrecoTotal: "", Artigos: []
+    ID:"", NomeCliente:"", ContactoCliente:"", Descricao:"", DataCriacao:"", PrecoTotal: -1, Artigos: []
   };
 
   constructor(
@@ -25,8 +26,8 @@ export class OpportunityModalPage {
     private opportunitiesService: OpportunitiesProvider,
     public viewCtrl: ViewController
   ) {
-      let name = this.navParams.get('opportunityID');
-      this.getOpportunity(name);  
+      let id = this.navParams.get('opportunityID');
+      this.getOpportunity(id);  
   }
 
   ionViewDidLoad() {
@@ -37,9 +38,76 @@ export class OpportunityModalPage {
     this.viewCtrl.dismiss();
   }
 
-  getOpportunity(name){
+  removeProduct(productID, opportunityID){
+    for(let i = 0; i < this.opp.Artigos.length; i++){
+      if(this.opp.Artigos[i].IDArtigo === productID){
+        this.opp.PrecoTotal -= this.opp.Artigos[i].Preco;
+        this.opp.Artigos.splice(i, 1);
+        break;
+      }
+    }
+  }
+
+  addProducts(){
+    this.navCtrl.push(ProductPage,{opportunity: true});
+    //terminar
+  }
+
+  addQuantity(productID){
+    for(let i = 0; i < this.opp.Artigos.length; i++){
+      if(this.opp.Artigos[i].IDArtigo === productID){
+        this.opp.Artigos[i].Preco += this.opp.Artigos[i].PrecoPorUnidade;
+        this.opp.PrecoTotal += this.opp.Artigos[i].PrecoPorUnidade;
+        this.opp.Artigos[i].Quantidade += 1;
+        break;
+      }
+    }
+  }
+
+  removeQuantity(productID){
+    for(let i = 0; i < this.opp.Artigos.length; i++){
+      if(this.opp.Artigos[i].IDArtigo === productID && this.opp.Artigos[i].Quantidade > 0){
+        this.opp.Artigos[i].Preco -= this.opp.Artigos[i].PrecoPorUnidade;
+        this.opp.PrecoTotal -= this.opp.Artigos[i].PrecoPorUnidade;
+        this.opp.Artigos[i].Quantidade -= 1;
+        break;
+      }
+    }
+  }
+
+  cancelOpportunity(){
+    this.getOpportunity(this.opp.ID);
+  }
+
+  saveOpportunity(){
+    let jsonArtigos = [];
+
+    this.opp.Artigos.forEach(art => {
+      let jsonArt ={
+        IDArtigo : art.IDArtigo,
+        Quantidade : art.Quantidade
+      }
+      jsonArtigos.push(jsonArt);
+    });
+
+    let json = {
+      ID: this.opp.ID,
+      Artigos : jsonArtigos
+    }
     /*
-    this.opportunitiesService.getOpportunity(name).subscribe(
+    this.opportunitiesService.updateOpportunity(json).subscribe(
+      data => { 
+          console.log("updated");
+      },
+      err => {
+          console.log(err);
+      });
+     */ 
+  }
+
+  getOpportunity(id){
+    /*
+    this.opportunitiesService.getOpportunity(id).subscribe(
       data => { 
           this.opportunity = data;
       },
@@ -53,17 +121,26 @@ export class OpportunityModalPage {
       ContactoCliente : "963852714",
       Descricao : "Encomenda de coisas",
       DataCriacao : "13/9/2017",
-      PrecoTotal : "26",
+      PrecoTotal : 52,
       Artigos : [
         {
           NomeArtigo : "Artigo 1",
           IDArtigo: "A0001",
-          PrecoPorUnidade: "13",
-          Quantidade: "2",
-          Preco: "26",
+          PrecoPorUnidade: 13,
+          Quantidade: 2,
+          Preco: 26,
+        },
+        {
+          NomeArtigo : "Artigo 2",
+          IDArtigo: "A0002",
+          PrecoPorUnidade: 13,
+          Quantidade: 2,
+          Preco: 26,
         }
       ]
     };
   }
+
+  
 
 }
