@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-  <ion-grid class="main-content">
+  <ion-grid id="main-content">
 
     <!-- 1 Row: Buttons -->
     <ion-row >
@@ -100,23 +100,16 @@
       </ion-col>
 
       <ion-col col-4>
-        <table class="table table-bordered table-responsive">
+        <table id="AppointmentsTable" class="table table-bordered table-responsive">
 
           <thead>
-          <tr>
+          <tr >
             <th class="table-1-column">Time</th>
             <th>Description</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>10:00</td>
-            <td>Meeting with Mr.Smith</td>
-          </tr>
-          <tr>
-            <td>12:00</td>
-            <td>Board Discussion about the financial problems in the company</td>
-          </tr>
+          <!-- Elements Go here -->
           </tbody>
         </table>
       </ion-col>
@@ -223,5 +216,28 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-grid id = "details-content">
+    <!-- Details -->
+    <ion-row>
+      <ion-col col-md id="Details">
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col id="DetailsSettings">
+        <button ion-button icon-only outline class="other-button">
+          <ion-icon name="open"></ion-icon>
+        </button>
+        <button ion-button icon-only outline class="other-button">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button icon-only outline class="other-button">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 </ion-content>

@@ -11,7 +11,7 @@ export class ContactsProvider {
   }
 
   public getAllClients(){
-    var url = 'http://192.168.56.56:9608/api/clientes';
+    var url = 'http://192.168.56.56:9608/api/contactos';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }

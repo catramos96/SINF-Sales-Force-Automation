@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ContactsProvider } from '../../providers/contacts/contacts';
-/**
- * Generated class for the TargetPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ContactsProvider } from '../../../providers/contacts/contacts';
 
 @IonicPage()
 @Component({
@@ -41,6 +35,9 @@ export class TargetPage {
     this.showElement[index] = !this.showElement[index];
   }
   
+  public createTarget(){
+    this.navCtrl.push("CreateTargetPage");
+  }
 
 
 }
