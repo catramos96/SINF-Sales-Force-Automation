@@ -51,5 +51,10 @@ namespace FirstREST.Lib_Primavera
             else
                 return null;
         }
+
+        internal static RespostaErro InsereContactoObj(Contacto contacto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
