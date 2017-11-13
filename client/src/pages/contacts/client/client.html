@@ -1,9 +1,3 @@
-<!--
-  Generated template for the TargetPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -12,7 +6,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>Client</ion-title>
+    <ion-title>Clients</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -28,43 +22,37 @@
   <ion-grid class="contacts-grid">
 
     <ion-row class="first-row">
-      <ion-col col-5 class="search-bar-col"><ion-searchbar></ion-searchbar></ion-col>
-      <ion-col class="create-btns-col"><button ion-button class="create-btn">Create Group</button><button ion-button class="right-btn create-btn">Create Target</button></ion-col>
+      <ion-col col-5 class="search-bar-col">
+        <ion-searchbar></ion-searchbar>
+      </ion-col>
+      <ion-col class="create-btns-col">
+        <button ion-button class="create-btn">Create Group</button>
+        <button ion-button class="right-btn create-btn">Create Clients</button>
+      </ion-col>
     </ion-row>
 
     <ion-row class="grid-header">
-      <ion-col class="column-2-lines">
-        <div class="first-line">Name</div>
-        <div class="second-line">
-          <p>Job Title</p>
-        </div>
-      </ion-col>
+      <ion-col class="column-1-line">Name</ion-col>
 
       <ion-col class="column-1-line">Group/Company</ion-col>
 
-      <ion-col class="column-1-line">Contacts</ion-col>
+      <ion-col class="column-1-line">Email</ion-col>
 
-      <ion-col class="column-1-line">Location</ion-col>
+      <ion-col class="column-1-line">Country</ion-col>
 
     </ion-row>
     <!-- Contactos -->
 
-    <div *ngFor="let target of targets; let i = index">
+    <div *ngFor="let client of clients; let i = index">
       <ion-row (click)="toggleElement(i)">
-        <ion-col class="column-2-lines">
-          <div class="first-line">{{target.PrimeiroNome}}{{target.UltimoNome}}</div>
-          <div class="second-line">
-            <p>Estudante</p>
-          </div>
-        </ion-col>
 
-        <ion-col class="column-1-line">FEUP</ion-col>
+        <ion-col class="column-1-line">{{client.Nome}}</ion-col>
 
-        <ion-col class="column-1-line">919999999</ion-col>
+        <ion-col class="column-1-line">{{client.EquipaDesc}}</ion-col>
 
-        <ion-col class="column-1-line">
-          <div class="first-line">{{target.Morada}}</div>
-        </ion-col>
+        <ion-col class="column-1-line">{{client.Email}}</ion-col>
+
+        <ion-col class="column-1-line">{{client.Pais}}</ion-col>
 
       </ion-row>
 
@@ -77,25 +65,55 @@
           <ion-col col-5 class="element-info">
             <h2>Personal Information</h2>
             <br>
-            <p><strong>Name:</strong> {{target.NomeCliente}}</p>
-            <p><strong>Title:</strong> ola</p>
-            <p><strong>Company:</strong> ola</p>
-            <p><strong>Location:</strong> ola</p>
-            <p><strong>Description:</strong> ola</p>
+            <p>
+              <strong>Name:</strong> {{client.Nome}}</p>
+            <p *ngIf="client.Morada">
+              <strong>Morada:</strong> {{client.Morada}}</p>
+            <p *ngIf="client.Localidade">
+              <strong>Location:</strong> {{client.Localidade}}</p>
+            <p *ngIf="client.Pais">
+              <strong>Country:</strong> {{client.Pais}}</p>
+            <p *ngIf="client.NumContribuinte">
+              <strong>Taxpayer Number:</strong> {{client.NumContribuinte}}</p>
+            <p *ngIf="client.EncomendasPendentes">
+              <strong>Pendent Deliveries Value:</strong> {{client.EncomendasPendentes}}</p>
+            <p *ngIf="client.NumContribuinte">
+              <strong>Total Debit:</strong> {{client.TotalDeb}}</p>
+            <p *ngIf="client.EquipaDesc">
+              <strong>Total Debit:</strong> {{client.EquipaDesc}}</p>
+            <p *ngIf="client.Notas">
+              <strong>Notas:</strong> {{client.Notas}}</p>
           </ion-col>
           <ion-col col-4 class="element-contacts">
             <h2>Contacts</h2>
             <br>
-            <h4>Phone Number(s)</h4>
-            <p>9199999999</p>
-            <h4>Email(s)</h4>
-            <p>olaaa@ola.ola</p>
+            <div *ngIf="client.Telefone || client.Telemovel">
+              <h4>Phone Number(s)</h4>
+              <p>{{client.Telemovel}}</p>
+              <p>{{client.Telefone}}</p>
+            </div>
+            <div *ngIf="client.Email">
+              <h4>Email</h4>
+              <p>{{client.Email}}</p>
+            </div>
+            <div *ngIf="client.Fax">
+              <h4>Fax</h4>
+              <p>{{client.Fax}}</p>
+            </div>
+            <div *ngIf="client.EnderecoWeb">
+              <h4>Website</h4>
+              <p>{{client.EnderecoWeb}}</p>
+            </div>
 
           </ion-col>
         </ion-row>
         <ion-row class="additional-info">
-          <ion-col class="additional-info-lb"><button ion-button></button></ion-col>
-          <ion-col><button ion-button></button></ion-col>
+          <ion-col class="additional-info-lb">
+            <button ion-button></button>
+          </ion-col>
+          <ion-col>
+            <button ion-button></button>
+          </ion-col>
           <ion-col>
             <button ion-button class="right-btn">Client Activity</button>
           </ion-col>

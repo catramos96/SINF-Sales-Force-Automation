@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ClientPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ContactsProvider } from '../../../providers/contacts/contacts';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ClientPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private showElement: boolean[] = [];
+  private clients: JSON[] = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private contacts: ContactsProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ClientPage');
+
+    this.contacts.getAllClients().subscribe(
+      data => { 
+          this.clients = data;
+      },
+      err => {
+        
+      }
+  );
+
+  }
+
+  public toggleElement(index) {
+    index = parseInt(index);
+    this.showElement[index] = !this.showElement[index];
+  }
+  
+  public createTarget(){
+    this.navCtrl.push("CreateClientPage");
   }
 
 }
