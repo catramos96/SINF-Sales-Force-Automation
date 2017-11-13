@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ModalContentPage } from '../product/productModal';
 import { ProductsProvider } from '../../providers/products/products';
+import { Button } from 'ionic-angular/components/button/button';
+import { OpportunityModalPage } from '../opportunities/opportunity-modal/opportunity-modal';
 
 @Component({
   selector: 'page-product',
@@ -14,7 +16,10 @@ export class ProductPage {
   subCategories = [];
   products = [];
   currentSelected = -1;
+
   isOpportunity = false;
+  callback = null;
+  oppProducts = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -23,6 +28,7 @@ export class ProductPage {
     public modalCtrl : ModalController
   ) {
     this.isOpportunity = this.navParams.get('opportunity');
+    this.callback = this.navParams.get('callback');
   }
 
   ngOnInit(): void {
@@ -51,6 +57,25 @@ export class ProductPage {
   onItemClicked(j,category,subcategory){
     this.getProducts(category,subcategory);
     this.currentSelected = j;
+  }
+
+  addProduct(prodID,prodName,prodPrice,event){
+    if(this.isOpportunity)
+    {
+      let json = {
+        NomeArtigo : prodName,
+        IDArtigo: prodID,
+        PrecoPorUnidade: Number(prodPrice),
+        Quantidade: Number(1),
+        Preco: Number(prodPrice),
+      };
+      this.oppProducts.push(json);
+      event.currentTarget.disabled = true;
+    }
+  }
+
+  sendProducts(){
+    this.callback(this.oppProducts).then(()=>{ this.navCtrl.pop() });
   }
 
   displayProducts(){
@@ -102,6 +127,7 @@ export class ProductPage {
   // ---- PROVIDERS ----
 
   getCategories(){
+    /*
     this.productService.getCategories().subscribe(
       data => { 
           this.categories = data;
@@ -109,14 +135,15 @@ export class ProductPage {
       err => {
           console.log(err);
       });
-    /*
+    */
     this.categories = [
       { Nome: "Leite", ID: "A01"},
     ];
-    */
+    
   }
 
   getSubCategories(categoryID){
+    /*
     this.productService.getSubcategories(categoryID).subscribe(
       data => { 
           this.subCategories = data;
@@ -124,7 +151,7 @@ export class ProductPage {
       err => {
           console.log(err);
       });
-    /*
+    */
     if(categoryID === null)
       this.subCategories = [];
     else if(categoryID === "A01")  {
@@ -132,10 +159,11 @@ export class ProductPage {
         { Nome: "Normal", IDFamilia: categoryID, ID:"001"},
       ];
     }
-   */  
+
   }
 
   getProducts(categoryID,subcategoryID){
+    /*
     this.productService.getProducts(categoryID,subcategoryID).subscribe(
       data => { 
         this.products = data;
@@ -144,14 +172,16 @@ export class ProductPage {
       err => {
         console.log(err);
       });
-    /*
+    */
     if(subcategoryID === null && categoryID == null)
       this.products = [];
-    else if(categoryID == "A01" && subcategoryID === "001")
+    else
       this.products = [
-        {ID: "A021",Nome: "Magro",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"}
+        {ID: "A021",Nome: "Magro",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"},
+        {ID: "A022",Nome: "Magro",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"}
       ];
-    */
+    this.displayProducts();  
+    
   }
 
   searchCategoryProvider(name){

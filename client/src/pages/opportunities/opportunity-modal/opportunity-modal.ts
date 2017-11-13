@@ -49,9 +49,19 @@ export class OpportunityModalPage {
   }
 
   addProducts(){
-    this.navCtrl.push(ProductPage,{opportunity: true});
-    //terminar
+    this.navCtrl.push(ProductPage,{opportunity: true, callback: this.getData});
   }
+
+  getData = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      for(let i = 0; i < data.length; i++){
+        this.opp.Artigos.push(data[i]);
+        this.opp.PrecoTotal += data[i].PrecoPorUnidade;
+      }
+      resolve();
+    });
+  };
 
   addQuantity(productID){
     for(let i = 0; i < this.opp.Artigos.length; i++){
@@ -124,8 +134,8 @@ export class OpportunityModalPage {
       PrecoTotal : 52,
       Artigos : [
         {
-          NomeArtigo : "Artigo 1",
-          IDArtigo: "A0001",
+          NomeArtigo : "Magro",
+          IDArtigo: "A021",
           PrecoPorUnidade: 13,
           Quantidade: 2,
           Preco: 26,

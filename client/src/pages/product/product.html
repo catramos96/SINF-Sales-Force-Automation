@@ -55,6 +55,11 @@
         </ion-searchbar>
         <!-- list products -->
         <ion-grid>
+          <ion-row *ngIf="isOpportunity === true">
+            <button ion-button item-end color="secondary" (click)="sendProducts()">
+              Finalize
+            </button>
+          </ion-row>
           <ion-row *ngIf="products.length == 0">
             <br><br>
             <p> No products to display</p>
@@ -69,6 +74,9 @@
                 </ion-card-header>
                 <button ion-button icon-right clear item-end class="right" (click)="openModal(c.ID)">
                     <ion-icon name="open"></ion-icon>
+                </button>
+                <button *ngIf="isOpportunity === true" (click)="addProduct(c.ID,c.Nome,c.PrecoMedio,$event)"
+                    ion-button small color="secondary" class="right">Add
                 </button>
                 <ion-card-content >
                   <img class="litle"  align="middle" src="assets/imgs/logo.png"/>

@@ -27,6 +27,8 @@ export class OpportunitiesPage {
     private modalCtrl : ModalController) {}
 
   ionViewDidLoad() {
+    //this.navParams.get();
+    console.log("sim");
     this.getOpportunities();
   }
 
