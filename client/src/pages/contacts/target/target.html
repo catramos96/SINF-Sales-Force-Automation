@@ -6,7 +6,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>Target</ion-title>
+    <ion-title>Targets</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,9 +16,10 @@
   <ion-grid class="contacts-grid">
 
     <ion-row class="first-row">
-      <ion-col col-5 class="search-bar-col"><ion-searchbar></ion-searchbar></ion-col>
+      <ion-col col-5 class="search-bar-col">
+        <ion-searchbar></ion-searchbar>
+      </ion-col>
       <ion-col class="create-btns-col">
-        <button ion-button class="create-btn">Create Group</button>
         <button ion-button (click)="createTarget()" class="right-btn create-btn">Create Target</button>
       </ion-col>
     </ion-row>
@@ -56,34 +57,42 @@
           <ion-col col-5 class="element-info">
             <h2>Personal Information</h2>
             <br>
-            <p><strong>Name:</strong> {{target.PrimeiroNome}}{{target.NomesIntermedios}}{{target.UltimoNome}}</p>
-            <p *ngIf="target.Titulo" ><strong>Title:</strong> {{target.Titulo}}</p>
-			<p *ngIf="target.Morada" ><strong>Morada:</strong> {{target.Morada}}</p>
-            <p *ngIf="target.Localidade" ><strong>Location:</strong> {{target.Localidade}}</p>
-			<p *ngIf="target.Pais" ><strong>Country:</strong> {{target.Pais}}</p>
-			<p *ngIf="target.NumContribuinte" ><strong>Taxpayer Number:</strong> {{target.NumContribuinte}}</p>
-            <p *ngIf="target.Notas" ><strong>Notas:</strong> {{target.Notas}}</p>
+            <p>
+              <strong>Name:</strong> {{target.PrimeiroNome}}{{target.NomesIntermedios}}{{target.UltimoNome}}</p>
+            <p *ngIf="target.Titulo">
+              <strong>Title:</strong> {{target.Titulo}}</p>
+            <p *ngIf="target.Morada">
+              <strong>Morada:</strong> {{target.Morada}}</p>
+            <p *ngIf="target.Localidade">
+              <strong>Location:</strong> {{target.Localidade}}</p>
+            <p *ngIf="target.Pais">
+              <strong>Country:</strong> {{target.Pais}}</p>
+            <p *ngIf="target.NumContribuinte">
+              <strong>Taxpayer Number:</strong> {{target.NumContribuinte}}</p>
+            <p *ngIf="target.Notas">
+              <strong>Notas:</strong> {{target.Notas}}</p>
           </ion-col>
           <ion-col col-4 class="element-contacts">
             <h2>Contacts</h2>
             <br>
-			<div *ngIf="target.Telefone || target.Telemovel" >
-            <h4>Phone Number(s)</h4>
-            <p>{{target.Telemovel}}</p>
-			<p>{{target.Telefone}}</p>
-			</div>
-            <div *ngIf="target.Email" >
-			<h4>Email</h4>
-            <p>{{target.Email}}</p>
-			</div>
+            <div *ngIf="target.Telefone || target.Telemovel">
+              <h4>Phone Number(s)</h4>
+              <p>{{target.Telemovel}}</p>
+              <p>{{target.Telefone}}</p>
+            </div>
+            <div *ngIf="target.Email">
+              <h4>Email</h4>
+              <p>{{target.Email}}</p>
+            </div>
 
           </ion-col>
         </ion-row>
         <ion-row class="additional-info">
-          <ion-col class="additional-info-lb"><button ion-button></button></ion-col>
-          <ion-col><button ion-button></button></ion-col>
+          <ion-col class="additional-info-lb">
+            <button ion-button></button>
+          </ion-col>
           <ion-col>
-            <button ion-button class="right-btn">Client Activity</button>
+            <button ion-button></button>
           </ion-col>
         </ion-row>
       </div>
