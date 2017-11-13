@@ -6,23 +6,39 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ContactsProvider {
 
+  private url = 'http://25.34.60.99:9608/';
+
   constructor(public http:Http) {
 
   }
 
   public getAllContacts(){
-    var url = 'http://25.34.60.99:9608/api/contactos';
+    var url = this.url + 'api/contactos';
     return this.http.get(url).map(res => res.json());
   }
 
   public getAllClients(){
-    var url = 'http://25.34.60.99:9608/api/clientes';
+    var url = this.url + 'api/clientes';
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public getAllGroups(){
+    var url = this.url + 'api/grupos';
     return this.http.get(url).map(res => res.json());
   }
 
   public postTarget(data){
-    var url = 'http://25.34.60.99:9608/api/contactos';
+    var url = this.url + 'api/contactos';
     return this.http.post(url,data);
   }
 
+  public postGroup(data){
+    var url = this.url + 'api/grupos';
+    return this.http.post(url,data);
+  }
+
+  public postClient(data){
+    var url = this.url + 'api/clientes';
+    return this.http.post(url,data);
+  }
 }

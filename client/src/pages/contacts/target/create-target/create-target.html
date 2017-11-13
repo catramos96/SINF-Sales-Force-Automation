@@ -9,45 +9,45 @@
 
 <ion-content padding>
 
-    <form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+    <form [formGroup]="createTargetForm" (ngSubmit)="onSubmit(createTargetForm.value)">
         <h4>Basic Information</h4>
         <ion-row>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.firstname.valid && authForm.controls.firstname.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.firstname.valid && createTargetForm.controls.firstname.touched}">
                     <ion-label floating>First Name</ion-label>
                     <ion-input formControlName="firstname" type="text" ></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.intermediatenames.valid && authForm.controls.intermediatenames.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.intermediatenames.valid && createTargetForm.controls.intermediatenames.touched}">
                     <ion-label floating>Intermediate Names</ion-label>
                     <ion-input formControlName="intermediatenames" type="text"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.lastname.valid && authForm.controls.lastname.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.lastname.valid && createTargetForm.controls.lastname.touched}">
                     <ion-label floating>Last Name</ion-label>
                     <ion-input formControlName="lastname" type="text"></ion-input>
                 </ion-item>
             </ion-col>
         </ion-row>
 
-        <ion-item *ngIf="authForm.controls.firstname.hasError('required') && authForm.controls.firstname.touched">
+        <ion-item *ngIf="createTargetForm.controls.firstname.hasError('required') && createTargetForm.controls.firstname.touched">
             <p>Sorry, name fields are required!</p>
         </ion-item>
-        <ion-item *ngIf="authForm.controls.firstname.hasError('pattern') && authForm.controls.firstname.touched">
+        <ion-item *ngIf="createTargetForm.controls.firstname.hasError('pattern') && createTargetForm.controls.firstname.touched">
             <p>Sorry, only small and capital letters are allowed!</p>
         </ion-item>
 
         <ion-row>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.taxnumber.valid && authForm.controls.taxnumber.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.taxnumber.valid && createTargetForm.controls.taxnumber.touched}">
                     <ion-label floating>Taxpayer Number</ion-label>
                     <ion-input formControlName="taxnumber" type="text"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.title.valid && authForm.controls.title.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.title.valid && createTargetForm.controls.title.touched}">
                     <ion-label floating>Title (ex: Dr, Ar.)</ion-label>
                     <ion-input formControlName="title" type="text"></ion-input>
                 </ion-item>
@@ -56,13 +56,13 @@
 
         <ion-row>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.address.valid && authForm.controls.address.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.address.valid && createTargetForm.controls.address.touched}">
                     <ion-label floating>Address</ion-label>
                     <ion-input formControlName="address" type="text"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.zipcode.valid && authForm.controls.zipcode.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.zipcode.valid && createTargetForm.controls.zipcode.touched}">
                     <ion-label floating>Zipcode</ion-label>
                     <ion-input formControlName="zipcode" type="text"></ion-input>
                 </ion-item>
@@ -71,13 +71,13 @@
 
         <ion-row>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.location.valid && authForm.controls.location.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.location.valid && createTargetForm.controls.location.touched}">
                     <ion-label floating>Location</ion-label>
                     <ion-input formControlName="location" type="text"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.country.valid && authForm.controls.country.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.country.valid && createTargetForm.controls.country.touched}">
                     <ion-label floating>Country</ion-label>
                     <ion-input formControlName="country" type="text"></ion-input>
                 </ion-item>
@@ -88,32 +88,32 @@
         <h4>Contacts</h4>
         <ion-row>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.email.valid && authForm.controls.email.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.email.valid && createTargetForm.controls.email.touched}">
                     <ion-label floating>Email</ion-label>
                     <ion-input formControlName="email" type="text"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.cellphone.valid && authForm.controls.cellphone.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.cellphone.valid && createTargetForm.controls.cellphone.touched}">
                     <ion-label floating>Cell phone</ion-label>
                     <ion-input formControlName="cellphone" type="text"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col>
-                <ion-item [ngClass]="{'error-border':!authForm.controls.homephone.valid && authForm.controls.homephone.touched}">
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.homephone.valid && createTargetForm.controls.homephone.touched}">
                     <ion-label floating>Home phone</ion-label>
                     <ion-input formControlName="homephone" type="text"></ion-input>
                 </ion-item>
             </ion-col>
         </ion-row>
 
-        <h4>Additional Notes</h4>
-        <ion-item [ngClass]="{'error-border':!authForm.controls.notes.valid && authForm.controls.notes.touched}">
+        <h4>Additional Information</h4>
+        <ion-item [ngClass]="{'error-border':!createTargetForm.controls.notes.valid && createTargetForm.controls.notes.touched}">
             <ion-label floating>Notes</ion-label>
             <ion-input formControlName="notes" type="text"></ion-input>
         </ion-item>
 
-        <button ion-button full color="primary" [disabled]="!authForm.valid" style="margin-top: 20px;" type="submit">Create Target</button>
+        <button ion-button full color="primary" [disabled]="!createTargetForm.valid" style="margin-top: 20px;" type="submit">Create Target</button>
     </form>
 
 </ion-content>

@@ -22,7 +22,7 @@ namespace FirstREST.Lib_Primavera
 
                 //objList = PriEngine.Engine.Comercial.Clientes.LstClientes();
 
-                objList = PriEngine.Engine.Consulta("SELECT Cliente, Nome, Fac_Mor, Fac_Local, Fac_Cp, Fac_Tel, Fac_Fax, TotalDeb, NumContrib, Pais,EnderecoWeb, DataCriacao, EncomendasPendentes, Notas, Situacao, Vendedor, CDU_Email, Clientes.Equipa, Equipas.Descricao from Clientes LEFT JOIN Equipas ON Clientes.Equipa = Equipas.Equipa;");
+                objList = PriEngine.Engine.Consulta("SELECT Cliente, Nome,Moeda, Fac_Mor, Fac_Local, Fac_Cp, Fac_Tel, Fac_Fax, TotalDeb, NumContrib, Pais,EnderecoWeb, DataCriacao, EncomendasPendentes, Notas, Situacao, Vendedor, CDU_Email, Clientes.Descricao AS clidesc, GruposEmpresas.Descricao AS grpdesc from Clientes LEFT JOIN GruposEmpresas ON Clientes.Descricao = GruposEmpresas.Grupo;");
 
 
                 while (!objList.NoFim())
@@ -31,6 +31,7 @@ namespace FirstREST.Lib_Primavera
                     {
                         CodCliente = objList.Valor("Cliente"),
                         Nome = objList.Valor("Nome"),
+                        Moeda = objList.Valor("Moeda"),
                         Morada = objList.Valor("Fac_Mor"),
                         Localidade = objList.Valor("Fac_Local"),
                         CodPostal = objList.Valor("Fac_Cp"),
@@ -45,8 +46,8 @@ namespace FirstREST.Lib_Primavera
                         Situacao = objList.Valor("Situacao"),
                         Vendedor = objList.Valor("Vendedor"),
                         Email = objList.Valor("CDU_Email"),
-                        Equipa = objList.Valor("Equipa"),
-                        EquipaDesc = objList.Valor("Descricao"),
+                        Grupo = objList.Valor("clidesc"),
+                        GrupoDesc = objList.Valor("grpdesc"),
                     });
                     objList.Seguinte();
 
@@ -204,8 +205,22 @@ namespace FirstREST.Lib_Primavera
                 {
 
                     myCli.set_Cliente(cli.CodCliente);
-                    myCli.set_NumContribuinte(cli.NumContribuinte);
+                    myCli.set_Nome(cli.Nome);
                     myCli.set_Morada(cli.Morada);
+                    myCli.set_Localidade(cli.Localidade);
+                    myCli.set_CodigoPostal(cli.CodPostal);
+                    myCli.set_Fax(cli.Fax);
+                    myCli.set_DebitoContaCorrente(cli.TotalDeb);
+                    myCli.set_NumContribuinte(cli.NumContribuinte);
+                    myCli.set_Pais(cli.Pais);
+                    myCli.set_EnderecoWeb(cli.EnderecoWeb);
+                    myCli.set_DataCriacao(new DateTime());
+                    myCli.set_DebitoEncomendasPendentes(cli.EncomendasPendentes);
+                    myCli.set_Descricao(cli.Grupo);
+                    myCli.set_Observacoes(cli.Notas);
+                    myCli.set_Inactivo(cli.Inactivo);
+                    myCli.set_Vendedor(cli.Vendedor);
+                    myCli.set_Moeda(cli.Moeda);
 
                     PriEngine.Engine.Comercial.Clientes.Actualiza(myCli);
 

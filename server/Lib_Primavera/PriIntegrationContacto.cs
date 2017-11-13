@@ -14,7 +14,6 @@ namespace FirstREST.Lib_Primavera
         {
 
             StdBELista objList;
-
             List<Contacto> listContactos = new List<Contacto>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)

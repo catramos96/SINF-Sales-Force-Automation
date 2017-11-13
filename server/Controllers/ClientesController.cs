@@ -11,7 +11,6 @@ namespace FirstREST.Controllers
 {
     public class ClientesController : ApiController
     {
-        //
         // GET: /Clientes/
         [HttpGet]
         [Route("api/clientes")]
@@ -37,7 +36,8 @@ namespace FirstREST.Controllers
             }
         }
 
-
+        [HttpPost]
+        [Route("api/clientes")]
         public HttpResponseMessage Post(Lib_Primavera.Model.Cliente cliente)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
@@ -48,7 +48,7 @@ namespace FirstREST.Controllers
                 var response = Request.CreateResponse(
                    HttpStatusCode.Created, cliente);
                 string uri = Url.Link("DefaultApi", new { CodCliente = cliente.CodCliente });
-                response.Headers.Location = new Uri(uri);
+               // response.Headers.Location = new Uri(uri);
                 return response;
             }
 
