@@ -1,0 +1,137 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Create Client</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="createClientForm" (ngSubmit)="onSubmit(createClientForm.value)">
+    <h4>Administrative Information</h4>
+
+    <ion-item [ngClass]="{'error-border':!createClientForm.controls.codcliente.valid && createClientForm.controls.codcliente.touched}">
+      <ion-label floating>Codigo do Cliente</ion-label>
+      <ion-input formControlName="codcliente" type="text"></ion-input>
+    </ion-item>
+    
+    <h4>Basic Information</h4>
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.fullname.valid && createClientForm.controls.fullname.touched}">
+          <ion-label floating>Full Name</ion-label>
+          <ion-input formControlName="fullname" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.currency.valid && createClientForm.controls.currency.touched}">
+          <ion-label floating>Currency</ion-label>
+          <ion-input formControlName="currency" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.taxnumber.valid && createClientForm.controls.taxnumber.touched}">
+          <ion-label floating>Taxpayer Number</ion-label>
+          <ion-input formControlName="taxnumber" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item *ngIf="createClientForm.controls.fullname.hasError('required') && createClientForm.controls.fullname.touched">
+      <p>Sorry, name fields are required!</p>
+    </ion-item>
+    <ion-item *ngIf="createClientForm.controls.fullname.hasError('pattern') && createClientForm.controls.fullname.touched">
+      <p>Sorry, only small and capital letters are allowed!</p>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.address.valid && createClientForm.controls.address.touched}">
+          <ion-label floating>Address</ion-label>
+          <ion-input formControlName="address" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.zipcode.valid && createClientForm.controls.zipcode.touched}">
+          <ion-label floating>Zipcode</ion-label>
+          <ion-input formControlName="zipcode" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.location.valid && createClientForm.controls.location.touched}">
+          <ion-label floating>Location</ion-label>
+          <ion-input formControlName="location" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.country.valid && createClientForm.controls.country.touched}">
+          <ion-label floating>Country</ion-label>
+          <ion-input formControlName="country" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+    <h4>Contacts</h4>
+    <ion-row>
+      <ion-col col-3>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.group.valid && createClientForm.controls.group.touched}">
+          <ion-label>Group</ion-label>
+          <ion-select formControlName="group">
+              <ion-option *ngFor="let group of groups" [value]="group.Id">{{group.Descricao}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.email.valid && createClientForm.controls.email.touched}">
+          <ion-label floating>Email</ion-label>
+          <ion-input formControlName="email" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.cellphone.valid && createClientForm.controls.cellphone.touched}">
+          <ion-label floating>Cell phone</ion-label>
+          <ion-input formControlName="cellphone" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.homephone.valid && createClientForm.controls.homephone.touched}">
+          <ion-label floating>Home phone</ion-label>
+          <ion-input formControlName="homephone" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.fax.valid && createClientForm.controls.fax.touched}">
+          <ion-label floating>Fax</ion-label>
+          <ion-input formControlName="fax" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createClientForm.controls.website.valid && createClientForm.controls.website.touched}">
+          <ion-label floating>Website</ion-label>
+          <ion-input formControlName="website" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <h4>Additional Information</h4>
+    <ion-item [ngClass]="{'error-border':!createClientForm.controls.notes.valid && createClientForm.controls.notes.touched}">
+      <ion-label floating>Notes</ion-label>
+      <ion-input formControlName="notes" type="text"></ion-input>
+    </ion-item>
+
+    <button ion-button full color="primary" [disabled]="!createClientForm.valid" style="margin-top: 20px;" type="submit">Create Target</button>
+  </form>
+
+</ion-content>

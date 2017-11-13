@@ -26,8 +26,32 @@
         <ion-searchbar></ion-searchbar>
       </ion-col>
       <ion-col class="create-btns-col">
-        <button ion-button class="create-btn">Create Group</button>
-        <button ion-button class="right-btn create-btn">Create Clients</button>
+        <button ion-button (click)="toggleCreateGroup()" class="create-btn">Create Group</button>
+        <button ion-button (click)="createClient()" class="right-btn create-btn">Create Client</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="showCreateGroup">
+      <ion-col class="createGroupCol">
+        <form [formGroup]="createGroupForm" (ngSubmit)="onSubmit(createGroupForm.value)">
+          <ion-row>
+            <ion-col>
+              <ion-item [ngClass]="{'error-border':!createGroupForm.controls.id.valid && createGroupForm.controls.id.touched}" style="padding-left:0;">
+                <ion-label floating>Group ID</ion-label>
+                <ion-input formControlName="id" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item [ngClass]="{'error-border':!createGroupForm.controls.name.valid && createGroupForm.controls.name.touched}" style="padding-left:0;">
+                <ion-label floating>Group Name</ion-label>
+                <ion-input formControlName="name" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+
+          </ion-row>
+          <button ion-button color="primary" [disabled]="!createGroupForm.valid" class="groupBtns" type="submit">Create</button>
+          <button ion-button (click)="toggleCreateGroup()" class="groupBtns">Cancel</button>
+        </form>
       </ion-col>
     </ion-row>
 
@@ -67,8 +91,12 @@
             <br>
             <p>
               <strong>Name:</strong> {{client.Nome}}</p>
+            <p>
+              <strong>Currency:</strong> {{client.Moeda}}</p>
             <p *ngIf="client.Morada">
-              <strong>Morada:</strong> {{client.Morada}}</p>
+              <strong>Address:</strong> {{client.Morada}}</p>
+            <p *ngIf="client.CodPostal">
+              <strong>ZipCode:</strong> {{client.CodPostal}}</p>
             <p *ngIf="client.Localidade">
               <strong>Location:</strong> {{client.Localidade}}</p>
             <p *ngIf="client.Pais">

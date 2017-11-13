@@ -10,14 +10,14 @@ import { ContactsProvider } from '../../../../providers/contacts/contacts';
 })
 export class CreateTargetPage {
 
-  authForm: FormGroup;
+  createTargetForm: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private contacts: ContactsProvider) {
 
     var names = ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*')])]
     var phones = [''];
 
-    this.authForm = formBuilder.group({
+    this.createTargetForm = formBuilder.group({
       firstname: names,
       intermediatenames: names,
       lastname: names,
@@ -42,21 +42,21 @@ export class CreateTargetPage {
 
     
 
-    if(this.authForm.valid) {
+    if(this.createTargetForm.valid) {
       var data = {
-        "PrimeiroNome":this.authForm.value.firstname,
-        "NomesIntermedios":this.authForm.value.intermediatenames,
-        "UltimoNome":this.authForm.value.lastname,
-        "NumContribuinte":this.authForm.value.taxnumber,
-        "Titulo":this.authForm.value.title,
-        "Morada":this.authForm.value.address,
-        "CodPostal":this.authForm.value.zipcode,
-        "Localidade":this.authForm.value.location,
-        "Pais":this.authForm.value.country,
-        "Email":this.authForm.value.email,
-        "Telemovel":this.authForm.value.cellphone,
-        "Telefone":this.authForm.value.homephone,
-        "Notas":this.authForm.value.notes
+        "PrimeiroNome":this.createTargetForm.value.firstname,
+        "NomesIntermedios":this.createTargetForm.value.intermediatenames,
+        "UltimoNome":this.createTargetForm.value.lastname,
+        "NumContribuinte":this.createTargetForm.value.taxnumber,
+        "Titulo":this.createTargetForm.value.title,
+        "Morada":this.createTargetForm.value.address,
+        "CodPostal":this.createTargetForm.value.zipcode,
+        "Localidade":this.createTargetForm.value.location,
+        "Pais":this.createTargetForm.value.country,
+        "Email":this.createTargetForm.value.email,
+        "Telemovel":this.createTargetForm.value.cellphone,
+        "Telefone":this.createTargetForm.value.homephone,
+        "Notas":this.createTargetForm.value.notes
       }
 
       this.contacts.postTarget(data).subscribe(
