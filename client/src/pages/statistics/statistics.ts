@@ -7,6 +7,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'statistics.html',
 })
 export class StatisticsPage {
+  private soldProductsNumber: any;
 
   personalRoot = 'PersonalStatisticsPage'
   companyRoot = 'CompanyStatisticsPage'
@@ -15,7 +16,7 @@ export class StatisticsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StatisticsPage');
+   
   }
 
 }

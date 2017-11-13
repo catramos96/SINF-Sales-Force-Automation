@@ -22,6 +22,7 @@ import { ProductsProvider } from '../providers/products/products';
 
 //calendar
 import { CalendarModule } from 'angular-calendar';
+import { StatisticsProvider } from '../providers/statistics/statistics';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { CalendarModule } from 'angular-calendar';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ContactsProvider,
-    ProductsProvider
+    ProductsProvider,
+    StatisticsProvider
   ]
 })
 export class AppModule {}
