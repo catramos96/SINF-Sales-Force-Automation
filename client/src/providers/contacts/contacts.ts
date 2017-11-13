@@ -10,10 +10,14 @@ export class ContactsProvider {
 
   }
 
-  public getAllClients(){
-    var url = 'http://192.168.56.56:9608/api/contactos';
-    var response = this.http.get(url).map(res => res.json());
-    return response;
+  public getAllContacts(){
+    var url = 'http://25.34.60.99:9608/api/contactos';
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public postTarget(data){
+    var url = 'http://25.34.60.99:9608/api/contactos';
+    return this.http.post(url,data);
   }
 
 }
