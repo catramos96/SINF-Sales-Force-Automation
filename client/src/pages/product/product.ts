@@ -27,11 +27,13 @@ export class ProductPage {
     private productService: ProductsProvider,
     public modalCtrl : ModalController
   ) {
-    this.isOpportunity = this.navParams.get('opportunity');
-    this.callback = this.navParams.get('callback');
+
   }
 
-  ngOnInit(): void {
+  ionViewDidLoad(){
+    this.isOpportunity = this.navParams.get('isOpportunity');
+    this.callback = this.navParams.get('callback');
+
     this.getCategories();
   }
 
@@ -59,18 +61,29 @@ export class ProductPage {
     this.currentSelected = j;
   }
 
-  addProduct(prodID,prodName,prodPrice,event){
+  addProduct(prodID,prodName,prodPrice){
     if(this.isOpportunity)
     {
-      let json = {
-        NomeArtigo : prodName,
-        IDArtigo: prodID,
-        PrecoPorUnidade: Number(prodPrice),
-        Quantidade: Number(1),
-        Preco: Number(prodPrice),
-      };
-      this.oppProducts.push(json);
-      event.currentTarget.disabled = true;
+      /*let hasProd = false;
+      for(let i = 0; i < this.oppProducts.length; i++){
+        if(this.oppProducts[i].IDArtigo === prodID){
+          this.oppProducts[i].Quantidade += 1;
+          hasProd = true;
+          break;
+        }
+      }
+      if(!hasProd){
+        */
+        let json = {
+          NomeArtigo : prodName,
+          IDArtigo: prodID,
+          PrecoPorUnidade: Number(prodPrice),
+          Quantidade: Number(1),
+          Preco: Number(prodPrice),
+        };
+        this.oppProducts.push(json);
+      //}
+      //event.currentTarget.disabled = true;
     }
   }
 

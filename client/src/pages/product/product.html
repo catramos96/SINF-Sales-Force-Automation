@@ -75,15 +75,15 @@
                 <button ion-button icon-right clear item-end class="right" (click)="openModal(c.ID)">
                     <ion-icon name="open"></ion-icon>
                 </button>
-                <button *ngIf="isOpportunity === true" (click)="addProduct(c.ID,c.Nome,c.PrecoMedio,$event)"
-                    ion-button small color="secondary" class="right">Add
-                </button>
                 <ion-card-content >
                   <img class="litle"  align="middle" src="assets/imgs/logo.png"/>
                   <br>
                   <b>Price: </b>{{c.PrecoMedio}} €<br>
                   <b>Quantity: </b>{{c.StockAtual}} units
                 </ion-card-content>
+                <button *ngIf="isOpportunity === true" (click)="addProduct(c.ID,c.Nome,c.PrecoMedio)"
+                  ion-button block color="secondary">Add To Opportunity
+                </button>
               </ion-card>
             </ion-col>
           </ion-row>

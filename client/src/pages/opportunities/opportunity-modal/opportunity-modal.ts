@@ -19,6 +19,7 @@ export class OpportunityModalPage {
   opp = {
     ID:"", NomeCliente:"", ContactoCliente:"", Descricao:"", DataCriacao:"", PrecoTotal: -1, Artigos: []
   };
+  dataID = -1;
 
   constructor(
     public navCtrl: NavController, 
@@ -31,7 +32,7 @@ export class OpportunityModalPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OpportunityModalPage');
+    
   }
 
   dismiss() {
@@ -49,15 +50,32 @@ export class OpportunityModalPage {
   }
 
   addProducts(){
-    this.navCtrl.push(ProductPage,{opportunity: true, callback: this.getData});
-  }
+    this.navCtrl.push(ProductPage,
+      {
+        isOpportunity: true, 
+        callback: this.getData
+      });
+  } 
 
   getData = (data) =>
   {
     return new Promise((resolve, reject) => {
-      for(let i = 0; i < data.length; i++){
-        this.opp.Artigos.push(data[i]);
-        this.opp.PrecoTotal += data[i].PrecoPorUnidade;
+      for(let i = 0; i < data.length; i++)
+      {
+        var hasElement = false;
+        this.opp.Artigos.forEach( element => {
+          if(element.IDArtigo === data[i].IDArtigo){
+            element.Quantidade += 1;
+            this.opp.PrecoTotal += element.PrecoPorUnidade;
+            hasElement = true;
+          }
+        });
+        //add in case of the element is new
+        if(!hasElement)
+        {
+          this.opp.Artigos.push(data[i]);
+          this.opp.PrecoTotal += data[i].PrecoPorUnidade;
+        }
       }
       resolve();
     });
@@ -131,26 +149,23 @@ export class OpportunityModalPage {
       ContactoCliente : "963852714",
       Descricao : "Encomenda de coisas",
       DataCriacao : "13/9/2017",
-      PrecoTotal : 52,
+      PrecoTotal : 26.32,
       Artigos : [
         {
           NomeArtigo : "Magro",
           IDArtigo: "A021",
-          PrecoPorUnidade: 13,
-          Quantidade: 2,
-          Preco: 26,
+          PrecoPorUnidade: 0.32,
+          Quantidade: 1,
+          Preco: 0.32
         },
         {
           NomeArtigo : "Artigo 2",
           IDArtigo: "A0002",
           PrecoPorUnidade: 13,
           Quantidade: 2,
-          Preco: 26,
+          Preco: 26
         }
       ]
     };
   }
-
-  
-
 }
