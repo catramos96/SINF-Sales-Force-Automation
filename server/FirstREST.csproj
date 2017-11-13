@@ -68,6 +68,10 @@
       <HintPath>..\..\..\..\..\..\Program Files\PRIMAVERA\SG900\Apl\Interop.GcpBE900.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Interop.ICblBS900">
+      <HintPath>..\..\..\..\..\..\Program Files\PRIMAVERA\SG900\Apl\Interop.ICblBS900.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Interop.ICrmBS900">
       <HintPath>..\..\..\..\..\..\Program Files\PRIMAVERA\SG900\Apl\Interop.ICrmBS900.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -226,6 +230,7 @@
     <Compile Include="Controllers\ContactosController.cs" />
     <Compile Include="Controllers\DocCompraController.cs" />
     <Compile Include="Controllers\DocVendaController.cs" />
+    <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeadsController.cs" />
     <Compile Include="Controllers\OpportunitiesController.cs" />
@@ -237,6 +242,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Lib_Primavera\Model\Contacto.cs" />
+    <Compile Include="Lib_Primavera\Model\Grupo.cs" />
     <Compile Include="Lib_Primavera\Model\Familia.cs" />
     <Compile Include="Lib_Primavera\Model\Lead.cs" />
     <Compile Include="Lib_Primavera\Model\Opportunity.cs" />
@@ -255,6 +261,7 @@
     <Compile Include="Lib_Primavera\PriIntegrationContacto.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationDocCompra.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationDocVenda.cs" />
+    <Compile Include="Lib_Primavera\PriIntegrationGrupo.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationFamilia.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationLead.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationOpportunity.cs" />

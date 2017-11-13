@@ -9,8 +9,8 @@ namespace FirstREST.Lib_Primavera.Model
     {
         public string CodCliente { get; set; }          // PK
         public string Vendedor { get; set; }            // FK
-        public string Equipa { get; set; }              // FK
-        public string EquipaDesc { get; set; }
+        public string Grupo { get; set; }              // FK para GruposEmpresas
+        public string GrupoDesc { get; set; }
         public string Nome { get; set; }
         public string Morada { get; set; }
         public string Localidade { get; set; }
@@ -27,5 +27,7 @@ namespace FirstREST.Lib_Primavera.Model
         public double EncomendasPendentes { get; set; }
         public string Notas { get; set; }
         public string Situacao { get; set; }            //Activo/Inactivo
+        public bool Inactivo { get; set; }
+        public string Moeda { get; set; }
     }
 }
