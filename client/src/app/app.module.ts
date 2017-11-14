@@ -23,6 +23,7 @@ import { ProductsProvider } from '../providers/products/products';
 //calendar
 import { CalendarModule } from 'angular-calendar';
 import { StatisticsProvider } from '../providers/statistics/statistics';
+import {TeamPage} from "../pages/team/team";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { StatisticsProvider } from '../providers/statistics/statistics';
     ModalContentPage,
     ContactsPage,
     StatisticsPage,
+    TeamPage,
     MakeOrderPage,
     ReserveStockPage,
     SalesHistoryPage
@@ -52,6 +54,7 @@ import { StatisticsProvider } from '../providers/statistics/statistics';
     ModalContentPage,
     ContactsPage,
     StatisticsPage,
+    TeamPage,
     MakeOrderPage,
     ReserveStockPage,
     SalesHistoryPage

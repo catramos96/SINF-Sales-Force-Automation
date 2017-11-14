@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="team"></ion-icon>
+    </button>
+    <ion-title>Team</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid>
+
+    <!-- Top Buttons -->
+
+    <ion-row align-items-center justify-content-center>
+        <button ion-button icon-start icon-end class="core-button header-button">
+          <ion-icon name="calendar"></ion-icon>
+          Performance
+          <ion-icon name="arrow-dropright-circle"></ion-icon>
+        </button>
+
+        <button ion-button icon-start icon-end class="core-button header-button">
+          <ion-icon name="calendar"></ion-icon>
+          Meetings
+          <ion-icon name="arrow-dropright-circle"></ion-icon>
+        </button>
+
+        <button ion-button icon-start icon-end class="core-button header-button">
+          <ion-icon name="calendar"></ion-icon>
+          Notices
+          <ion-icon name="arrow-dropright-circle"></ion-icon>
+        </button>
+    </ion-row>
+
+    <ion-row justify-content-center style="margin: 2%">
+      <button ion-button icon-only class="complete-round-button">
+        <ion-icon name="arrow-dropup"></ion-icon>
+      </button>
+    </ion-row>
+
+    <ion-row justify-content-center>
+      <label class="team-label">
+        Up in the hierarchy
+      </label>
+    </ion-row>
+
+    <!-- director -->
+
+    <div class="team-member">
+      <ion-row justify-content-center>
+        <ion-img src="../../assets/imgs/user.png" class="team-member-img"></ion-img>
+      </ion-row>
+      <label class="team-label">Max Lancaster</label>
+      <label class="team-label">Director of Sales</label>
+    </div>
+
+    <!-- search and add member -->
+
+    <ion-row>
+      <ion-col col-11>
+        <ion-searchbar class="search-member"
+          [(ngModel)]="myInput"
+          [showCancelButton]="shouldShowCancel"
+          (ionInput)="onInput($event)"
+          (ionCancel)="onCancel($event)">
+        </ion-searchbar>
+      </ion-col>
+
+      <ion-col>
+        <ion-img src="../../assets/imgs/user.png" style="height:40px; width:40px; padding: 0"></ion-img>
+        <button ion-button icon-only outline class="other-button" style="height:3vh; width:3vh">
+          <ion-icon name="add"></ion-icon></button>
+      </ion-col>
+    </ion-row>
+
+
+
+  </ion-grid>
+
+</ion-content>
