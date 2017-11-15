@@ -149,7 +149,7 @@
       </ion-col>
 
       <ion-col col-4>
-        <button ion-button icon-start icon-end class="core-button">
+        <button ion-button icon-start icon-end class="core-button" (click)="goToOpportunities()">
           <ion-icon name="calendar"></ion-icon>
           Opportunities
           <ion-icon name="arrow-dropright-circle"></ion-icon>
@@ -201,16 +201,21 @@
         <table class="table table-bordered table-responsive">
           <thead>
           <tr>
-            <th>Prospects</th>
+            <th>Opportunities</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Lorem ipsum dolor. Suspendisse gravida. Cras sit amet dui. Suspendisse et ligula.</td>
+            <tr>
+              <td>Vestibulum at orci. Proin non neque ultrices.</td>
+            </tr>
+            <tr>
+              <td>Vestibulum at orci. Proin non neque ultrices.</td>
+            </tr>
+          <!--
+          <tr *ngFor="let opp of opportunities" (click)="openModal(opp.Lead.ID)">
+            <td>ola{{opp.Lead.Description}}</td>
           </tr>
-          <tr>
-            <td>Vestibulum at orci. Proin non neque ultrices.</td>
-          </tr>
+          -->
           </tbody>
         </table>
       </ion-col>
