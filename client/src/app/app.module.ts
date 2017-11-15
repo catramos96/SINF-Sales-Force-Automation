@@ -20,10 +20,10 @@ import { SalesHistoryPage } from '../pages/sales-history/sales-history';
 import { ContactsProvider } from '../providers/contacts/contacts';
 import { ProductsProvider } from '../providers/products/products';
 
-//calendar
 import { CalendarModule } from 'angular-calendar';
 import { StatisticsProvider } from '../providers/statistics/statistics';
 import {TeamPage} from "../pages/team/team";
+import {AppointmentModal} from "../pages/appointments/appointmentModal"
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import {TeamPage} from "../pages/team/team";
     HomePage,
     ProductPage,
     ModalContentPage,
+    AppointmentModal,
     ContactsPage,
     StatisticsPage,
     TeamPage,
@@ -52,6 +53,7 @@ import {TeamPage} from "../pages/team/team";
     HomePage,
     ProductPage,
     ModalContentPage,
+    AppointmentModal,
     ContactsPage,
     StatisticsPage,
     TeamPage,
