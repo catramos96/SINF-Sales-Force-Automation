@@ -13,9 +13,9 @@ import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { StatisticsPage } from '../pages/statistics/statistics';
-import { MakeOrderPage } from '../pages/make-order/make-order';
-import { ReserveStockPage } from '../pages/reserve-stock/reserve-stock';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
+import { OpportunitiesPage } from '../pages/opportunities/opportunities';
+import { OpportunityModalPage } from '../pages/opportunities/opportunity-modal/opportunity-modal';
 
 import { ContactsProvider } from '../providers/contacts/contacts';
 import { ProductsProvider } from '../providers/products/products';
@@ -24,6 +24,7 @@ import { CalendarModule } from 'angular-calendar';
 import { StatisticsProvider } from '../providers/statistics/statistics';
 import {TeamPage} from "../pages/team/team";
 import {AppointmentModal} from "../pages/appointments/appointmentModal"
+import { OpportunitiesProvider } from '../providers/opportunities/opportunities';
 
 @NgModule({
   declarations: [
@@ -35,8 +36,8 @@ import {AppointmentModal} from "../pages/appointments/appointmentModal"
     ContactsPage,
     StatisticsPage,
     TeamPage,
-    MakeOrderPage,
-    ReserveStockPage,
+    OpportunitiesPage,
+    OpportunityModalPage,
     SalesHistoryPage
   ],
   imports: [
@@ -57,8 +58,8 @@ import {AppointmentModal} from "../pages/appointments/appointmentModal"
     ContactsPage,
     StatisticsPage,
     TeamPage,
-    MakeOrderPage,
-    ReserveStockPage,
+    OpportunitiesPage,
+    OpportunityModalPage,
     SalesHistoryPage
   ],
   providers: [
@@ -69,7 +70,8 @@ import {AppointmentModal} from "../pages/appointments/appointmentModal"
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ContactsProvider,
     ProductsProvider,
-    StatisticsProvider
+    StatisticsProvider,
+    OpportunitiesProvider
   ]
 })
 export class AppModule {}

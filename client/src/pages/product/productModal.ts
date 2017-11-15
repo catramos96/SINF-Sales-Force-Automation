@@ -2,8 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, NavParams, ViewController, Slides, NavController} from 'ionic-angular';
 import { ProductsProvider } from '../../providers/products/products';
 import { SalesHistoryPage } from '../sales-history/sales-history';
-import { ReserveStockPage } from '../reserve-stock/reserve-stock';
-import { MakeOrderPage } from '../make-order/make-order';
 
 @Component({
   selector: 'page-product',
@@ -60,14 +58,6 @@ export class ModalContentPage {
 
     goToSalesHistory(){
       this.navCtrl.push(SalesHistoryPage);
-    }
-
-    goToReserveStock(){
-      this.navCtrl.push(ReserveStockPage);
-    }
-
-    goToMakeOrder(){
-      this.navCtrl.push(MakeOrderPage);
     }
 
     // ---- provider ----
