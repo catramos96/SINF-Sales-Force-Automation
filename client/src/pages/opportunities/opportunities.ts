@@ -28,7 +28,6 @@ export class OpportunitiesPage {
 
   ionViewDidLoad() {
     //this.navParams.get();
-    console.log("sim");
     this.getOpportunities();
   }
 
@@ -72,39 +71,22 @@ export class OpportunitiesPage {
 
       this.opp = [
         {
-          ID : "1",
-          NomeCliente : "Antonio",
-          ContactoCliente : "963852714",
-          Descricao : "Encomenda de coisas",
-          DataCriacao : "13/9/2017"
+          Lead:{
+            ID : "1",
+            NomeCliente : "Antonio",
+            ContactoCliente : "963852714",
+            Descricao : "Encomenda de coisas",
+            DataCriacao : "13/9/2017"
+          }
         },
         {
-          ID : "1",
-          NomeCliente : "Antonio",
-          ContactoCliente : "963852714",
-          Descricao : "Encomenda de coisas",
-          DataCriacao : "13/9/2017"
-        },
-        {
-          ID : "1",
-          NomeCliente : "Antonio",
-          ContactoCliente : "963852714",
-          Descricao : "Encomenda de coisas",
-          DataCriacao : "13/9/2017"
-        },
-        {
-          ID : "1",
-          NomeCliente : "Antonio",
-          ContactoCliente : "963852714",
-          Descricao : "Encomenda de coisas",
-          DataCriacao : "13/9/2017"
-        },
-        {
-          ID : "1",
-          NomeCliente : "Antonio",
-          ContactoCliente : "963852714",
-          Descricao : "Encomenda de coisas",
-          DataCriacao : "13/9/2017"
+          Lead:{
+            ID : "1",
+            NomeCliente : "Antonio",
+            ContactoCliente : "963852714",
+            Descricao : "Encomenda de coisas",
+            DataCriacao : "13/9/2017"
+          }
         },
       ];
 

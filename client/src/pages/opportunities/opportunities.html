@@ -17,16 +17,20 @@
           <!-- opportunity -->
           <ion-card *ngIf="c!=null">
             <ion-card-header class="inline">
-              {{c.DataCriacao}}
+              {{c.Lead.Descricao}}
             </ion-card-header>
-            <button ion-button icon-right clear item-end class="right" (click)="openModal(c.ID)">
-              <ion-icon name="open"></ion-icon>
-            </button>
             <ion-card-content >
-              <b>Client</b> : {{c.NomeCliente}} <br>
-              <b>Contact</b> : {{c.ContactoCliente}} <br><br>
-              <p>{{c.Descricao}}</p>
+              <b>Client</b> : {{c.Lead.NomeCliente}}  ,  {{c.Lead.ContactoCliente}} <br>
+              <b>Date</b> : {{c.Lead.DataCriacao}} <br>
             </ion-card-content>
+            <div class="centered">
+              <button ion-button outline item-end>
+                Activities
+              </button>
+              <button ion-button outline item-end (click)="openModal(c.Lead.ID)">
+                Details
+              </button>
+            </div> 
           </ion-card>
         </ion-col>
       </ion-row>

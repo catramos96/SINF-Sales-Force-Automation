@@ -17,7 +17,9 @@ import { ProductPage } from '../../product/product';
 export class OpportunityModalPage {
 
   opp = {
-    ID:"", NomeCliente:"", ContactoCliente:"", Descricao:"", DataCriacao:"", PrecoTotal: -1, Artigos: []
+    Lead: {ID : "",Oportunidade: "",NomeCliente : "",ContactoCliente : "", Descricao : "",
+    Resumo : "", DataCriacao : "",Vendedor: ""}, 
+    ValorTotalOV: 0, EstadoVenda: 0,propostas:[]
   };
   dataID = -1;
 
@@ -39,16 +41,24 @@ export class OpportunityModalPage {
     this.viewCtrl.dismiss();
   }
 
-  removeProduct(productID, opportunityID){
-    for(let i = 0; i < this.opp.Artigos.length; i++){
-      if(this.opp.Artigos[i].IDArtigo === productID){
-        this.opp.PrecoTotal -= this.opp.Artigos[i].Preco;
-        this.opp.Artigos.splice(i, 1);
+  removeProduct(productID, NumProposal)
+  {
+    var artigos = this.opp.propostas[NumProposal-1].Artigos;
+
+    //encontrar artigo
+    for(let j = 0; j < artigos.length; j++)
+    {
+      if(artigos[j].IDArtigo === productID){
+        //this.opp.PrecoTotal -= this.opp.Artigos[i].Preco; //TODO compor
+        artigos.splice(j, 1);
         break;
       }
     }
+    this.opp.propostas[NumProposal-1].Artigos = artigos;    
   }
 
+
+  //TODO compor para mais que uma proposta
   addProducts(){
     this.navCtrl.push(ProductPage,
       {
@@ -63,54 +73,64 @@ export class OpportunityModalPage {
       for(let i = 0; i < data.length; i++)
       {
         var hasElement = false;
-        this.opp.Artigos.forEach( element => {
+        this.opp.propostas[0].Artigos.forEach( element => { //TODO compor para mais que uma proposta
           if(element.IDArtigo === data[i].IDArtigo){
             element.Quantidade += 1;
-            this.opp.PrecoTotal += element.PrecoPorUnidade;
+            //this.opp.PrecoTotal += element.PrecoPorUnidade; //TODO compor
             hasElement = true;
           }
         });
         //add in case of the element is new
         if(!hasElement)
         {
-          this.opp.Artigos.push(data[i]);
-          this.opp.PrecoTotal += data[i].PrecoPorUnidade;
+          this.opp.propostas[0].Artigos.push(data[i]);
+          //this.opp.PrecoTotal += data[i].PrecoPorUnidade; //TODO compor
         }
       }
       resolve();
     });
   };
 
-  addQuantity(productID){
-    for(let i = 0; i < this.opp.Artigos.length; i++){
-      if(this.opp.Artigos[i].IDArtigo === productID){
-        this.opp.Artigos[i].Preco += this.opp.Artigos[i].PrecoPorUnidade;
-        this.opp.PrecoTotal += this.opp.Artigos[i].PrecoPorUnidade;
-        this.opp.Artigos[i].Quantidade += 1;
+  addQuantity(productID,NumProposal)
+  {
+    var artigos = this.opp.propostas[NumProposal-1].Artigos;
+
+    for(let i = 0; i < artigos.length; i++)
+    {
+      if(artigos[i].IDArtigo === productID){
+        //artigos[i].Preco += artigos[i].PrecoPorUnidade;   //TODO compor
+        //this.opp.PrecoTotal += this.opp.Artigos[i].PrecoPorUnidade;   //TODO compor
+        artigos[i].Quantidade += 1;
         break;
       }
     }
+    this.opp.propostas[NumProposal-1].Artigos = artigos;
   }
 
-  removeQuantity(productID){
-    for(let i = 0; i < this.opp.Artigos.length; i++){
-      if(this.opp.Artigos[i].IDArtigo === productID && this.opp.Artigos[i].Quantidade > 0){
-        this.opp.Artigos[i].Preco -= this.opp.Artigos[i].PrecoPorUnidade;
-        this.opp.PrecoTotal -= this.opp.Artigos[i].PrecoPorUnidade;
-        this.opp.Artigos[i].Quantidade -= 1;
+  removeQuantity(productID,NumProposal)
+  {
+    let artigos = this.opp.propostas[NumProposal-1].Artigos;
+    
+    for(let i = 0; i < artigos.length; i++)
+    {
+      if(artigos[i].IDArtigo === productID){
+        //artigos[i].Preco += artigos[i].PrecoPorUnidade;   //TODO compor
+        //this.opp.PrecoTotal += this.opp.Artigos[i].PrecoPorUnidade;   //TODO compor
+        artigos[i].Quantidade -= 1;
         break;
       }
     }
+    this.opp.propostas[NumProposal-1].Artigos = artigos;
   }
 
-  cancelOpportunity(){
-    this.getOpportunity(this.opp.ID);
+  cancelProposal(NumProposal){
+    //this.getOpportunity(this.opp.ID); //TODO compor isto
   }
 
-  saveOpportunity(){
+  saveProposal(NumProposal){
     let jsonArtigos = [];
 
-    this.opp.Artigos.forEach(art => {
+    this.opp.propostas[NumProposal-1].Artigos.forEach(art => {
       let jsonArt ={
         IDArtigo : art.IDArtigo,
         Quantidade : art.Quantidade
@@ -119,7 +139,8 @@ export class OpportunityModalPage {
     });
 
     let json = {
-      ID: this.opp.ID,
+      ID: this.opp.Lead.ID,
+      NumProposal: NumProposal,
       Artigos : jsonArtigos
     }
     /*
@@ -144,27 +165,40 @@ export class OpportunityModalPage {
       });
     */
     this.opp = {
-      ID : "1",
-      NomeCliente : "Antonio",
-      ContactoCliente : "963852714",
-      Descricao : "Encomenda de coisas",
-      DataCriacao : "13/9/2017",
-      PrecoTotal : 26.32,
-      Artigos : [
+      Lead : {
+        ID : "1",
+        Oportunidade: "OPP",
+        NomeCliente : "Antonio",
+        ContactoCliente : "963852714",
+        Descricao : "Encomenda de coisas",
+        Resumo : "Lorem ipsum blablabla",
+        DataCriacao : "13/9/2017",
+        Vendedor: "1"
+      }, 
+      ValorTotalOV : 26.32,
+      EstadoVenda: 0,
+      propostas: [
         {
-          NomeArtigo : "Magro",
-          IDArtigo: "A021",
-          PrecoPorUnidade: 0.32,
-          Quantidade: 1,
-          Preco: 0.32
+          NumProposta: 1,
+          Artigos:[
+              {
+                Linha: 1,
+                NomeArtigo : "Magro",
+                IDArtigo: "A021",
+                Quantidade: 1,
+                PrecoVenda: 0.32,
+                Unidade: "UN"
+              },
+              {
+                Linha: 2,
+                NomeArtigo : "Artigo 2",
+                IDArtigo: "A0002",
+                Quantidade: 2,
+                PrecoVenda: 26,
+                Unidade: "UN"
+              }
+          ]
         },
-        {
-          NomeArtigo : "Artigo 2",
-          IDArtigo: "A0002",
-          PrecoPorUnidade: 13,
-          Quantidade: 2,
-          Preco: 26
-        }
       ]
     };
   }
