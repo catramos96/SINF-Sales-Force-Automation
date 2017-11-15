@@ -49,7 +49,7 @@ export class OpportunityModalPage {
     for(let j = 0; j < artigos.length; j++)
     {
       if(artigos[j].IdArtigo === productID){
-        //this.opp.propostas[NumProposal-1].PrecoTotal -= artigos[j].PrecoVenda * artigos[j].Quantidade; //TODO compor
+        this.opp.propostas[NumProposal-1].Valor -= artigos[j].PrecoVenda * artigos[j].Quantidade; //TODO compor
         artigos.splice(j, 1);
         break;
       }
@@ -78,7 +78,7 @@ export class OpportunityModalPage {
         this.opp.propostas[0].Artigos.forEach( element => { 
           if(element.IdArtigo === data[i].IdArtigo){
             element.Quantidade += 1;
-            //this.opp.propostas[NumProposal-1].PrecoTotal += artigos[j].PrecoVenda; //TODO compor
+            this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda; //TODO compor
             hasElement = true;
           }
         });
@@ -88,7 +88,7 @@ export class OpportunityModalPage {
           linhaAtual++;
           data[i].Linha = linhaAtual;
           this.opp.propostas[NumProposal-1].Artigos.push(data[i]);
-          //this.opp.propostas[NumProposal-1].PrecoTotal += artigos[j].PrecoVenda; //TODO compor
+          this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda; //TODO compor
         }
       }
       resolve();
@@ -102,7 +102,7 @@ export class OpportunityModalPage {
     for(let i = 0; i < artigos.length; i++)
     {
       if(artigos[i].IdArtigo === productID){
-        //this.opp.propostas[NumProposal-1].PrecoTotal -= artigos[j].PrecoVenda; //TODO compor
+        this.opp.propostas[NumProposal-1].Valor += artigos[i].PrecoVenda; //TODO compor
         artigos[i].Quantidade += 1;
         break;
       }
@@ -117,7 +117,7 @@ export class OpportunityModalPage {
     for(let i = 0; i < artigos.length; i++)
     {
       if(artigos[i].IdArtigo === productID){
-        //this.opp.propostas[NumProposal-1].PrecoTotal -= artigos[j].PrecoVenda; //TODO compor
+        this.opp.propostas[NumProposal-1].Valor -= artigos[i].PrecoVenda; //TODO compor
         if(artigos[i].Quantidade > 0)
           artigos[i].Quantidade -= 1;
         break;
