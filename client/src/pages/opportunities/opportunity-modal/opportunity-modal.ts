@@ -44,12 +44,12 @@ export class OpportunityModalPage {
   removeProduct(productID, NumProposal)
   {
     var artigos = this.opp.propostas[NumProposal-1].Artigos;
-
+    
     //encontrar artigo
     for(let j = 0; j < artigos.length; j++)
     {
-      if(artigos[j].IDArtigo === productID){
-        //this.opp.PrecoTotal -= this.opp.Artigos[i].Preco; //TODO compor
+      if(artigos[j].IdArtigo === productID){
+        //this.opp.propostas[NumProposal-1].PrecoTotal -= artigos[j].PrecoVenda * artigos[j].Quantidade; //TODO compor
         artigos.splice(j, 1);
         break;
       }
@@ -57,34 +57,38 @@ export class OpportunityModalPage {
     this.opp.propostas[NumProposal-1].Artigos = artigos;    
   }
 
-
-  //TODO compor para mais que uma proposta
-  addProducts(){
+  addProducts(NumProposal){
     this.navCtrl.push(ProductPage,
       {
         isOpportunity: true, 
+        numproposal: NumProposal,
         callback: this.getData
       });
   } 
 
-  getData = (data) =>
+  getData = (data,NumProposal) =>
   {
     return new Promise((resolve, reject) => {
+
+      let linhaAtual = this.opp.propostas[NumProposal-1].Artigos.length;
+
       for(let i = 0; i < data.length; i++)
       {
         var hasElement = false;
-        this.opp.propostas[0].Artigos.forEach( element => { //TODO compor para mais que uma proposta
-          if(element.IDArtigo === data[i].IDArtigo){
+        this.opp.propostas[0].Artigos.forEach( element => { 
+          if(element.IdArtigo === data[i].IdArtigo){
             element.Quantidade += 1;
-            //this.opp.PrecoTotal += element.PrecoPorUnidade; //TODO compor
+            //this.opp.propostas[NumProposal-1].PrecoTotal += artigos[j].PrecoVenda; //TODO compor
             hasElement = true;
           }
         });
         //add in case of the element is new
         if(!hasElement)
         {
-          this.opp.propostas[0].Artigos.push(data[i]);
-          //this.opp.PrecoTotal += data[i].PrecoPorUnidade; //TODO compor
+          linhaAtual++;
+          data[i].Linha = linhaAtual;
+          this.opp.propostas[NumProposal-1].Artigos.push(data[i]);
+          //this.opp.propostas[NumProposal-1].PrecoTotal += artigos[j].PrecoVenda; //TODO compor
         }
       }
       resolve();
@@ -97,9 +101,8 @@ export class OpportunityModalPage {
 
     for(let i = 0; i < artigos.length; i++)
     {
-      if(artigos[i].IDArtigo === productID){
-        //artigos[i].Preco += artigos[i].PrecoPorUnidade;   //TODO compor
-        //this.opp.PrecoTotal += this.opp.Artigos[i].PrecoPorUnidade;   //TODO compor
+      if(artigos[i].IdArtigo === productID){
+        //this.opp.propostas[NumProposal-1].PrecoTotal -= artigos[j].PrecoVenda; //TODO compor
         artigos[i].Quantidade += 1;
         break;
       }
@@ -113,20 +116,22 @@ export class OpportunityModalPage {
     
     for(let i = 0; i < artigos.length; i++)
     {
-      if(artigos[i].IDArtigo === productID){
-        //artigos[i].Preco += artigos[i].PrecoPorUnidade;   //TODO compor
-        //this.opp.PrecoTotal += this.opp.Artigos[i].PrecoPorUnidade;   //TODO compor
-        artigos[i].Quantidade -= 1;
+      if(artigos[i].IdArtigo === productID){
+        //this.opp.propostas[NumProposal-1].PrecoTotal -= artigos[j].PrecoVenda; //TODO compor
+        if(artigos[i].Quantidade > 0)
+          artigos[i].Quantidade -= 1;
         break;
       }
     }
     this.opp.propostas[NumProposal-1].Artigos = artigos;
   }
 
+  //problema -> cancela as 2
   cancelProposal(NumProposal){
-    //this.getOpportunity(this.opp.ID); //TODO compor isto
+    this.getOpportunity(this.opp.Lead.ID);
   }
 
+  //TODO -> fazer no server (depois de 6ª)
   saveProposal(NumProposal){
     let jsonArtigos = [];
 
@@ -155,15 +160,16 @@ export class OpportunityModalPage {
   }
 
   getOpportunity(id){
-    /*
+    
     this.opportunitiesService.getOpportunity(id).subscribe(
       data => { 
-          this.opportunity = data;
+          this.opp = data;
+          console.log(this.opp);
       },
       err => {
           console.log(err);
       });
-    */
+    /*
     this.opp = {
       Lead : {
         ID : "1",
@@ -201,5 +207,6 @@ export class OpportunityModalPage {
         },
       ]
     };
+    */
   }
 }
