@@ -19,7 +19,6 @@ namespace FirstREST.Lib_Primavera
             Model.Opportunity opportunity = new Model.Opportunity();
             Model.Lead lead = new Model.Lead();
             List<Model.Proposta> propostas = new List<Model.Proposta>();
-            List<Model.OpportunityLine> linhas = new List<Model.OpportunityLine>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
@@ -45,7 +44,6 @@ namespace FirstREST.Lib_Primavera
                     lead.ContactoCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Fac_Tel");
 
                     opportunity.Lead = lead;
-                    opportunity.ValorTotalOV = objLead.get_ValorTotalOV();
                     opportunity.EstadoVenda = objLead.get_EstadoVenda();
 
                     //vai buscar as proposta correspondente
@@ -54,14 +52,18 @@ namespace FirstREST.Lib_Primavera
                     {
                         var objProposta = objOpp.get_Edita(i);
                         var proposta = new Model.Proposta();
+                        var linhas = new List<Model.OpportunityLine>();
+
                         proposta.NumProposta = objProposta.get_NumProposta();
+                        proposta.Valor = objProposta.get_Valor();
 
                         //vai buscar os artigos desta proposta
                         objLinhas = objProposta.get_Linhas();
                         for (short j = 1; j <= objLinhas.NumItens; j++)
                         {
                             var objLinha = objLinhas.get_Edita(j);
-                            if(objLinha.get_NumProposta() == proposta.NumProposta)
+                            var numProposta = objLinha.get_NumProposta();
+                            if (numProposta == proposta.NumProposta)
                             {
                                 var linha = new Model.OpportunityLine();
 
