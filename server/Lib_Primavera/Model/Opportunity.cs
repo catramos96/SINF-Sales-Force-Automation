@@ -5,12 +5,18 @@ using System.Web;
 
 namespace FirstREST.Lib_Primavera.Model
 {
-    //PropostasOPV
     public class Opportunity
     {
-        public string IdOportunidade { get; set; }
-        public string IdCabecOrigem { get; set; }   //id da lead associada
-        public int NumProposta { get; set; }    //o cliente pode recusar a primeira e ter que fazer uma nova proposta (inicialmente vamos ignorar isto)
-        public List<OpportunityLine> Artigos { get; set; }
+        /*
+         * Estado: 0 - Aberta, 1 - Ganha, 2 - Perdida
+         */
+
+        //CabecOportunidadesVenda
+        public Lead Lead { get; set; }      //lead cujo id = idOportunidade --> oportunidade = OPP
+        public short EstadoVenda { get; set; }
+        public double ValorTotalOV { get; set; }    //inicialmente 0 -> atualiza com os produtos adicionados
+        //TODO adicionar Rentabilidade ( MargemOV ) e Margem ( MargemPecOV )
+
+        public List<Proposta> propostas;
     }
 }
