@@ -18,6 +18,7 @@ export class ProductPage {
   currentSelected = -1;
 
   isOpportunity = false;
+  numproposal = 0;
   callback = null;
   oppProducts = [];
 
@@ -32,6 +33,7 @@ export class ProductPage {
 
   ionViewDidLoad(){
     this.isOpportunity = this.navParams.get('isOpportunity');
+    this.numproposal = this.navParams.get('numproposal');
     this.callback = this.navParams.get('callback');
 
     this.getCategories();
@@ -64,31 +66,20 @@ export class ProductPage {
   addProduct(prodID,prodName,prodPrice){
     if(this.isOpportunity)
     {
-      /*let hasProd = false;
-      for(let i = 0; i < this.oppProducts.length; i++){
-        if(this.oppProducts[i].IDArtigo === prodID){
-          this.oppProducts[i].Quantidade += 1;
-          hasProd = true;
-          break;
-        }
-      }
-      if(!hasProd){
-        */
-        let json = {
-          NomeArtigo : prodName,
-          IDArtigo: prodID,
-          PrecoPorUnidade: Number(prodPrice),
-          Quantidade: Number(1),
-          Preco: Number(prodPrice),
-        };
-        this.oppProducts.push(json);
-      //}
-      //event.currentTarget.disabled = true;
+      let json = {
+        NomeArtigo : prodName,
+        IdArtigo: prodID,
+        PrecoVenda: Number(prodPrice),
+        Quantidade: Number(1),
+        Linha: 0,
+        Unidade: "UN",
+      };
+      this.oppProducts.push(json);
     }
   }
 
   sendProducts(){
-    this.callback(this.oppProducts).then(()=>{ this.navCtrl.pop() });
+    this.callback(this.oppProducts,this.numproposal).then(()=>{ this.navCtrl.pop() });
   }
 
   displayProducts(){
@@ -140,7 +131,7 @@ export class ProductPage {
   // ---- PROVIDERS ----
 
   getCategories(){
-    /*
+    
     this.productService.getCategories().subscribe(
       data => { 
           this.categories = data;
@@ -148,15 +139,15 @@ export class ProductPage {
       err => {
           console.log(err);
       });
-    */
+    /*
     this.categories = [
       { Nome: "Leite", ID: "A01"},
     ];
-    
+    */
   }
 
   getSubCategories(categoryID){
-    /*
+    
     this.productService.getSubcategories(categoryID).subscribe(
       data => { 
           this.subCategories = data;
@@ -164,7 +155,7 @@ export class ProductPage {
       err => {
           console.log(err);
       });
-    */
+    /*
     if(categoryID === null)
       this.subCategories = [];
     else if(categoryID === "A01")  {
@@ -172,11 +163,11 @@ export class ProductPage {
         { Nome: "Normal", IDFamilia: categoryID, ID:"001"},
       ];
     }
-
+    */
   }
 
   getProducts(categoryID,subcategoryID){
-    /*
+    
     this.productService.getProducts(categoryID,subcategoryID).subscribe(
       data => { 
         this.products = data;
@@ -185,7 +176,7 @@ export class ProductPage {
       err => {
         console.log(err);
       });
-    */
+    /*
     if(subcategoryID === null && categoryID == null)
       this.products = [];
     else
@@ -194,7 +185,7 @@ export class ProductPage {
         {ID: "A022",Nome: "Magro",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"}
       ];
     this.displayProducts();  
-    
+    */
   }
 
   searchCategoryProvider(name){

@@ -59,16 +59,17 @@ export class OpportunitiesPage {
   }
 
   getOpportunities(){
-    /*
+    
     this.opportunitiesService.getOpportunities().subscribe(
       data => { 
-          this.opp = data;
+        this.opp = data;
+        this.displayOpportunities();
       },
       err => {
           console.log(err);
       });
-      */
-
+      
+      /*
       this.opp = [
         {
           Lead:{
@@ -89,8 +90,7 @@ export class OpportunitiesPage {
           }
         },
       ];
-
-      this.displayOpportunities();
+      */
   }
 
 }

@@ -16,14 +16,14 @@ export class OpportunitiesProvider {
     console.log('Hello OpportunitiesProvider Provider');
   }
 
-  //FAZER
+  //done
   getOpportunities(){
     var url = AppSettings.API_ENDPOINT+'opportunities';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
-  //FAZER
+  //done
   getOpportunity(name){
     var url = AppSettings.API_ENDPOINT+'opportunities/'+encodeURI(name);
     var response = this.http.get(url).map(res => res.json());
