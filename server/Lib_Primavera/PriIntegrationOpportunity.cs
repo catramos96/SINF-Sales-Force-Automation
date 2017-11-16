@@ -104,9 +104,11 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
                 oppList = PriEngine.Engine.Consulta(
-                    @"select ID, Clientes.Nome AS NomeCliente, Clientes.Fac_Tel AS ContactoCliente, 
+                    @"select ID, CabecOportunidadesVenda.EstadoVenda AS EstadoVenda,
+                      Clientes.Nome AS NomeCliente, Clientes.Fac_Tel AS ContactoCliente, 
                       CabecOportunidadesVenda.DataCriacao AS Data, CabecOportunidadesVenda.Descricao AS Descricao
-                      from CabecOportunidadesVenda JOIN Clientes ON Clientes.Cliente = CabecOportunidadesVenda.Entidade"); 
+                      from CabecOportunidadesVenda JOIN Clientes ON Clientes.Cliente = CabecOportunidadesVenda.Entidade
+                      where EstadoVenda = 0"); //Oportunidades abertas
 
                 while (!oppList.NoFim())
                 {
