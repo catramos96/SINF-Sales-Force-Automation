@@ -14,7 +14,7 @@ export class CreateTargetPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private contacts: ContactsProvider) {
 
-    var names = ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*')])]
+    var names = [''];
     var phones = [''];
 
     this.createTargetForm = formBuilder.group({

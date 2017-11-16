@@ -12,10 +12,6 @@
 </ion-header>
 
 
-
-
-
-
 <ion-content padding>
 
   <!-- *ngIf="showElement[0]" -->
@@ -137,10 +133,10 @@
         </ion-row>
         <ion-row class="additional-info">
           <ion-col class="additional-info-lb">
-            <button ion-button></button>
+            <button ion-button (click)="editClient(client.CodCliente)">Edit</button>
           </ion-col>
           <ion-col>
-            <button ion-button></button>
+            <button ion-button (click)="toggleElement(i)">Close</button>
           </ion-col>
           <ion-col>
             <button ion-button class="right-btn">Client Activity</button>

@@ -51,6 +51,10 @@ export class ClientPage {
     this.navCtrl.push("CreateClientPage");
   }
 
+  public editClient(codCliente:string){
+    this.navCtrl.push("EditClientPage",{firstParam:codCliente});
+  }
+
   onSubmit(value: any): void { 
     
         if(this.createGroupForm.valid) {
