@@ -3,13 +3,12 @@ import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } fr
 import { CalendarEvent } from 'angular-calendar';
 import { Input,Output, EventEmitter } from '@angular/core';
 import { getDateString } from "../calendar-resources";
-import { window } from "rxjs/operator/window";
 import { AppointmentModal } from "../appointments/appointmentModal";
 import { ModalController} from 'ionic-angular';
 import { OpportunitiesPage } from '../opportunities/opportunities';
 import { OpportunitiesProvider } from '../../providers/opportunities/opportunities';
 import { OpportunityModalPage } from '../opportunities/opportunity-modal/opportunity-modal';
-import { IonicApp } from 'ionic-angular/components/app/app-root';
+import {AppointmentsProvider} from "../../providers/appointments/appointments";
 
 @Component({
   selector: 'page-home',
@@ -18,20 +17,11 @@ import { IonicApp } from 'ionic-angular/components/app/app-root';
 })
 export class HomePage {
 
-  opportunities: [
-    {
-      Lead:{
-        ID : "1",
-        Descricao : "Encomenda de coisas",
-      }
-    },
-    {
-      Lead:{
-        ID : "1",
-        Descricao : "Encomenda de coisas",
-      }
-    }
-  ];
+  opportunities:Array<any>= [];
+  appointments:Array<any> = [];
+  routes:Array<any> = [];
+  leads:Array<any> = [];
+
 
   public viewDate: Date = new Date(Date.now());
   public view: string = 'month';
@@ -45,32 +35,23 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public modalCtrl : ModalController,
-    private opportunitiesService: OpportunitiesProvider
+    private opportunitiesService: OpportunitiesProvider,
+    private  appointmentsService: AppointmentsProvider
   ) {
 
   }
 
   ionViewDidLoad() {
-    this.getOpportunities();
     this.loadAppointments(new Date(Date.now()));
+    this.loadRoutes();
+    this.loadLeads();
+    this.loadOpportunities()
   }
   /*
   ngAfterViewInit() {
     this.getOpportunities();
     this.loadAppointments(new Date(Date.now()));
   }*/
-
-  getOpportunities(){
-    /*
-    this.opportunitiesService.getOpportunities().subscribe(
-      data => { 
-        this.opportunities = data;
-      },
-      err => {
-          console.log(err);
-      });
-    */        
-  }
 
   goToOpportunities() {
     this.navCtrl.push(OpportunitiesPage);
@@ -87,12 +68,13 @@ export class HomePage {
 
   loadAppointments(date:Date){
 
-    //TODO: ir buscar os elementos da data com paginação
-    //TEMP
-    var appointments = [{time:"10:00",description:"Meeting with Mr.Smith"},
-      {time:"12:00",description:"Team Discussion about project X"},
-      {time:"12:00",description:"Team Discussion about project X"},
-      {time:"12:00",description:"Team Discussion about project X"}];
+    this.appointmentsService.getAllAppointments().subscribe(
+      data => {
+        this.appointments = data;
+      },
+      err => {
+        console.log(err);
+      });
 
 
     var height = document.getElementById("main-content").children.item(2).clientHeight;
@@ -100,12 +82,11 @@ export class HomePage {
     var body = table.getElementsByTagName("tbody").item(0);
 
 
-    for(var i = 0; i < appointments.length; i++){
-
+    for(var i = 0; i < this.appointments.length; i++){
       var e:HTMLElement = document.createElement('tr');
 
-      e.innerHTML = '<td>' + appointments[i].time + '</td>' +
-        '<td>' + appointments[i].description + '</td>';
+      e.innerHTML = '<td>' + this.appointments[i].DataInicio + '</td>' +
+        '<td>' + this.appointments[i].Resumo + '</td>';
 
       e.addEventListener("click",() =>{
         let modal = this.modalCtrl.create(AppointmentModal);//,{ productID: productID });
@@ -118,6 +99,117 @@ export class HomePage {
     this.tablesConfig(table,height,body);
   }
 
+  loadRoutes(){
+    //TODO: ir buscar os elementos da data com paginação
+    //TEMP
+    /*var appointments = [{time:"10:00",description:"Meeting with Mr.Smith"},
+      {time:"12:00",description:"Team Discussion about project X"},
+      {time:"12:00",description:"Team Discussion about project X"},
+      {time:"12:00",description:"Team Discussion about project X"}];*/
+
+    /*this.appointmentsService.getAllAppointments().subscribe(
+      data => {
+        this.appointments = data;
+      },
+      err => {
+        console.log(err);
+      });*/
+
+
+    var height = document.getElementById("main-content").children.item(2).clientHeight;
+    var table = document.getElementById("RoutesTable");
+    var body = table.getElementsByTagName("tbody").item(0);
+
+
+    /*for(var i = 0; i < this.appointments.length; i++){
+
+      var e:HTMLElement = document.createElement('tr');
+
+      e.innerHTML = '<td>' + this.appointments[i].DataInicio + '</td>' +
+        '<td>' + this.appointments[i].Descricao + '</td>';
+
+      e.addEventListener("click",() =>{
+        let modal = this.modalCtrl.create(AppointmentModal);//,{ productID: productID });
+        modal.present();
+      });
+
+      body.insertAdjacentElement("beforeend",e);
+    }*/
+
+    this.tablesConfig(table,height,body);
+  }
+
+  loadOpportunities(){
+
+    this.opportunitiesService.getOpportunities().subscribe(
+      data => {
+        this.opportunities = data;
+      },
+      err => {
+        console.log(err);
+      });
+
+
+    var height = document.getElementById("main-content").children.item(2).clientHeight;
+    var table = document.getElementById("OpportunitiesTable");
+    var body = table.getElementsByTagName("tbody").item(0);
+
+    for(var i = 0; i < this.opportunities.length; i++){
+
+      var e:HTMLElement = document.createElement('tr');
+
+      e.innerHTML = '<td>' + this.opportunities[i].Resumo+ '</td>';
+
+      e.addEventListener("click",() =>{
+        //let modal = this.modalCtrl.create(AppointmentModal);//,{ productID: productID });
+        //modal.present();
+      });
+
+      body.insertAdjacentElement("beforeend",e);
+    }
+
+    this.tablesConfig(table,height,body);
+  }
+
+  loadLeads(){
+    //TODO: ir buscar os elementos da data com paginação
+    //TEMP
+    /*var appointments = [{time:"10:00",description:"Meeting with Mr.Smith"},
+      {time:"12:00",description:"Team Discussion about project X"},
+      {time:"12:00",description:"Team Discussion about project X"},
+      {time:"12:00",description:"Team Discussion about project X"}];*/
+
+    /*this.appointmentsService.getAllAppointments().subscribe(
+      data => {
+        this.appointments = data;
+      },
+      err => {
+        console.log(err);
+      });*/
+
+
+    var height = document.getElementById("main-content").children.item(2).clientHeight;
+    var table = document.getElementById("LeadsTable");
+    var body = table.getElementsByTagName("tbody").item(0);
+
+
+    /*for(var i = 0; i < this.appointments.length; i++){
+
+      var e:HTMLElement = document.createElement('tr');
+
+      e.innerHTML = '<td>' + this.appointments[i].DataInicio + '</td>' +
+        '<td>' + this.appointments[i].Descricao + '</td>';
+
+      e.addEventListener("click",() =>{
+        let modal = this.modalCtrl.create(AppointmentModal);//,{ productID: productID });
+        modal.present();
+      });
+
+      body.insertAdjacentElement("beforeend",e);
+    }*/
+
+    this.tablesConfig(table,height,body);
+  }
 
   /**
   DETAILS
@@ -164,7 +256,7 @@ export class HomePage {
       body.insertAdjacentHTML("beforeend", html);
     }
 
-    while (body.scrollHeight + header.clientHeight > maxHeight + maxHeight*1/6
+    while (body.scrollHeight + header.clientHeight > maxHeight + maxHeight*1/7
           && table.children.length > 0) {
       body.deleteRow(table.children.length - 1);
     }
