@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FirstREST.Lib_Primavera.Model;
 
 
 namespace FirstREST.Controllers
@@ -19,6 +16,54 @@ namespace FirstREST.Controllers
         public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
         {
             return Lib_Primavera.PriIntegrationDocVenda.Encomendas_List();
+        }
+
+        // GET: api/docvendas/top5produtos/
+        [Route("api/docvendas/top5produtos/")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetTop5Productos()
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.Top5ProdutosMaisVendidos();
+        }
+
+        // GET: api/docvendas/top5produtos/vendedor/
+        [Route("api/docvendas/top5produtos/{vendedor}")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetTop5Productos(int vendedor)
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.Top5ProdutosMaisVendidosPorVendedor(vendedor);
+        }
+
+        // GET: api/docvendas/produtosvendidos/ano/
+        [Route("api/docvendas/produtosvendidos/{ano}/")]
+        [HttpGet]
+        public double GetNumeroProdutosVendidosPorAno(int ano)
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.Numero_ProdutosVendidosPorAno(ano);
+        }
+
+        // GET: api/docvendas/produtosvendidos/ano/vendedor
+        [Route("api/docvendas/produtosvendidos/{ano}/{vendedor}")]
+        [HttpGet]
+        public double GetNumeroProdutosVendidosPorVendedor_Ano(int ano, int vendedor)
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.Numero_ProdutosVendidosPorVendedor_Ano(ano, vendedor);
+        }
+
+        // GET: api/docvendas/dinheirofaturado/ano/
+        [Route("api/docvendas/dinheirofaturado/{ano}/")]
+        [HttpGet]
+        public double GetNumeroDinheiroFaturoEmProdutosPorAno(int ano)
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.Numero_DinheiroFaturadoEmProdutosPorAno(ano);
+        }
+
+        // GET: api/docvendas/dinheirofaturado/ano/vendedor
+        [Route("api/docvendas/dinheirofaturado/{ano}/{vendedor}")]
+        [HttpGet]
+        public double GetNumeroDinheiroFaturoEmProdutosPorVendedor_Ano(int ano, int vendedor)
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.Numero_DinheiroFaturadoEmProdutosPorVendedor_Ano(ano, vendedor);
         }
 
 
