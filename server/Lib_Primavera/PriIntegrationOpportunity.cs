@@ -40,6 +40,7 @@ namespace FirstREST.Lib_Primavera
                     lead.Vendedor = objLead.get_Vendedor();
 
                     var idCliente = objLead.get_Entidade();
+                    lead.IdCliente = idCliente;
                     lead.NomeCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Nome");
                     lead.ContactoCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Fac_Tel");
 
