@@ -70,7 +70,117 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+        public static double Numero_ProdutosVendidosPorAno(int ano)
+        {
+            StdBELista objListLin;
 
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS numeroProdutosVendidos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND YEAR(LinhasDoc.Data) =" + ano);
+
+                while (!objListLin.NoFim())
+                {
+                    return objListLin.Valor("numeroProdutosVendidos");
+                }
+            }
+            return -1;
+        }
+
+        public static double Numero_ProdutosVendidosPorVendedor_Ano(int ano, int vendedor)
+        {
+            StdBELista objListLin;
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS numeroProdutosVendidos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND YEAR(LinhasDoc.Data) =" + ano + " AND LinhasDoc.Vendedor = "+vendedor);
+
+                while (!objListLin.NoFim())
+                {
+                    return objListLin.Valor("numeroProdutosVendidos");
+                }
+            }
+            return -1;
+        }
+
+        public static double Numero_DinheiroFaturadoEmProdutosPorAno(int ano)
+        {
+            StdBELista objListLin;
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS dinheiroFaturadoEmProdutos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND YEAR(LinhasDoc.Data) =" + ano);
+
+                while (!objListLin.NoFim())
+                {
+                    return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                }
+            }
+            return -1;
+        }
+
+        public static double Numero_DinheiroFaturadoEmProdutosPorVendedor_Ano(int ano, int vendedor)
+        {
+            StdBELista objListLin;
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS dinheiroFaturadoEmProdutos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND YEAR(LinhasDoc.Data) =" + ano + " AND LinhasDoc.Vendedor = " + vendedor);
+
+                while (!objListLin.NoFim())
+                {
+                    return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                }
+            }
+            return -1;
+        }
+
+        public static List<Model.LinhaDocVenda> Top5ProdutosMaisVendidos()
+        {
+
+            StdBELista objList;
+
+            List<Model.LinhaDocVenda> listaProdutos = new List<Model.LinhaDocVenda>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, LinhasDoc.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL'group by LinhasDoc.Artigo, LinhasDoc.Descricao order by Quantidade DESC;");
+                while (!objList.NoFim())
+                {
+                    Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();
+                    lindv.CodArtigo = objList.Valor("Artigo");
+                    lindv.DescArtigo = objList.Valor("Descricao");
+                    lindv.Quantidade = objList.Valor("Quantidade");
+
+                    listaProdutos.Add(lindv);
+                    objList.Seguinte();
+                }
+            }
+            return listaProdutos;
+        }
+
+        public static List<Model.LinhaDocVenda> Top5ProdutosMaisVendidosPorVendedor(int vendedor)
+        {
+
+            StdBELista objList;
+
+            List<Model.LinhaDocVenda> listaProdutos = new List<Model.LinhaDocVenda>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, LinhasDoc.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where LinhasDoc.Vendedor = "+vendedor+ "AND CabecDoc.TipoDoc='ECL'group by LinhasDoc.Artigo, LinhasDoc.Descricao order by Quantidade DESC;");
+                while (!objList.NoFim())
+                {
+                    Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();
+                    lindv.CodArtigo = objList.Valor("Artigo");
+                    lindv.DescArtigo = objList.Valor("Descricao");
+                    lindv.Quantidade = objList.Valor("Quantidade");
+
+                    listaProdutos.Add(lindv);
+                    objList.Seguinte();
+                }
+            }
+            return listaProdutos;
+        }
 
         public static List<Model.DocVenda> Encomendas_List()
         {

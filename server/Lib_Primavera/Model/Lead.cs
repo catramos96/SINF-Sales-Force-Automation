@@ -9,10 +9,15 @@ namespace FirstREST.Lib_Primavera.Model
     public class Lead
     {
         public string ID { get; set; }
-        public string Descricao { get; set; }
-        public string Entidade { get; set; }    //id do cliente
-        public string Vendedor { get; set; }    //id do vendedor
-        public string DataCriacao { get; set; }
-        public double ValorTotalOV { get; set; }    //inicialmente 0 -> atualiza com os produtos adicionados
+        public string Oportunidade { get; set; }    //Descritivo - LEAD
+
+        public string Descricao { get; set; }       //titulo
+        public string Resumo { get; set; }
+        public System.DateTime DataCriacao { get; set; }
+
+        //id do cliente = Entidade
+        public string NomeCliente { get; set; }
+        public string ContactoCliente { get; set; }
+        public string Vendedor { get; set; }           //id do vendedor
     }
 }

@@ -1,0 +1,89 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+            <span ion-text color="primary" showWhen="ios">Cancel</span>
+            <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+        </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+      
+<ion-content>
+    <div padding>
+        <h4 style="text-align:center">Opportunity</h4>
+        <b>Title</b> : {{opp.Lead.Descricao}} <br>
+        <b>Description</b> : {{opp.Lead.Resumo}} <br><br>
+        <b>Creation Date</b> : {{opp.Lead.DataCriacao}} <br>
+
+        <h4 style="text-align:center">Client</h4>
+        <b>Name</b> : {{opp.Lead.NomeCliente}} <br>
+        <b>Contact</b> : {{opp.Lead.ContactoCliente}} <br><br>
+        
+        <h4 style="text-align:center">Proposals</h4>
+        <div *ngFor="let prop of opp.propostas">
+            <h5>Proposal #{{prop.NumProposta}}</h5>
+            <button ion-button outline color="secondary" (click)="addProducts(prop.NumProposta)" class="right">
+                <ion-icon name="add"></ion-icon>
+            </button>  
+            <ion-grid>
+                <ion-row align-items-center justify-content-center class="grid-header">
+                    <ion-col col-1><b>Line</b></ion-col>
+                    <ion-col col-4><b>Product</b></ion-col>
+                    <ion-col col-3><b>Quantity</b></ion-col>
+                    <ion-col col-1><b>Units</b></ion-col>
+                    <ion-col col-2><b>Total</b></ion-col>
+                    <ion-col col-1><b></b></ion-col>
+                </ion-row>
+                <ion-row *ngIf="prop.Artigos.length == 0" justify-content-center>
+                    <br><br>
+                    <p> No products to display</p>
+                </ion-row>
+                <ion-row *ngFor="let art of prop.Artigos"justify-content-center>
+                    <ion-col col-1 class="column-lines">{{art.Linha}}</ion-col>
+                    <ion-col col-4 class="column-lines">{{art.IdArtigo}} : {{art.NomeArtigo}}</ion-col>
+                    <ion-col col-3 class="column-lines">
+                        <button ion-button clear small (click)="removeQuantity(art.IdArtigo,prop.NumProposta)">
+                            <ion-icon name="remove"></ion-icon>
+                        </button>
+                        {{art.Quantidade}}
+                        <button ion-button clear small (click)="addQuantity(art.IdArtigo,prop.NumProposta)">
+                            <ion-icon name="add"></ion-icon>
+                        </button>
+                    </ion-col>
+                    <ion-col col-1 class="column-lines">{{art.Unidade}}</ion-col>
+                    <ion-col col-2 class="column-lines">{{art.PrecoVenda}}</ion-col>
+                    <ion-col col-1 class="column-lines">  
+                        <button ion-button clear color="danger" small (click)="removeProduct(art.IdArtigo,prop.NumProposta)">
+                            <ion-icon name="remove"></ion-icon>
+                        </button>            
+                    </ion-col>
+                </ion-row>
+                <ion-row align-items-center justify-content-center class="grid-header">
+                    <ion-col col-p><b></b></ion-col>
+                    <ion-col col-2><b>{{prop.Valor}}</b></ion-col>
+                    <ion-col col-1><b></b></ion-col>
+                </ion-row>
+            </ion-grid>
+            <div class="inline">
+                <button ion-button clear (click)="saveProposal(prop.NumProposta)" class="right">
+                    Save Proposal
+                </button>
+                <button ion-button color="danger" clear class="right" (click)="cancelProposal(prop.NumProposta)">
+                    Cancel
+                </button>
+            </div>
+            <div class="inline">
+                <!--<button ion-button outline style="text-align: center">
+                    Reserve Stock
+                </button>-->
+                <button ion-button outline class="right">
+                    Make Order
+                </button>
+            </div>
+        </div>
+        <button ion-button outline color="danger">
+            Delete
+        </button>    
+    </div>  
+</ion-content>

@@ -1,12 +1,15 @@
 import { NavController } from 'ionic-angular';
-import {ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
-import {Input,Output, EventEmitter } from '@angular/core';
-import {getDateString} from "../calendar-resources";
-import {window} from "rxjs/operator/window";
-import {AppointmentModal} from "../appointments/appointmentModal";
+import { Input,Output, EventEmitter } from '@angular/core';
+import { getDateString } from "../calendar-resources";
+import { window } from "rxjs/operator/window";
+import { AppointmentModal } from "../appointments/appointmentModal";
 import { ModalController} from 'ionic-angular';
-
+import { OpportunitiesPage } from '../opportunities/opportunities';
+import { OpportunitiesProvider } from '../../providers/opportunities/opportunities';
+import { OpportunityModalPage } from '../opportunities/opportunity-modal/opportunity-modal';
+import { IonicApp } from 'ionic-angular/components/app/app-root';
 
 @Component({
   selector: 'page-home',
@@ -14,6 +17,21 @@ import { ModalController} from 'ionic-angular';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage {
+
+  opportunities: [
+    {
+      Lead:{
+        ID : "1",
+        Descricao : "Encomenda de coisas",
+      }
+    },
+    {
+      Lead:{
+        ID : "1",
+        Descricao : "Encomenda de coisas",
+      }
+    }
+  ];
 
   public viewDate: Date = new Date(Date.now());
   public view: string = 'month';
@@ -24,16 +42,43 @@ export class HomePage {
   @Output() viewChange: EventEmitter<string> = new EventEmitter();
   @Output() viewDateChange: EventEmitter<Date> = new EventEmitter();
 
-
   constructor(
     public navCtrl: NavController,
-    public modalCtrl : ModalController
+    public modalCtrl : ModalController,
+    private opportunitiesService: OpportunitiesProvider
   ) {
 
   }
 
-  ngAfterViewInit() {
+  ionViewDidLoad() {
+    this.getOpportunities();
     this.loadAppointments(new Date(Date.now()));
+  }
+  /*
+  ngAfterViewInit() {
+    this.getOpportunities();
+    this.loadAppointments(new Date(Date.now()));
+  }*/
+
+  getOpportunities(){
+    /*
+    this.opportunitiesService.getOpportunities().subscribe(
+      data => { 
+        this.opportunities = data;
+      },
+      err => {
+          console.log(err);
+      });
+    */        
+  }
+
+  goToOpportunities() {
+    this.navCtrl.push(OpportunitiesPage);
+  }
+
+  openModal(oppID) {
+    let modal = this.modalCtrl.create(OpportunityModalPage,{ opportunityID: oppID });
+    modal.present();
   }
 
   /**

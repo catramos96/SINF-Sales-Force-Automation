@@ -55,6 +55,11 @@
         </ion-searchbar>
         <!-- list products -->
         <ion-grid>
+          <ion-row *ngIf="isOpportunity === true">
+            <button ion-button item-end color="secondary" (click)="sendProducts()">
+              Finalize
+            </button>
+          </ion-row>
           <ion-row *ngIf="products.length == 0">
             <br><br>
             <p> No products to display</p>
@@ -74,8 +79,11 @@
                   <img class="litle"  align="middle" src="assets/imgs/logo.png"/>
                   <br>
                   <b>Price: </b>{{c.PrecoMedio}} €<br>
-                  <b>Quantity: </b>{{c.StockAtual}} units
+                  <b>Quantity: </b>{{c.StockAtual}} UN
                 </ion-card-content>
+                <button *ngIf="isOpportunity === true" (click)="addProduct(c.ID,c.Nome,c.PrecoMedio)"
+                  ion-button block color="secondary">Add To Opportunity
+                </button>
               </ion-card>
             </ion-col>
           </ion-row>

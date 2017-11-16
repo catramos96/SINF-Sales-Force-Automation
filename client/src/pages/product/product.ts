@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController} from 'ionic-angular';
+import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ModalContentPage } from '../product/productModal';
 import { ProductsProvider } from '../../providers/products/products';
 
@@ -15,15 +15,25 @@ export class ProductPage {
   products = [];
   currentSelected = -1;
 
+  isOpportunity = false;
+  numproposal = 0;
+  callback = null;
+  oppProducts = [];
+
   constructor(
     public navCtrl: NavController, 
+    private navParams: NavParams,
     private productService: ProductsProvider,
     public modalCtrl : ModalController
   ) {
 
   }
 
-  ngOnInit(): void {
+  ionViewDidLoad(){
+    this.isOpportunity = this.navParams.get('isOpportunity');
+    this.numproposal = this.navParams.get('numproposal');
+    this.callback = this.navParams.get('callback');
+
     this.getCategories();
   }
 
@@ -49,6 +59,25 @@ export class ProductPage {
   onItemClicked(j,category,subcategory){
     this.getProducts(category,subcategory);
     this.currentSelected = j;
+  }
+
+  addProduct(prodID,prodName,prodPrice){
+    if(this.isOpportunity)
+    {
+      let json = {
+        NomeArtigo : prodName,
+        IdArtigo: prodID,
+        PrecoVenda: Number(prodPrice),
+        Quantidade: Number(1),
+        Linha: 0,
+        Unidade: "UN",
+      };
+      this.oppProducts.push(json);
+    }
+  }
+
+  sendProducts(){
+    this.callback(this.oppProducts,this.numproposal).then(()=>{ this.navCtrl.pop() });
   }
 
   displayProducts(){
@@ -100,6 +129,7 @@ export class ProductPage {
   // ---- PROVIDERS ----
 
   getCategories(){
+    
     this.productService.getCategories().subscribe(
       data => { 
           this.categories = data;
@@ -115,6 +145,7 @@ export class ProductPage {
   }
 
   getSubCategories(categoryID){
+    
     this.productService.getSubcategories(categoryID).subscribe(
       data => { 
           this.subCategories = data;
@@ -130,10 +161,11 @@ export class ProductPage {
         { Nome: "Normal", IDFamilia: categoryID, ID:"001"},
       ];
     }
-   */  
+    */
   }
 
   getProducts(categoryID,subcategoryID){
+    
     this.productService.getProducts(categoryID,subcategoryID).subscribe(
       data => { 
         this.products = data;
@@ -145,10 +177,12 @@ export class ProductPage {
     /*
     if(subcategoryID === null && categoryID == null)
       this.products = [];
-    else if(categoryID == "A01" && subcategoryID === "001")
+    else
       this.products = [
-        {ID: "A021",Nome: "Magro",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"}
+        {ID: "A021",Nome: "Magro",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"},
+        {ID: "A022",Nome: "Magro",FamiliaNome:"Leite", SubFamiliaNome:"Normal",StockAtual:"500",PrecoMedio:"0.32"}
       ];
+    this.displayProducts();  
     */
   }
 

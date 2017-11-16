@@ -8,11 +8,16 @@ namespace FirstREST.Lib_Primavera.Model
     //LinhasPropostasOPV
     public class OpportunityLine
     {
-        public string IdOportunidade { get; set; }
+        //public string ID { get; set; }              //idOportunidade = Lead.ID
+        //public int NumProposta { get; set; }        //proposta       
+        public int Linha { get; set; }              //numero do artigo na lista
+
         public string IdArtigo { get; set; }        //Artigo
         public string NomeArtigo { get; set; }      //Descricao
-        public int Quantidade { get; set; }
-        public int PrecoVenda { get; set; }
-        public int NumProposta { get; set; }        //1 - default
+        public double Quantidade { get; set; }
+        public string Unidade { get; set; }
+        public double PrecoVenda { get; set; }
+
+        //TODO adicionar PrecoCusto ?
     }
 }

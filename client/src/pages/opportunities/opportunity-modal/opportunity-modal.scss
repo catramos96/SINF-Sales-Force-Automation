@@ -1,0 +1,23 @@
+page-opportunity-modal {
+
+    .grid-header{
+        position:relative;
+        background-color:lightgray;
+    }
+    .column-lines {
+        border-bottom:1px solid grey;
+        min-height: 45px;
+    }
+    .right{
+        display:inline-block;
+        float: right;
+    }
+    .inline{
+        padding-top: 5px;
+        padding-bottom: 40px;
+        margin: 0 auto;
+        text-align:center;
+        width: 100%;
+    }
+
+}
