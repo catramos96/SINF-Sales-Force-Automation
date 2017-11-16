@@ -93,7 +93,7 @@
                                    [viewDate]="viewDate" [headerTemplate]="headerTemp"
                                    weekStartsOn="1" [events]="events"
                                    (viewDateChange)="viewDateChange.next($event.day.date)"
-                                   (dayClicked)="viewDateChange.next($event.day.date)">
+                                   (dayClicked)="viewDate = $event.day.date">
           </mwl-calendar-month-view>
         </div>
         </div>
@@ -116,19 +116,14 @@
 
 
       <ion-col col-4>
-        <table class="table table-bordered table-responsive">
+        <table id="LeadsTable" class="table table-bordered table-responsive">
           <thead>
           <tr>
             <th>Leads</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Meeting with Mr.Smith</td>
-          </tr>
-          <tr>
-            <td>Board Discussion.</td>
-          </tr>
+          <!-- Elements here -->
           </tbody>
         </table>
       </ion-col>
@@ -180,42 +175,27 @@
       </ion-col>
 
       <ion-col col-4>
-        <table class="table table-bordered table-responsive" >
+        <table id="RoutesTable" class="table table-bordered table-responsive" >
           <thead>
           <tr>
             <th>Routes</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Lorem ipsum dolor. Suspendisse gravida. Cras sit amet dui. Suspendisse et ligula.</td>
-          </tr>
-          <tr>
-            <td>Vestibulum at orci. Proin non neque ultrices.</td>
-          </tr>
+          <!-- Elements here -->
           </tbody>
         </table>
       </ion-col>
 
       <ion-col col-4>
-        <table class="table table-bordered table-responsive">
+        <table id="OpportunitiesTable" class="table table-bordered table-responsive">
           <thead>
           <tr>
             <th>Opportunities</th>
           </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Vestibulum at orci. Proin non neque ultrices.</td>
-            </tr>
-            <tr>
-              <td>Vestibulum at orci. Proin non neque ultrices.</td>
-            </tr>
-          <!--
-          <tr *ngFor="let opp of opportunities" (click)="openModal(opp.Lead.ID)">
-            <td>ola{{opp.Lead.Description}}</td>
-          </tr>
-          -->
+            <!-- Elements here -->
           </tbody>
         </table>
       </ion-col>
