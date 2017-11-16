@@ -76,6 +76,23 @@ namespace FirstREST.Lib_Primavera
 
                     objCli = PriEngine.Engine.Comercial.Clientes.Edita(codCliente);
                     myCli.CodCliente = objCli.get_Cliente();
+                    myCli.Nome = objCli.get_Nome();
+                    myCli.Moeda = objCli.get_Moeda();
+                    myCli.Morada = objCli.get_Morada();
+                    myCli.Localidade = objCli.get_Localidade();
+                    myCli.CodPostal = objCli.get_CodigoPostal();
+                    myCli.Fax = objCli.get_Fax();
+                    myCli.TotalDeb = objCli.get_DebitoContaCorrente();
+                    myCli.NumContribuinte = objCli.get_NumContribuinte();
+                    myCli.Pais = objCli.get_Pais();
+                    myCli.EnderecoWeb = objCli.get_EnderecoWeb();
+                    myCli.DataCriacao = objCli.get_DataCriacao();
+                    myCli.EncomendasPendentes = objCli.get_DebitoEncomendasPendentes();
+                    myCli.Notas = objCli.get_Observacoes();
+                    myCli.Situacao = objCli.get_Situacao();
+                    myCli.Vendedor = objCli.get_Vendedor();
+                    //myCli.Email = objCli.
+                    myCli.Grupo = objCli.get_Descricao();
 
 
                     return myCli;
@@ -114,8 +131,23 @@ namespace FirstREST.Lib_Primavera
                         objCli = PriEngine.Engine.Comercial.Clientes.Edita(cliente.CodCliente);
                         objCli.set_EmModoEdicao(true);
 
-                        objCli.set_NumContribuinte(cliente.NumContribuinte);
+                        objCli.set_Cliente(cliente.CodCliente);
+                        objCli.set_Nome(cliente.Nome);
                         objCli.set_Morada(cliente.Morada);
+                        objCli.set_Localidade(cliente.Localidade);
+                        objCli.set_CodigoPostal(cliente.CodPostal);
+                        objCli.set_Fax(cliente.Fax);
+                        objCli.set_DebitoContaCorrente(cliente.TotalDeb);
+                        objCli.set_NumContribuinte(cliente.NumContribuinte);
+                        objCli.set_Pais(cliente.Pais);
+                        objCli.set_EnderecoWeb(cliente.EnderecoWeb);
+                        objCli.set_DataCriacao(new DateTime());
+                        objCli.set_DebitoEncomendasPendentes(cliente.EncomendasPendentes);
+                        objCli.set_Descricao(cliente.Grupo);
+                        objCli.set_Observacoes(cliente.Notas);
+                        objCli.set_Inactivo(cliente.Inactivo);
+                        objCli.set_Vendedor(cliente.Vendedor);
+                        objCli.set_Moeda(cliente.Moeda);
 
                         PriEngine.Engine.Comercial.Clientes.Actualiza(objCli);
 

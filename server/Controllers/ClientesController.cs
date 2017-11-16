@@ -20,7 +20,9 @@ namespace FirstREST.Controllers
         }
 
 
-        // GET api/cliente/5    
+        // GET api/cliente/5
+        [HttpGet]
+        [Route("api/clientes/{id}")]
         public Cliente Get(string id)
         {
             Lib_Primavera.Model.Cliente cliente = Lib_Primavera.PriIntegrationCliente.GetCliente(id);
@@ -59,7 +61,8 @@ namespace FirstREST.Controllers
 
         }
 
-
+        [HttpPut]
+        [Route("api/clientes/{id}")]
         public HttpResponseMessage Put(string id, Lib_Primavera.Model.Cliente cliente)
         {
 
