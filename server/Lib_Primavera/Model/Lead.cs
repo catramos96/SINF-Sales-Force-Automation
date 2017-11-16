@@ -16,6 +16,7 @@ namespace FirstREST.Lib_Primavera.Model
         public System.DateTime DataCriacao { get; set; }
 
         //id do cliente = Entidade
+        public string IdCliente { get; set; }
         public string NomeCliente { get; set; }
         public string ContactoCliente { get; set; }
         public string Vendedor { get; set; }           //id do vendedor
