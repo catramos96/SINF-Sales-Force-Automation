@@ -44,6 +44,10 @@ export class TargetPage {
     this.getContacts();
   }
 
+  public editTarget(IdTarget:string){
+    this.navCtrl.push("EditTargetPage",{firstParam:IdTarget});
+  }
+
   searchContact(ev) {
     let name = ev.target.value;
     if(name !== ""){

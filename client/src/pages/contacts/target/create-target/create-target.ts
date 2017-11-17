@@ -39,9 +39,7 @@ export class CreateTargetPage {
   }
 
   onSubmit(value: any): void { 
-
     
-
     if(this.createTargetForm.valid) {
       var data = {
         "PrimeiroNome":this.createTargetForm.value.firstname,
