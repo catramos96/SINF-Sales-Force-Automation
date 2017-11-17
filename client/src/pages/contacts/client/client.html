@@ -19,7 +19,10 @@
 
     <ion-row class="first-row">
       <ion-col col-5 class="search-bar-col">
-        <ion-searchbar></ion-searchbar>
+        <ion-searchbar placeholder="Search for a client"
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="searchClient($event)"
+        (ionCancel)="onCancel($event)"></ion-searchbar>
       </ion-col>
       <ion-col class="create-btns-col">
         <button ion-button (click)="toggleCreateGroup()" class="create-btn">Create Group</button>

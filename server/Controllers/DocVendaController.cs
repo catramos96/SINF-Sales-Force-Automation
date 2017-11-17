@@ -12,7 +12,7 @@ namespace FirstREST.Controllers
     {
         //
         // GET: /Clientes/
-
+        [Route("api/docvendas")]
         public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
         {
             return Lib_Primavera.PriIntegrationDocVenda.Encomendas_List();
@@ -99,7 +99,9 @@ namespace FirstREST.Controllers
             }
         }
 
-
+        // POST api/docvenda/ 
+        [Route("api/docvendas")]
+        //[HttpPost]
         public HttpResponseMessage Post(Lib_Primavera.Model.DocVenda dv)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
@@ -107,10 +109,10 @@ namespace FirstREST.Controllers
 
             if (erro.Erro == 0)
             {
-                var response = Request.CreateResponse(
-                   HttpStatusCode.Created, dv.id);
-                string uri = Url.Link("DefaultApi", new {DocId = dv.id });
-                response.Headers.Location = new Uri(uri);
+                var id = Guid.NewGuid().ToString();
+                var response = Request.CreateResponse(HttpStatusCode.Created, id);
+                string uri = Url.Link("DefaultApi", new {DocId = id });
+                //response.Headers.Location = new Uri(uri);
                 return response;
             }
 

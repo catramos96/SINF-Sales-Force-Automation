@@ -40,6 +40,7 @@ namespace FirstREST.Lib_Primavera
                     lead.Vendedor = objLead.get_Vendedor();
 
                     var idCliente = objLead.get_Entidade();
+                    lead.IdCliente = idCliente;
                     lead.NomeCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Nome");
                     lead.ContactoCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Fac_Tel");
 
@@ -104,9 +105,11 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
                 oppList = PriEngine.Engine.Consulta(
-                    @"select ID, Clientes.Nome AS NomeCliente, Clientes.Fac_Tel AS ContactoCliente, 
+                    @"select ID, CabecOportunidadesVenda.EstadoVenda AS EstadoVenda,
+                      Clientes.Nome AS NomeCliente, Clientes.Fac_Tel AS ContactoCliente, 
                       CabecOportunidadesVenda.DataCriacao AS Data, CabecOportunidadesVenda.Descricao AS Descricao
-                      from CabecOportunidadesVenda JOIN Clientes ON Clientes.Cliente = CabecOportunidadesVenda.Entidade"); 
+                      from CabecOportunidadesVenda JOIN Clientes ON Clientes.Cliente = CabecOportunidadesVenda.Entidade
+                      where EstadoVenda = 0"); //Oportunidades abertas
 
                 while (!oppList.NoFim())
                 {

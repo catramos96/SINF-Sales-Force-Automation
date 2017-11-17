@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { OpportunitiesProvider } from '../../../providers/opportunities/opportunities';
 import { ProductPage } from '../../product/product';
 
@@ -17,7 +17,7 @@ import { ProductPage } from '../../product/product';
 export class OpportunityModalPage {
 
   opp = {
-    Lead: {ID : "",Oportunidade: "",NomeCliente : "",ContactoCliente : "", Descricao : "",
+    Lead: {ID : "",Oportunidade: "",IdCliente:"",NomeCliente : "",ContactoCliente : "", Descricao : "",
     Resumo : "", DataCriacao : "",Vendedor: ""}, 
     ValorTotalOV: 0, EstadoVenda: 0,propostas:[]
   };
@@ -27,7 +27,8 @@ export class OpportunityModalPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private opportunitiesService: OpportunitiesProvider,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    private alertCtrl: AlertController
   ) {
       let id = this.navParams.get('opportunityID');
       this.getOpportunity(id);  
@@ -49,7 +50,7 @@ export class OpportunityModalPage {
     for(let j = 0; j < artigos.length; j++)
     {
       if(artigos[j].IdArtigo === productID){
-        this.opp.propostas[NumProposal-1].Valor -= artigos[j].PrecoVenda * artigos[j].Quantidade; //TODO compor
+        this.opp.propostas[NumProposal-1].Valor -= artigos[j].PrecoVenda * artigos[j].Quantidade;
         artigos.splice(j, 1);
         break;
       }
@@ -78,7 +79,7 @@ export class OpportunityModalPage {
         this.opp.propostas[0].Artigos.forEach( element => { 
           if(element.IdArtigo === data[i].IdArtigo){
             element.Quantidade += 1;
-            this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda; //TODO compor
+            this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda;
             hasElement = true;
           }
         });
@@ -88,7 +89,7 @@ export class OpportunityModalPage {
           linhaAtual++;
           data[i].Linha = linhaAtual;
           this.opp.propostas[NumProposal-1].Artigos.push(data[i]);
-          this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda; //TODO compor
+          this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda; 
         }
       }
       resolve();
@@ -129,6 +130,48 @@ export class OpportunityModalPage {
   //problema -> cancela as 2
   cancelProposal(NumProposal){
     this.getOpportunity(this.opp.Lead.ID);
+  }
+
+  makeOrder(NumProposal){
+    let linhas = [];
+    this.opp.propostas[NumProposal-1].Artigos.forEach(element => {
+      var jsonLin = {
+        CodArtigo: element.IdArtigo,
+        //DescArtigo
+        //IdCabecDoc
+        Quantidade : element.Quantidade,
+        //Unidade
+        Desconto : "0", //TODO adicionar desconto ?
+        PrecoUnitario : element.PrecoVenda
+        //TotalIliquido
+        //TotalLiquido
+      }
+      linhas.push(jsonLin);
+    });
+
+    let json = {
+      //id
+      Entidade : this.opp.Lead.IdCliente,  //receber o cliente
+      //NumDoc 
+      //Data
+      //TotalMerc
+      //Serie
+      LinhasDoc : linhas
+    }
+    this.opportunitiesService.makeOrder(json).subscribe(
+      data => { 
+        //TODO aparecer dialogo
+        console.log("feito");
+        let alert = this.alertCtrl.create({
+          title: 'Sales Order',
+          subTitle: 'Sale order created successfuly',
+          buttons: ['Dismiss']
+        });
+        alert.present();
+      },
+      err => {
+          console.log(err);
+      });
   }
 
   //TODO -> fazer no server (depois de 6ª)

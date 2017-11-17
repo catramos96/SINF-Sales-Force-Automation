@@ -37,4 +37,10 @@ export class OpportunitiesProvider {
     return response;
   }
 
+  //FAZER
+  makeOrder(sale){
+    var url = AppSettings.API_ENDPOINT+'docvendas';
+    var response = this.http.post(url,sale).map(res => res.json());
+    return response;
+  }
 }

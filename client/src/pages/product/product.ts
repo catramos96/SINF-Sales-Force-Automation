@@ -61,7 +61,7 @@ export class ProductPage {
     this.currentSelected = j;
   }
 
-  addProduct(prodID,prodName,prodPrice){
+  addProduct(prodID,prodName,prodPrice,unidade){
     if(this.isOpportunity)
     {
       let json = {
@@ -70,7 +70,7 @@ export class ProductPage {
         PrecoVenda: Number(prodPrice),
         Quantidade: Number(1),
         Linha: 0,
-        Unidade: "UN",
+        Unidade: unidade,
       };
       this.oppProducts.push(json);
     }
