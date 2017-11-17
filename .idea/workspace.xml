@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c505134e-bc35-4d44-b9a9-d00cc3d2ae58" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SINF_Sales_Force_Automation.iml" afterPath="$PROJECT_DIR$/.idea/SINF_Sales_Force_Automation.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/providers/routes/routes.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/Controllers/RotasController.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/Lib_Primavera/Model/Rota.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationRota.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/config.xml" afterPath="$PROJECT_DIR$/client/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/package.json" afterPath="$PROJECT_DIR$/client/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/home/home.html" afterPath="$PROJECT_DIR$/client/src/pages/home/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/home/home.ts" afterPath="$PROJECT_DIR$/client/src/pages/home/home.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/Controllers/TarefasController.cs" afterPath="$PROJECT_DIR$/server/Controllers/TarefasController.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/app.module.ts" afterPath="$PROJECT_DIR$/client/src/app/app.module.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/client/node_modules/reflect-metadata/Reflect.js/" />
     <ignored path="$PROJECT_DIR$/client/node_modules/reflect-metadata/Reflect.d.ts/" />
@@ -58,18 +57,30 @@
       <file leaf-file-name="opportunities.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/providers/opportunities/opportunities.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
+            <state relative-caret-position="21">
               <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routes.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/providers/routes/routes.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/pages/home/home.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="585">
-              <caret line="199" column="0" lean-forward="true" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+              <caret line="199" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
                 <element signature="n#!!block;n#loadAppointments#0;n#HomePage#0" expanded="false" />
@@ -90,10 +101,16 @@
       <file leaf-file-name="opportunity-modal.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/pages/opportunities/opportunity-modal/opportunity-modal.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="31" column="48" lean-forward="false" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="48" />
+            <state relative-caret-position="672">
+              <caret line="32" column="48" lean-forward="false" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
+                <marker date="1510878801085" expanded="true" signature="4714:4720" ph="{...}" />
+                <marker date="1510878801085" expanded="true" signature="4792:5332" ph="{...}" />
+                <marker date="1510878801085" expanded="true" signature="4882:5020" ph="{...}" />
+                <marker date="1510878801085" expanded="true" signature="4903:4981" ph="{&quot;IDArtigo&quot;: art.IDArtigo...}" />
+                <marker date="1510878801085" expanded="true" signature="5039:5134" ph="{&quot;NumProposal&quot;: NumProposal...}" />
+                <marker date="1510878801085" expanded="true" signature="5139:5327" ph="/*...*/" />
               </folding>
             </state>
           </provider>
@@ -104,7 +121,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1407">
               <caret line="67" column="45" lean-forward="false" selection-start-line="66" selection-start-column="9" selection-end-line="67" selection-end-column="45" />
-              <folding />
+              <folding>
+                <marker date="1510878801066" expanded="true" signature="3344:3441" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,6 +175,7 @@
         <option value="$PROJECT_DIR$/client/src/pages/home/home.html" />
         <option value="$PROJECT_DIR$/client/src/pages/home/home.ts" />
         <option value="$PROJECT_DIR$/server/Controllers/TarefasController.cs" />
+        <option value="$PROJECT_DIR$/client/src/providers/routes/routes.ts" />
       </list>
     </option>
   </component>
@@ -257,13 +277,10 @@
             <path>
               <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
               <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="providers" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -287,15 +304,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\pages\team" />
+      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\assets" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\server\Lib_Primavera" />
       <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\server\Lib_Primavera\Model" />
       <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\server\Controllers" />
       <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\assets\imgs" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\pages\team" />
-      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\assets" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -327,12 +344,12 @@
       <workItem from="1510756387077" duration="824000" />
       <workItem from="1510827526024" duration="843000" />
       <workItem from="1510868054776" duration="8925000" />
-      <workItem from="1510877251598" duration="1279000" />
+      <workItem from="1510877251598" duration="2395000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52777000" />
+    <option name="totallyTimeSpent" value="53893000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -395,60 +412,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/pages/home/home.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="128" column="3" lean-forward="false" selection-start-line="125" selection-start-column="27" selection-end-line="128" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-            <element signature="n#!!block;n#loadAppointments#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#loadRoutes#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#showRouteDetails#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#showLeadDetails#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#showOpportunityDetails#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#showDetails#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#tablesConfig#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#getCalendarTitle#0;n#HomePage#0" expanded="false" />
-            <marker date="1510878337022" expanded="true" signature="7832:7850" ph="..." />
-            <marker date="1510878337022" expanded="true" signature="7882:7900" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/team/team.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1659">
-          <caret line="79" column="10" lean-forward="true" selection-start-line="79" selection-start-column="10" selection-end-line="79" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/home/home.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2688">
-          <caret line="128" column="3" lean-forward="true" selection-start-line="125" selection-start-column="27" selection-end-line="128" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-            <element signature="n#!!block;n#loadAppointments#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#loadRoutes#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#showRouteDetails#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#showLeadDetails#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#showOpportunityDetails#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#showDetails#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#tablesConfig#0;n#HomePage#0" expanded="false" />
-            <element signature="n#!!block;n#getCalendarTitle#0;n#HomePage#0" expanded="false" />
-            <marker date="1510878337022" expanded="true" signature="7832:7850" ph="..." />
-            <marker date="1510878337022" expanded="true" signature="7882:7900" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/team/team.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="52" lean-forward="true" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/team/team.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1470">
@@ -743,7 +706,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1407">
           <caret line="67" column="45" lean-forward="false" selection-start-line="66" selection-start-column="9" selection-end-line="67" selection-end-column="45" />
-          <folding />
+          <folding>
+            <marker date="1510878801066" expanded="true" signature="3344:3441" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -755,20 +720,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/providers/opportunities/opportunities.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/contacts/contacts.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#0#42#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -781,30 +738,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/Controllers/TarefasController.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/providers/appointments/appointments.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="51" lean-forward="true" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/opportunities/opportunity-modal/opportunity-modal.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="31" column="48" lean-forward="false" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="48" />
+        <state relative-caret-position="672">
+          <caret line="32" column="48" lean-forward="false" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
+            <marker date="1510878801085" expanded="true" signature="4714:4720" ph="{...}" />
+            <marker date="1510878801085" expanded="true" signature="4792:5332" ph="{...}" />
+            <marker date="1510878801085" expanded="true" signature="4882:5020" ph="{...}" />
+            <marker date="1510878801085" expanded="true" signature="4903:4981" ph="{&quot;IDArtigo&quot;: art.IDArtigo...}" />
+            <marker date="1510878801085" expanded="true" signature="5039:5134" ph="{&quot;NumProposal&quot;: NumProposal...}" />
+            <marker date="1510878801085" expanded="true" signature="5139:5327" ph="/*...*/" />
           </folding>
         </state>
       </provider>
@@ -812,7 +757,7 @@
     <entry file="file://$PROJECT_DIR$/client/src/pages/home/home.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
-          <caret line="199" column="0" lean-forward="true" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+          <caret line="199" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
             <element signature="n#!!block;n#loadAppointments#0;n#HomePage#0" expanded="false" />
@@ -825,6 +770,64 @@
             <element signature="n#!!block;n#getCalendarTitle#0;n#HomePage#0" expanded="false" />
             <marker date="1510878337022" expanded="true" signature="7832:7850" ph="..." />
             <marker date="1510878337022" expanded="true" signature="7882:7900" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Controllers/SubFamiliasController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Controllers/ContactosController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/providers/appointments/appointments.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="44" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Controllers/RotasController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Controllers/TarefasController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/providers/opportunities/opportunities.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/providers/routes/routes.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
