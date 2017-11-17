@@ -42,15 +42,17 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+    this.getAppointments();
+    this.getOpportunities();
+    this.getRoutes();
+    this.getLeads();
+  }
+
+  /*ngAfterViewInit() {
     this.loadAppointments(new Date(Date.now()));
     this.loadRoutes();
     this.loadLeads();
     this.loadOpportunities()
-  }
-  /*
-  ngAfterViewInit() {
-    this.getOpportunities();
-    this.loadAppointments(new Date(Date.now()));
   }*/
 
   goToOpportunities() {
@@ -63,24 +65,56 @@ export class HomePage {
   }
 
   /**
+   * GET INFO
+   */
+
+  getAppointments(){
+    this.appointmentsService.getAllAppointments().subscribe(
+      data => {
+        alert(data);
+        this.appointments = data;
+        this.loadOpportunities();
+      },
+      err => {
+        console.log(err);
+        this.loadOpportunities();
+      });
+  }
+
+  getLeads(){
+
+  }
+
+  getRoutes(){
+
+  }
+
+  getOpportunities(){
+    this.opportunitiesService.getOpportunities().subscribe(
+      data => {
+        console.log(data);
+        this.opportunities = data;
+        this.loadOpportunities();
+      },
+      err => {
+        console.log(err);
+        this.loadOpportunities();
+      });
+  }
+
+  /**
   TABLES INFO
    */
 
   loadAppointments(date:Date){
 
-    this.appointmentsService.getAllAppointments().subscribe(
-      data => {
-        this.appointments = data;
-      },
-      err => {
-        console.log(err);
-      });
-
-
     var height = document.getElementById("main-content").children.item(2).clientHeight;
     var table = document.getElementById("AppointmentsTable");
     var body = table.getElementsByTagName("tbody").item(0);
 
+    while(body.firstChild){
+      body.removeChild(body.firstChild);
+    }
 
     for(var i = 0; i < this.appointments.length; i++){
       var e:HTMLElement = document.createElement('tr');
@@ -120,6 +154,9 @@ export class HomePage {
     var table = document.getElementById("RoutesTable");
     var body = table.getElementsByTagName("tbody").item(0);
 
+    while(body.firstChild){
+      body.removeChild(body.firstChild);
+    }
 
     /*for(var i = 0; i < this.appointments.length; i++){
 
@@ -141,28 +178,24 @@ export class HomePage {
 
   loadOpportunities(){
 
-    this.opportunitiesService.getOpportunities().subscribe(
-      data => {
-        this.opportunities = data;
-      },
-      err => {
-        console.log(err);
-      });
-
-
     var height = document.getElementById("main-content").children.item(2).clientHeight;
     var table = document.getElementById("OpportunitiesTable");
     var body = table.getElementsByTagName("tbody").item(0);
 
+    while(body.firstChild){
+      body.removeChild(body.firstChild);
+    }
+
     for(var i = 0; i < this.opportunities.length; i++){
 
       var e:HTMLElement = document.createElement('tr');
+      var id = this.opportunities[i].Lead.ID;
 
-      e.innerHTML = '<td>' + this.opportunities[i].Resumo+ '</td>';
+      e.innerHTML = '<td>' + this.opportunities[i].Lead.Descricao + '</td>';
 
       e.addEventListener("click",() =>{
-        //let modal = this.modalCtrl.create(AppointmentModal);//,{ productID: productID });
-        //modal.present();
+        let modal = this.modalCtrl.create(OpportunityModalPage,{opportunityID: id });
+        modal.present();
       });
 
       body.insertAdjacentElement("beforeend",e);
@@ -192,6 +225,9 @@ export class HomePage {
     var table = document.getElementById("LeadsTable");
     var body = table.getElementsByTagName("tbody").item(0);
 
+    while(body.firstChild){
+      body.removeChild(body.firstChild);
+    }
 
     /*for(var i = 0; i < this.appointments.length; i++){
 

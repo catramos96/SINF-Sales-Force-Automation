@@ -23,19 +23,17 @@ namespace FirstREST.Controllers
         // GET api/cliente/5
         [HttpGet]
         [Route("api/clientes/{id}")]
-        public Cliente Get(string id)
+        public IEnumerable<Lib_Primavera.Model.Cliente> GetCliente(string id)
         {
-            Lib_Primavera.Model.Cliente cliente = Lib_Primavera.PriIntegrationCliente.GetCliente(id);
-            if (cliente == null)
-            {
-                throw new HttpResponseException(
-                        Request.CreateResponse(HttpStatusCode.NotFound));
+           return Lib_Primavera.PriIntegrationCliente.GetCliente(id);
+        }
 
-            }
-            else
-            {
-                return cliente;
-            }
+        // GET api/cliente/5
+        [HttpGet]
+        [Route("api/clientes/search/{search}")]
+        public IEnumerable<Lib_Primavera.Model.Cliente> Search(string search)
+        {
+            return Lib_Primavera.PriIntegrationCliente.SearchCliente(search);
         }
 
         [HttpPost]
@@ -61,7 +59,7 @@ namespace FirstREST.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("api/clientes/{id}")]
         public HttpResponseMessage Put(string id, Lib_Primavera.Model.Cliente cliente)
         {

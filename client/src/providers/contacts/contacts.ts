@@ -32,6 +32,11 @@ export class ContactsProvider {
     return this.http.get(url).map(res => res.json());
   }
 
+  public searchClient(CodCliente:string){
+    var url = this.url + 'api/clientes/search/' + CodCliente;
+    return this.http.get(url).map(res => res.json());
+  }
+
   public postTarget(data){
     var url = this.url + 'api/contactos';
     return this.http.post(url,data);
@@ -49,7 +54,7 @@ export class ContactsProvider {
 
   public editClient(data, CodCliente:string){
     var url = this.url + 'api/clientes/' + CodCliente;
-    return this.http.put(url,data);
+    return this.http.post(url,data);
   }
 
 }

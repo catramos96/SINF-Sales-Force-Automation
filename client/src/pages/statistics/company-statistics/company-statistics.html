@@ -10,7 +10,39 @@
 
 </ion-header>
 
-
 <ion-content padding>
-
+  <ion-grid>
+    <ion-row class="row">
+      <ion-col col-6>
+        <div class="label">
+          Sold Products:<br />
+          {{soldProductsNumber}}
+        </div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="label">
+          Billed Money:<br />
+          {{billedMoneyNumber}}
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row">
+      <ion-col col-6>
+        <div class="label">
+          Top 5 Products:
+          <div *ngFor="let product of top5Products; let i = index">
+            <ion-row>{{product.DescArtigo}}</ion-row>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="label">
+          Products Sold by Category:
+          <div *ngFor="let product of productsSoldByCategory; let i = index">
+            <ion-row>{{product.FamiliaNome}} - {{product.Quantidade}}%</ion-row>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

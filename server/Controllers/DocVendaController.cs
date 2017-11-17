@@ -18,10 +18,19 @@ namespace FirstREST.Controllers
             return Lib_Primavera.PriIntegrationDocVenda.Encomendas_List();
         }
 
+        //
+        // GET: /docvendas/pordata
+        [Route("api/docvendas/pordata")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.VendasDTO> GetPorData()
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.EncomendasPorData();
+        }
+
         // GET: api/docvendas/top5produtos/
         [Route("api/docvendas/top5produtos/")]
         [HttpGet]
-        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetTop5Productos()
+        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetTop5Produtos()
         {
             return Lib_Primavera.PriIntegrationDocVenda.Top5ProdutosMaisVendidos();
         }
@@ -29,9 +38,25 @@ namespace FirstREST.Controllers
         // GET: api/docvendas/top5produtos/vendedor/
         [Route("api/docvendas/top5produtos/{vendedor}")]
         [HttpGet]
-        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetTop5Productos(int vendedor)
+        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetTop5Produtos(int vendedor)
         {
             return Lib_Primavera.PriIntegrationDocVenda.Top5ProdutosMaisVendidosPorVendedor(vendedor);
+        }
+
+        // GET: api/docvendas/produtoscategoria/
+        [Route("api/docvendas/produtoscategoria/")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetQuantidadeProdutosPorCategoria()
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.QuantidadeProdutosVendidosPorCategoria();
+        }
+
+        // GET: api/docvendas/produtoscategoria/{vendedor}
+        [Route("api/docvendas/produtoscategoria/{vendedor}")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetQuantidadeProdutosPorCategoria(int vendedor)
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.QuantidadeProdutosVendidosPorCategoria_Vendedor(vendedor);
         }
 
         // GET: api/docvendas/produtosvendidos/ano/

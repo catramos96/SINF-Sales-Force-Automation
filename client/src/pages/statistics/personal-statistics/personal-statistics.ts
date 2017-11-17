@@ -8,13 +8,46 @@ import { StatisticsProvider } from '../../../providers/statistics/statistics';
   templateUrl: 'personal-statistics.html',
 })
 export class PersonalStatisticsPage {
-  soldProductsNumber: number;
+  private soldProductsNumber: number;
+  private billedMoneyNumber: number;
+  private top5Products: JSON[] = [];
+  private productsSoldByCategory: JSON[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private statisticsP: StatisticsProvider) {
   }
 
   ionViewDidLoad() {
-    this.soldProductsNumber = this.statisticsP.getSoldProductsNumber();
+    this.statisticsP.getSoldProductsNumberBySalesman().subscribe(
+      data => {
+        this.soldProductsNumber = data;
+      },
+      err => {
+
+      });
+
+    this.statisticsP.getTop5ProductsBySalesman().subscribe(
+      data => {
+        this.top5Products = data;
+      },
+      err => {
+
+      });
+
+    this.statisticsP.getSoldProductsByCategoryBySalesman().subscribe(
+      data => {
+        this.productsSoldByCategory = data;
+      },
+      err => {
+
+      });
+
+    this.statisticsP.getBilledMoneyNumberBySalesman().subscribe(
+      data => {
+        this.billedMoneyNumber = data;
+      },
+      err => {
+
+      });
   }
 
 }
