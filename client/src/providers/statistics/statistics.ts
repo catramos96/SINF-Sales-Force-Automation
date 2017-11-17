@@ -54,9 +54,29 @@ export class StatisticsProvider {
   }
 
   public getSoldProductsByCategory() {
-    let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
+    var url = this.url + 'api/docvendas/produtoscategoria/';
+    return this.http.get(url).map(res => this.convertToPercentage(res.json()));
+  }
 
-    var url = this.url + 'api/docvendas/produtosvendidos/' + year;
-    return this.http.get(url).map(res => res.json());
+  public getSoldProductsByCategoryBySalesman() {
+    let salesman: number = 2;
+
+    var url = this.url + 'api/docvendas/produtoscategoria/' +salesman;
+    return this.http.get(url).map(res => this.convertToPercentage(res.json()));
+  }
+
+  private convertToPercentage(response) {
+    let i;
+    let quantidadeTotal = 0;
+    for (i = 0; i < response.length; i++) {
+      quantidadeTotal = quantidadeTotal + response[i].Quantidade;
+    }
+
+    for (i = 0; i < response.length; i++) {
+      var percentagem = (response[i].Quantidade * 100) / quantidadeTotal;
+      response[i].Quantidade = percentagem.toFixed(2);
+    }
+
+    return response;
   }
 }
