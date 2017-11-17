@@ -12,7 +12,7 @@ namespace FirstREST.Controllers
     {
         //
         // GET: /Clientes/
-
+        [Route("api/docvendas")]
         public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
         {
             return Lib_Primavera.PriIntegrationDocVenda.Encomendas_List();
@@ -21,7 +21,7 @@ namespace FirstREST.Controllers
         // GET: api/docvendas/top5produtos/
         [Route("api/docvendas/top5produtos/")]
         [HttpGet]
-        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetTop5Productos()
+        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetTop5Produtos()
         {
             return Lib_Primavera.PriIntegrationDocVenda.Top5ProdutosMaisVendidos();
         }
@@ -29,9 +29,25 @@ namespace FirstREST.Controllers
         // GET: api/docvendas/top5produtos/vendedor/
         [Route("api/docvendas/top5produtos/{vendedor}")]
         [HttpGet]
-        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetTop5Productos(int vendedor)
+        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetTop5Produtos(int vendedor)
         {
             return Lib_Primavera.PriIntegrationDocVenda.Top5ProdutosMaisVendidosPorVendedor(vendedor);
+        }
+
+        // GET: api/docvendas/produtoscategoria/
+        [Route("api/docvendas/produtoscategoria/")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetQuantidadeProdutosPorCategoria()
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.QuantidadeProdutosVendidosPorCategoria();
+        }
+
+        // GET: api/docvendas/produtoscategoria/{vendedor}
+        [Route("api/docvendas/produtoscategoria/{vendedor}")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetQuantidadeProdutosPorCategoria(int vendedor)
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.QuantidadeProdutosVendidosPorCategoria_Vendedor(vendedor);
         }
 
         // GET: api/docvendas/produtosvendidos/ano/
@@ -83,7 +99,9 @@ namespace FirstREST.Controllers
             }
         }
 
-
+        // POST api/docvenda/ 
+        [Route("api/docvendas")]
+        //[HttpPost]
         public HttpResponseMessage Post(Lib_Primavera.Model.DocVenda dv)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
@@ -91,10 +109,10 @@ namespace FirstREST.Controllers
 
             if (erro.Erro == 0)
             {
-                var response = Request.CreateResponse(
-                   HttpStatusCode.Created, dv.id);
-                string uri = Url.Link("DefaultApi", new {DocId = dv.id });
-                response.Headers.Location = new Uri(uri);
+                var id = Guid.NewGuid().ToString();
+                var response = Request.CreateResponse(HttpStatusCode.Created, id);
+                string uri = Url.Link("DefaultApi", new {DocId = id });
+                //response.Headers.Location = new Uri(uri);
                 return response;
             }
 

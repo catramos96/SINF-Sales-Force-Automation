@@ -2,24 +2,61 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the StatisticsProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class StatisticsProvider {
 
+  private url = 'http://25.34.60.99:9608/';
+
   constructor(public http: Http) {
-    console.log('Hello StatisticsProvider Provider');
+
   }
 
   public getSoldProductsNumber() {
-    return 30;
+    let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
+
+    var url = this.url + 'api/docvendas/produtosvendidos/' + year;
+    return this.http.get(url).map(res => res.json());
   }
 
-  public getSoldProductsNumberByYear(year) {
-    return 50;
+  public getSoldProductsNumberBySalesman() {
+    let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
+    let salesman: number = 2;   //Ainda não existe sistema de login, por isso para já é sempre para o vendedor2
+
+    var url = this.url + 'api/docvendas/produtosvendidos/' + year + '/' + salesman;
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public getBilledMoneyNumber() {
+    let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
+
+    var url = this.url + 'api/docvendas/dinheirofaturado/' + year;
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public getBilledMoneyNumberBySalesman() {
+    let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
+    let salesman: number = 2;   //Ainda não existe sistema de login, por isso para já é sempre para o vendedor2
+
+    var url = this.url + 'api/docvendas/dinheirofaturado/' + year + '/' + salesman;
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public getTop5Products() {
+    var url = this.url + 'api/docvendas/top5produtos/';
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public getTop5ProductsBySalesman() {
+    let salesman: number = 2;   //Ainda não existe sistema de login, por isso para já é sempre para o vendedor2
+
+    var url = this.url + 'api/docvendas/top5produtos/' + salesman;
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public getSoldProductsByCategory() {
+    let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
+
+    var url = this.url + 'api/docvendas/produtosvendidos/' + year;
+    return this.http.get(url).map(res => res.json());
   }
 }

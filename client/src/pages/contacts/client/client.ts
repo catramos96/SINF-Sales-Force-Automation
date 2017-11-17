@@ -27,7 +27,10 @@ export class ClientPage {
   ionViewDidLoad() {
 
     this.showCreateGroup = false;
+    this.getClients();
+  }
 
+  public getClients(){
     this.contacts.getAllClients().subscribe(
       data => { 
           this.clients = data;
@@ -35,7 +38,10 @@ export class ClientPage {
       err => {
         
       });
+  }
 
+  public onCancel(ev){
+    this.getClients();
   }
 
   public toggleElement(index) {
@@ -53,6 +59,24 @@ export class ClientPage {
 
   public editClient(codCliente:string){
     this.navCtrl.push("EditClientPage",{firstParam:codCliente});
+  }
+
+  searchClient(ev) {
+    let name = ev.target.value;
+    if(name !== ""){
+      this.contacts.searchClient(name).subscribe(
+        data => { 
+          this.clients=data;
+        },
+        err => {
+          
+        });
+    } 
+    else 
+    {
+      this.clients = [];
+      this.getClients();
+    }
   }
 
   onSubmit(value: any): void { 

@@ -38,6 +38,14 @@ namespace FirstREST.Controllers
             }
         }
 
+        // GET api/cliente/5
+        [HttpGet]
+        [Route("api/clientes/search/{search}")]
+        public IEnumerable<Lib_Primavera.Model.Cliente> Search(string search)
+        {
+            return Lib_Primavera.PriIntegrationCliente.SearchCliente(search);
+        }
+
         [HttpPost]
         [Route("api/clientes")]
         public HttpResponseMessage Post(Lib_Primavera.Model.Cliente cliente)
@@ -61,7 +69,7 @@ namespace FirstREST.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("api/clientes/{id}")]
         public HttpResponseMessage Put(string id, Lib_Primavera.Model.Cliente cliente)
         {
