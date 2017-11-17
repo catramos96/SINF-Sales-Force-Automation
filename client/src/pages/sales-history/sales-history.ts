@@ -31,7 +31,7 @@ export class SalesHistoryPage {
   }
 
   getSales(){
-    
+    /*
     this.salesService.getSalesByDate().subscribe(
       data => { 
           this.sales = data;
@@ -39,8 +39,8 @@ export class SalesHistoryPage {
       err => {
           console.log(err);
       });
+      */
       
-      /*
     this.sales = [
       {
         Data: "1/11/17",
@@ -64,7 +64,7 @@ export class SalesHistoryPage {
           TotalMerc: "123"},
         ]
       }
-    ];*/
+    ];
   }
 
 }
