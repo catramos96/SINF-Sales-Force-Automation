@@ -9,6 +9,7 @@ import { OpportunitiesPage } from '../opportunities/opportunities';
 import { OpportunitiesProvider } from '../../providers/opportunities/opportunities';
 import { OpportunityModalPage } from '../opportunities/opportunity-modal/opportunity-modal';
 import {AppointmentsProvider} from "../../providers/appointments/appointments";
+import {RoutesProvider} from "../../providers/routes/routes";
 
 @Component({
   selector: 'page-home',
@@ -36,7 +37,8 @@ export class HomePage {
     public navCtrl: NavController,
     public modalCtrl : ModalController,
     private opportunitiesService: OpportunitiesProvider,
-    private  appointmentsService: AppointmentsProvider
+    private  appointmentsService: AppointmentsProvider,
+    private routesService: RoutesProvider
   ) {
 
   }
@@ -48,20 +50,8 @@ export class HomePage {
     this.getLeads();
   }
 
-  /*ngAfterViewInit() {
-    this.loadAppointments(new Date(Date.now()));
-    this.loadRoutes();
-    this.loadLeads();
-    this.loadOpportunities()
-  }*/
-
   goToOpportunities() {
     this.navCtrl.push(OpportunitiesPage);
-  }
-
-  openModal(oppID) {
-    let modal = this.modalCtrl.create(OpportunityModalPage,{ opportunityID: oppID });
-    modal.present();
   }
 
   /**
@@ -71,22 +61,40 @@ export class HomePage {
   getAppointments(){
     this.appointmentsService.getAllAppointments().subscribe(
       data => {
-        alert(data);
+        console.log(data);
         this.appointments = data;
-        this.loadOpportunities();
+        this.loadAppointments();
       },
       err => {
         console.log(err);
-        this.loadOpportunities();
+        this.loadAppointments();
       });
   }
 
   getLeads(){
-
+    this.opportunitiesService.getOpportunities().subscribe(
+      data => {
+        console.log(data);
+        this.leads = data;
+        this.loadLeads();
+      },
+      err => {
+        console.log(err);
+        this.loadLeads();
+      });
   }
 
   getRoutes(){
-
+    this.routesService.getAllRoutes().subscribe(
+      data => {
+        console.log(data);
+        this.routes = data;
+        this.loadRoutes();
+      },
+      err => {
+        console.log(err);
+        this.loadRoutes();
+      });
   }
 
   getOpportunities(){
@@ -106,7 +114,7 @@ export class HomePage {
   TABLES INFO
    */
 
-  loadAppointments(date:Date){
+  loadAppointments(){
 
     var height = document.getElementById("main-content").children.item(2).clientHeight;
     var table = document.getElementById("AppointmentsTable");
@@ -119,7 +127,7 @@ export class HomePage {
     for(var i = 0; i < this.appointments.length; i++){
       var e:HTMLElement = document.createElement('tr');
 
-      e.innerHTML = '<td>' + this.appointments[i].DataInicio + '</td>' +
+      e.innerHTML = '<td>' + this.appointments[i].DataInicio.toString() + '</td>' +
         '<td>' + this.appointments[i].Resumo + '</td>';
 
       e.addEventListener("click",() =>{
@@ -134,21 +142,6 @@ export class HomePage {
   }
 
   loadRoutes(){
-    //TODO: ir buscar os elementos da data com paginação
-    //TEMP
-    /*var appointments = [{time:"10:00",description:"Meeting with Mr.Smith"},
-      {time:"12:00",description:"Team Discussion about project X"},
-      {time:"12:00",description:"Team Discussion about project X"},
-      {time:"12:00",description:"Team Discussion about project X"}];*/
-
-    /*this.appointmentsService.getAllAppointments().subscribe(
-      data => {
-        this.appointments = data;
-      },
-      err => {
-        console.log(err);
-      });*/
-
 
     var height = document.getElementById("main-content").children.item(2).clientHeight;
     var table = document.getElementById("RoutesTable");
@@ -158,20 +151,19 @@ export class HomePage {
       body.removeChild(body.firstChild);
     }
 
-    /*for(var i = 0; i < this.appointments.length; i++){
+    for(var i = 0; i < this.routes.length; i++){
 
       var e:HTMLElement = document.createElement('tr');
 
-      e.innerHTML = '<td>' + this.appointments[i].DataInicio + '</td>' +
-        '<td>' + this.appointments[i].Descricao + '</td>';
+      e.innerHTML = '<td>' + this.routes[i].Rota + '</td>';
 
       e.addEventListener("click",() =>{
-        let modal = this.modalCtrl.create(AppointmentModal);//,{ productID: productID });
-        modal.present();
+        /*let modal = this.modalCtrl.create(AppointmentModal);//,{ productID: productID });
+        modal.present();*/
       });
 
       body.insertAdjacentElement("beforeend",e);
-    }*/
+    }
 
     this.tablesConfig(table,height,body);
   }
@@ -205,21 +197,6 @@ export class HomePage {
   }
 
   loadLeads(){
-    //TODO: ir buscar os elementos da data com paginação
-    //TEMP
-    /*var appointments = [{time:"10:00",description:"Meeting with Mr.Smith"},
-      {time:"12:00",description:"Team Discussion about project X"},
-      {time:"12:00",description:"Team Discussion about project X"},
-      {time:"12:00",description:"Team Discussion about project X"}];*/
-
-    /*this.appointmentsService.getAllAppointments().subscribe(
-      data => {
-        this.appointments = data;
-      },
-      err => {
-        console.log(err);
-      });*/
-
 
     var height = document.getElementById("main-content").children.item(2).clientHeight;
     var table = document.getElementById("LeadsTable");
@@ -229,20 +206,20 @@ export class HomePage {
       body.removeChild(body.firstChild);
     }
 
-    /*for(var i = 0; i < this.appointments.length; i++){
+    for(var i = 0; i < this.leads.length; i++){
 
-      var e:HTMLElement = document.createElement('tr');
+       var e:HTMLElement = document.createElement('tr');
+      var id = this.leads[i].Lead.ID;
 
-      e.innerHTML = '<td>' + this.appointments[i].DataInicio + '</td>' +
-        '<td>' + this.appointments[i].Descricao + '</td>';
+      e.innerHTML = '<td>' + this.leads[i].Lead.Descricao + '</td>';
 
       e.addEventListener("click",() =>{
-        let modal = this.modalCtrl.create(AppointmentModal);//,{ productID: productID });
+        let modal = this.modalCtrl.create(OpportunityModalPage,{opportunityID: id });
         modal.present();
       });
 
       body.insertAdjacentElement("beforeend",e);
-    }*/
+    }
 
     this.tablesConfig(table,height,body);
   }

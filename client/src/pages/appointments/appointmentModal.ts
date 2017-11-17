@@ -21,7 +21,7 @@ export class AppointmentModal {
               public params: NavParams,
               public viewCtrl: ViewController,
               private navCtrl: NavController) {
-    this.loadTags();
+    //this.loadTags();
   }
 
   loadTags(){ //id como parametro
