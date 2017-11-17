@@ -19,7 +19,10 @@
     <ion-content>
       <ion-item-group *ngFor="let date of sales">
           <ion-item-divider color="light">{{date.Data}}</ion-item-divider>
-          <ion-item *ngFor="let sale of date.Vendas">{{sale.Nome}}</ion-item>
+          <ion-item *ngFor="let sale of date.Vendas">
+            <p>{{sale.Entidade}}</p>
+            <p style="text-align:right">{{sale.TotalMerc}} EUR</p>
+         </ion-item>
       </ion-item-group>
     </ion-content>
 

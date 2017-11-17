@@ -17,7 +17,7 @@ export class SalesProvider {
   }
 
   getSalesByDate(){
-    var url = AppSettings.API_ENDPOINT+'docvendas';
+    var url = AppSettings.API_ENDPOINT+'docvendas/pordata';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }

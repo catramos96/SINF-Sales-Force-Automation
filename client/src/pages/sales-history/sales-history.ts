@@ -31,7 +31,7 @@ export class SalesHistoryPage {
   }
 
   getSales(){
-    /*
+    
     this.salesService.getSalesByDate().subscribe(
       data => { 
           this.sales = data;
@@ -39,26 +39,32 @@ export class SalesHistoryPage {
       err => {
           console.log(err);
       });
-      */
-
+      
+      /*
     this.sales = [
       {
         Data: "1/11/17",
         Vendas: [
-          {Nome: "aaa"},
-          {Nome: "bbb"},
-          {Nome: "ccc"}
+          {Entidade: "aaa",
+          TotalMerc: "123"},
+          {Entidade: "bbb",
+          TotalMerc: "123"},
+          {Entidade: "ccc",
+          TotalMerc: "123"}
         ]
       },
       {
         Data: "2/11/17",
         Vendas: [
-          {Nome: "aaa"},
-          {Nome: "bbb"},
-          {Nome: "ccc"},
+          {Entidade: "aaa",
+          TotalMerc: "123"},
+          {Entidade: "bbb",
+          TotalMerc: "123"},
+          {Entidade: "ccc",
+          TotalMerc: "123"},
         ]
       }
-    ];
+    ];*/
   }
 
 }
