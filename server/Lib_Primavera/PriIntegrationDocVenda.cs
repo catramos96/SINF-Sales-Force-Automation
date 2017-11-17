@@ -332,5 +332,50 @@ namespace FirstREST.Lib_Primavera
             return null;
         }
 
+
+        public static IEnumerable<Model.VendasDTO> EncomendasPorData()
+        {
+            StdBELista datas;
+            StdBELista orders;
+            List<Model.VendasDTO> listaDTOs = new List<Model.VendasDTO>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                datas = PriEngine.Engine.Consulta(@"select Data 
+                                                    from CabecDoc 
+                                                    where TipoDoc = 'ECL' 
+                                                    group by Data  
+                                                    order by Data desc ;");
+
+                while (!datas.NoFim())
+                {
+                    Model.VendasDTO dto = new Model.VendasDTO();
+                    dto.Data = datas.Valor("Data");
+
+                    orders = PriEngine.Engine.Consulta(@"select Nome, TotalMerc 
+                                                        from CabecDoc
+                                                        where TipoDoc = 'ECL' AND Data ='" + dto.Data + "';");
+
+                    List<Model.DocVenda> docs = new List<Model.DocVenda>();
+                    while (!orders.NoFim())
+                    {
+                        Model.DocVenda doc = new Model.DocVenda();
+                        doc.TotalMerc = orders.Valor("TotalMerc");
+                        doc.Entidade = orders.Valor("Nome");
+
+                        docs.Add(doc);
+                        orders.Seguinte();
+                    }
+
+                    dto.Vendas = docs;
+
+                    listaDTOs.Add(dto);
+                    datas.Seguinte();
+                }
+
+                return listaDTOs;
+            }
+            return null;
+        }
     }
 }

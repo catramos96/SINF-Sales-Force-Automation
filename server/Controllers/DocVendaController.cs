@@ -18,6 +18,15 @@ namespace FirstREST.Controllers
             return Lib_Primavera.PriIntegrationDocVenda.Encomendas_List();
         }
 
+        //
+        // GET: /docvendas/pordata
+        [Route("api/docvendas/pordata")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.VendasDTO> GetPorData()
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.EncomendasPorData();
+        }
+
         // GET: api/docvendas/top5produtos/
         [Route("api/docvendas/top5produtos/")]
         [HttpGet]
