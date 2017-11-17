@@ -52,4 +52,11 @@ export class StatisticsProvider {
     var url = this.url + 'api/docvendas/top5produtos/' + salesman;
     return this.http.get(url).map(res => res.json());
   }
+
+  public getSoldProductsByCategory() {
+    let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
+
+    var url = this.url + 'api/docvendas/produtosvendidos/' + year;
+    return this.http.get(url).map(res => res.json());
+  }
 }

@@ -169,7 +169,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT Familias.Descricao AS Categoria, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo Join Familias ON Familias.Familia = Artigo.Familia where CabecDoc.TipoDoc='ECL' AND YEAR(LinhasDoc.Data) = 2016 group by Familias.Descricao order by Familias.Descricao");
+                objList = PriEngine.Engine.Consulta("SELECT Familias.Descricao AS Categoria, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo Join Familias ON Familias.Familia = Artigo.Familia where CabecDoc.TipoDoc='ECL' group by Familias.Descricao order by Familias.Descricao");
                 while (!objList.NoFim())
                 {
                     Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();
@@ -192,7 +192,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT Familias.Descricao AS Categoria, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo Join Familias ON Familias.Familia = Artigo.Familia where CabecDoc.TipoDoc='ECL' AND YEAR(LinhasDoc.Data) = 2016 AND Vendedor = "+vendedor+"group by Familias.Descricao order by Familias.Descricao");
+                objList = PriEngine.Engine.Consulta("SELECT Familias.Descricao AS Categoria, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo Join Familias ON Familias.Familia = Artigo.Familia where CabecDoc.TipoDoc='ECL' AND Vendedor = "+vendedor+"group by Familias.Descricao order by Familias.Descricao");
                 while (!objList.NoFim())
                 {
                     Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();

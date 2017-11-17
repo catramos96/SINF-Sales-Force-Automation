@@ -47,7 +47,7 @@ namespace FirstREST.Controllers
         [HttpGet]
         public IEnumerable<Lib_Primavera.Model.LinhaDocVenda> GetQuantidadeProdutosPorCategoria(int vendedor)
         {
-            return Lib_Primavera.PriIntegrationDocVenda.QuantidadeProdutosVendidosPorCategoria_Vendedor();
+            return Lib_Primavera.PriIntegrationDocVenda.QuantidadeProdutosVendidosPorCategoria_Vendedor(vendedor);
         }
 
         // GET: api/docvendas/produtosvendidos/ano/

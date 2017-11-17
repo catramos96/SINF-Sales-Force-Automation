@@ -8,9 +8,10 @@ import { StatisticsProvider } from '../../../providers/statistics/statistics';
   templateUrl: 'personal-statistics.html',
 })
 export class PersonalStatisticsPage {
-  soldProductsNumber: number;
-  billedMoneyNumber: number;
+  private soldProductsNumber: number;
+  private billedMoneyNumber: number;
   private top5Products: JSON[] = [];
+  private productsSoldByCategory: JSON[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private statisticsP: StatisticsProvider) {
   }
