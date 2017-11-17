@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c505134e-bc35-4d44-b9a9-d00cc3d2ae58" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/providers/routes/routes.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/Controllers/RotasController.cs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/Lib_Primavera/Model/Rota.cs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationRota.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/app.module.ts" afterPath="$PROJECT_DIR$/client/src/app/app.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.ts" afterPath="$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/home/home.ts" afterPath="$PROJECT_DIR$/client/src/pages/home/home.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/client/node_modules/reflect-metadata/Reflect.js/" />
     <ignored path="$PROJECT_DIR$/client/node_modules/reflect-metadata/Reflect.d.ts/" />
@@ -47,7 +44,7 @@
       <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/pages/home/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="4116">
               <caret line="196" column="17" lean-forward="false" selection-start-line="196" selection-start-column="17" selection-end-line="196" selection-end-column="17" />
               <folding />
             </state>
@@ -57,21 +54,9 @@
       <file leaf-file-name="opportunities.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/providers/opportunities/opportunities.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
+            <state relative-caret-position="42">
               <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="53" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/providers/routes/routes.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -79,51 +64,45 @@
       <file leaf-file-name="home.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/pages/home/home.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="199" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+            <state relative-caret-position="510">
+              <caret line="78" column="25" lean-forward="false" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
+                <element signature="n#!!block;n#getAppointments#0;n#HomePage#0" expanded="false" />
+                <element signature="n#!!block;n#getRoutes#0;n#HomePage#0" expanded="false" />
+                <element signature="n#!!block;n#getOpportunities#0;n#HomePage#0" expanded="false" />
                 <element signature="n#!!block;n#loadAppointments#0;n#HomePage#0" expanded="false" />
                 <element signature="n#!!block;n#loadRoutes#0;n#HomePage#0" expanded="false" />
+                <element signature="n#!!block;n#loadOpportunities#0;n#HomePage#0" expanded="false" />
                 <element signature="n#!!block;n#showRouteDetails#0;n#HomePage#0" expanded="false" />
                 <element signature="n#!!block;n#showLeadDetails#0;n#HomePage#0" expanded="false" />
                 <element signature="n#!!block;n#showOpportunityDetails#0;n#HomePage#0" expanded="false" />
                 <element signature="n#!!block;n#showDetails#0;n#HomePage#0" expanded="false" />
                 <element signature="n#!!block;n#tablesConfig#0;n#HomePage#0" expanded="false" />
                 <element signature="n#!!block;n#getCalendarTitle#0;n#HomePage#0" expanded="false" />
-                <marker date="1510878337022" expanded="true" signature="7832:7850" ph="..." />
-                <marker date="1510878337022" expanded="true" signature="7882:7900" ph="..." />
+                <marker date="1510887137314" expanded="true" signature="6953:6971" ph="..." />
+                <marker date="1510887137314" expanded="true" signature="7003:7021" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="opportunity-modal.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/pages/opportunities/opportunity-modal/opportunity-modal.ts">
+      <file leaf-file-name="appointmentModal.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="32" column="48" lean-forward="false" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-                <marker date="1510878801085" expanded="true" signature="4714:4720" ph="{...}" />
-                <marker date="1510878801085" expanded="true" signature="4792:5332" ph="{...}" />
-                <marker date="1510878801085" expanded="true" signature="4882:5020" ph="{...}" />
-                <marker date="1510878801085" expanded="true" signature="4903:4981" ph="{&quot;IDArtigo&quot;: art.IDArtigo...}" />
-                <marker date="1510878801085" expanded="true" signature="5039:5134" ph="{&quot;NumProposal&quot;: NumProposal...}" />
-                <marker date="1510878801085" expanded="true" signature="5139:5327" ph="/*...*/" />
-              </folding>
+            <state relative-caret-position="384">
+              <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="product.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/pages/product/product.html">
+      <file leaf-file-name="Tarefa.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/Model/Tarefa.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1407">
-              <caret line="67" column="45" lean-forward="false" selection-start-line="66" selection-start-column="9" selection-end-line="67" selection-end-column="45" />
-              <folding>
-                <marker date="1510878801066" expanded="true" signature="3344:3441" ph="..." />
-              </folding>
+            <state relative-caret-position="294">
+              <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -168,14 +147,14 @@
         <option value="$PROJECT_DIR$/client/src/pages/team/team.html" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.html.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/home/home.scss" />
-        <option value="$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.html" />
         <option value="$PROJECT_DIR$/client/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/client/src/providers/appointments/appointments.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/home/home.html" />
-        <option value="$PROJECT_DIR$/client/src/pages/home/home.ts" />
         <option value="$PROJECT_DIR$/server/Controllers/TarefasController.cs" />
         <option value="$PROJECT_DIR$/client/src/providers/routes/routes.ts" />
+        <option value="$PROJECT_DIR$/client/src/pages/home/home.ts" />
+        <option value="$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.ts" />
       </list>
     </option>
   </component>
@@ -240,39 +219,14 @@
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="opportunities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="opportunities" type="462c0819:PsiDirectoryNode" />
-              <item name="opportunity-modal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="product" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="providers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="providers" type="462c0819:PsiDirectoryNode" />
               <item name="appointments" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="providers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
@@ -304,15 +258,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\pages\team" />
-      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\assets" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\server\Lib_Primavera" />
       <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\server\Lib_Primavera\Model" />
       <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\server\Controllers" />
       <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\assets\imgs" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\pages\team" />
+      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\assets" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -345,15 +299,15 @@
       <workItem from="1510827526024" duration="843000" />
       <workItem from="1510868054776" duration="8925000" />
       <workItem from="1510877251598" duration="2395000" />
+      <workItem from="1510886689829" duration="712000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53893000" />
+    <option name="totallyTimeSpent" value="54605000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24635416" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -439,16 +393,20 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
+            <element signature="n#!!block;n#getAppointments#0;n#HomePage#0" expanded="false" />
+            <element signature="n#!!block;n#getRoutes#0;n#HomePage#0" expanded="false" />
+            <element signature="n#!!block;n#getOpportunities#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#loadAppointments#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#loadRoutes#0;n#HomePage#0" expanded="false" />
+            <element signature="n#!!block;n#loadOpportunities#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showRouteDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showLeadDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showOpportunityDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#tablesConfig#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#getCalendarTitle#0;n#HomePage#0" expanded="false" />
-            <marker date="1510878337022" expanded="true" signature="7832:7850" ph="..." />
-            <marker date="1510878337022" expanded="true" signature="7882:7900" ph="..." />
+            <marker date="1510887137314" expanded="true" signature="6953:6971" ph="..." />
+            <marker date="1510887137314" expanded="true" signature="7003:7021" ph="..." />
           </folding>
         </state>
       </provider>
@@ -480,16 +438,20 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
+            <element signature="n#!!block;n#getAppointments#0;n#HomePage#0" expanded="false" />
+            <element signature="n#!!block;n#getRoutes#0;n#HomePage#0" expanded="false" />
+            <element signature="n#!!block;n#getOpportunities#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#loadAppointments#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#loadRoutes#0;n#HomePage#0" expanded="false" />
+            <element signature="n#!!block;n#loadOpportunities#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showRouteDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showLeadDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showOpportunityDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#tablesConfig#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#getCalendarTitle#0;n#HomePage#0" expanded="false" />
-            <marker date="1510878337022" expanded="true" signature="7832:7850" ph="..." />
-            <marker date="1510878337022" expanded="true" signature="7882:7900" ph="..." />
+            <marker date="1510887137314" expanded="true" signature="6953:6971" ph="..." />
+            <marker date="1510887137314" expanded="true" signature="7003:7021" ph="..." />
           </folding>
         </state>
       </provider>
@@ -603,9 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#53#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -613,16 +572,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="604">
           <caret line="151" column="1" lean-forward="false" selection-start-line="151" selection-start-column="1" selection-end-line="151" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="32" column="54" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#53#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -637,9 +586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="806">
           <caret line="50" column="17" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#53#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -706,15 +652,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1407">
           <caret line="67" column="45" lean-forward="false" selection-start-line="66" selection-start-column="9" selection-end-line="67" selection-end-column="45" />
-          <folding>
-            <marker date="1510878801066" expanded="true" signature="3344:3441" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/home/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="4116">
           <caret line="196" column="17" lean-forward="false" selection-start-line="196" selection-start-column="17" selection-end-line="196" selection-end-column="17" />
           <folding />
         </state>
@@ -724,9 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -742,34 +682,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
           <caret line="32" column="48" lean-forward="false" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <marker date="1510878801085" expanded="true" signature="4714:4720" ph="{...}" />
-            <marker date="1510878801085" expanded="true" signature="4792:5332" ph="{...}" />
-            <marker date="1510878801085" expanded="true" signature="4882:5020" ph="{...}" />
-            <marker date="1510878801085" expanded="true" signature="4903:4981" ph="{&quot;IDArtigo&quot;: art.IDArtigo...}" />
-            <marker date="1510878801085" expanded="true" signature="5039:5134" ph="{&quot;NumProposal&quot;: NumProposal...}" />
-            <marker date="1510878801085" expanded="true" signature="5139:5327" ph="/*...*/" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/home/home.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="199" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+        <state relative-caret-position="510">
+          <caret line="78" column="25" lean-forward="false" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
+            <element signature="n#!!block;n#getAppointments#0;n#HomePage#0" expanded="false" />
+            <element signature="n#!!block;n#getRoutes#0;n#HomePage#0" expanded="false" />
+            <element signature="n#!!block;n#getOpportunities#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#loadAppointments#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#loadRoutes#0;n#HomePage#0" expanded="false" />
+            <element signature="n#!!block;n#loadOpportunities#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showRouteDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showLeadDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showOpportunityDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#showDetails#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#tablesConfig#0;n#HomePage#0" expanded="false" />
             <element signature="n#!!block;n#getCalendarTitle#0;n#HomePage#0" expanded="false" />
-            <marker date="1510878337022" expanded="true" signature="7832:7850" ph="..." />
-            <marker date="1510878337022" expanded="true" signature="7882:7900" ph="..." />
+            <marker date="1510887137314" expanded="true" signature="6953:6971" ph="..." />
+            <marker date="1510887137314" expanded="true" signature="7003:7021" ph="..." />
           </folding>
         </state>
       </provider>
@@ -778,7 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,7 +720,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -794,7 +727,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="44" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,7 +734,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -810,13 +741,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/providers/opportunities/opportunities.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
+        <state relative-caret-position="42">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="53" />
           <folding />
         </state>
@@ -826,9 +756,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
