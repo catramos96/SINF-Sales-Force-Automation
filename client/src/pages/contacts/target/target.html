@@ -17,7 +17,10 @@
 
     <ion-row class="first-row">
       <ion-col col-5 class="search-bar-col">
-        <ion-searchbar></ion-searchbar>
+        <ion-searchbar placeholder="Search for a target"
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="searchContact($event)"
+        (ionCancel)="onCancel($event)"></ion-searchbar>
       </ion-col>
       <ion-col class="create-btns-col">
         <button ion-button (click)="createTarget()" class="right-btn create-btn">Create Target</button>

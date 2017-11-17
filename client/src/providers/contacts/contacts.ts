@@ -32,8 +32,18 @@ export class ContactsProvider {
     return this.http.get(url).map(res => res.json());
   }
 
-  public searchClient(CodCliente:string){
-    var url = this.url + 'api/clientes/search/' + CodCliente;
+  public getContactById(IdContact:string){
+    var url = this.url + 'api/contactos/' + IdContact;
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public searchClient(nameCliente:string){
+    var url = this.url + 'api/clientes/search/' + nameCliente;
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public searchContact(nameContacto:string){
+    var url = this.url + 'api/contactos/search/' + nameContacto;
     return this.http.get(url).map(res => res.json());
   }
 
@@ -54,6 +64,11 @@ export class ContactsProvider {
 
   public editClient(data, CodCliente:string){
     var url = this.url + 'api/clientes/' + CodCliente;
+    return this.http.post(url,data);
+  }
+
+  public editContact(data, IdContact:string){
+    var url = this.url + 'api/contactos/' + IdContact;
     return this.http.post(url,data);
   }
 
