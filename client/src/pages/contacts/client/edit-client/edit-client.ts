@@ -78,10 +78,6 @@ export class EditClientPage {
     },
     err => {
     });
-
-
-
-
   }
 
 

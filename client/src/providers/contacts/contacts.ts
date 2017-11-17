@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ContactsProvider {
 
-  private url = 'http://25.34.60.99:9608/';
+  private url = 'http://192.168.1.3:9608/';
 
   constructor(public http:Http) {
 
