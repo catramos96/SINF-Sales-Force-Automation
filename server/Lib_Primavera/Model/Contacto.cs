@@ -14,7 +14,6 @@ namespace FirstREST.Lib_Primavera.Model
         public string NomesIntermedios { get; set; }
         public string UltimoNome { get; set; }
         public string NumContribuinte { get; set; }
-        public string Titulo { get; set; }
         public string Morada { get; set; }
         public string CodPostal { get; set; }
         public string Localidade {get; set;}

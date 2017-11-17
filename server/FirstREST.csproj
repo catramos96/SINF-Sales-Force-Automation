@@ -235,6 +235,7 @@
     <Compile Include="Controllers\LeadsController.cs" />
     <Compile Include="Controllers\OpportunitiesController.cs" />
     <Compile Include="Controllers\OpportunityLinesController.cs" />
+    <Compile Include="Controllers\RotasController.cs" />
     <Compile Include="Controllers\TarefasController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\FamiliasController.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Lib_Primavera\Model\Opportunity.cs" />
     <Compile Include="Lib_Primavera\Model\OpportunityLine.cs" />
     <Compile Include="Lib_Primavera\Model\Proposta.cs" />
+    <Compile Include="Lib_Primavera\Model\Rota.cs" />
     <Compile Include="Lib_Primavera\Model\SubFamilia.cs" />
     <Compile Include="Lib_Primavera\Model\Artigo.cs" />
     <Compile Include="Lib_Primavera\Model\Cliente.cs" />
@@ -270,6 +272,7 @@
     <Compile Include="Lib_Primavera\PriIntegrationLead.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationOpportunity.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationOpportunityLine.cs" />
+    <Compile Include="Lib_Primavera\PriIntegrationRota.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationSubfamilia.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationTarefa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
