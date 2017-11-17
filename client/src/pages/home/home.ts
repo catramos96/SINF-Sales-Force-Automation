@@ -260,6 +260,7 @@ export class HomePage {
 
     var html: string;
     var header = table.getElementsByTagName("thead").item(0);
+    var empty_cells = false;
 
     while (body.scrollHeight + header.clientHeight < maxHeight + maxHeight*1/6) {
       html = '<tr>' +
@@ -267,9 +268,10 @@ export class HomePage {
         '<td style="color: transparent">X</td>' +
         '</tr>';
       body.insertAdjacentHTML("beforeend", html);
+      empty_cells = true;
     }
 
-    while (body.scrollHeight + header.clientHeight > maxHeight + maxHeight*1/7
+    while (empty_cells && body.scrollHeight + header.clientHeight > maxHeight + maxHeight*1/7
           && table.children.length > 0) {
       body.deleteRow(table.children.length - 1);
     }
