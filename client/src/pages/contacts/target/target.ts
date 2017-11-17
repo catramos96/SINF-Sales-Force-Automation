@@ -17,7 +17,10 @@ export class TargetPage {
   }
 
   ionViewDidLoad(){
+    this.getContacts();
+  }
 
+  public getContacts(){
     this.contacts.getAllContacts().subscribe(
       data => { 
           this.targets = data;
@@ -26,7 +29,6 @@ export class TargetPage {
         
       }
   );
-
   }
 
   public toggleElement(index) {
@@ -38,5 +40,26 @@ export class TargetPage {
     this.navCtrl.push("CreateTargetPage");
   }
 
+  public onCancel(ev){
+    this.getContacts();
+  }
+
+  searchContact(ev) {
+    let name = ev.target.value;
+    if(name !== ""){
+      this.contacts.searchContact(name).subscribe(
+        data => { 
+          this.targets=data;
+        },
+        err => {
+          
+        });
+    } 
+    else 
+    {
+      this.targets = [];
+      this.getContacts();
+    }
+  }
 
 }
