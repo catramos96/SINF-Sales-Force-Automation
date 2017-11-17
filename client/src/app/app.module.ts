@@ -26,6 +26,7 @@ import {TeamPage} from "../pages/team/team";
 import {AppointmentModal} from "../pages/appointments/appointmentModal"
 import { OpportunitiesProvider } from '../providers/opportunities/opportunities';
 import { AppointmentsProvider } from '../providers/appointments/appointments';
+import { RoutesProvider } from '../providers/routes/routes';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { AppointmentsProvider } from '../providers/appointments/appointments';
     ProductsProvider,
     StatisticsProvider,
     OpportunitiesProvider,
-    AppointmentsProvider
+    AppointmentsProvider,
+    RoutesProvider
   ]
 })
 export class AppModule {}

@@ -9,7 +9,7 @@ namespace FirstREST.Controllers
 {
     public class TarefasController : ApiController
     {
-        // GET: api/tarefas/
+        // GET: api/tarefas
         [HttpGet]
         [Route("api/tarefas")]
         public IEnumerable<Lib_Primavera.Model.Tarefa> Get()

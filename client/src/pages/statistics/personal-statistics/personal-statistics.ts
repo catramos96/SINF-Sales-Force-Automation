@@ -25,9 +25,17 @@ export class PersonalStatisticsPage {
 
       });
 
-    this.statisticsP.getTop5Products().subscribe(
+    this.statisticsP.getTop5ProductsBySalesman().subscribe(
       data => {
         this.top5Products = data;
+      },
+      err => {
+
+      });
+
+    this.statisticsP.getSoldProductsByCategoryBySalesman().subscribe(
+      data => {
+        this.productsSoldByCategory = data;
       },
       err => {
 
