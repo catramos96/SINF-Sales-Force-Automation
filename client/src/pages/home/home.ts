@@ -10,6 +10,7 @@ import { OpportunitiesProvider } from '../../providers/opportunities/opportuniti
 import { OpportunityModalPage } from '../opportunities/opportunity-modal/opportunity-modal';
 import {AppointmentsProvider} from "../../providers/appointments/appointments";
 import {RoutesProvider} from "../../providers/routes/routes";
+import {CreateAppointmentsModalPage} from "../appointments/create-appointments-modal/create-appointments-modal"
 
 @Component({
   selector: 'page-home',
@@ -44,10 +45,22 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+    this.loadEventHandlers();
     this.getAppointments();
     this.getOpportunities();
     this.getRoutes();
     this.getLeads();
+  }
+
+  /**
+   * EVENTS
+   */
+
+  loadEventHandlers(){
+    document.getElementById("AddAppointment").addEventListener("click",() =>{
+      let modal = this.modalCtrl.create(CreateAppointmentsModalPage);
+      modal.present();
+    });
   }
 
   goToOpportunities() {
@@ -227,24 +240,6 @@ export class HomePage {
   /**
   DETAILS
    */
-
-  showRouteDetails(id){
-    //TODO
-
-    return;
-  }
-
-  showLeadDetails(id){
-    //TODO
-
-    return;
-  }
-
-  showOpportunityDetails(id){
-   //TODO
-
-    return;
-  }
 
   showDetails(html){
     var details:HTMLElement = document.getElementById("Details");

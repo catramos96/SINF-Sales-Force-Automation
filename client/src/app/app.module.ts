@@ -28,6 +28,7 @@ import { OpportunitiesProvider } from '../providers/opportunities/opportunities'
 import { AppointmentsProvider } from '../providers/appointments/appointments';
 import { SalesProvider } from '../providers/sales/sales';
 import { RoutesProvider } from '../providers/routes/routes';
+import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointments-modal/create-appointments-modal";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { RoutesProvider } from '../providers/routes/routes';
     TeamPage,
     OpportunitiesPage,
     OpportunityModalPage,
+    CreateAppointmentsModalPage,
     SalesHistoryPage
   ],
   imports: [
@@ -63,7 +65,8 @@ import { RoutesProvider } from '../providers/routes/routes';
     TeamPage,
     OpportunitiesPage,
     OpportunityModalPage,
-    SalesHistoryPage
+    SalesHistoryPage,
+    CreateAppointmentsModalPage
   ],
   providers: [
     StatusBar,
