@@ -257,6 +257,7 @@
     <Compile Include="Lib_Primavera\Model\LinhaDocCompra.cs" />
     <Compile Include="Lib_Primavera\Model\LinhaDocVenda.cs" />
     <Compile Include="Lib_Primavera\Model\RespostaErro.cs" />
+    <Compile Include="Lib_Primavera\Model\VendasDTO.cs" />
     <Compile Include="Lib_Primavera\Model\Tarefa.cs" />
     <Compile Include="Lib_Primavera\PriEngine.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationArtigo.cs" />

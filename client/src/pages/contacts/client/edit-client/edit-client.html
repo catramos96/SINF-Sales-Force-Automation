@@ -105,12 +105,6 @@
 
     <ion-row>
       <ion-col>
-        <ion-item [ngClass]="{'error-border':!createClientForm.controls.homephone.valid && createClientForm.controls.homephone.touched}">
-          <ion-label floating>Home phone</ion-label>
-          <ion-input formControlName="homephone" type="text"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col>
         <ion-item [ngClass]="{'error-border':!createClientForm.controls.fax.valid && createClientForm.controls.fax.touched}">
           <ion-label floating>Fax</ion-label>
           <ion-input formControlName="fax" type="text"></ion-input>

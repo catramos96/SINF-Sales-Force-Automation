@@ -54,7 +54,7 @@ export class ContactsProvider {
 
   public editClient(data, CodCliente:string){
     var url = this.url + 'api/clientes/' + CodCliente;
-    return this.http.put(url,data);
+    return this.http.post(url,data);
   }
 
 }
