@@ -18,6 +18,22 @@ namespace FirstREST.Controllers
             return Lib_Primavera.PriIntegrationContacto.ListaContactos();
         }
 
+        // GET api/contactos/5
+        [HttpGet]
+        [Route("api/contactos/{id}")]
+        public IEnumerable<Lib_Primavera.Model.Contacto> GetContacto(string id)
+        {
+            return Lib_Primavera.PriIntegrationContacto.GetContactoById(id);
+        }
+
+        // GET api/contactos/5
+        [HttpGet]
+        [Route("api/contactos/search/{search}")]
+        public IEnumerable<Lib_Primavera.Model.Contacto> Search(string search)
+        {
+            return Lib_Primavera.PriIntegrationContacto.SearchContacto(search);
+        }
+
         // POST: /Contactos/
         [HttpPost]
         [Route("api/contactos")]
@@ -40,6 +56,33 @@ namespace FirstREST.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
+        }
+
+
+        [HttpPost]
+        [Route("api/contactos/{id}")]
+        public HttpResponseMessage Put(string id, Lib_Primavera.Model.Contacto contacto)
+        {
+
+            Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
+
+            try
+            {
+                erro = Lib_Primavera.PriIntegrationContacto.UpdContacto(contacto);
+                if (erro.Erro == 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, erro.Descricao);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, erro.Descricao);
+                }
+            }
+
+            catch (Exception exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, erro.Descricao);
+            }
         }
 
     }
