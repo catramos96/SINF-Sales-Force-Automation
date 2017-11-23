@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { AppSettings } from '../../app/app-settings';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class StatisticsProvider {
-
-  private url = 'http://25.34.60.99:9608/';
 
   constructor(public http: Http) {
 
@@ -14,7 +13,7 @@ export class StatisticsProvider {
   public getSoldProductsNumber() {
     let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
 
-    var url = this.url + 'api/docvendas/produtosvendidos/' + year;
+    var url = AppSettings.API_ENDPOINT + 'docvendas/produtosvendidos/' + year;
     return this.http.get(url).map(res => res.json());
   }
 
@@ -22,14 +21,14 @@ export class StatisticsProvider {
     let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
     let salesman: number = 2;   //Ainda não existe sistema de login, por isso para já é sempre para o vendedor2
 
-    var url = this.url + 'api/docvendas/produtosvendidos/' + year + '/' + salesman;
+    var url = AppSettings.API_ENDPOINT + 'docvendas/produtosvendidos/' + year + '/' + salesman;
     return this.http.get(url).map(res => res.json());
   }
 
   public getBilledMoneyNumber() {
     let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
 
-    var url = this.url + 'api/docvendas/dinheirofaturado/' + year;
+    var url = AppSettings.API_ENDPOINT + 'docvendas/dinheirofaturado/' + year;
     return this.http.get(url).map(res => res.json());
   }
 
@@ -37,31 +36,31 @@ export class StatisticsProvider {
     let year: number = 2016;  //O objectivo era ser para o ano corrente, mas no Primavera não estão adicionados dados de 2017
     let salesman: number = 2;   //Ainda não existe sistema de login, por isso para já é sempre para o vendedor2
 
-    var url = this.url + 'api/docvendas/dinheirofaturado/' + year + '/' + salesman;
+    var url = AppSettings.API_ENDPOINT + 'docvendas/dinheirofaturado/' + year + '/' + salesman;
     return this.http.get(url).map(res => res.json());
   }
 
   public getTop5Products() {
-    var url = this.url + 'api/docvendas/top5produtos/';
+    var url = AppSettings.API_ENDPOINT + 'docvendas/top5produtos/';
     return this.http.get(url).map(res => res.json());
   }
 
   public getTop5ProductsBySalesman() {
     let salesman: number = 2;   //Ainda não existe sistema de login, por isso para já é sempre para o vendedor2
 
-    var url = this.url + 'api/docvendas/top5produtos/' + salesman;
+    var url = AppSettings.API_ENDPOINT + 'docvendas/top5produtos/' + salesman;
     return this.http.get(url).map(res => res.json());
   }
 
   public getSoldProductsByCategory() {
-    var url = this.url + 'api/docvendas/produtoscategoria/';
+    var url = AppSettings.API_ENDPOINT + 'docvendas/produtoscategoria/';
     return this.http.get(url).map(res => this.convertToPercentage(res.json()));
   }
 
   public getSoldProductsByCategoryBySalesman() {
     let salesman: number = 2;
 
-    var url = this.url + 'api/docvendas/produtoscategoria/' +salesman;
+    var url = AppSettings.API_ENDPOINT + 'docvendas/produtoscategoria/' +salesman;
     return this.http.get(url).map(res => this.convertToPercentage(res.json()));
   }
 
