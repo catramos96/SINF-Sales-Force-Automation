@@ -49,8 +49,10 @@ export class OpportunityModalPage {
     //encontrar artigo
     for(let j = 0; j < artigos.length; j++)
     {
-      if(artigos[j].IdArtigo === productID){
+      if(artigos[j].IdArtigo === productID)
+      {
         this.opp.propostas[NumProposal-1].Valor -= artigos[j].PrecoVenda * artigos[j].Quantidade;
+        this.opp.propostas[NumProposal-1].Valor.toFixed(2);
         artigos.splice(j, 1);
         break;
       }
@@ -80,6 +82,7 @@ export class OpportunityModalPage {
           if(element.IdArtigo === data[i].IdArtigo){
             element.Quantidade += 1;
             this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda;
+            this.opp.propostas[NumProposal-1].Valor.toFixed(2);
             hasElement = true;
           }
         });
@@ -90,6 +93,7 @@ export class OpportunityModalPage {
           data[i].Linha = linhaAtual;
           this.opp.propostas[NumProposal-1].Artigos.push(data[i]);
           this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda; 
+          this.opp.propostas[NumProposal-1].Valor.toFixed(2);
         }
       }
       resolve();
@@ -100,10 +104,14 @@ export class OpportunityModalPage {
   {
     var artigos = this.opp.propostas[NumProposal-1].Artigos;
 
+    console.log("x");
     for(let i = 0; i < artigos.length; i++)
     {
-      if(artigos[i].IdArtigo === productID){
-        this.opp.propostas[NumProposal-1].Valor += artigos[i].PrecoVenda; //TODO compor
+      if(artigos[i].IdArtigo === productID)
+      {
+        let precoAtual: number = this.opp.propostas[NumProposal-1].Valor;
+        precoAtual = Number(artigos[i].PrecoVenda) + Number(precoAtual);
+        this.opp.propostas[NumProposal-1].Valor = precoAtual.toFixed(2);
         artigos[i].Quantidade += 1;
         break;
       }
@@ -117,10 +125,12 @@ export class OpportunityModalPage {
     
     for(let i = 0; i < artigos.length; i++)
     {
-      if(artigos[i].IdArtigo === productID){
-        this.opp.propostas[NumProposal-1].Valor -= artigos[i].PrecoVenda; //TODO compor
-        if(artigos[i].Quantidade > 0)
-          artigos[i].Quantidade -= 1;
+      if(artigos[i].IdArtigo === productID && artigos[i].Quantidade > 0)
+      {
+        let precoAtual: number = this.opp.propostas[NumProposal-1].Valor;
+        precoAtual =  Number(precoAtual) - Number(artigos[i].PrecoVenda); 
+        this.opp.propostas[NumProposal-1].Valor = precoAtual.toFixed(2);
+        artigos[i].Quantidade -= 1;
         break;
       }
     }

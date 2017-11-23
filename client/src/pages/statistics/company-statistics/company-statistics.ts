@@ -42,9 +42,9 @@ export class CompanyStatisticsPage {
 
       });
 
-    this.statisticsP.getBilledMoneyNumberBySalesman().subscribe(
+    this.statisticsP.getBilledMoneyNumber().subscribe(
       data => {
-        this.billedMoneyNumber = data;
+        this.billedMoneyNumber = data.toFixed(2);
       },
       err => {
 
