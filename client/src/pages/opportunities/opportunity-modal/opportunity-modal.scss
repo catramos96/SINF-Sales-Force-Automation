@@ -9,15 +9,38 @@ page-opportunity-modal {
         min-height: 45px;
     }
     .right{
-        display:inline-block;
+        display: inline-block;
         float: right;
+    }
+    .left{
+        display: inline-block;
+        float: left;
+    }
+    .center{
+        display: inline-block;
+        float: center;
     }
     .inline{
         padding-top: 5px;
-        padding-bottom: 40px;
+        padding-bottom: 30px;
         margin: 0 auto;
         text-align:center;
         width: 100%;
+    }
+    .down{
+        padding-top: 2% ;
+    }
+
+    .colored{
+        background-color: lightblue;
+        padding-right: 10px;
+        padding-left: 10px;
+        min-height: 40px; 
+    }
+
+    .selected h4{
+        color: cornflowerblue !important;
+        font-weight: bold;
     }
 
 }

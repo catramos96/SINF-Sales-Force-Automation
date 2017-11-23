@@ -17,11 +17,12 @@ import { ProductPage } from '../../product/product';
 export class OpportunityModalPage {
 
   opp = {
-    Lead: {ID : "",Oportunidade: "",IdCliente:"",NomeCliente : "",ContactoCliente : "", Descricao : "",
-    Resumo : "", DataCriacao : "",Vendedor: ""}, 
-    ValorTotalOV: 0, EstadoVenda: 0,propostas:[]
+    ID : "",Oportunidade: "",IdCliente:"",NomeCliente : "",ContactoCliente : "", Descricao : "",
+    Resumo : "", DataCriacao : "",Vendedor: "",ValorTotalOV: 0, EstadoVenda: 0,propostas:[]
   };
   dataID = -1;
+  shownGroup = null;
+  currentSelected = -1;
 
   constructor(
     public navCtrl: NavController, 
@@ -38,10 +39,28 @@ export class OpportunityModalPage {
     
   }
 
+  //modal
   dismiss() {
     this.viewCtrl.dismiss();
   }
 
+  //accordion
+  isGroupShown(group) {
+    return this.shownGroup === group;
+  };
+  toggleGroup(group) {
+    if (this.isGroupShown(group)) {
+      this.shownGroup = null;
+    } else {
+      this.shownGroup = group;
+    }
+    this.currentSelected=-1;
+  };
+  onItemClicked(j){
+    this.currentSelected = j;
+  }
+
+  //remove product from proposal button
   removeProduct(productID, NumProposal)
   {
     var artigos = this.opp.propostas[NumProposal-1].Artigos;
@@ -139,7 +158,7 @@ export class OpportunityModalPage {
 
   //problema -> cancela as 2
   cancelProposal(NumProposal){
-    this.getOpportunity(this.opp.Lead.ID);
+    this.getOpportunity(this.opp.ID);
   }
 
   makeOrder(NumProposal){
@@ -161,7 +180,7 @@ export class OpportunityModalPage {
 
     let json = {
       //id
-      Entidade : this.opp.Lead.IdCliente,  //receber o cliente
+      Entidade : this.opp.IdCliente,  //receber o cliente
       //NumDoc 
       //Data
       //TotalMerc
@@ -197,7 +216,7 @@ export class OpportunityModalPage {
     });
 
     let json = {
-      ID: this.opp.Lead.ID,
+      ID: this.opp.ID,
       NumProposal: NumProposal,
       Artigos : jsonArtigos
     }
@@ -213,7 +232,7 @@ export class OpportunityModalPage {
   }
 
   getOpportunity(id){
-    
+    /*
     this.opportunitiesService.getOpportunity(id).subscribe(
       data => { 
           this.opp = data;
@@ -222,23 +241,45 @@ export class OpportunityModalPage {
       err => {
           console.log(err);
       });
-    /*
+    */
     this.opp = {
-      Lead : {
-        ID : "1",
-        Oportunidade: "OPP",
-        NomeCliente : "Antonio",
-        ContactoCliente : "963852714",
-        Descricao : "Encomenda de coisas",
-        Resumo : "Lorem ipsum blablabla",
-        DataCriacao : "13/9/2017",
-        Vendedor: "1"
-      }, 
+      ID : "1",
+      Oportunidade: "OPP",
+      IdCliente: "1",
+      NomeCliente : "Antonio",
+      ContactoCliente : "963852714",
+      Descricao : "Encomenda de coisas",
+      Resumo : "Lorem ipsum blablabla",
+      DataCriacao : "13/9/2017",
+      Vendedor: "1",
       ValorTotalOV : 26.32,
       EstadoVenda: 0,
       propostas: [
         {
           NumProposta: 1,
+          Valor: 10,
+          Artigos:[
+              {
+                Linha: 1,
+                NomeArtigo : "Magro",
+                IdArtigo: "A021",
+                Quantidade: 1,
+                PrecoVenda: 0.32,
+                Unidade: "UN"
+              },
+              {
+                Linha: 2,
+                NomeArtigo : "Artigo 2",
+                IdArtigo: "A0002",
+                Quantidade: 2,
+                PrecoVenda: 26,
+                Unidade: "UN"
+              }
+          ]
+        },
+        {
+          NumProposta: 2,
+          Valor : 10,
           Artigos:[
               {
                 Linha: 1,
@@ -257,9 +298,8 @@ export class OpportunityModalPage {
                 Unidade: "UN"
               }
           ]
-        },
+        }
       ]
     };
-    */
   }
 }
