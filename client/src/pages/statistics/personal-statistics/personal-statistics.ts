@@ -43,7 +43,7 @@ export class PersonalStatisticsPage {
 
     this.statisticsP.getBilledMoneyNumberBySalesman().subscribe(
       data => {
-        this.billedMoneyNumber = data;
+        this.billedMoneyNumber = data.toFixed(2);
       },
       err => {
 

@@ -62,8 +62,6 @@
             <br>
             <p>
               <strong>Name:</strong> {{target.PrimeiroNome}}{{target.NomesIntermedios}}{{target.UltimoNome}}</p>
-            <p *ngIf="target.Titulo">
-              <strong>Title:</strong> {{target.Titulo}}</p>
             <p *ngIf="target.Morada">
               <strong>Address:</strong> {{target.Morada}}</p>
             <p *ngIf="target.CodPostal">
@@ -94,10 +92,10 @@
         </ion-row>
         <ion-row class="additional-info">
           <ion-col class="additional-info-lb">
-            <button ion-button></button>
+            <button ion-button (click)="editTarget(target.Id)">Edit</button>
           </ion-col>
           <ion-col>
-            <button ion-button></button>
+            <button ion-button (click)="toggleElement(i)">Close</button>
           </ion-col>
         </ion-row>
       </div>
