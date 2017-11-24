@@ -27,7 +27,6 @@ export class OpportunitiesPage {
     private modalCtrl : ModalController) {}
 
   ionViewDidLoad() {
-    //this.navParams.get();
     this.getOpportunities();
   }
 
@@ -59,7 +58,7 @@ export class OpportunitiesPage {
   }
 
   getOpportunities(){
-    
+    /*
     this.opportunitiesService.getOpportunities().subscribe(
       data => { 
         this.opp = data;
@@ -68,29 +67,26 @@ export class OpportunitiesPage {
       err => {
           console.log(err);
       });
+      */
       
-      /*
       this.opp = [
         {
-          Lead:{
-            ID : "1",
-            NomeCliente : "Antonio",
-            ContactoCliente : "963852714",
-            Descricao : "Encomenda de coisas",
-            DataCriacao : "13/9/2017"
-          }
+          ID : "1",
+          NomeCliente : "Antonio",
+          ContactoCliente : "963852714",
+          Descricao : "Encomenda de coisas",
+          DataCriacao : "13/9/2017"
         },
         {
-          Lead:{
-            ID : "1",
-            NomeCliente : "Antonio",
-            ContactoCliente : "963852714",
-            Descricao : "Encomenda de coisas",
-            DataCriacao : "13/9/2017"
-          }
+          ID : "1",
+          NomeCliente : "Antonio",
+          ContactoCliente : "963852714",
+          Descricao : "Encomenda de coisas",
+          DataCriacao : "13/9/2017"
         },
       ];
-      */
+      this.displayOpportunities();
+      console.log(this.opp);
   }
 
 }

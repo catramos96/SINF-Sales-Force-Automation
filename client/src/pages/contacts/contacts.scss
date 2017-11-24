@@ -4,7 +4,7 @@ page-contacts {
     .grid-header{
         position:relative;
         min-height:70px;
-        background-color:gray;
+        background-color:#696969;
     }
 
     .contacts-grid * {
@@ -19,15 +19,15 @@ page-contacts {
     }
 
     .contacts-grid > div:nth-child(even) > ion-row{
-        background-color:cyan;
+        background-color:#DCDCDC;
     }
 
     .contacts-grid > div:nth-child(odd) > ion-row{
-        background-color:pink;
+        background-color:#A9A9A9;
     }
 
     .contacts-grid > div > div {
-        background-color:lightgray;
+        background-color:white;
         border:1px solid black;
         padding-top:1%;
         padding-bottom:1%;

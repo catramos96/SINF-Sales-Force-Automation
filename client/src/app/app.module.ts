@@ -16,14 +16,15 @@ import { StatisticsPage } from '../pages/statistics/statistics';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
 import { OpportunitiesPage } from '../pages/opportunities/opportunities';
 import { OpportunityModalPage } from '../pages/opportunities/opportunity-modal/opportunity-modal';
+import { CreateOpportunityPage } from '../pages/opportunities/create-opportunity/create-opportunity';
 
 import { ContactsProvider } from '../providers/contacts/contacts';
 import { ProductsProvider } from '../providers/products/products';
 
 import { CalendarModule } from 'angular-calendar';
 import { StatisticsProvider } from '../providers/statistics/statistics';
-import {TeamPage} from "../pages/team/team";
-import {AppointmentModal} from "../pages/appointments/appointmentModal"
+import { TeamPage } from "../pages/team/team";
+import { AppointmentModal } from "../pages/appointments/appointmentModal"
 import { OpportunitiesProvider } from '../providers/opportunities/opportunities';
 import { AppointmentsProvider } from '../providers/appointments/appointments';
 import { SalesProvider } from '../providers/sales/sales';
@@ -42,6 +43,7 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
     TeamPage,
     OpportunitiesPage,
     OpportunityModalPage,
+    CreateOpportunityPage,
     CreateAppointmentsModalPage,
     SalesHistoryPage
   ],
@@ -67,6 +69,7 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
     OpportunityModalPage,
     SalesHistoryPage,
     CreateAppointmentsModalPage
+    CreateOpportunityPage
   ],
   providers: [
     StatusBar,

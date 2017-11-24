@@ -351,10 +351,11 @@ namespace FirstREST.Lib_Primavera
                 {
                     Model.VendasDTO dto = new Model.VendasDTO();
                     dto.Data = datas.Valor("Data");
+                    string output = dto.Data.Year.ToString() + "-" + dto.Data.Month.ToString() + "-" + dto.Data.Day.ToString(); 
 
-                    orders = PriEngine.Engine.Consulta(@"select Nome, TotalMerc 
+                    orders = PriEngine.Engine.Consulta(@"select Nome, Data, TotalMerc 
                                                         from CabecDoc
-                                                        where TipoDoc = 'ECL' AND Data ='" + dto.Data + "';");
+                                                        where TipoDoc = 'ECL' AND Data ='" + output + "';");
 
                     List<Model.DocVenda> docs = new List<Model.DocVenda>();
                     while (!orders.NoFim())
