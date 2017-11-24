@@ -68,7 +68,7 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
     OpportunitiesPage,
     OpportunityModalPage,
     SalesHistoryPage,
-    CreateAppointmentsModalPage
+    CreateAppointmentsModalPage,
     CreateOpportunityPage
   ],
   providers: [
