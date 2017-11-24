@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ViewController } from 'ionic-angular/navigation/view-controller';
 
 /**
  * Generated class for the CreateOpportunityPage page.
@@ -14,14 +15,27 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class CreateOpportunityPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  opp = {};
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public viewCtrl: ViewController
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateOpportunityPage');
   }
 
-  //campos : Titulo, Descricao, cliente (ir a lista de contactos)
-  //automatico : creation date 
+  //modal
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+  
+  createOpportunity() {
+    console.log(this.opp)
+  }
+
 
 }

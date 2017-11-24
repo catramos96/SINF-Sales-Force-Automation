@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { OpportunitiesProvider } from '../../providers/opportunities/opportunities';
 import { OpportunityModalPage } from './opportunity-modal/opportunity-modal';
+import { CreateOpportunityPage } from './create-opportunity/create-opportunity';
 
 
 /**
@@ -30,7 +31,12 @@ export class OpportunitiesPage {
     this.getOpportunities();
   }
 
-  openModal(oppID) {
+  createOpportunity(){
+    let modal = this.modalCtrl.create(CreateOpportunityPage);
+    modal.present();
+  }
+  
+  openOpportunity(oppID) {
     let modal = this.modalCtrl.create(OpportunityModalPage,{ opportunityID: oppID });
     modal.present();
   }
