@@ -5,7 +5,7 @@ import {FormGroup, FormBuilder, AbstractControl, Validators} from "@angular/form
 
 @IonicPage()
 @Component({
-  selector: 'page-client',
+  selector: 'page-contacts',
   templateUrl: 'client.html',
 })
 export class ClientPage {

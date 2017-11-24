@@ -4,7 +4,7 @@ import { ContactsProvider } from '../../../providers/contacts/contacts';
 
 @IonicPage()
 @Component({
-  selector: 'page-target',
+  selector: 'page-contacts',
   templateUrl: 'target.html',
 })
 export class TargetPage {
