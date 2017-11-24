@@ -60,7 +60,7 @@ export class OpportunityModalPage {
     this.currentSelected = j;
   }
 
-  //remove product from proposal button
+  //remove product from proposal - button
   removeProduct(productID, NumProposal)
   {
     var artigos = this.opp.propostas[NumProposal-1].Artigos;
@@ -78,7 +78,7 @@ export class OpportunityModalPage {
     }
     this.opp.propostas[NumProposal-1].Artigos = artigos;    
   }
-
+  //add product to proposal - button
   addProducts(NumProposal){
     this.navCtrl.push(ProductPage,
       {
@@ -87,7 +87,7 @@ export class OpportunityModalPage {
         callback: this.getData
       });
   } 
-
+  //receive products form catalogue
   getData = (data,NumProposal) =>
   {
     return new Promise((resolve, reject) => {
@@ -118,7 +118,7 @@ export class OpportunityModalPage {
       resolve();
     });
   };
-
+  //add quantity to product - button
   addQuantity(productID,NumProposal)
   {
     var artigos = this.opp.propostas[NumProposal-1].Artigos;
@@ -137,7 +137,7 @@ export class OpportunityModalPage {
     }
     this.opp.propostas[NumProposal-1].Artigos = artigos;
   }
-
+  //remove quantity from product
   removeQuantity(productID,NumProposal)
   {
     let artigos = this.opp.propostas[NumProposal-1].Artigos;
@@ -156,11 +156,48 @@ export class OpportunityModalPage {
     this.opp.propostas[NumProposal-1].Artigos = artigos;
   }
 
+  //TODO
+  //add new proposal to opportunity - button
+  addNewProposal(){
+    
+  }
+
   //problema -> cancela as 2
+  //cancel changes from proposal 
   cancelProposal(NumProposal){
     this.getOpportunity(this.opp.ID);
   }
 
+  //TODO server
+  //save changed proposal
+  saveProposal(NumProposal){
+    let jsonArtigos = [];
+
+    this.opp.propostas[NumProposal-1].Artigos.forEach(art => {
+      let jsonArt ={
+        IDArtigo : art.IDArtigo,
+        Quantidade : art.Quantidade
+      }
+      jsonArtigos.push(jsonArt);
+    });
+
+    let json = {
+      ID: this.opp.ID,
+      NumProposal: NumProposal,
+      Artigos : jsonArtigos
+    }
+    /*
+    this.opportunitiesService.updateOpportunity(json).subscribe(
+      data => { 
+          console.log("updated");
+      },
+      err => {
+          console.log(err);
+      });
+     */ 
+  }
+
+  //make new order -> win opportunity
   makeOrder(NumProposal){
     let linhas = [];
     this.opp.propostas[NumProposal-1].Artigos.forEach(element => {
@@ -170,7 +207,7 @@ export class OpportunityModalPage {
         //IdCabecDoc
         Quantidade : element.Quantidade,
         //Unidade
-        Desconto : "0", //TODO adicionar desconto ?
+        Desconto : "0", //TODO adicionar desconto 
         PrecoUnitario : element.PrecoVenda
         //TotalIliquido
         //TotalLiquido
@@ -203,34 +240,13 @@ export class OpportunityModalPage {
       });
   }
 
-  //TODO -> fazer no server (depois de 6ª)
-  saveProposal(NumProposal){
-    let jsonArtigos = [];
+  //TODO
+  //lost opportunity
+  cancelOpportunity(){
 
-    this.opp.propostas[NumProposal-1].Artigos.forEach(art => {
-      let jsonArt ={
-        IDArtigo : art.IDArtigo,
-        Quantidade : art.Quantidade
-      }
-      jsonArtigos.push(jsonArt);
-    });
-
-    let json = {
-      ID: this.opp.ID,
-      NumProposal: NumProposal,
-      Artigos : jsonArtigos
-    }
-    /*
-    this.opportunitiesService.updateOpportunity(json).subscribe(
-      data => { 
-          console.log("updated");
-      },
-      err => {
-          console.log(err);
-      });
-     */ 
   }
 
+  //receive opportunity
   getOpportunity(id){
     /*
     this.opportunitiesService.getOpportunity(id).subscribe(

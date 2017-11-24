@@ -21,7 +21,7 @@
     <!-- PROPOSAL -->
     <div class="inline colored">
       <h6 class="left down"> My Proposals</h6>
-      <button class="right" ion-button small color="secondary">
+      <button class="right" ion-button small color="secondary" (click)="addNewProposal()">
           <ion-icon name="add"></ion-icon>
       </button>
     </div>
@@ -40,6 +40,7 @@
         <!-- details -->
         <ion-item *ngIf="isGroupShown(i)">
           <ion-grid>
+            <!-- header -->
             <ion-row align-items-center justify-content-center class="grid-header">
               <ion-col col-1>Line</ion-col>
               <ion-col col-4>Product</ion-col>
@@ -49,10 +50,9 @@
               <ion-col col-1></ion-col>
             </ion-row>
             <ion-row *ngIf="prop.Artigos.length == 0" justify-content-center>
-              <br>
-              <br>
-              <p> No products to display</p>
+              <br><br><p> No products to display</p>
             </ion-row>
+            <!-- artigos -->
             <ion-row *ngFor="let art of prop.Artigos" justify-content-center>
               <ion-col col-1 class="column-lines">{{art.Linha}}</ion-col>
               <ion-col col-4 class="column-lines">{{art.IdArtigo}} : {{art.NomeArtigo}}</ion-col>
@@ -73,6 +73,13 @@
                 </button>
               </ion-col>
             </ion-row>
+            <!-- add product -->
+            <ion-row>
+              <button ion-button clear color="secondary" (click)="addProducts(prop.NumProposal)">
+                <ion-icon name="add"></ion-icon>
+              </button>
+            </ion-row>
+            <!-- valor total -->
             <ion-row align-items-center justify-content-center class="grid-header">
               <ion-col col-p></ion-col>
               <ion-col col-2>{{prop.Valor}}</ion-col>
@@ -94,7 +101,7 @@
     </ion-list>
     <!-- TODO centrar -->
     <div class="inline center">
-      <button ion-button color="danger" small>
+      <button ion-button color="danger" small (click)="cancelOpportunity()">
         Cancel Opportunity
       </button>
     </div>
