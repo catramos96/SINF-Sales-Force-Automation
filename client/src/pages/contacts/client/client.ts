@@ -29,9 +29,8 @@ export class ClientPage {
     this.callback = this.navParams.get('callback');
   }
 
-  sendClient(){
-    console.log("ok");
-    this.callback("Nome","ID").then(()=>{ this.navCtrl.pop() });
+  sendClient(Nome,ID){
+    this.callback(Nome,ID).then(()=>{ this.navCtrl.pop() });
   }
 
   ionViewDidLoad() {

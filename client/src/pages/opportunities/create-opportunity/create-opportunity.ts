@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { OpportunitiesProvider } from '../../../providers/opportunities/opportunities';
 import { ClientPage } from '../../contacts/client/client';
 import { TargetPage } from '../../contacts/target/target';
 
@@ -17,12 +18,15 @@ import { TargetPage } from '../../contacts/target/target';
 })
 export class CreateOpportunityPage {
 
-  opp = {};
+  opp = { IdCliente:"" };
+  tempName = "";
+  tempId = "";
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    private opportunitiesService: OpportunitiesProvider
   ) { }
 
   ionViewDidLoad() {
@@ -49,18 +53,26 @@ export class CreateOpportunityPage {
       });
   }
 
-  //TODO
-  //receive client from contact list
   getData = (Nome,Id) =>
   {
-    return new Promise((resolve, reject) => {
-      console.log(">> " + Nome + "\n" + Id);
+    return new Promise((resolve, reject) => { 
+      this.tempId = Id;
+      this.tempName = Nome;
       resolve();
     });
   };
   
+  //TODO
   createOpportunity() {
-    console.log(this.opp)
+    this.opp.IdCliente = this.tempId;
+    this.opportunitiesService.createOpportunity(this.opp).subscribe(
+      data => { 
+          console.log("created");
+      },
+      err => {
+          console.log(err);
+      });
+
   }
 
 }

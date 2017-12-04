@@ -121,7 +121,6 @@ export class OpportunityModalPage {
   {
     var artigos = this.opp.propostas[NumProposal-1].Artigos;
 
-    console.log("x");
     for(let i = 0; i < artigos.length; i++)
     {
       if(artigos[i].IdArtigo === productID)
@@ -224,7 +223,6 @@ export class OpportunityModalPage {
     }
     this.opportunitiesService.makeOrder(json).subscribe(
       data => { 
-        //TODO aparecer dialogo
         console.log("feito");
         let alert = this.alertCtrl.create({
           title: 'Sales Order',

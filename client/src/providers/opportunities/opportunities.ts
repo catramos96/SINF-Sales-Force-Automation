@@ -43,4 +43,11 @@ export class OpportunitiesProvider {
     var response = this.http.post(url,sale).map(res => res.json());
     return response;
   }
+
+  //FAZER
+  createOpportunity(opportunity){
+    var url = AppSettings.API_ENDPOINT+'opportunities';
+    var response = this.http.post(url,opportunity).map(res => res.json());
+    return response;
+  }
 }

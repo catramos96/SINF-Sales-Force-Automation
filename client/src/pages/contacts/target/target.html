@@ -40,7 +40,8 @@
         <ion-col class="column-1-line">{{target.Telemovel}}</ion-col>
         <ion-col class="column-1-line">{{target.Pais}}</ion-col>
         <ion-col col-1 class="column-1-line" *ngIf="isOpportunity">
-          <button ion-button clear color="secondary" (click)="sendClient()">
+          <button ion-button clear color="secondary" 
+              (click)="sendClient(target.PrimeiroNome,target.UltimoNome, target.Id)">
             <ion-icon name="checkmark-circle"></ion-icon>
           </button>
         </ion-col>
