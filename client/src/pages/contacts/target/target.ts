@@ -12,8 +12,22 @@ export class TargetPage {
   private showElement: boolean[] = [];
   private targets: JSON[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private contacts: ContactsProvider) {
-    
+  isOpportunity = false;
+  callback = null;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private contacts: ContactsProvider
+  ) {
+    this.isOpportunity = this.navParams.get('isOpportunity');
+    this.callback = this.navParams.get('callback');
+  }
+
+  //TODO
+  sendClient(){
+    console.log("ok");
+    this.callback("Nome","ID").then(()=>{ this.navCtrl.pop() });
   }
 
   ionViewDidLoad(){

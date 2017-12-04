@@ -12,6 +12,8 @@ import { HomePage } from '../pages/home/home';
 import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
 import { ContactsPage } from '../pages/contacts/contacts';
+import { ClientPage } from '../pages/contacts/client/client';
+import { TargetPage } from '../pages/contacts/target/target';
 import { StatisticsPage } from '../pages/statistics/statistics';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
 import { OpportunitiesPage } from '../pages/opportunities/opportunities';
@@ -39,6 +41,8 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
     ModalContentPage,
     AppointmentModal,
     ContactsPage,
+    ClientPage,
+    TargetPage,
     StatisticsPage,
     TeamPage,
     OpportunitiesPage,
@@ -63,6 +67,8 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
     ModalContentPage,
     AppointmentModal,
     ContactsPage,
+    ClientPage,
+    TargetPage,
     StatisticsPage,
     TeamPage,
     OpportunitiesPage,

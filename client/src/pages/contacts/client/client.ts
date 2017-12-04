@@ -15,17 +15,26 @@ export class ClientPage {
   private clients: JSON[] = [];
   private createGroupForm: FormGroup;
 
+  isOpportunity = false;
+  callback = null;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public formBuilder: FormBuilder, private contacts: ContactsProvider) {
 
     this.createGroupForm = formBuilder.group({
       name:[''],
       id:[''],
     });
+    
+    this.isOpportunity = this.navParams.get('isOpportunity');
+    this.callback = this.navParams.get('callback');
+  }
 
+  sendClient(){
+    console.log("ok");
+    this.callback("Nome","ID").then(()=>{ this.navCtrl.pop() });
   }
 
   ionViewDidLoad() {
-
     this.showCreateGroup = false;
     this.getClients();
   }

@@ -35,9 +35,7 @@ export class OpportunityModalPage {
       this.getOpportunity(id);  
   }
 
-  ionViewDidLoad() {
-    
-  }
+  ionViewDidLoad() { }
 
   //modal
   dismiss() {
