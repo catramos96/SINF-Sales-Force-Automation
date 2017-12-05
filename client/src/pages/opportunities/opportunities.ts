@@ -72,22 +72,22 @@ export class OpportunitiesPage {
       /*
       this.opp = [
         {
-          Lead:{
+          
             ID : "1",
             NomeCliente : "Antonio",
             ContactoCliente : "963852714",
             Descricao : "Encomenda de coisas",
             DataCriacao : "13/9/2017"
-          }
+          
         },
         {
-          Lead:{
+          
             ID : "1",
             NomeCliente : "Antonio",
             ContactoCliente : "963852714",
             Descricao : "Encomenda de coisas",
             DataCriacao : "13/9/2017"
-          }
+          
         },
       ];
       */

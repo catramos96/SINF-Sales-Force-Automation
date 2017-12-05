@@ -17,8 +17,8 @@ import { ProductPage } from '../../product/product';
 export class OpportunityModalPage {
 
   opp = {
-    Lead: {ID : "",Oportunidade: "",IdCliente:"",NomeCliente : "",ContactoCliente : "", Descricao : "",
-    Resumo : "", DataCriacao : "",Vendedor: ""}, 
+    ID : "",NomeOport: "",IdCliente:"",NomeCliente : "",ContactoCliente : "", Descricao : "",
+    Resumo : "", DataCriacao : "",Vendedor: "", 
     ValorTotalOV: 0, EstadoVenda: 0,propostas:[]
   };
   dataID = -1;
@@ -129,7 +129,7 @@ export class OpportunityModalPage {
 
   //problema -> cancela as 2
   cancelProposal(NumProposal){
-    this.getOpportunity(this.opp.Lead.ID);
+    this.getOpportunity(this.opp.ID);
   }
 
   makeOrder(NumProposal){
@@ -151,7 +151,7 @@ export class OpportunityModalPage {
 
     let json = {
       //id
-      Entidade : this.opp.Lead.IdCliente,  //receber o cliente
+      Entidade : this.opp.IdCliente,  //receber o cliente
       //NumDoc 
       //Data
       //TotalMerc
@@ -187,7 +187,7 @@ export class OpportunityModalPage {
     });
 
     let json = {
-      ID: this.opp.Lead.ID,
+      ID: this.opp.ID,
       NumProposal: NumProposal,
       Artigos : jsonArtigos
     }
@@ -214,16 +214,16 @@ export class OpportunityModalPage {
       });
     /*
     this.opp = {
-      Lead : {
+      
         ID : "1",
-        Oportunidade: "OPP",
+        NomeOport: "OPP",
         NomeCliente : "Antonio",
         ContactoCliente : "963852714",
         Descricao : "Encomenda de coisas",
         Resumo : "Lorem ipsum blablabla",
         DataCriacao : "13/9/2017",
         Vendedor: "1"
-      }, 
+       
       ValorTotalOV : 26.32,
       EstadoVenda: 0,
       propostas: [

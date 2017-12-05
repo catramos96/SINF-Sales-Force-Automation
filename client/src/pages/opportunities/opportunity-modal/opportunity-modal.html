@@ -12,13 +12,13 @@
 <ion-content>
     <div padding>
         <h4 style="text-align:center">Opportunity</h4>
-        <b>Title</b> : {{opp.Lead.Descricao}} <br>
-        <b>Description</b> : {{opp.Lead.Resumo}} <br><br>
-        <b>Creation Date</b> : {{opp.Lead.DataCriacao}} <br>
+        <b>Title</b> : {{opp.Descricao}} <br>
+        <b>Description</b> : {{opp.Resumo}} <br><br>
+        <b>Creation Date</b> : {{opp.DataCriacao}} <br>
 
         <h4 style="text-align:center">Client</h4>
-        <b>Name</b> : {{opp.Lead.NomeCliente}} <br>
-        <b>Contact</b> : {{opp.Lead.ContactoCliente}} <br><br>
+        <b>Name</b> : {{opp.NomeCliente}} <br>
+        <b>Contact</b> : {{opp.ContactoCliente}} <br><br>
         
         <h4 style="text-align:center">Proposals</h4>
         <div *ngFor="let prop of opp.propostas">
