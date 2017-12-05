@@ -194,9 +194,9 @@ export class HomePage {
     for(var i = 0; i < this.opportunities.length; i++){
 
       var e:HTMLElement = document.createElement('tr');
-      var id = this.opportunities[i].Lead.ID;
+      var id = this.opportunities[i].ID;
 
-      e.innerHTML = '<td>' + this.opportunities[i].Lead.Descricao + '</td>';
+      e.innerHTML = '<td>' + this.opportunities[i].Descricao + '</td>';
 
       e.addEventListener("click",() =>{
         let modal = this.modalCtrl.create(OpportunityModalPage,{opportunityID: id });
