@@ -352,9 +352,9 @@ namespace FirstREST.Lib_Primavera
                     Model.VendasDTO dto = new Model.VendasDTO();
                     dto.Data = datas.Valor("Data");
 
-                    orders = PriEngine.Engine.Consulta(@"select Nome, TotalMerc 
+                    orders = PriEngine.Engine.Consulta(@"select Nome, TotalMerc, Data
                                                         from CabecDoc
-                                                        where TipoDoc = 'ECL' AND Data ='" + dto.Data + "';");
+                                                        where TipoDoc = 'ECL' AND Data = CAST('" + dto.Data + "' AS datetime);");
 
                     List<Model.DocVenda> docs = new List<Model.DocVenda>();
                     while (!orders.NoFim())

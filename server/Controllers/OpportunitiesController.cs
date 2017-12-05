@@ -13,17 +13,17 @@ namespace FirstREST.Controllers
         // GET: api/opportunities/
         [HttpGet]
         [Route("api/opportunities")]
-        public IEnumerable<Lib_Primavera.Model.Opportunity> Get()
+        public IEnumerable<Lib_Primavera.Model.Oportunidade> Get()
         {
-            return Lib_Primavera.PriIntegrationOpportunity.ListaOpportunidades();
+            return Lib_Primavera.PriIntegrationOportunidade.ListaOpportunidades();
         }
 
         // GET api/opportunities/id    
         [HttpGet]
         [Route("api/opportunities/{id}")]
-        public Opportunity Get(string id)
+        public Oportunidade Get(string id)
         {
-            Lib_Primavera.Model.Opportunity opportunity = Lib_Primavera.PriIntegrationOpportunity.GetOportunidade(id);
+            Lib_Primavera.Model.Oportunidade opportunity = Lib_Primavera.PriIntegrationOportunidade.GetOportunidade(id);
             if (opportunity == null)
             {
                 throw new HttpResponseException(
