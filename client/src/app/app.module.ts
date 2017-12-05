@@ -24,6 +24,7 @@ import { ContactsProvider } from '../providers/contacts/contacts';
 import { ProductsProvider } from '../providers/products/products';
 
 import { CalendarModule } from 'angular-calendar';
+import { ChartsModule } from 'ng2-charts';
 import { StatisticsProvider } from '../providers/statistics/statistics';
 import { TeamPage } from "../pages/team/team";
 import { AppointmentModal } from "../pages/appointments/appointmentModal"
@@ -57,7 +58,8 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
     IonicModule.forRoot(MyApp),
     CalendarModule.forRoot(),
     BrowserAnimationsModule,
-    HttpModule
+    HttpModule,
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

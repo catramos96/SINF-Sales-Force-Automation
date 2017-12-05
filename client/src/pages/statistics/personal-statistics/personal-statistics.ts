@@ -7,17 +7,28 @@ import { StatisticsProvider } from '../../../providers/statistics/statistics';
   selector: 'page-personal-statistics',
   templateUrl: 'personal-statistics.html',
 })
+
 export class PersonalStatisticsPage {
-  private soldProductsNumber: number;
-  private billedMoneyNumber: number;
+  private soldProductsNumber: string;
+  private billedMoneyNumber: string;
   private top5Products: JSON[] = [];
-  private productsSoldByCategory: JSON[] = [];
+  //private productsSoldByCategory: JSON[] = [];
+
+ private pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
+  private pieChartData: number[] = [1, 1, 13];
+  //private pieChartLabels: string[] = [];
+  //private pieChartData: number[] = [];
+  private pieChartType: string = 'pie';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private statisticsP: StatisticsProvider) {
   }
 
   ionViewDidLoad() {
-    this.statisticsP.getSoldProductsNumberBySalesman().subscribe(
+    let produtosVendidos = 150000;
+    let billedMoneyNumber = 350000;
+    this.soldProductsNumber = produtosVendidos.toLocaleString('pt-PT');
+    this.billedMoneyNumber = billedMoneyNumber.toLocaleString('pt-PT');
+    /*this.statisticsP.getSoldProductsNumberBySalesman().subscribe(
       data => {
         this.soldProductsNumber = data;
       },
@@ -33,13 +44,17 @@ export class PersonalStatisticsPage {
 
       });
 
-    this.statisticsP.getSoldProductsByCategoryBySalesman().subscribe(
+    /*this.statisticsP.getSoldProductsByCategoryBySalesman().subscribe(
       data => {
-        this.productsSoldByCategory = data;
+        let i;
+        for (i = 0; i < data.length; i++) {
+          this.pieChartData[i] = data[i].Quantidade;
+          this.pieChartLabels[i] = data[i].FamiliaNome;
+        }
       },
-      err => {
-
-      });
+        err => {
+        
+    });     
 
     this.statisticsP.getBilledMoneyNumberBySalesman().subscribe(
       data => {
@@ -47,7 +62,17 @@ export class PersonalStatisticsPage {
       },
       err => {
 
-      });
+      });*/
+
+  }
+
+  // events
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+    console.log(e);
   }
 
 }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace FirstREST.Lib_Primavera
 {
-    public class PriIntegrationLead
+    public class PriIntegrationOportunidadeLinha
     {
     }
 }
