@@ -1,4 +1,5 @@
-﻿using Interop.CrmBE900;
+﻿using FirstREST.Lib_Primavera.Model;
+using Interop.CrmBE900;
 using Interop.GcpBE900;
 using Interop.StdBE900;
 using System;
@@ -17,7 +18,6 @@ namespace FirstREST.Lib_Primavera
             CrmBELinhasPropostaOPV objLinhas = new CrmBELinhasPropostaOPV();
 
             Model.Oportunidade opportunity = new Model.Oportunidade();
-            //Model.Lead lead = new Model.Lead();
             List<Model.Proposta> propostas = new List<Model.Proposta>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
@@ -39,7 +39,7 @@ namespace FirstREST.Lib_Primavera
                     opportunity.Vendedor = objLead.get_Vendedor();
 
                     var idCliente = objLead.get_Entidade();
-                    opportunity.IdCliente = idCliente;
+                    opportunity.CodCliente = idCliente;
                     opportunity.NomeCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Nome");
                     opportunity.ContactoCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Fac_Tel");
                     opportunity.EstadoVenda = objLead.get_EstadoVenda();
@@ -126,6 +126,54 @@ namespace FirstREST.Lib_Primavera
             {
                 return null;
             }
+        }
+
+        public static RespostaErro CreateOportunidade(Model.Oportunidade oportunidade)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+            CrmBEOportunidadeVenda objOport = new CrmBEOportunidadeVenda();
+
+            try
+            {
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+                    objOport.set_ID(Guid.NewGuid().ToString());
+                    StdBELista opps = PriEngine.Engine.Consulta("SELECT COUNT(*) AS N FROM CabecOportunidadesVenda");
+                    int next = opps.Valor("N") + 1;
+                    objOport.set_Oportunidade("OPV" + next);
+                    objOport.set_Descricao(oportunidade.Descricao);
+                    objOport.set_Resumo(oportunidade.Resumo);
+                    objOport.set_DataCriacao(DateTime.Now);
+                    objOport.set_Entidade(oportunidade.CodCliente);
+                    objOport.set_Vendedor("1");    //TODO temp
+                    objOport.set_EstadoVenda(0);
+                    objOport.set_TipoEntidade("C"); //obrigatorio
+                    objOport.set_DataExpiracao(new DateTime(2020, 1, 1));   //obrigatorio
+                    objOport.set_CicloVenda("CV_HW");   //obrigatorio
+                    objOport.set_Moeda("EUR");
+                    //quando cria ainda nao tem propostas
+
+                    PriEngine.Engine.CRM.OportunidadesVenda.Actualiza(objOport);
+                       
+                    erro.Erro = 0;
+                    erro.Descricao = "Sucesso";
+                    return erro;
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir empresa";
+                    return erro;
+                }
+            }
+            catch (Exception ex)
+            {
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }
+
+            return erro;
         }
     }
 }

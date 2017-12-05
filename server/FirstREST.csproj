@@ -232,9 +232,8 @@
     <Compile Include="Controllers\DocVendaController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LeadsController.cs" />
-    <Compile Include="Controllers\OpportunitiesController.cs" />
-    <Compile Include="Controllers\OpportunityLinesController.cs" />
+    <Compile Include="Controllers\OportunidadesController.cs" />
+    <Compile Include="Controllers\OportunidadeLinhasController.cs" />
     <Compile Include="Controllers\RotasController.cs" />
     <Compile Include="Controllers\TarefasController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

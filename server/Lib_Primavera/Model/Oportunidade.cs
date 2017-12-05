@@ -19,7 +19,7 @@ namespace FirstREST.Lib_Primavera.Model
         public string Resumo { get; set; }
         public DateTime DataCriacao { get; set; }
 
-        public string IdCliente { get; set; }
+        public string CodCliente { get; set; }  //entidade
         public string NomeCliente { get; set; }
         public string ContactoCliente { get; set; }
         public string Vendedor { get; set; }
