@@ -79,7 +79,7 @@ export class OpportunityModalPage {
         this.opp.propostas[0].Artigos.forEach( element => { 
           if(element.IdArtigo === data[i].IdArtigo){
             element.Quantidade += 1;
-            this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda;
+            this.opp.propostas[NumProposal-1].Valor += data[i].PrecoFinal;
             hasElement = true;
           }
         });
@@ -89,7 +89,7 @@ export class OpportunityModalPage {
           linhaAtual++;
           data[i].Linha = linhaAtual;
           this.opp.propostas[NumProposal-1].Artigos.push(data[i]);
-          this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda; 
+          this.opp.propostas[NumProposal-1].Valor += data[i].PrecoFinal; 
         }
       }
       resolve();
@@ -103,7 +103,7 @@ export class OpportunityModalPage {
     for(let i = 0; i < artigos.length; i++)
     {
       if(artigos[i].IdArtigo === productID){
-        this.opp.propostas[NumProposal-1].Valor += artigos[i].PrecoVenda; //TODO compor
+        this.opp.propostas[NumProposal-1].Valor += artigos[i].PrecoFinal; //TODO compor
         artigos[i].Quantidade += 1;
         break;
       }
@@ -118,7 +118,7 @@ export class OpportunityModalPage {
     for(let i = 0; i < artigos.length; i++)
     {
       if(artigos[i].IdArtigo === productID){
-        this.opp.propostas[NumProposal-1].Valor -= artigos[i].PrecoVenda; //TODO compor
+        this.opp.propostas[NumProposal-1].Valor -= artigos[i].PrecoFinal; //TODO compor
         if(artigos[i].Quantidade > 0)
           artigos[i].Quantidade -= 1;
         break;
@@ -141,7 +141,7 @@ export class OpportunityModalPage {
         //IdCabecDoc
         Quantidade : element.Quantidade,
         //Unidade
-        Desconto : "0", //TODO adicionar desconto ?
+        Desconto : element.Desconto, //TODO adicionar desconto ?
         PrecoUnitario : element.PrecoVenda
         //TotalIliquido
         //TotalLiquido

@@ -10,18 +10,8 @@ import { SalesHistoryPage } from '../sales-history/sales-history';
 
 export class ModalContentPage {
     product= {
-      ID:"",
-      Nome: "",
-      UnidadeVenda: "",
-      IVA: "",
-      StockAtual: "",
-      PrecoMedio: "",
-      FamiliaNome: "",
-      SubFamiliaNome: "",
-      PrazoEntrega: "",
-      Peso: "",
-      Observacoes: "",
-      QuantidadeReservada: ""
+      ID:"", Nome: "", Marca: "", Observacoes: "", FamiliaNome: "", SubFamiliaNome: "",
+      PrazoEntrega: "", UnidadeVenda: "", StockAtual: "", IVA: "", PVP1: "", Desconto: "", PrecoFinal: "",
     };
     imgSlides: Array<any> = [
       {
@@ -76,16 +66,17 @@ export class ModalContentPage {
       this.product = {
         ID:"A001",
         Nome: "Magro",
-        UnidadeVenda: "UN",
-        IVA: "20",
-        StockAtual: "600",
-        PrecoMedio: "0.50",
+        Marca: "LB",
+        Observacoes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate elit eu cursus consequat. Duis in velit a nisi ullamcorper tincidunt eu eget justo. Duis a tortor eros. Duis ante leo, tincidunt et sagittis a, volutpat non turpis.",
         FamiliaNome: "Leite",
         SubFamiliaNome: "Normal",
         PrazoEntrega: "15",
-        Peso: "150",
-        Observacoes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate elit eu cursus consequat. Duis in velit a nisi ullamcorper tincidunt eu eget justo. Duis a tortor eros. Duis ante leo, tincidunt et sagittis a, volutpat non turpis.",
-        QuantidadeReservada: "120"
+        UnidadeVenda: "UN",
+        StockAtual: "600",
+        IVA: "20",
+        PVP1: "0.50",
+        Desconto: "20",
+        PrecoFinal: "",
       };
       */
     }
