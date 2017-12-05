@@ -57,5 +57,27 @@ namespace FirstREST.Controllers
             }
 
         }
+
+        //POST api/oportunidades
+        [HttpPost]
+        [Route("api/oportunidades/proposta")]
+        public HttpResponseMessage PostProposal(Lib_Primavera.Model.Oportunidade oportunidade)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
+            erro = Lib_Primavera.PriIntegrationOportunidade.CreateProposta(oportunidade);
+
+            if (erro.Erro == 0)
+            {
+                var response = Request.CreateResponse(HttpStatusCode.Created, oportunidade);
+                string uri = Url.Link("DefaultApi", new { Id = oportunidade.ID });
+                //response.Headers.Location = new Uri(uri);
+                return response;
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+        }
     }
 }

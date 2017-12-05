@@ -172,8 +172,55 @@ namespace FirstREST.Lib_Primavera
                 erro.Descricao = ex.Message;
                 return erro;
             }
+        }
 
-            return erro;
+        public static RespostaErro CreateProposta(Oportunidade oportunidade)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+            StdBELista props = PriEngine.Engine.Consulta(@"SELECT Count(*) AS N FROM PropostasOPV
+                                                            WHERE IdOportunidade = '"+ oportunidade.ID +"' ;");
+            int n = props.Valor("N");
+            //maximo 4 propostas
+            if (n >= 4)
+            {
+                erro.Erro = 1;
+                erro.Descricao = "The maximum of proposals is four.";
+                return erro;
+            }
+
+            CrmBEPropostaOPV prop = new CrmBEPropostaOPV();
+
+            try
+            {
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+                    prop.set_IdOportunidade(oportunidade.ID);
+                    prop.set_IdCabecOrigem(oportunidade.ID);
+                    short x = (short)n;
+                    x++;
+                    prop.set_NumProposta(x);
+                    prop.set_Valor(0);
+
+                    //var opp = PriEngine.Engine.CRM.OportunidadesVenda.EditaID(oportunidade.ID);
+                    PriEngine.Engine.CRM.PropostasOPV.Actualiza(prop);
+
+                    erro.Erro = 0;
+                    erro.Descricao = "Sucesso";
+                    return erro;
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir empresa";
+                    return erro;
+                }
+            }
+            catch (Exception ex)
+            {
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }
         }
     }
 }
