@@ -101,12 +101,8 @@ export class OpportunityModalPage {
         this.opp.propostas[0].Artigos.forEach( element => { 
           if(element.IdArtigo === data[i].IdArtigo){
             element.Quantidade += 1;
-<<<<<<< HEAD
-            this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda;
-            this.opp.propostas[NumProposal-1].Valor.toFixed(2);
-=======
             this.opp.propostas[NumProposal-1].Valor += data[i].PrecoFinal;
->>>>>>> product
+            this.opp.propostas[NumProposal-1].Valor.toFixed(2);
             hasElement = true;
           }
         });
@@ -115,13 +111,9 @@ export class OpportunityModalPage {
         {
           linhaAtual++;
           data[i].Linha = linhaAtual;
-          this.opp.propostas[NumProposal-1].Artigos.push(data[i]);
-<<<<<<< HEAD
-          this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda; 
-          this.opp.propostas[NumProposal-1].Valor.toFixed(2);
-=======
+          this.opp.propostas[NumProposal-1].Artigos.push(data[i]); 
           this.opp.propostas[NumProposal-1].Valor += data[i].PrecoFinal; 
->>>>>>> product
+          this.opp.propostas[NumProposal-1].Valor.toFixed(2);
         }
       }
       resolve();
@@ -135,16 +127,11 @@ export class OpportunityModalPage {
     console.log("x");
     for(let i = 0; i < artigos.length; i++)
     {
-<<<<<<< HEAD
       if(artigos[i].IdArtigo === productID)
       {
         let precoAtual: number = this.opp.propostas[NumProposal-1].Valor;
-        precoAtual = Number(artigos[i].PrecoVenda) + Number(precoAtual);
+        precoAtual = Number(artigos[i].PrecoFinal) + Number(precoAtual);
         this.opp.propostas[NumProposal-1].Valor = precoAtual.toFixed(2);
-=======
-      if(artigos[i].IdArtigo === productID){
-        this.opp.propostas[NumProposal-1].Valor += artigos[i].PrecoFinal; //TODO compor
->>>>>>> product
         artigos[i].Quantidade += 1;
         break;
       }
@@ -158,19 +145,12 @@ export class OpportunityModalPage {
     
     for(let i = 0; i < artigos.length; i++)
     {
-<<<<<<< HEAD
       if(artigos[i].IdArtigo === productID && artigos[i].Quantidade > 0)
       {
         let precoAtual: number = this.opp.propostas[NumProposal-1].Valor;
-        precoAtual =  Number(precoAtual) - Number(artigos[i].PrecoVenda); 
+        precoAtual =  Number(precoAtual) - Number(artigos[i].PrecoFinal); 
         this.opp.propostas[NumProposal-1].Valor = precoAtual.toFixed(2);
         artigos[i].Quantidade -= 1;
-=======
-      if(artigos[i].IdArtigo === productID){
-        this.opp.propostas[NumProposal-1].Valor -= artigos[i].PrecoFinal; //TODO compor
-        if(artigos[i].Quantidade > 0)
-          artigos[i].Quantidade -= 1;
->>>>>>> product
         break;
       }
     }
@@ -228,11 +208,7 @@ export class OpportunityModalPage {
         //IdCabecDoc
         Quantidade : element.Quantidade,
         //Unidade
-<<<<<<< HEAD
-        Desconto : "0", //TODO adicionar desconto 
-=======
         Desconto : element.Desconto, //TODO adicionar desconto ?
->>>>>>> product
         PrecoUnitario : element.PrecoVenda
         //TotalIliquido
         //TotalLiquido
@@ -267,10 +243,8 @@ export class OpportunityModalPage {
 
   //TODO
   //lost opportunity
-  cancelOpportunity(){
+  cancelOpportunity(NumProposal, jsonArtigos){
 
-<<<<<<< HEAD
-=======
     this.opp.propostas[NumProposal-1].Artigos.forEach(art => {
       let jsonArt ={
         IDArtigo : art.IDArtigo,
@@ -293,12 +267,11 @@ export class OpportunityModalPage {
           console.log(err);
       });
      */ 
->>>>>>> product
   }
 
   //receive opportunity
   getOpportunity(id){
-    /*
+    
     this.opportunitiesService.getOpportunity(id).subscribe(
       data => { 
           this.opp = data;
@@ -307,19 +280,8 @@ export class OpportunityModalPage {
       err => {
           console.log(err);
       });
-    */
+  /*
     this.opp = {
-<<<<<<< HEAD
-      ID : "1",
-      Oportunidade: "OPP",
-      IdCliente: "1",
-      NomeCliente : "Antonio",
-      ContactoCliente : "963852714",
-      Descricao : "Encomenda de coisas",
-      Resumo : "Lorem ipsum blablabla",
-      DataCriacao : "13/9/2017",
-      Vendedor: "1",
-=======
       
         ID : "1",
         NomeOport: "OPP",
@@ -328,9 +290,9 @@ export class OpportunityModalPage {
         Descricao : "Encomenda de coisas",
         Resumo : "Lorem ipsum blablabla",
         DataCriacao : "13/9/2017",
-        Vendedor: "1"
+        Vendedor: "1",
+        IdCliente: "1",
        
->>>>>>> product
       ValorTotalOV : 26.32,
       EstadoVenda: 0,
       propostas: [
@@ -379,6 +341,6 @@ export class OpportunityModalPage {
           ]
         }
       ]
-    };
+    };*/
   }
 }
