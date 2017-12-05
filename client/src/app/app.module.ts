@@ -30,6 +30,10 @@ import { AppointmentsProvider } from '../providers/appointments/appointments';
 import { SalesProvider } from '../providers/sales/sales';
 import { RoutesProvider } from '../providers/routes/routes';
 
+
+import { IonicStorageModule } from '@ionic/storage';
+import { RegisterPage } from '../pages/register/register';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -43,7 +47,8 @@ import { RoutesProvider } from '../providers/routes/routes';
     OpportunitiesPage,
     OpportunityModalPage,
     CreateOpportunityPage,
-    SalesHistoryPage
+    SalesHistoryPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,8 @@ import { RoutesProvider } from '../providers/routes/routes';
     IonicModule.forRoot(MyApp),
     CalendarModule.forRoot(),
     BrowserAnimationsModule,
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,7 +72,8 @@ import { RoutesProvider } from '../providers/routes/routes';
     OpportunitiesPage,
     OpportunityModalPage,
     CreateOpportunityPage,
-    SalesHistoryPage
+    SalesHistoryPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
