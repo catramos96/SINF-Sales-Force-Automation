@@ -17,7 +17,7 @@ import { TargetPage } from '../pages/contacts/target/target';
 import { StatisticsPage } from '../pages/statistics/statistics';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
 import { OpportunitiesPage } from '../pages/opportunities/opportunities';
-import { OpportunityModalPage } from '../pages/opportunities/opportunity-modal/opportunity-modal';
+import { OpportunityDetailsPage } from '../pages/opportunities/opportunity-details/opportunity-details';
 import { CreateOpportunityPage } from '../pages/opportunities/create-opportunity/create-opportunity';
 
 import { ContactsProvider } from '../providers/contacts/contacts';
@@ -47,7 +47,7 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
     StatisticsPage,
     TeamPage,
     OpportunitiesPage,
-    OpportunityModalPage,
+    OpportunityDetailsPage,
     CreateOpportunityPage,
     CreateAppointmentsModalPage,
     SalesHistoryPage
@@ -74,7 +74,7 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
     StatisticsPage,
     TeamPage,
     OpportunitiesPage,
-    OpportunityModalPage,
+    OpportunityDetailsPage,
     SalesHistoryPage,
     CreateAppointmentsModalPage,
     CreateOpportunityPage

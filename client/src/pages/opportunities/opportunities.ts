@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { OpportunitiesProvider } from '../../providers/opportunities/opportunities';
-import { OpportunityModalPage } from './opportunity-modal/opportunity-modal';
+import { OpportunityDetailsPage } from './opportunity-details/opportunity-details';
 import { CreateOpportunityPage } from './create-opportunity/create-opportunity';
 
 
@@ -37,8 +37,10 @@ export class OpportunitiesPage {
   }
   
   openOpportunity(oppID) {
-    let modal = this.modalCtrl.create(OpportunityModalPage,{ opportunityID: oppID });
-    modal.present();
+    this.navCtrl.push(OpportunityDetailsPage,
+      {
+        opportunityID: oppID
+      });
   }
 
   displayOpportunities(){
@@ -64,7 +66,7 @@ export class OpportunitiesPage {
   }
 
   getOpportunities(){
-    
+    /*
     this.opportunitiesService.getOpportunities().subscribe(
       data => { 
         this.opp = data;
@@ -73,8 +75,8 @@ export class OpportunitiesPage {
       err => {
           console.log(err);
       });
+      */
       
-      /*
       this.opp = [
         {
           ID : "1",
@@ -93,7 +95,7 @@ export class OpportunitiesPage {
       ];
       this.displayOpportunities();
       console.log(this.opp);
-      */
+      
   }
 
 }

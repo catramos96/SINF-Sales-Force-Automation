@@ -81,7 +81,6 @@ export class CreateOpportunityPage {
       err => {
           console.log(err);
       });
-
   }
 
 }

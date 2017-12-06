@@ -7,7 +7,7 @@ import { AppointmentModal } from "../appointments/appointmentModal";
 import { ModalController} from 'ionic-angular';
 import { OpportunitiesPage } from '../opportunities/opportunities';
 import { OpportunitiesProvider } from '../../providers/opportunities/opportunities';
-import { OpportunityModalPage } from '../opportunities/opportunity-modal/opportunity-modal';
+import { OpportunityDetailsPage } from '../opportunities/opportunity-details/opportunity-details';
 import {AppointmentsProvider} from "../../providers/appointments/appointments";
 import {RoutesProvider} from "../../providers/routes/routes";
 import {CreateAppointmentsModalPage} from "../appointments/create-appointments-modal/create-appointments-modal"
@@ -199,8 +199,9 @@ export class HomePage {
       e.innerHTML = '<td>' + this.opportunities[i].Descricao + '</td>';
 
       e.addEventListener("click",() =>{
-        let modal = this.modalCtrl.create(OpportunityModalPage,{opportunityID: id });
-        modal.present();
+        //let modal = this.modalCtrl.create(OpportunityModalPage,{opportunityID: id });
+        //modal.present();
+        this.navCtrl.push(OpportunityDetailsPage,{ opportunityID: id });
       });
 
       body.insertAdjacentElement("beforeend",e);
@@ -227,8 +228,9 @@ export class HomePage {
       e.innerHTML = '<td>' + this.leads[i].Descricao + '</td>';
 
       e.addEventListener("click",() =>{
-        let modal = this.modalCtrl.create(OpportunityModalPage,{opportunityID: id });
-        modal.present();
+        //let modal = this.modalCtrl.create(OpportunityModalPage,{opportunityID: id });
+        //modal.present();
+        this.navCtrl.push(OpportunityDetailsPage,{ opportunityID: id });
       });
 
       body.insertAdjacentElement("beforeend",e);

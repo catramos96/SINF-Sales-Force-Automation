@@ -50,4 +50,11 @@ export class OpportunitiesProvider {
     var response = this.http.post(url,opportunity).map(res => res.json());
     return response;
   }
+
+  //done
+  addProposal(oppID){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/proposta';
+    var response = this.http.post(url,{"ID":oppID}).map(res => res.json());
+    return response;
+  }
 }
