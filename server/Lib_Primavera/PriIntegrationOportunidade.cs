@@ -116,8 +116,8 @@ namespace FirstREST.Lib_Primavera
                     opp.ContactoCliente = oppList.Valor("ContactoCliente");
                     opp.DataCriacao = oppList.Valor("Data");
                     opp.Descricao = oppList.Valor("Descricao");
-
                     listOpps.Add(opp);
+                
                     oppList.Seguinte();
                 }
                 return listOpps;
@@ -221,6 +221,75 @@ namespace FirstREST.Lib_Primavera
                 erro.Descricao = ex.Message;
                 return erro;
             }
+        }
+
+        public static RespostaErro UpdOportunidade(Oportunidade oportunidade)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+           /* GcpBECliente objCli = new GcpBECliente();
+
+            try
+            {
+
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+
+                    if (PriEngine.Engine.Comercial.Clientes.Existe(cliente.CodCliente) == false)
+                    {
+                        erro.Erro = 1;
+                        erro.Descricao = "O cliente não existe";
+                        return erro;
+                    }
+                    else
+                    {
+
+                        objCli = PriEngine.Engine.Comercial.Clientes.Edita(cliente.CodCliente);
+                        objCli.set_EmModoEdicao(true);
+
+                        objCli.set_Cliente(cliente.CodCliente);
+                        objCli.set_Nome(cliente.Nome);
+                        objCli.set_Morada(cliente.Morada);
+                        objCli.set_Localidade(cliente.Localidade);
+                        objCli.set_CodigoPostal(cliente.CodPostal);
+                        objCli.set_Fax(cliente.Fax);
+                        objCli.set_DebitoContaCorrente(cliente.TotalDeb);
+                        objCli.set_NumContribuinte(cliente.NumContribuinte);
+                        objCli.set_Pais(cliente.Pais);
+                        objCli.set_EnderecoWeb(cliente.EnderecoWeb);
+                        objCli.set_DebitoEncomendasPendentes(cliente.EncomendasPendentes);
+                        objCli.set_Descricao(cliente.Grupo);
+                        objCli.set_Observacoes(cliente.Notas);
+                        objCli.set_Inactivo(cliente.Inactivo);
+                        objCli.set_Vendedor(cliente.Vendedor);
+                        objCli.set_Moeda(cliente.Moeda);
+                        objCli.set_Telefone(cliente.Telemovel);
+                        objCli.set_Telefone2(cliente.Telefone);
+                        objCli.set_DataUltimaActualizacao(DateTime.Now);
+
+                        PriEngine.Engine.Comercial.Clientes.Actualiza(objCli);
+
+                        erro.Erro = 0;
+                        erro.Descricao = "Sucesso";
+                        return erro;
+                    }
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir a empresa";
+                    return erro;
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }*/
+            return erro;
         }
     }
 }

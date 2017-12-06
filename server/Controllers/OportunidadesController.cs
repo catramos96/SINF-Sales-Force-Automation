@@ -77,7 +77,31 @@ namespace FirstREST.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
-
         }
+
+        //PUT api/oportunidades
+        [HttpPut]
+        [Route("api/oportunidades")]
+        public HttpResponseMessage Put(int id, Lib_Primavera.Model.Oportunidade oportunidade)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
+            try
+            {
+                erro = Lib_Primavera.PriIntegrationOportunidade.UpdOportunidade(oportunidade);
+                if (erro.Erro == 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, erro.Descricao);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, erro.Descricao);
+                }
+            }
+            catch (Exception exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, erro.Descricao);
+            }
+        }
+
     }
 }
