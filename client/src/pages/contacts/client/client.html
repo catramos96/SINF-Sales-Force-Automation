@@ -68,7 +68,7 @@
         <ion-col class="column-1-line">{{client.Pais}}</ion-col>
         <ion-col col-1 class="column-1-line" *ngIf="isOpportunity">
           <button ion-button clear color="secondary" 
-              (click)="sendClient(client.Nome,client.Id)">
+              (click)="sendClient(client.Nome,client.CodCliente)">
             <ion-icon name="checkmark-circle"></ion-icon>
           </button>
         </ion-col>

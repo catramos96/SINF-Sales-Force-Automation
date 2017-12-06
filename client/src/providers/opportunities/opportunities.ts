@@ -18,36 +18,43 @@ export class OpportunitiesProvider {
 
   //done
   getOpportunities(){
-    var url = AppSettings.API_ENDPOINT+'opportunities';
+    var url = AppSettings.API_ENDPOINT+'oportunidades';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
   //done
   getOpportunity(name){
-    var url = AppSettings.API_ENDPOINT+'opportunities/'+encodeURI(name);
+    var url = AppSettings.API_ENDPOINT+'oportunidades/'+encodeURI(name);
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
   //FAZER
   updateOpportunity(opportunity){
-    var url = AppSettings.API_ENDPOINT+'opportunities/update/'+encodeURI(opportunity.ID);
+    var url = AppSettings.API_ENDPOINT+'oportunidades/update/'+encodeURI(opportunity.ID);
     var response = this.http.post(url,opportunity.Artigos).map(res => res.json());
     return response;
   }
 
-  //FAZER
+  //done
   makeOrder(sale){
     var url = AppSettings.API_ENDPOINT+'docvendas';
     var response = this.http.post(url,sale).map(res => res.json());
     return response;
   }
 
-  //FAZER
+  //done
   createOpportunity(opportunity){
-    var url = AppSettings.API_ENDPOINT+'opportunities';
+    var url = AppSettings.API_ENDPOINT+'oportunidades';
     var response = this.http.post(url,opportunity).map(res => res.json());
+    return response;
+  }
+
+  //done
+  addProposal(oppID){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/proposta';
+    var response = this.http.post(url,{"ID":oppID}).map(res => res.json());
     return response;
   }
 }

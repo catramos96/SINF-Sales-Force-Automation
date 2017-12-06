@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { OpportunitiesProvider } from '../../../providers/opportunities/opportunities';
 import { ClientPage } from '../../contacts/client/client';
@@ -18,15 +18,16 @@ import { TargetPage } from '../../contacts/target/target';
 })
 export class CreateOpportunityPage {
 
-  opp = { IdCliente:"" };
+  opp = { CodCliente:"" };
   tempName = "";
-  tempId = "";
+  tempCode = "";
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public viewCtrl: ViewController,
-    private opportunitiesService: OpportunitiesProvider
+    private opportunitiesService: OpportunitiesProvider,
+    private alertCtrl : AlertController
   ) { }
 
   ionViewDidLoad() {
@@ -56,23 +57,30 @@ export class CreateOpportunityPage {
   getData = (Nome,Id) =>
   {
     return new Promise((resolve, reject) => { 
-      this.tempId = Id;
+      this.tempCode = Id;
       this.tempName = Nome;
       resolve();
     });
   };
   
-  //TODO
-  createOpportunity() {
-    this.opp.IdCliente = this.tempId;
+  //confirmar
+  createOpportunity() 
+  {
+    this.opp.CodCliente = this.tempCode;
+    console.log(">>>>>>>>" +this.opp);
     this.opportunitiesService.createOpportunity(this.opp).subscribe(
       data => { 
           console.log("created");
+          let alert = this.alertCtrl.create({
+            title: 'Create Opportunity',
+            subTitle: 'Opportunity created successfuly',
+            buttons: ['Dismiss']
+          });
+          alert.present();
       },
       err => {
           console.log(err);
       });
-
   }
 
 }
