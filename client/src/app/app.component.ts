@@ -9,6 +9,7 @@ import { OpportunitiesPage } from '../pages/opportunities/opportunities';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
 import { ProductPage } from '../pages/product/product';
 import { ContactsPage } from '../pages/contacts/contacts';
+import { SchedulePage } from '../pages/schedule/schedule';
 import { StatisticsPage } from '../pages/statistics/statistics';
 
 
@@ -30,6 +31,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'Schedule', component: SchedulePage },
       { title: 'Opportunities', component: OpportunitiesPage },
       { title: 'Sales History', component: SalesHistoryPage },
       { title: 'Product', component: ProductPage },

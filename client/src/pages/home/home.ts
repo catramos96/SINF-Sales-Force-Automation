@@ -11,6 +11,7 @@ import { OpportunityModalPage } from '../opportunities/opportunity-modal/opportu
 import {AppointmentsProvider} from "../../providers/appointments/appointments";
 import {RoutesProvider} from "../../providers/routes/routes";
 import {CreateAppointmentsModalPage} from "../appointments/create-appointments-modal/create-appointments-modal"
+import {SchedulePage} from "../schedule/schedule";
 
 @Component({
   selector: 'page-home',
@@ -65,6 +66,10 @@ export class HomePage {
 
   goToOpportunities() {
     this.navCtrl.push(OpportunitiesPage);
+  }
+
+  goToSchedule(){
+    this.navCtrl.push(SchedulePage);
   }
 
   /**

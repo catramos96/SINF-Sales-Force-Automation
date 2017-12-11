@@ -31,6 +31,7 @@ import { AppointmentsProvider } from '../providers/appointments/appointments';
 import { SalesProvider } from '../providers/sales/sales';
 import { RoutesProvider } from '../providers/routes/routes';
 import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointments-modal/create-appointments-modal";
+import {SchedulePage} from "../pages/schedule/schedule";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
     OpportunityModalPage,
     CreateOpportunityPage,
     CreateAppointmentsModalPage,
-    SalesHistoryPage
+    SalesHistoryPage,
+    SchedulePage,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
     OpportunityModalPage,
     SalesHistoryPage,
     CreateAppointmentsModalPage,
-    CreateOpportunityPage
+    CreateOpportunityPage,
+    SchedulePage,
   ],
   providers: [
     StatusBar,
