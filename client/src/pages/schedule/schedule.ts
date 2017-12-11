@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {
   ChangeDetectionStrategy,
   ViewChild,
@@ -21,25 +21,23 @@ import {
   CalendarEventAction,
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
-/**
- * Generated class for the SchedulePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {CreateAppointmentsModalPage} from "../appointments/create-appointments-modal/create-appointments-modal"
 
+/*
+Colors of appointments in the map
+ */
 const colors: any = {
   red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
+    primary: '#e80a22',
+    secondary: '#e88b90'
   },
   blue: {
     primary: '#1e90ff',
     secondary: '#D1E8FF'
   },
   yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
+    primary: '#25e322',
+    secondary: '#bdfdac'
   }
 };
 
@@ -50,14 +48,7 @@ const colors: any = {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SchedulePage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SchedulePage');
-  }
+  @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
   view: string = 'month';
 
@@ -68,50 +59,55 @@ export class SchedulePage {
     event: CalendarEvent;
   };
 
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      }
-    }
-  ];
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public modalCtrl : ModalController) {
+
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SchedulePage');
+  }
+
+  createNewAppointment(){
+    let modal = this.modalCtrl.create(CreateAppointmentsModalPage);
+    modal.present()
+  }
 
   refresh: Subject<any> = new Subject();
 
+  /*
+  EVENTS EXAMPLES
+   */
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
       title: 'A 3 day event',
       color: colors.red,
-      actions: this.actions
+      meta: "id:_info"
     },
     {
       start: startOfDay(new Date()),
       title: 'An event with no end date',
       color: colors.yellow,
-      actions: this.actions
+      meta: "id:_info"
+
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
       title: 'A long event that spans 2 months',
-      color: colors.blue
+      color: colors.blue,
+      meta: "id:_info"
+
     },
     {
       start: addHours(startOfDay(new Date()), 2),
       end: new Date(),
       title: 'A draggable and resizable event',
       color: colors.yellow,
-      actions: this.actions,
+      meta: "id:_info",       //ALTERAR
+
       resizable: {
         beforeStart: true,
         afterEnd: true
@@ -120,9 +116,7 @@ export class SchedulePage {
     }
   ];
 
-  activeDayIsOpen: boolean = true;
-
-  //constructor(private modal: NgbModal) {}
+  activeDayIsOpen: boolean = false;
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -149,9 +143,11 @@ export class SchedulePage {
     this.refresh.next();
   }
 
+
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    //this.modal.open(this.modalContent, { size: 'lg' });
+    var id = event.meta;
+    this.createNewAppointment();
+    //open appointment
   }
 
   addEvent(): void {

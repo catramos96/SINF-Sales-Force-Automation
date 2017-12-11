@@ -15,3 +15,52 @@ pre {
   background-color: #f5f5f5;
   padding: 15px;
 }
+
+
+//calendar
+
+.calendar-comp {
+  .columnHeader {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2vh;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    background-color: #488aff;
+    border-color: #488aff;
+  }
+
+  .columnHeader:first-child{
+    border-top-left-radius: 1em;
+  }
+
+  .columnHeader:last-child{
+    border-top-right-radius: 1em;
+  }
+
+  .cal-today {
+    .cal-day-number {
+      font-size: 3vh !important;
+    }
+  }
+  .cal-day-cell {
+    min-height: 6vh;
+  }
+
+  .cal-cell{
+    text-align: center;
+  }
+
+  .cal-cell-top {
+    min-height: 3vh;
+  }
+  .cal-day-number {
+    font-size: 3vh;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+  }
+  .cal-day-badge {
+    display: none;
+  }
+}
