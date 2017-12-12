@@ -19,28 +19,24 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT Id, Telefone, Telemovel, Email, Notas, Contacto, Morada, Localidade, CodPostal, Pais, DataNascimento, SexoMasculino, NumContribuinte, PrimeiroNome, NomesIntermedios, UltimoNome, CriadoPor FROM  Contactos");
+                objList = PriEngine.Engine.Consulta("SELECT Entidade, Nome, Morada, Localidade, CodPostal, Telefone, Telemovel, Fax, Email, EnderecoWeb, Vendedor, Pais FROM  EntidadesExternas;");
 
 
                     while (!objList.NoFim())
                     {
                         listContactos.Add(new Contacto
                         {
-                            Id = objList.Valor("Id"),
+                            Entidade = objList.Valor("Entidade"),
+                            Nome = objList.Valor("Nome"),
+                            Vendedor = objList.Valor("Vendedor"),
+                            Morada = objList.Valor("Morada"),
+                            CodPostal = objList.Valor("CodPostal"),
                             Telefone = objList.Valor("Telefone"),
                             Telemovel = objList.Valor("Telemovel"),
-                            Email = objList.Valor("Email"),
-                            Notas = objList.Valor("Notas"),
-                            ContactoDef = objList.Valor("Contacto"),
-                            Morada = objList.Valor("Morada"),
-                            Localidade = objList.Valor("Localidade"),
-                            CodPostal = objList.Valor("CodPostal"),
                             Pais = objList.Valor("Pais"),
-                            NumContribuinte = objList.Valor("NumContribuinte"),
-                            PrimeiroNome = objList.Valor("PrimeiroNome"),
-                            NomesIntermedios = objList.Valor("NomesIntermedios"),
-                            UltimoNome = objList.Valor("UltimoNome"),
-                            CriadoPor = objList.Valor("CriadoPor")
+                            Fax = objList.Valor("Fax"),
+                            Localidade = objList.Valor("Localidade"),
+                            Email = objList.Valor("Email"),
                         });
                         objList.Seguinte();
 
@@ -54,8 +50,6 @@ namespace FirstREST.Lib_Primavera
 
         public static List<Model.Contacto> GetContactoById(string id)
         {
-
-
             StdBELista objList;
 
             List<Model.Contacto> listContactos = new List<Model.Contacto>();
@@ -63,29 +57,24 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT Id, Telefone, Telemovel, Email, Notas, Contacto,  Morada, Localidade, CodPostal, Pais, DataNascimento, SexoMasculino, NumContribuinte, PrimeiroNome, NomesIntermedios, UltimoNome, CriadoPor FROM  Contactos " +
-                "where Id='"+id+"';");
+                objList = PriEngine.Engine.Consulta("SELECT Entidade, Nome, Morada, Localidade, CodPostal, Telefone, Telemovel, Fax, Email, EnderecoWeb, Vendedor, Pais FROM  EntidadesExternas where Entidade ='"+id+"';");
 
 
                 while (!objList.NoFim())
                 {
                     listContactos.Add(new Contacto
                     {
-                        Id = objList.Valor("Id"),
+                        Entidade = objList.Valor("Entidade"),
+                        Nome = objList.Valor("Nome"),
+                        Vendedor = objList.Valor("Vendedor"),
+                        Morada = objList.Valor("Morada"),
+                        CodPostal = objList.Valor("CodPostal"),
                         Telefone = objList.Valor("Telefone"),
                         Telemovel = objList.Valor("Telemovel"),
-                        Email = objList.Valor("Email"),
-                        Notas = objList.Valor("Notas"),
-                        ContactoDef = objList.Valor("Contacto"),
-                        Morada = objList.Valor("Morada"),
-                        Localidade = objList.Valor("Localidade"),
-                        CodPostal = objList.Valor("CodPostal"),
                         Pais = objList.Valor("Pais"),
-                        NumContribuinte = objList.Valor("NumContribuinte"),
-                        PrimeiroNome = objList.Valor("PrimeiroNome"),
-                        NomesIntermedios = objList.Valor("NomesIntermedios"),
-                        UltimoNome = objList.Valor("UltimoNome"),
-                        CriadoPor = objList.Valor("CriadoPor")
+                        Fax = objList.Valor("Fax"),
+                        Localidade = objList.Valor("Localidade"),
+                        Email = objList.Valor("Email"),
                     });
                     objList.Seguinte();
 
@@ -97,9 +86,49 @@ namespace FirstREST.Lib_Primavera
                 return null;
         }
 
-        public static List<Model.Contacto> SearchContacto(string search)
-        {
 
+        public static List<Model.Contacto> GetContactoByVendorId(string id)
+        {
+            StdBELista objList;
+
+            List<Model.Contacto> listContactos = new List<Model.Contacto>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT Entidade, Nome, Morada, Localidade, CodPostal, Telefone, Telemovel, Fax, Email, EnderecoWeb, Vendedor, Pais FROM  EntidadesExternas where Vendedor ='" + id + "';");
+
+
+                while (!objList.NoFim())
+                {
+                    listContactos.Add(new Contacto
+                    {
+                        Entidade = objList.Valor("Entidade"),
+                        Nome = objList.Valor("Nome"),
+                        Vendedor = objList.Valor("Vendedor"),
+                        Morada = objList.Valor("Morada"),
+                        CodPostal = objList.Valor("CodPostal"),
+                        Telefone = objList.Valor("Telefone"),
+                        Telemovel = objList.Valor("Telemovel"),
+                        Pais = objList.Valor("Pais"),
+                        Fax = objList.Valor("Fax"),
+                        Localidade = objList.Valor("Localidade"),
+                        Email = objList.Valor("Email"),
+                    });
+                    objList.Seguinte();
+
+                }
+
+                return listContactos;
+            }
+            else
+                return null;
+        }
+
+        public static List<Model.Contacto> SearchContacto(SearchAndVendorDTO Search)
+        {
+            string search = Search.search;
+            string id = Search.id;
 
             StdBELista objList;
 
@@ -108,29 +137,25 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT Id, Telefone, Telemovel, Email, Notas, Contacto, Morada, Localidade, CodPostal, Pais, DataNascimento, SexoMasculino, NumContribuinte, PrimeiroNome, NomesIntermedios, UltimoNome, CriadoPor FROM  Contactos "+
-                "where lower(PrimeiroNome) LIKE lower('%" + search + "%') OR lower(UltimoNome) LIKE lower('%" + search + "%');");
+                objList = PriEngine.Engine.Consulta("SELECT Entidade, Nome, Morada, Localidade, CodPostal, Telefone, Telemovel, Fax, Email, EnderecoWeb, Vendedor, Pais FROM  EntidadesExternas " +
+                "where Vendedor = '" + id + "' AND (lower(PrimeiroNome) LIKE lower('%" + search + "%') OR lower(UltimoNome) LIKE lower('%" + search + "%') );");
 
 
                 while (!objList.NoFim())
                 {
                     listContactos.Add(new Contacto
                     {
-                        Id = objList.Valor("Id"),
+                        Entidade = objList.Valor("Entidade"),
+                        Nome = objList.Valor("Nome"),
+                        Vendedor = objList.Valor("Vendedor"),
+                        Morada = objList.Valor("Morada"),
+                        CodPostal = objList.Valor("CodPostal"),
                         Telefone = objList.Valor("Telefone"),
                         Telemovel = objList.Valor("Telemovel"),
-                        Email = objList.Valor("Email"),
-                        Notas = objList.Valor("Notas"),
-                        ContactoDef = objList.Valor("Contacto"),
-                        Morada = objList.Valor("Morada"),
-                        Localidade = objList.Valor("Localidade"),
-                        CodPostal = objList.Valor("CodPostal"),
                         Pais = objList.Valor("Pais"),
-                        NumContribuinte = objList.Valor("NumContribuinte"),
-                        PrimeiroNome = objList.Valor("PrimeiroNome"),
-                        NomesIntermedios = objList.Valor("NomesIntermedios"),
-                        UltimoNome = objList.Valor("UltimoNome"),
-                        CriadoPor = objList.Valor("CriadoPor")
+                        Fax = objList.Valor("Fax"),
+                        Localidade = objList.Valor("Localidade"),
+                        Email = objList.Valor("Email"),
                     });
                     objList.Seguinte();
 
@@ -147,31 +172,27 @@ namespace FirstREST.Lib_Primavera
         public static RespostaErro InsereContactoObj(Contacto contacto)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
-
-
-            CrmBEContacto myContact = new CrmBEContacto();
+            CrmBEEntidadeExterna myContact = new CrmBEEntidadeExterna();
 
             try
             {
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
 
-                    myContact.set_PrimeiroNome(contacto.PrimeiroNome);
-                    myContact.set_NomesIntermedios(contacto.NomesIntermedios);
-                    myContact.set_UltimoNome(contacto.UltimoNome);
-                    myContact.set_NumContribuinte(contacto.NumContribuinte);
                     myContact.set_Morada(contacto.Morada);
                     myContact.set_CodPostal(contacto.CodPostal);
                     myContact.set_Localidade(contacto.Localidade);
                     myContact.set_Pais(contacto.Pais);
-                    myContact.set_Notas(contacto.Notas);
                     myContact.set_Telefone(contacto.Telefone);
                     myContact.set_Telemovel(contacto.Telemovel);
                     myContact.set_Email(contacto.Email);
-                    myContact.set_Contacto(contacto.PrimeiroNome.ToUpper()[0] + contacto.UltimoNome.ToUpper());
-                    myContact.set_ID(Guid.NewGuid().ToString());
+                    myContact.set_Entidade(contacto.Nome.ToUpper());
+                    myContact.set_Nome(contacto.Nome);
+                    myContact.set_Vendedor(contacto.Vendedor);
+                    myContact.set_Fax(contacto.Fax);
+                    myContact.set_DataCriacao(DateTime.Now);
 
-                    PriEngine.Engine.CRM.Contactos.Actualiza(myContact);
+                    PriEngine.Engine.CRM.EntidadesExternas.Actualiza(myContact);
 
                     erro.Erro = 0;
                     erro.Descricao = "Sucesso";
@@ -197,9 +218,7 @@ namespace FirstREST.Lib_Primavera
         public static Lib_Primavera.Model.RespostaErro UpdContacto(Lib_Primavera.Model.Contacto contacto)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
-
-
-            CrmBEContacto myContact = new CrmBEContacto();
+            CrmBEEntidadeExterna myContact = new CrmBEEntidadeExterna();
 
             try
             {
@@ -207,7 +226,7 @@ namespace FirstREST.Lib_Primavera
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
 
-                    if (PriEngine.Engine.CRM.Contactos.Existe(contacto.ContactoDef) == false)
+                    if (PriEngine.Engine.CRM.EntidadesExternas.Existe(contacto.Entidade) == false)
                     {
                         erro.Erro = 1;
                         erro.Descricao = "O contacto não existe";
@@ -216,24 +235,21 @@ namespace FirstREST.Lib_Primavera
                     else
                     {
 
-                        myContact = PriEngine.Engine.CRM.Contactos.Edita(contacto.ContactoDef);
+                        myContact = PriEngine.Engine.CRM.EntidadesExternas.Edita(contacto.Entidade);
                         myContact.set_EmModoEdicao(true);
 
-                        myContact.set_PrimeiroNome(contacto.PrimeiroNome);
-                        myContact.set_NomesIntermedios(contacto.NomesIntermedios);
-                        myContact.set_UltimoNome(contacto.UltimoNome);
-                        myContact.set_NumContribuinte(contacto.NumContribuinte);
                         myContact.set_Morada(contacto.Morada);
                         myContact.set_CodPostal(contacto.CodPostal);
                         myContact.set_Localidade(contacto.Localidade);
                         myContact.set_Pais(contacto.Pais);
-                        myContact.set_Notas(contacto.Notas);
                         myContact.set_Telefone(contacto.Telefone);
                         myContact.set_Telemovel(contacto.Telemovel);
                         myContact.set_Email(contacto.Email);
-                        myContact.set_Contacto(contacto.PrimeiroNome.ToUpper()[0] + contacto.UltimoNome.ToUpper());
-
-                        PriEngine.Engine.CRM.Contactos.Actualiza(myContact);
+                        myContact.set_Entidade(contacto.Nome.ToUpper());
+                        myContact.set_Nome(contacto.Nome);
+                        myContact.set_Fax(contacto.Fax);
+                        
+                        PriEngine.Engine.CRM.EntidadesExternas.Actualiza(myContact);
 
                         erro.Erro = 0;
                         erro.Descricao = "Sucesso";
