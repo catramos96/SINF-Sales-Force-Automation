@@ -42,6 +42,7 @@ namespace FirstREST.Lib_Primavera
                     opportunity.CodCliente = idCliente;
                     opportunity.NomeCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Nome");
                     opportunity.ContactoCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Fac_Tel");
+                    opportunity.DescontoCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Desconto");
                     opportunity.EstadoVenda = objLead.get_EstadoVenda();
 
                     //vai buscar as proposta correspondente
@@ -54,6 +55,9 @@ namespace FirstREST.Lib_Primavera
 
                         proposta.NumProposta = objProposta.get_NumProposta();
                         proposta.Valor = objProposta.get_Valor();
+                        proposta.Desconto = objProposta.get_ValorDesconto();
+                        proposta.Rentabilidade = objProposta.get_Rentabilidade();
+                        proposta.Margem = objProposta.get_Margem()*100;
 
                         //vai buscar os artigos desta proposta
                         objLinhas = objProposta.get_Linhas();
@@ -68,9 +72,14 @@ namespace FirstREST.Lib_Primavera
                                 linha.Linha = objLinha.get_Linha();
                                 linha.IdArtigo = objLinha.get_Artigo();
                                 linha.NomeArtigo = objLinha.get_Descricao();
-                                linha.PrecoVenda = objLinha.get_PrecoVenda();
                                 linha.Quantidade = objLinha.get_Quantidade();
                                 linha.Unidade = objLinha.get_Unidade();
+                                linha.Custo = objLinha.get_PrecoCusto() * linha.Quantidade;
+                                linha.PrecoVenda = objLinha.get_PrecoVenda() * linha.Quantidade;
+                                linha.Desconto = objLinha.get_ValorDesconto() * linha.Quantidade;
+                                linha.PrecoFinal = linha.PrecoVenda - linha.Desconto * linha.Quantidade;
+                                linha.Rentabilidade = objLinha.get_Rentabilidade() * linha.Quantidade;
+                                linha.Margem = objLinha.get_Margem()*100;
 
                                 linhas.Add(linha);
                             }
@@ -223,73 +232,223 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
-        public static RespostaErro UpdOportunidade(Oportunidade oportunidade)
+        public static RespostaErro RemoveProduto(OportunidadeDTO dto)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
-           /* GcpBECliente objCli = new GcpBECliente();
+            CrmBEPropostaOPV objProp = new CrmBEPropostaOPV();
 
             try
             {
-
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
-
-                    if (PriEngine.Engine.Comercial.Clientes.Existe(cliente.CodCliente) == false)
+                    //oportunidade
+                    if (!PriEngine.Engine.CRM.OportunidadesVenda.ExisteID(dto.IdOportunidade))
                     {
                         erro.Erro = 1;
-                        erro.Descricao = "O cliente não existe";
+                        erro.Descricao = "Nao existe oportunidade";
                         return erro;
                     }
-                    else
+                    //proposta
+                    objProp = PriEngine.Engine.CRM.PropostasOPV.Edita(dto.IdOportunidade, dto.NumProposta, true);
+                    objProp.set_EmModoEdicao(true);
+
+                    //vai buscar os artigos desta proposta
+                    CrmBELinhasPropostaOPV objLinhas = objProp.get_Linhas();
+                    for (short j = 1; j <= objLinhas.NumItens; j++)
                     {
-
-                        objCli = PriEngine.Engine.Comercial.Clientes.Edita(cliente.CodCliente);
-                        objCli.set_EmModoEdicao(true);
-
-                        objCli.set_Cliente(cliente.CodCliente);
-                        objCli.set_Nome(cliente.Nome);
-                        objCli.set_Morada(cliente.Morada);
-                        objCli.set_Localidade(cliente.Localidade);
-                        objCli.set_CodigoPostal(cliente.CodPostal);
-                        objCli.set_Fax(cliente.Fax);
-                        objCli.set_DebitoContaCorrente(cliente.TotalDeb);
-                        objCli.set_NumContribuinte(cliente.NumContribuinte);
-                        objCli.set_Pais(cliente.Pais);
-                        objCli.set_EnderecoWeb(cliente.EnderecoWeb);
-                        objCli.set_DebitoEncomendasPendentes(cliente.EncomendasPendentes);
-                        objCli.set_Descricao(cliente.Grupo);
-                        objCli.set_Observacoes(cliente.Notas);
-                        objCli.set_Inactivo(cliente.Inactivo);
-                        objCli.set_Vendedor(cliente.Vendedor);
-                        objCli.set_Moeda(cliente.Moeda);
-                        objCli.set_Telefone(cliente.Telemovel);
-                        objCli.set_Telefone2(cliente.Telefone);
-                        objCli.set_DataUltimaActualizacao(DateTime.Now);
-
-                        PriEngine.Engine.Comercial.Clientes.Actualiza(objCli);
-
-                        erro.Erro = 0;
-                        erro.Descricao = "Sucesso";
-                        return erro;
+                        var objLinha = objLinhas.get_Edita(j);
+                        var artigo = objLinha.get_Artigo();
+                        if (artigo == dto.IdArtigo)
+                        {
+                            //artigo a eliminar
+                            objLinhas.Remove(objLinha.get_Linha());
+                            break;
+                        }
                     }
+                    
+                    //update proposta
+                    objProp.set_Linhas(objLinhas);
+                    PriEngine.Engine.CRM.PropostasOPV.Actualiza(objProp);
+
+                    erro.Erro = 0;
+                    erro.Descricao = "Success";
+                    return erro;
                 }
                 else
                 {
                     erro.Erro = 1;
-                    erro.Descricao = "Erro ao abrir a empresa";
+                    erro.Descricao = "Erro ao abrir empresa";
                     return erro;
-
                 }
-
             }
-
             catch (Exception ex)
             {
                 erro.Erro = 1;
                 erro.Descricao = ex.Message;
                 return erro;
-            }*/
-            return erro;
+            }
+        }
+
+        public static RespostaErro AdicionaProduto(OportunidadeDTO dto)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+            CrmBEPropostaOPV objProp = new CrmBEPropostaOPV();
+
+            try
+            {
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+                    //oportunidade
+                    if (!PriEngine.Engine.CRM.OportunidadesVenda.ExisteID(dto.IdOportunidade))
+                    {
+                        erro.Erro = 1;
+                        erro.Descricao = "Nao existe oportunidade";
+                        return erro;
+                    }
+                    //proposta
+                    objProp = PriEngine.Engine.CRM.PropostasOPV.Edita(dto.IdOportunidade, dto.NumProposta, true);
+                    objProp.set_EmModoEdicao(true);
+
+                    //vai buscar os artigos desta proposta
+                    CrmBELinhasPropostaOPV objLinhas = objProp.get_Linhas();
+                   
+                    //nova linha a ser criada
+                    CrmBELinhaPropostaOPV objLinha = new CrmBELinhaPropostaOPV();
+
+                    //artigo que vamos adicionar
+                    GcpBEArtigo objArtigo = PriEngine.Engine.Comercial.Artigos.Edita(dto.IdArtigo);
+
+                    objLinha.set_IdOportunidade(dto.IdOportunidade);
+                    objLinha.set_NumProposta(dto.NumProposta);
+                    objLinha.set_Artigo(dto.IdArtigo);
+                    short n = objLinhas.NumItens;
+                    n++;
+                    objLinha.set_Linha(n);
+                    objLinha.set_Descricao(objArtigo.get_Descricao());
+                    objLinha.set_Quantidade(1);
+                    objLinha.set_Unidade(objArtigo.get_UnidadeVenda());
+                    objLinha.set_PrecoCusto(objArtigo.get_PCMedio());
+                    objLinha.set_Desconto(objArtigo.get_Desconto());
+     
+                    var objArtigoPreco = PriEngine.Engine.Comercial.ArtigosPrecos.Edita(dto.IdArtigo, "EUR", objArtigo.get_UnidadeVenda());
+                    objLinha.set_PrecoVenda(objArtigoPreco.get_PVP1());
+                   
+                    //update proposta
+                    objLinhas.Insere(objLinha);
+                    objProp.set_Linhas(objLinhas);
+                    PriEngine.Engine.CRM.PropostasOPV.Actualiza(objProp);
+
+                    erro.Erro = 0;
+                    erro.Descricao = "Success";
+                    return erro;
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir empresa";
+                    return erro;
+                }
+            }
+            catch (Exception ex)
+            {
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }
+        }
+
+        //so faz update das quantidades
+        public static RespostaErro UpdOportunidade(string id,Proposta proposta)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+            CrmBEPropostaOPV objProp = new CrmBEPropostaOPV();
+
+            try
+            {
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+                    //oportunidade
+                    if (!PriEngine.Engine.CRM.OportunidadesVenda.ExisteID(id))
+                    {
+                        erro.Erro = 1;
+                        erro.Descricao = "Nao existe oportunidade";
+                        return erro;
+                    }
+                    //proposta
+                    objProp = PriEngine.Engine.CRM.PropostasOPV.Edita(id,proposta.NumProposta,true);
+                    objProp.set_EmModoEdicao(true);
+
+                    //vai buscar os artigos desta proposta
+                    CrmBELinhasPropostaOPV objLinhas = objProp.get_Linhas();
+                    List<OportunidadeLinha> artigos = proposta.Artigos;
+                    foreach (var art in artigos)
+                    {
+                        short n = art.Linha;
+                        n--;
+                        var objLinha = objLinhas.get_Edita(n);
+                        objLinha.set_Quantidade(art.Quantidade);
+                    }
+                   
+                    //update
+                    objProp.set_Linhas(objLinhas);
+                    objProp.set_EmModoEdicao(false);
+                    PriEngine.Engine.CRM.PropostasOPV.Actualiza(objProp);
+
+                    erro.Erro = 0;
+                    erro.Descricao = "Success";
+                    return erro;
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir empresa";
+                    return erro;
+                }
+            }
+            catch (Exception ex)
+            {
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }
+        }
+
+        public static RespostaErro PerderOportunidade(Oportunidade oportunidade)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+            
+            try
+            {
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+                    //oportunidade
+                    if (!PriEngine.Engine.CRM.OportunidadesVenda.ExisteID(oportunidade.ID))
+                    {
+                        erro.Erro = 1;
+                        erro.Descricao = "Nao existe oportunidade";
+                        return erro;
+                    }
+                    CrmBEOportunidadeVenda objOport = PriEngine.Engine.CRM.OportunidadesVenda.EditaID(oportunidade.ID);
+                    objOport.set_EstadoVenda(2);
+                    PriEngine.Engine.CRM.OportunidadesVenda.Actualiza(objOport);
+
+                    erro.Erro = 0;
+                    erro.Descricao = "Success";
+                    return erro;
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir empresa";
+                    return erro;
+                }
+            }
+            catch (Exception ex)
+            {
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }
         }
     }
 }
