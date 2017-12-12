@@ -22,7 +22,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                if (PriEngine.Engine.CRM.PropostasOPV.Existe(id) == false)
+                if (PriEngine.Engine.CRM.OportunidadesVenda.ExisteID(id) == false)
                 {
                     return null;
                 }
