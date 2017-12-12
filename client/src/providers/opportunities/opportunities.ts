@@ -30,13 +30,6 @@ export class OpportunitiesProvider {
     return response;
   }
 
-  //FAZER
-  updateOpportunity(opportunity){
-    var url = AppSettings.API_ENDPOINT+'oportunidades/update/'+encodeURI(opportunity.ID);
-    var response = this.http.post(url,opportunity.Artigos).map(res => res.json());
-    return response;
-  }
-
   //done
   makeOrder(sale){
     var url = AppSettings.API_ENDPOINT+'docvendas';
@@ -55,6 +48,34 @@ export class OpportunitiesProvider {
   addProposal(oppID){
     var url = AppSettings.API_ENDPOINT+'oportunidades/proposta';
     var response = this.http.post(url,{"ID":oppID}).map(res => res.json());
+    return response;
+  }
+
+  //verificar
+  removeProductOpportunity(json){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/removeproduto/';
+    var response = this.http.post(url,json).map(res => res.json());
+    return response;
+  }
+
+  //verificar
+  addProductOpportunity(json){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/adicionaproduto/';
+    var response = this.http.post(url,json).map(res => res.json());
+    return response;
+  }
+
+  //verificar
+  updateOpportunity(ID,proposal){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/update/'+encodeURI(ID);
+    var response = this.http.put(url,proposal).map(res => res.json());
+    return response;
+  }
+
+  //verificar
+  endOportunity(opportunity){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/perder';
+    var response = this.http.post(url,opportunity).map(res => res.json());
     return response;
   }
 }

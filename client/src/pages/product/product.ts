@@ -61,18 +61,23 @@ export class ProductPage {
     this.currentSelected = j;
   }
 
-  addProduct(prodID,prodName,prodPVP,prodDisc,ProdPrice,unidade){
+  addProduct(prodID,prodName,prodPVP,prodDisc,prodPrice,cost,unidade){
     if(this.isOpportunity)
     {
+      let valorDesc : Number = (prodDisc/100)*prodPVP;
+
       let json = {
-        NomeArtigo : prodName,
+        //Linha: 0,
         IdArtigo: prodID,
-        PrecoVenda: Number(prodPVP),
-        Desconto : Number(prodDisc),
-        PrecoFinal : Number(ProdPrice),
-        Quantidade: Number(1),
-        Linha: 0,
-        Unidade: unidade,
+        //NomeArtigo : prodName,
+        //Quantidade: Number(1),
+        //Unidade: unidade,
+        //Custo: cost,
+        //PrecoVenda: Number(prodPVP),
+        //Desconto : valorDesc,
+        //PrecoFinal : Number(prodPrice),
+        //Rentabilidade : 0,
+        //Margem : 0,
       };
       this.oppProducts.push(json);
     }

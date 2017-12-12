@@ -66,7 +66,7 @@ export class OpportunitiesPage {
   }
 
   getOpportunities(){
-    /*
+    
     this.opportunitiesService.getOpportunities().subscribe(
       data => { 
         this.opp = data;
@@ -75,7 +75,7 @@ export class OpportunitiesPage {
       err => {
           console.log(err);
       });
-      */
+      /*
       
       this.opp = [
         {
@@ -95,6 +95,7 @@ export class OpportunitiesPage {
       ];
       this.displayOpportunities();
       console.log(this.opp);
+      */
       
   }
 
