@@ -251,6 +251,7 @@
     <Compile Include="Lib_Primavera\Model\OportunidadeLinha.cs" />
     <Compile Include="Lib_Primavera\Model\Proposta.cs" />
     <Compile Include="Lib_Primavera\Model\Rota.cs" />
+    <Compile Include="Lib_Primavera\Model\SearchAndVendorDTO.cs" />
     <Compile Include="Lib_Primavera\Model\SubFamilia.cs" />
     <Compile Include="Lib_Primavera\Model\Artigo.cs" />
     <Compile Include="Lib_Primavera\Model\Cliente.cs" />

@@ -112,12 +112,12 @@ namespace FirstREST.Lib_Primavera
                 try
                 {
                     username = SalesmanInfo.Substring(SalesmanInfo.IndexOf(':') + 1, SalesmanInfo.IndexOf('&') - SalesmanInfo.IndexOf(':') - 1);
-                    password = SalesmanInfo.Substring(SalesmanInfo.IndexOf('&') + 1).Substring(SalesmanInfo.IndexOf(':') + 1);
+                    password = SalesmanInfo.Substring(SalesmanInfo.IndexOf('&') + 1).Substring(SalesmanInfo.IndexOf(':') + 1, SalesmanInfo.IndexOf('&') - SalesmanInfo.IndexOf(':') - 1);
                 }
                 catch (Exception ex)
                 {
                     erro.Erro = -2;
-                    erro.Descricao = "Formato Username/Password errado";
+                    erro.Descricao = "Formato Username: &Password: &Role: errado";
                     return erro;
                 }
 
@@ -134,7 +134,7 @@ namespace FirstREST.Lib_Primavera
                             if (notas != null && notas != "")
                             {
                                 string tempUsername = notas.Substring(notas.IndexOf(':') + 1, notas.IndexOf('&') - notas.IndexOf(':') - 1);
-                                string tempPassword = notas.Substring(notas.IndexOf('&') + 1).Substring(notas.IndexOf(':') + 1);
+                                string tempPassword = notas.Substring(notas.IndexOf('&') + 1).Substring(notas.IndexOf(':') + 1, notas.IndexOf('&') - notas.IndexOf(':') - 1);
 
                                 if (tempUsername == username && tempPassword == password)
                                 {

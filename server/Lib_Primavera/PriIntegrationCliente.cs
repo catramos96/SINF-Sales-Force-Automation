@@ -111,9 +111,63 @@ namespace FirstREST.Lib_Primavera
                 return null;
         }
 
-        public static List<Model.Cliente> SearchCliente(string search)
+
+        public static List<Model.Cliente> GetClienteByVendorId(string id)
         {
 
+            StdBELista objList;
+
+            List<Model.Cliente> listClientes = new List<Model.Cliente>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT Cliente, Nome,Moeda, Fac_Mor, Fac_Local, Fac_Cp, Fac_Tel, Fac_Fax," +
+                "TotalDeb, NumContrib, Pais,EnderecoWeb, DataCriacao, EncomendasPendentes, Notas, Situacao, Vendedor, CDU_Email, Clientes.Descricao AS clidesc, " +
+                "GruposEmpresas.Descricao AS grpdesc from Clientes LEFT JOIN GruposEmpresas ON Clientes.Descricao = GruposEmpresas.Grupo " +
+                "where Vendedor = " + id + " ;");
+
+
+                while (!objList.NoFim())
+                {
+                    listClientes.Add(new Model.Cliente
+                    {
+                        CodCliente = objList.Valor("Cliente"),
+                        Nome = objList.Valor("Nome"),
+                        Moeda = objList.Valor("Moeda"),
+                        Morada = objList.Valor("Fac_Mor"),
+                        Localidade = objList.Valor("Fac_Local"),
+                        CodPostal = objList.Valor("Fac_Cp"),
+                        Fax = objList.Valor("Fac_Fax"),
+                        TotalDeb = objList.Valor("TotalDeb"),
+                        NumContribuinte = objList.Valor("NumContrib"),
+                        Pais = objList.Valor("Pais"),
+                        EnderecoWeb = objList.Valor("EnderecoWeb"),
+                        DataCriacao = objList.Valor("DataCriacao"),
+                        EncomendasPendentes = objList.Valor("EncomendasPendentes"),
+                        Notas = objList.Valor("Notas"),
+                        Situacao = objList.Valor("Situacao"),
+                        Vendedor = objList.Valor("Vendedor"),
+                        Email = objList.Valor("CDU_Email"),
+                        Grupo = objList.Valor("clidesc"),
+                        GrupoDesc = objList.Valor("grpdesc"),
+                        Telemovel = objList.Valor("Fac_Tel")
+                    });
+                    objList.Seguinte();
+
+                }
+
+                return listClientes;
+            }
+            else
+                return null;
+        }
+
+
+        public static List<Model.Cliente> SearchCliente(Lib_Primavera.Model.SearchAndVendorDTO Search)
+        {
+            string search = Search.search;
+            string id = Search.id;
 
             StdBELista objList;
 
@@ -125,7 +179,7 @@ namespace FirstREST.Lib_Primavera
                 objList = PriEngine.Engine.Consulta("SELECT Cliente, Nome,Moeda, Fac_Mor, Fac_Local, Fac_Cp, Fac_Tel, Fac_Fax,"+
                 "TotalDeb, NumContrib, Pais,EnderecoWeb, DataCriacao, EncomendasPendentes, Notas, Situacao, Vendedor, CDU_Email, Clientes.Descricao AS clidesc, "+
                 "GruposEmpresas.Descricao AS grpdesc from Clientes LEFT JOIN GruposEmpresas ON Clientes.Descricao = GruposEmpresas.Grupo "+
-                "where lower(Cliente) LIKE lower('%" + search + "%') OR lower(Nome) LIKE lower('%" + search + "%');");
+                "where Vendedor = "+ id +" AND (lower(Cliente) LIKE lower('%" + search + "%') OR lower(Nome) LIKE lower('%" + search + "%'));");
 
 
                 while (!objList.NoFim())
