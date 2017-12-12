@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { PersonalStatisticsPage } from './personal-statistics';
-import { ChartsModule } from 'ng2-charts';
+//import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -9,7 +9,7 @@ import { ChartsModule } from 'ng2-charts';
   ],
   imports: [
     IonicPageModule.forChild(PersonalStatisticsPage),
-    ChartsModule
+    //ChartsModule
   ],
 })
 export class PersonalStatisticsPageModule {}

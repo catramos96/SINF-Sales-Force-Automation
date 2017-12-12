@@ -46,7 +46,7 @@ export class OpportunitiesPage {
   displayOpportunities(){
     var colsLength = 3;
     var totalLength = this.opp.length;
-    var rowsLength = Math.round(totalLength/colsLength);
+    var rowsLength = Math.ceil(totalLength/colsLength);
     var rows = [];
     var r,c,maxCol;
     for(r = 0; r < rowsLength; r++)

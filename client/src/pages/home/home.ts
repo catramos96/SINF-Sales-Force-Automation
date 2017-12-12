@@ -45,11 +45,11 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.loadEventHandlers();
+   /* this.loadEventHandlers();
     this.getAppointments();
     this.getOpportunities();
     this.getRoutes();
-    this.getLeads();
+    this.getLeads();*/
   }
 
   /**
