@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -22,6 +23,7 @@ import { ContactsProvider } from '../providers/contacts/contacts';
 import { ProductsProvider } from '../providers/products/products';
 
 import { CalendarModule } from 'angular-calendar';
+//import { ChartsModule } from 'ng2-charts';
 import { StatisticsProvider } from '../providers/statistics/statistics';
 import { TeamPage } from "../pages/team/team";
 import { AppointmentModal } from "../pages/appointments/appointmentModal"
@@ -29,10 +31,11 @@ import { OpportunitiesProvider } from '../providers/opportunities/opportunities'
 import { AppointmentsProvider } from '../providers/appointments/appointments';
 import { SalesProvider } from '../providers/sales/sales';
 import { RoutesProvider } from '../providers/routes/routes';
+import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointments-modal/create-appointments-modal";
 
-
-import { IonicStorageModule } from '@ionic/storage';
 import { RegisterPage } from '../pages/register/register';
+import { VendorsProvider } from '../providers/vendors/vendors';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
@@ -47,8 +50,10 @@ import { RegisterPage } from '../pages/register/register';
     OpportunitiesPage,
     OpportunityModalPage,
     CreateOpportunityPage,
+    CreateAppointmentsModalPage,
     SalesHistoryPage,
-    RegisterPage
+    RegisterPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,7 @@ import { RegisterPage } from '../pages/register/register';
     CalendarModule.forRoot(),
     BrowserAnimationsModule,
     HttpModule,
-    IonicStorageModule.forRoot()
+   // ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -71,9 +76,11 @@ import { RegisterPage } from '../pages/register/register';
     TeamPage,
     OpportunitiesPage,
     OpportunityModalPage,
+    CreateAppointmentsModalPage,
     CreateOpportunityPage,
     SalesHistoryPage,
-    RegisterPage
+    RegisterPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -87,7 +94,9 @@ import { RegisterPage } from '../pages/register/register';
     OpportunitiesProvider,
     AppointmentsProvider,
     SalesProvider,
-    RoutesProvider
+    RoutesProvider,
+    VendorsProvider,
+    NativeStorage
   ]
 })
 export class AppModule {}

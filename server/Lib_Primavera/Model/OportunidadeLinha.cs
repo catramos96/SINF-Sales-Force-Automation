@@ -6,7 +6,7 @@ using System.Web;
 namespace FirstREST.Lib_Primavera.Model
 {
     //LinhasPropostasOPV
-    public class OpportunityLine
+    public class OportunidadeLinha
     {
         //public string ID { get; set; }              //idOportunidade = Lead.ID
         //public int NumProposta { get; set; }        //proposta       

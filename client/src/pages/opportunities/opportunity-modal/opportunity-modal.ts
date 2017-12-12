@@ -17,8 +17,9 @@ import { ProductPage } from '../../product/product';
 export class OpportunityModalPage {
 
   opp = {
-    ID : "",Oportunidade: "",IdCliente:"",NomeCliente : "",ContactoCliente : "", Descricao : "",
-    Resumo : "", DataCriacao : "",Vendedor: "",ValorTotalOV: 0, EstadoVenda: 0,propostas:[]
+    ID : "",NomeOport: "",IdCliente:"",NomeCliente : "",ContactoCliente : "", Descricao : "",
+    Resumo : "", DataCriacao : "",Vendedor: "", 
+    ValorTotalOV: 0, EstadoVenda: 0,propostas:[]
   };
   dataID = -1;
   shownGroup = null;
@@ -60,7 +61,7 @@ export class OpportunityModalPage {
     this.currentSelected = j;
   }
 
-  //remove product from proposal button
+  //remove product from proposal - button
   removeProduct(productID, NumProposal)
   {
     var artigos = this.opp.propostas[NumProposal-1].Artigos;
@@ -78,7 +79,7 @@ export class OpportunityModalPage {
     }
     this.opp.propostas[NumProposal-1].Artigos = artigos;    
   }
-
+  //add product to proposal - button
   addProducts(NumProposal){
     this.navCtrl.push(ProductPage,
       {
@@ -87,7 +88,7 @@ export class OpportunityModalPage {
         callback: this.getData
       });
   } 
-
+  //receive products form catalogue
   getData = (data,NumProposal) =>
   {
     return new Promise((resolve, reject) => {
@@ -100,7 +101,7 @@ export class OpportunityModalPage {
         this.opp.propostas[0].Artigos.forEach( element => { 
           if(element.IdArtigo === data[i].IdArtigo){
             element.Quantidade += 1;
-            this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda;
+            this.opp.propostas[NumProposal-1].Valor += data[i].PrecoFinal;
             this.opp.propostas[NumProposal-1].Valor.toFixed(2);
             hasElement = true;
           }
@@ -110,15 +111,15 @@ export class OpportunityModalPage {
         {
           linhaAtual++;
           data[i].Linha = linhaAtual;
-          this.opp.propostas[NumProposal-1].Artigos.push(data[i]);
-          this.opp.propostas[NumProposal-1].Valor += data[i].PrecoVenda; 
+          this.opp.propostas[NumProposal-1].Artigos.push(data[i]); 
+          this.opp.propostas[NumProposal-1].Valor += data[i].PrecoFinal; 
           this.opp.propostas[NumProposal-1].Valor.toFixed(2);
         }
       }
       resolve();
     });
   };
-
+  //add quantity to product - button
   addQuantity(productID,NumProposal)
   {
     var artigos = this.opp.propostas[NumProposal-1].Artigos;
@@ -129,7 +130,7 @@ export class OpportunityModalPage {
       if(artigos[i].IdArtigo === productID)
       {
         let precoAtual: number = this.opp.propostas[NumProposal-1].Valor;
-        precoAtual = Number(artigos[i].PrecoVenda) + Number(precoAtual);
+        precoAtual = Number(artigos[i].PrecoFinal) + Number(precoAtual);
         this.opp.propostas[NumProposal-1].Valor = precoAtual.toFixed(2);
         artigos[i].Quantidade += 1;
         break;
@@ -137,7 +138,7 @@ export class OpportunityModalPage {
     }
     this.opp.propostas[NumProposal-1].Artigos = artigos;
   }
-
+  //remove quantity from product
   removeQuantity(productID,NumProposal)
   {
     let artigos = this.opp.propostas[NumProposal-1].Artigos;
@@ -147,7 +148,7 @@ export class OpportunityModalPage {
       if(artigos[i].IdArtigo === productID && artigos[i].Quantidade > 0)
       {
         let precoAtual: number = this.opp.propostas[NumProposal-1].Valor;
-        precoAtual =  Number(precoAtual) - Number(artigos[i].PrecoVenda); 
+        precoAtual =  Number(precoAtual) - Number(artigos[i].PrecoFinal); 
         this.opp.propostas[NumProposal-1].Valor = precoAtual.toFixed(2);
         artigos[i].Quantidade -= 1;
         break;
@@ -156,11 +157,48 @@ export class OpportunityModalPage {
     this.opp.propostas[NumProposal-1].Artigos = artigos;
   }
 
+  //TODO
+  //add new proposal to opportunity - button
+  addNewProposal(){
+    
+  }
+
   //problema -> cancela as 2
+  //cancel changes from proposal 
   cancelProposal(NumProposal){
     this.getOpportunity(this.opp.ID);
   }
 
+  //TODO server
+  //save changed proposal
+  saveProposal(NumProposal){
+    let jsonArtigos = [];
+
+    this.opp.propostas[NumProposal-1].Artigos.forEach(art => {
+      let jsonArt ={
+        IDArtigo : art.IDArtigo,
+        Quantidade : art.Quantidade
+      }
+      jsonArtigos.push(jsonArt);
+    });
+
+    let json = {
+      ID: this.opp.ID,
+      NumProposal: NumProposal,
+      Artigos : jsonArtigos
+    }
+    /*
+    this.opportunitiesService.updateOpportunity(json).subscribe(
+      data => { 
+          console.log("updated");
+      },
+      err => {
+          console.log(err);
+      });
+     */ 
+  }
+
+  //make new order -> win opportunity
   makeOrder(NumProposal){
     let linhas = [];
     this.opp.propostas[NumProposal-1].Artigos.forEach(element => {
@@ -170,7 +208,7 @@ export class OpportunityModalPage {
         //IdCabecDoc
         Quantidade : element.Quantidade,
         //Unidade
-        Desconto : "0", //TODO adicionar desconto ?
+        Desconto : element.Desconto, //TODO adicionar desconto ?
         PrecoUnitario : element.PrecoVenda
         //TotalIliquido
         //TotalLiquido
@@ -203,9 +241,9 @@ export class OpportunityModalPage {
       });
   }
 
-  //TODO -> fazer no server (depois de 6ª)
-  saveProposal(NumProposal){
-    let jsonArtigos = [];
+  //TODO
+  //lost opportunity
+  cancelOpportunity(NumProposal, jsonArtigos){
 
     this.opp.propostas[NumProposal-1].Artigos.forEach(art => {
       let jsonArt ={
@@ -231,8 +269,9 @@ export class OpportunityModalPage {
      */ 
   }
 
+  //receive opportunity
   getOpportunity(id){
-    /*
+    
     this.opportunitiesService.getOpportunity(id).subscribe(
       data => { 
           this.opp = data;
@@ -241,17 +280,19 @@ export class OpportunityModalPage {
       err => {
           console.log(err);
       });
-    */
+  /*
     this.opp = {
-      ID : "1",
-      Oportunidade: "OPP",
-      IdCliente: "1",
-      NomeCliente : "Antonio",
-      ContactoCliente : "963852714",
-      Descricao : "Encomenda de coisas",
-      Resumo : "Lorem ipsum blablabla",
-      DataCriacao : "13/9/2017",
-      Vendedor: "1",
+      
+        ID : "1",
+        NomeOport: "OPP",
+        NomeCliente : "Antonio",
+        ContactoCliente : "963852714",
+        Descricao : "Encomenda de coisas",
+        Resumo : "Lorem ipsum blablabla",
+        DataCriacao : "13/9/2017",
+        Vendedor: "1",
+        IdCliente: "1",
+       
       ValorTotalOV : 26.32,
       EstadoVenda: 0,
       propostas: [
@@ -300,6 +341,6 @@ export class OpportunityModalPage {
           ]
         }
       ]
-    };
+    };*/
   }
 }

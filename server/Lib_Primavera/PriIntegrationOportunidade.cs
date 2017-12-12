@@ -8,16 +8,16 @@ using System.Web;
 
 namespace FirstREST.Lib_Primavera
 {
-    public class PriIntegrationOpportunity
+    public class PriIntegrationOportunidade
     {
-        public static Model.Opportunity GetOportunidade(string id)
+        public static Model.Oportunidade GetOportunidade(string id)
         {
             CrmBEOportunidadeVenda objLead = new CrmBEOportunidadeVenda();
             CrmBEPropostasOPV objOpp = new CrmBEPropostasOPV();
             CrmBELinhasPropostaOPV objLinhas = new CrmBELinhasPropostaOPV();
 
-            Model.Opportunity opportunity = new Model.Opportunity();
-            Model.Lead lead = new Model.Lead();
+            Model.Oportunidade opportunity = new Model.Oportunidade();
+            //Model.Lead lead = new Model.Lead();
             List<Model.Proposta> propostas = new List<Model.Proposta>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
@@ -31,20 +31,17 @@ namespace FirstREST.Lib_Primavera
                     //vai buscar a lead
                     objLead = PriEngine.Engine.CRM.OportunidadesVenda.EditaID(id);
 
-                    //lead.ID = id;
-                    lead.ID = id;
-                    lead.Oportunidade = objLead.get_Oportunidade();
-                    lead.Descricao = objLead.get_Descricao();
-                    lead.Resumo = objLead.get_Resumo();
-                    lead.DataCriacao = objLead.get_DataCriacao();
-                    lead.Vendedor = objLead.get_Vendedor();
+                    opportunity.ID = id;
+                    opportunity.NomeOport = objLead.get_Oportunidade();
+                    opportunity.Descricao = objLead.get_Descricao();
+                    opportunity.Resumo = objLead.get_Resumo();
+                    opportunity.DataCriacao = objLead.get_DataCriacao();
+                    opportunity.Vendedor = objLead.get_Vendedor();
 
                     var idCliente = objLead.get_Entidade();
-                    lead.IdCliente = idCliente;
-                    lead.NomeCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Nome");
-                    lead.ContactoCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Fac_Tel");
-
-                    opportunity.Lead = lead;
+                    opportunity.IdCliente = idCliente;
+                    opportunity.NomeCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Nome");
+                    opportunity.ContactoCliente = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(idCliente, "Fac_Tel");
                     opportunity.EstadoVenda = objLead.get_EstadoVenda();
 
                     //vai buscar as proposta correspondente
@@ -53,7 +50,7 @@ namespace FirstREST.Lib_Primavera
                     {
                         var objProposta = objOpp.get_Edita(i);
                         var proposta = new Model.Proposta();
-                        var linhas = new List<Model.OpportunityLine>();
+                        var linhas = new List<Model.OportunidadeLinha>();
 
                         proposta.NumProposta = objProposta.get_NumProposta();
                         proposta.Valor = objProposta.get_Valor();
@@ -66,7 +63,7 @@ namespace FirstREST.Lib_Primavera
                             var numProposta = objLinha.get_NumProposta();
                             if (numProposta == proposta.NumProposta)
                             {
-                                var linha = new Model.OpportunityLine();
+                                var linha = new Model.OportunidadeLinha();
 
                                 linha.Linha = objLinha.get_Linha();
                                 linha.IdArtigo = objLinha.get_Artigo();
@@ -95,12 +92,11 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
-        public static IEnumerable<Model.Opportunity> ListaOpportunidades()
+        public static IEnumerable<Model.Oportunidade> ListaOpportunidades()
         {
             StdBELista oppList;
-            Model.Opportunity opp;
-            Model.Lead lead;
-            List<Model.Opportunity> listOpps = new List<Model.Opportunity>();
+            Model.Oportunidade opp;          
+            List<Model.Oportunidade> listOpps = new List<Model.Oportunidade>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
@@ -113,15 +109,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!oppList.NoFim())
                 {
-                    opp = new Model.Opportunity();
-                    lead = new Model.Lead();
-                    lead.ID = oppList.Valor("ID");
-                    lead.NomeCliente = oppList.Valor("NomeCliente");
-                    lead.ContactoCliente = oppList.Valor("ContactoCliente");
-                    lead.DataCriacao = oppList.Valor("Data");
-                    lead.Descricao = oppList.Valor("Descricao");
+                    opp = new Model.Oportunidade();
 
-                    opp.Lead = lead;
+                    opp.ID = oppList.Valor("ID");
+                    opp.NomeCliente = oppList.Valor("NomeCliente");
+                    opp.ContactoCliente = oppList.Valor("ContactoCliente");
+                    opp.DataCriacao = oppList.Valor("Data");
+                    opp.Descricao = oppList.Valor("Descricao");
+
                     listOpps.Add(opp);
                     oppList.Seguinte();
                 }

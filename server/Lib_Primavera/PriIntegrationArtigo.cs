@@ -27,16 +27,28 @@ namespace FirstREST.Lib_Primavera
 
                     myArt.ID = objArtigo.get_Artigo();
                     myArt.Nome = objArtigo.get_Descricao();
-                    myArt.UnidadeVenda = objArtigo.get_UnidadeVenda();
-                    myArt.IVA = objArtigo.get_IVA();
-                    myArt.StockAtual = objArtigo.get_StkActual();
-                    myArt.PrecoMedio = objArtigo.get_PCMedio();
+                    myArt.Marca = objArtigo.get_Marca();
+                    myArt.Observacoes = objArtigo.get_Observacoes();
+
                     myArt.FamiliaNome = objArtigo.get_Familia();
                     myArt.SubFamiliaNome = objArtigo.get_SubFamilia();
+
                     myArt.PrazoEntrega = objArtigo.get_PrazoEntrega();
-                    myArt.Peso = objArtigo.get_Peso();
-                    myArt.Observacoes = objArtigo.get_Observacoes();
-                    //myArt.QuantidadeReservada = objArtigo.get_QtReservada();
+
+                    myArt.UnidadeVenda = objArtigo.get_UnidadeVenda();
+                    myArt.StockAtual = objArtigo.get_StkActual();
+                    myArt.QuantidadeReservada = objArtigo.get_QtReservada();
+
+                    myArt.IVA = PriEngine.Engine.Comercial.Iva.Edita(objArtigo.get_IVA()).get_Taxa();
+                    myArt.Desconto = objArtigo.get_Desconto();
+
+                    var objArtigoPreco = PriEngine.Engine.Comercial.ArtigosPrecos.Edita(myArt.ID, "EUR", myArt.UnidadeVenda);
+                    myArt.PVP1 = objArtigoPreco.get_PVP1();
+
+                    myArt.PrecoFinal = myArt.PVP1 * (1 - myArt.Desconto/100);
+                    if (!objArtigoPreco.get_PVP1IvaIncluido())
+                        myArt.PrecoFinal *= (1 + myArt.IVA/100);
+
                     return myArt;
                 }
             }
@@ -58,7 +70,7 @@ namespace FirstREST.Lib_Primavera
             {
 
                 objList = PriEngine.Engine.Consulta(
-                    "select Artigo.Artigo, Artigo.Descricao, UnidadeVenda, Iva, STKActual, PCMedio, Familias.Descricao AS DescricaoFamilia, SubFamilias.Descricao AS DescricaoSubFamilia, PrazoEntrega, Peso, Marca, Observacoes, QtReservadaGPR  " +
+                    "select Artigo.Artigo, Artigo.Descricao, UnidadeVenda, Iva, Desconto, STKActual, Marca, Familias.Descricao AS DescricaoFamilia, SubFamilias.Descricao AS DescricaoSubFamilia, PrazoEntrega, Peso, Marca, Observacoes, QtReservadaGPR  " +
                     "from Artigo Join Familias ON Familias.Familia = Artigo.Familia Join SubFamilias ON SubFamilias.SubFamilia = Artigo.SubFamilia;");
 
                 while (!objList.NoFim())
@@ -66,17 +78,28 @@ namespace FirstREST.Lib_Primavera
                     art = new Model.Artigo();
                     art.ID = objList.Valor("Artigo");
                     art.Nome = objList.Valor("Descricao");
-                    art.UnidadeVenda = objList.Valor("UnidadeVenda");
-                    art.IVA = objList.Valor("Iva");
-                    art.StockAtual = objList.Valor("STKActual");
-                    art.PrecoMedio = objList.Valor("PCMedio");
+                    art.Marca = objList.Valor("Marca");
+                    art.Observacoes = objList.Valor("Observacoes");
+
                     art.FamiliaNome = objList.Valor("Descricao");
                     art.SubFamiliaNome = objList.Valor("DescricaoSubFamilia");
+
                     art.PrazoEntrega = objList.Valor("PrazoEntrega");
-                    art.Peso = objList.Valor("Peso");
-                    art.Observacoes = objList.Valor("Observacoes");
+
+                    art.UnidadeVenda = objList.Valor("UnidadeVenda");
+                    art.StockAtual = objList.Valor("STKActual");
                     art.QuantidadeReservada = objList.Valor("QtReservadaGPR");
 
+                    art.Desconto = objList.Valor("Desconto");
+                    art.IVA = PriEngine.Engine.Comercial.Iva.Edita(objList.Valor("Iva")).get_Taxa();
+
+                    var objArtigoPreco = PriEngine.Engine.Comercial.ArtigosPrecos.Edita(art.ID, "EUR", art.UnidadeVenda);
+                    art.PVP1 = objArtigoPreco.get_PVP1();
+
+                    art.PrecoFinal = art.PVP1 * (1 - art.Desconto/100);
+                    if (!objArtigoPreco.get_PVP1IvaIncluido())
+                        art.PrecoFinal *= (1 + art.IVA/100);
+                    
                     listArts.Add(art);
                     objList.Seguinte();
                 }
@@ -109,7 +132,7 @@ namespace FirstREST.Lib_Primavera
                     art.ID = objList.Valor("Artigo");
                     art.Nome = objList.Valor("Descricao");
                     art.StockAtual = objList.Valor("STKActual");
-                    art.PrecoMedio = objList.Valor("PCMedio");
+                    art.PVP1 = objList.Valor("PCMedio");
                     art.FamiliaNome = objList.Valor("DescricaoFamilia");
                     art.SubFamiliaNome = objList.Valor("DescricaoSubFamilia");
 
@@ -143,7 +166,7 @@ namespace FirstREST.Lib_Primavera
                     art.ID = objList.Valor("Artigo");
                     art.Nome = objList.Valor("Descricao");
                     art.StockAtual = objList.Valor("STKActual");
-                    art.PrecoMedio = objList.Valor("PCMedio");
+                    art.PVP1 = objList.Valor("PCMedio");
                     art.FamiliaNome = objList.Valor("DescricaoFamilia");
                     art.SubFamiliaNome = objList.Valor("DescricaoSubFamilia");
 

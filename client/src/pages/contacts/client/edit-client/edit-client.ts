@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {FormGroup, FormBuilder, AbstractControl, Validators} from "@angular/forms";
+import { FormGroup, FormBuilder, AbstractControl, Validators } from "@angular/forms";
 import { ContactsProvider } from '../../../../providers/contacts/contacts';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { HomePage } from '../../../../pages/home/home';
 
 @IonicPage()
 @Component({
@@ -11,54 +13,54 @@ import { ContactsProvider } from '../../../../providers/contacts/contacts';
 export class EditClientPage {
 
   createClientForm: FormGroup;
-  
-    private groups: JSON[] = [];
-    private currentclients: JSON[] = [];
-    private currentclient: JSON;
 
-    private CodCliente:string;
+  private groups: JSON[] = [];
+  private currentclients: JSON[] = [];
+  private currentclient: JSON;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private contacts: ContactsProvider) {
-  
-      this.CodCliente = navParams.get("firstParam");
+  private CodCliente: string;
 
-      var names = [''];
-      var phones = [''];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private contacts: ContactsProvider, private nativeStorage: NativeStorage) {
 
-      this.createClientForm = formBuilder.group({
-        codcliente:[''],
-        fullname: names,
-        email:[''],
-        cellphone:phones,
-        homephone:phones,
-        fax:[''],
-        notes:[''],
-        taxnumber:[''],
-        address:[''],
-        zipcode:[''],
-        location:[''],
-        country:[''],
-        website:[''],
-        group:[''],
-        currency:['']
+    this.CodCliente = navParams.get("firstParam");
+
+    var names = [''];
+    var phones = [''];
+
+    this.createClientForm = formBuilder.group({
+      codcliente: [''],
+      fullname: names,
+      email: [''],
+      cellphone: phones,
+      homephone: phones,
+      fax: [''],
+      notes: [''],
+      taxnumber: [''],
+      address: [''],
+      zipcode: [''],
+      location: [''],
+      country: [''],
+      website: [''],
+      group: [''],
+      currency: ['']
     });
   }
   ionViewDidLoad() {
 
 
     this.contacts.getAllGroups().subscribe(
-      data => { 
-          this.groups = data;
-          console.log(data);
+      data => {
+        this.groups = data;
+        console.log(data);
       },
       err => {
-        
+
       });
 
     this.contacts.getClientById(this.CodCliente).subscribe(
-      data => { 
+      data => {
         this.currentclients = data;
-        if(this.currentclients.length != 0){
+        if (this.currentclients.length != 0) {
           this.currentclient = this.currentclients[0];
           this.createClientForm.get("codcliente").setValue(this.currentclient["CodCliente"]);
           this.createClientForm.get("fullname").setValue(this.currentclient["Nome"]);
@@ -75,49 +77,52 @@ export class EditClientPage {
           this.createClientForm.get("currency").setValue(this.currentclient["Moeda"]);
           this.createClientForm.get("group").setValue(this.currentclient["GrupoDesc"]);
         }
-    },
-    err => {
-    });
+      },
+      err => {
+      });
   }
 
 
 
-  onSubmit(value: any): void { 
-    
-        if(this.createClientForm.valid) {
-          var data = {
-            "CodCliente":this.createClientForm.value.codcliente,
-            "Nome":this.createClientForm.value.fullname,
-            "Morada":this.createClientForm.value.address,
-            "Localidade":this.createClientForm.value.location,
-            "CodPostal":this.createClientForm.value.zipcode,
-            "Pais":this.createClientForm.value.country,
-            "Email":this.createClientForm.value.email,
-            "Telemovel":this.createClientForm.value.cellphone,
-            "Telefone":this.createClientForm.value.homephone,
-            "Fax":this.createClientForm.value.fax,
-            "TotalDeb":0,
-            "NumContribuinte":this.createClientForm.value.taxnumber,
-            "EnderecoWeb":this.createClientForm.value.website,
-            "EncomendasPendentes":0,
-            "Notas":this.createClientForm.value.notes,
-            "Group":this.createClientForm.value.group,
-            "Vendedor":"1",
-            "Inactivo":0,
-            "Moeda":this.createClientForm.value.currency
+  onSubmit(value: any): void {
+
+    this.nativeStorage.getItem("Id").then(
+
+      data => {
+        if (this.createClientForm.valid) {
+          var dataSend = {
+            "CodCliente": this.createClientForm.value.codcliente,
+            "Nome": this.createClientForm.value.fullname,
+            "Morada": this.createClientForm.value.address,
+            "Localidade": this.createClientForm.value.location,
+            "CodPostal": this.createClientForm.value.zipcode,
+            "Pais": this.createClientForm.value.country,
+            "Email": this.createClientForm.value.email,
+            "Telemovel": this.createClientForm.value.cellphone,
+            "Telefone": this.createClientForm.value.homephone,
+            "Fax": this.createClientForm.value.fax,
+            "TotalDeb": 0,
+            "NumContribuinte": this.createClientForm.value.taxnumber,
+            "EnderecoWeb": this.createClientForm.value.website,
+            "EncomendasPendentes": 0,
+            "Notas": this.createClientForm.value.notes,
+            "Group": this.createClientForm.value.group,
+            "Vendedor": data,
+            "Inactivo": 0,
+            "Moeda": this.createClientForm.value.currency
           }
-    
+
           this.contacts.editClient(data, this.createClientForm.value.codcliente).subscribe(
-            data => { 
-              console.log(data);
-          },
-          err => {
-              console.log(err);
-              alert(err);
+            data => {
+              alert("Success editing Client!");
+              this.navCtrl.setRoot(HomePage, {}, { animate: true, direction: 'forward' });
+            },
+            err => {
               alert("Error editing Client!");
-          })    
-            
+            });
+
         }
 
-      }
+      });
+  }
 }

@@ -1,6 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\pages",
+    "\\src\\pages\\product",
+    "\\src\\pages\\statistics",
+    "\\src\\pages\\statistics\\personal-statistics",
+    "\\src\\providers",
+    "\\src\\providers\\statistics"
   ],
+  "SelectedNode": "\\src\\pages\\statistics\\personal-statistics\\personal-statistics.scss",
   "PreviewInSolutionExplorer": false
 }

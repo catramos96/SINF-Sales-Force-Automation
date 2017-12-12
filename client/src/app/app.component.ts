@@ -11,7 +11,10 @@ import { ProductPage } from '../pages/product/product';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { StatisticsPage } from '../pages/statistics/statistics';
 import { RegisterPage } from '../pages/register/register';
+import { LoginPage } from '../pages/login/login';
 
+import { NativeStorage } from '@ionic-native/native-storage';
+import { Events } from 'ionic-angular';
 
 
 @Component({
@@ -21,24 +24,62 @@ import { RegisterPage } from '../pages/register/register';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
+  pages: Array<{title: string, component: any, isVisible: boolean}>;
+  isLoggedIn: boolean = false;
+  isChefe: boolean = false;
 
-  pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private nativeStorage: NativeStorage, public events: Events) {
     this.initializeApp();
+    nativeStorage.clear();
 
-    // used for an example of ngFor and navigation
+    events.subscribe('user:loggedin', (isLoggedIn, isChefe) => {
+      this.pages = [
+        { title: 'Login', component: LoginPage, isVisible: !isLoggedIn},
+        { title: 'Register', component: RegisterPage, isVisible : isChefe },
+        { title: 'Home', component: HomePage, isVisible: isLoggedIn },
+        { title: 'Opportunities', component: OpportunitiesPage, isVisible: isLoggedIn },
+        { title: 'Sales History', component: SalesHistoryPage, isVisible: isLoggedIn },
+        { title: 'Product', component: ProductPage, isVisible: isLoggedIn },
+        { title: 'Contacts', component: ContactsPage, isVisible: isLoggedIn },
+        { title: 'Statistics', component: StatisticsPage, isVisible: isLoggedIn },
+        { title: 'Team', component: TeamPage, isVisible: isLoggedIn },
+      ];
+    });
+
+    this.tryLogIn(nativeStorage);
+
     this.pages = [
-      { title: 'Register', component: RegisterPage },
-      { title: 'Home', component: HomePage },
-      { title: 'Opportunities', component: OpportunitiesPage },
-      { title: 'Sales History', component: SalesHistoryPage },
-      { title: 'Product', component: ProductPage },
-      { title: 'Contacts', component: ContactsPage },
-      { title: 'Statistics', component: StatisticsPage },
-      { title: 'Team', component: TeamPage }
+      { title: 'Login', component: LoginPage, isVisible: !this.isLoggedIn},
+      { title: 'Register', component: RegisterPage, isVisible : this.isChefe },
+      { title: 'Home', component: HomePage, isVisible: this.isLoggedIn },
+      { title: 'Opportunities', component: OpportunitiesPage, isVisible: this.isLoggedIn },
+      { title: 'Sales History', component: SalesHistoryPage, isVisible: this.isLoggedIn },
+      { title: 'Product', component: ProductPage, isVisible: this.isLoggedIn },
+      { title: 'Contacts', component: ContactsPage, isVisible: this.isLoggedIn },
+      { title: 'Statistics', component: StatisticsPage, isVisible: this.isLoggedIn },
+      { title: 'Team', component: TeamPage, isVisible: this.isLoggedIn },
     ];
+
+  }
+
+
+
+  public tryLogIn(nativeStorage : NativeStorage){
+    nativeStorage.getItem("Role").then(
+      data => {
+        this.isLoggedIn = true;
+        if(data == "Chefe"){
+          this.isChefe = true;
+        }
+      this.rootPage = HomePage;
+    },
+      error => {
+        this.isLoggedIn = false;
+        this.isLoggedIn = false;
+      }
+    );
+
   }
 
   initializeApp() {

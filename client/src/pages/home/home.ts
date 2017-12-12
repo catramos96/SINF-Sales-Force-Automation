@@ -10,6 +10,8 @@ import { OpportunitiesProvider } from '../../providers/opportunities/opportuniti
 import { OpportunityModalPage } from '../opportunities/opportunity-modal/opportunity-modal';
 import {AppointmentsProvider} from "../../providers/appointments/appointments";
 import {RoutesProvider} from "../../providers/routes/routes";
+import {CreateAppointmentsModalPage} from "../appointments/create-appointments-modal/create-appointments-modal"
+import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'page-home',
@@ -44,10 +46,22 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+    this.loadEventHandlers();
     this.getAppointments();
     this.getOpportunities();
     this.getRoutes();
     this.getLeads();
+  }
+
+  /**
+   * EVENTS
+   */
+
+  loadEventHandlers(){
+    document.getElementById("AddAppointment").addEventListener("click",() =>{
+      let modal = this.modalCtrl.create(CreateAppointmentsModalPage);
+      modal.present();
+    });
   }
 
   goToOpportunities() {
@@ -181,9 +195,9 @@ export class HomePage {
     for(var i = 0; i < this.opportunities.length; i++){
 
       var e:HTMLElement = document.createElement('tr');
-      var id = this.opportunities[i].Lead.ID;
+      var id = this.opportunities[i].ID;
 
-      e.innerHTML = '<td>' + this.opportunities[i].Lead.Descricao + '</td>';
+      e.innerHTML = '<td>' + this.opportunities[i].Descricao + '</td>';
 
       e.addEventListener("click",() =>{
         let modal = this.modalCtrl.create(OpportunityModalPage,{opportunityID: id });
@@ -209,9 +223,9 @@ export class HomePage {
     for(var i = 0; i < this.leads.length; i++){
 
        var e:HTMLElement = document.createElement('tr');
-      var id = this.leads[i].Lead.ID;
+      var id = this.leads[i].ID;
 
-      e.innerHTML = '<td>' + this.leads[i].Lead.Descricao + '</td>';
+      e.innerHTML = '<td>' + this.leads[i].Descricao + '</td>';
 
       e.addEventListener("click",() =>{
         let modal = this.modalCtrl.create(OpportunityModalPage,{opportunityID: id });
@@ -227,24 +241,6 @@ export class HomePage {
   /**
   DETAILS
    */
-
-  showRouteDetails(id){
-    //TODO
-
-    return;
-  }
-
-  showLeadDetails(id){
-    //TODO
-
-    return;
-  }
-
-  showOpportunityDetails(id){
-   //TODO
-
-    return;
-  }
 
   showDetails(html){
     var details:HTMLElement = document.getElementById("Details");

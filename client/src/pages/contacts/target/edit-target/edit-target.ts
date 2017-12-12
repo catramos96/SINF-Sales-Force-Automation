@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormGroup, FormBuilder, AbstractControl, Validators} from "@angular/forms";
 import { ContactsProvider } from '../../../../providers/contacts/contacts';
+import { HomePage } from '../../../../pages/home/home';
 
 
 @IonicPage()
@@ -16,7 +17,6 @@ export class EditTargetPage {
     private groups: JSON[] = [];
     private currenttargets: JSON[] = [];
     private currenttarget: JSON;
-    private CodTarget:string;
 
     private IdTarget:string;
 
@@ -27,18 +27,15 @@ export class EditTargetPage {
     var phones = [''];
 
     this.createTargetForm = formBuilder.group({
-      firstname: names,
-      intermediatenames: names,
-      lastname: names,
-      email:[''],
-      cellphone:phones,
-      homephone:phones,
-      notes:[''],
-      taxnumber:[''],
-      address:[''],
-      zipcode:[''],
-      location:[''],
-      country:[''],
+      name: [''],
+      email: [''],
+      cellphone: phones,
+      homephone: phones,
+      address: [''],
+      zipcode: [''],
+      location: [''],
+      country: [''],
+      fax:[''],
   });
   }
 
@@ -59,11 +56,7 @@ export class EditTargetPage {
           this.currenttargets = data;
           if(this.currenttargets.length != 0){
             this.currenttarget = this.currenttargets[0];
-            this.CodTarget = this.currenttarget["ContactoDef"];
-            this.createTargetForm.get("firstname").setValue(this.currenttarget["PrimeiroNome"]);
-            this.createTargetForm.get("intermediatenames").setValue(this.currenttarget["NomesIntermedios"]);
-            this.createTargetForm.get("lastname").setValue(this.currenttarget["UltimoNome"]);
-            this.createTargetForm.get("taxnumber").setValue(this.currenttarget["NumContribuint"]);
+            this.createTargetForm.get("name").setValue(this.currenttarget["Nome"]);
             this.createTargetForm.get("address").setValue(this.currenttarget["Morada"]);
             this.createTargetForm.get("zipcode").setValue(this.currenttarget["CodPostal"]);
             this.createTargetForm.get("location").setValue(this.currenttarget["Localidade"]);
@@ -71,7 +64,7 @@ export class EditTargetPage {
             this.createTargetForm.get("email").setValue(this.currenttarget["Email"]);
             this.createTargetForm.get("cellphone").setValue(this.currenttarget["Telemovel"]);
             this.createTargetForm.get("homephone").setValue(this.currenttarget["Telefone"]);
-            this.createTargetForm.get("notes").setValue(this.currenttarget["Notas"]);
+            this.createTargetForm.get("fax").setValue(this.currenttarget["Fax"]);
           }
       },
       err => {
@@ -85,29 +78,25 @@ export class EditTargetPage {
     
         if(this.createTargetForm.valid) {
           var data = {
-            "ContactoDef":this.CodTarget,
-            "Id":this.IdTarget,
-            "PrimeiroNome":this.createTargetForm.value.firstname,
-            "NomesIntermedios":this.createTargetForm.value.intermediatenames,
-            "UltimoNome":this.createTargetForm.value.lastname,
-            "NumContribuinte":this.createTargetForm.value.taxnumber,
-            "Morada":this.createTargetForm.value.address,
-            "CodPostal":this.createTargetForm.value.zipcode,
-            "Localidade":this.createTargetForm.value.location,
-            "Pais":this.createTargetForm.value.country,
-            "Email":this.createTargetForm.value.email,
-            "Telemovel":this.createTargetForm.value.cellphone,
-            "Telefone":this.createTargetForm.value.homephone,
-            "Notas":this.createTargetForm.value.notes
+            "Entidade": this.currenttarget["Entidade"],
+            "Nome": this.createTargetForm.value.name,
+            "Morada": this.createTargetForm.value.address,
+            "CodPostal": this.createTargetForm.value.zipcode,
+            "Localidade": this.createTargetForm.value.location,
+            "Pais": this.createTargetForm.value.country,
+            "Email": this.createTargetForm.value.email,
+            "Telemovel": this.createTargetForm.value.cellphone,
+            "Telefone": this.createTargetForm.value.homephone,
+            "Fax":this.createTargetForm.value.fax,
           }
     
           this.contacts.editContact(data, this.IdTarget).subscribe(
             data => { 
-              console.log(data);
+              alert("Success editing Target!");
+              this.navCtrl.setRoot(HomePage, {}, {animate: true, direction: 'forward'});
           },
           err => {
-              console.log(err);
-              alert("Error creating target!");
+              alert("Error editing target!");
           })    
             
         }

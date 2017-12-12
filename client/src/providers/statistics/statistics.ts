@@ -61,7 +61,7 @@ export class StatisticsProvider {
     let salesman: number = 2;
 
     var url = AppSettings.API_ENDPOINT + 'docvendas/produtoscategoria/' +salesman;
-    return this.http.get(url).map(res => this.convertToPercentage(res.json()));
+    return this.http.get(url).map(res => res.json());
   }
 
   private convertToPercentage(response) {
