@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c505134e-bc35-4d44-b9a9-d00cc3d2ae58" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/Controllers/TipoTarefaController.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/Lib_Primavera/Model/TipoTarefa.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationTipoTarefa.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/package.json" afterPath="$PROJECT_DIR$/client/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/app.component.ts" afterPath="$PROJECT_DIR$/client/src/app/app.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html" afterPath="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.scss" afterPath="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts" afterPath="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.html" afterPath="$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/providers/appointments/appointments.ts" afterPath="$PROJECT_DIR$/client/src/providers/appointments/appointments.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/Controllers/TarefasController.cs" afterPath="$PROJECT_DIR$/server/Controllers/TarefasController.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/Lib_Primavera/Model/Tarefa.cs" afterPath="$PROJECT_DIR$/server/Lib_Primavera/Model/Tarefa.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationTarefa.cs" afterPath="$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationTarefa.cs" />
     </list>
     <ignored path="$PROJECT_DIR$/client/node_modules/reflect-metadata/Reflect.js/" />
     <ignored path="$PROJECT_DIR$/client/node_modules/reflect-metadata/Reflect.d.ts/" />
@@ -45,42 +53,8 @@
       <file leaf-file-name="view-appointment-modal.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="499">
-              <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/pages/home/home.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="154" column="24" lean-forward="false" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-                <marker date="1513174410938" expanded="true" signature="7383:7401" ph="..." />
-                <marker date="1513174410938" expanded="true" signature="7433:7451" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create-appointments-modal.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="50" column="16" lean-forward="true" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create-appointments-modal.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+            <state relative-caret-position="669">
+              <caret line="47" column="9" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="47" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -89,8 +63,8 @@
       <file leaf-file-name="create-appointments-modal.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+            <state relative-caret-position="646">
+              <caret line="37" column="3" lean-forward="false" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
               <folding>
                 <element signature="e#0#66#0" expanded="true" />
               </folding>
@@ -98,11 +72,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="view-appointment-modal.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.html">
+      <file leaf-file-name="TipoTarefa.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/Model/TipoTarefa.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="743">
-              <caret line="94" column="12" lean-forward="false" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
+            <state relative-caret-position="147">
+              <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PriIntegrationTarefa.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationTarefa.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tarefa.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/Model/Tarefa.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TarefasController.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/Controllers/TarefasController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="672">
+              <caret line="32" column="18" lean-forward="false" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create-appointments-modal.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="23" column="37" lean-forward="true" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appointments.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/providers/appointments/appointments.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="28" column="16" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -156,12 +180,9 @@
         <option value="$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.html.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/home/home.scss" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.html" />
-        <option value="$PROJECT_DIR$/client/src/providers/appointments/appointments.ts" />
-        <option value="$PROJECT_DIR$/server/Controllers/TarefasController.cs" />
         <option value="$PROJECT_DIR$/client/src/providers/routes/routes.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/team/team.html" />
-        <option value="$PROJECT_DIR$/client/src/app/app.component.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/schedule/schedule.module.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/home/home.html" />
         <option value="$PROJECT_DIR$/client/src/pages/schedule/schedule.scss" />
@@ -172,8 +193,16 @@
         <option value="$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.html" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.scss" />
-        <option value="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/server/Lib_Primavera/Model/TipoTarefa.cs" />
+        <option value="$PROJECT_DIR$/server/Controllers/TipoTarefaController.cs" />
+        <option value="$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationTipoTarefa.cs" />
+        <option value="$PROJECT_DIR$/client/src/providers/appointments/appointments.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html" />
+        <option value="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts" />
+        <option value="$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationTarefa.cs" />
+        <option value="$PROJECT_DIR$/server/Lib_Primavera/Model/Tarefa.cs" />
+        <option value="$PROJECT_DIR$/server/Controllers/TarefasController.cs" />
       </list>
     </option>
   </component>
@@ -191,7 +220,9 @@
     <option name="width" value="964" />
     <option name="height" value="1038" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -207,6 +238,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,88 +254,19 @@
             <path>
               <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
               <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
               <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="appointments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="appointments" type="462c0819:PsiDirectoryNode" />
-              <item name="create-appointments-modal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="appointments" type="462c0819:PsiDirectoryNode" />
-              <item name="view-appointment-modal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="contacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="contacts" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="schedule" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -320,16 +283,16 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Catarina\Documents\Académico\4º Ano\SINF\SINF_Sales_Force_Automation\server\Controllers" />
+      <recent name="C:\Users\Catarina\Documents\Académico\4º Ano\SINF\SINF_Sales_Force_Automation\server\Lib_Primavera\Model" />
+      <recent name="C:\Users\Catarina\Documents\Académico\4º Ano\SINF\SINF_Sales_Force_Automation\server\Lib_Primavera" />
+      <recent name="C:\Users\Catarina\Documents\Académico\4º Ano\SINF\SINF_Sales_Force_Automation\client\src\pages\appointments" />
+      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\pages\appointments" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\pages\team" />
       <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\assets" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Catarina\Documents\Académico\4º Ano\SINF\SINF_Sales_Force_Automation\client\src\pages\appointments" />
-      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\client\src\pages\appointments" />
-      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\server\Lib_Primavera" />
-      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\server\Lib_Primavera\Model" />
-      <recent name="C:\Users\Catarina\Documents\SINF_Sales_Force_Automation\server\Controllers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -369,11 +332,12 @@
       <workItem from="1513094898381" duration="2247000" />
       <workItem from="1513097158670" duration="5608000" />
       <workItem from="1513172755065" duration="3485000" />
+      <workItem from="1513177015447" duration="3994000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84339000" />
+    <option name="totallyTimeSpent" value="88333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -428,15 +392,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationArtigo.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/providers/statistics/statistics.ts" />
-    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.ts" />
     <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.html" />
     <entry file="file://$PROJECT_DIR$/client/src/pages/product/productModal.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -490,12 +445,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/Controllers/RotasController.cs" />
-    <entry file="file://$PROJECT_DIR$/server/Controllers/TarefasController.cs" />
     <entry file="file://$PROJECT_DIR$/client/src/providers/opportunities/opportunities.ts" />
     <entry file="file://$PROJECT_DIR$/client/src/providers/routes/routes.ts" />
     <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/appointmentModal.ts" />
-    <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationTarefa.cs" />
-    <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/Model/Tarefa.cs" />
     <entry file="file://$PROJECT_DIR$/client/src/pages/product/productModal.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-151">
@@ -542,14 +494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
           <caret line="161" column="51" lean-forward="true" selection-start-line="160" selection-start-column="8" selection-end-line="161" selection-end-column="51" />
-          <folding>
-            <element signature="n#ion-row#1;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#ion-row#2;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#ion-col#0;n#ion-row#2;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#ion-col#1;n#ion-row#2;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#ion-row#3;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#ion-col#0;n#ion-row#5;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -589,13 +533,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="64" lean-forward="false" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/app.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -614,16 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="88" column="25" lean-forward="true" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#58#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -652,20 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
           <caret line="114" column="15" lean-forward="false" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="15" />
-          <folding>
-            <element signature="e#806#813#1" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#ion-col#1;n#ion-row#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#ion-col#2;n#ion-row#0;n#ion-content#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/providers/appointments/appointments.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -678,21 +591,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/home/home.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="154" column="24" lean-forward="false" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="24" />
+        <state relative-caret-position="2961">
+          <caret line="155" column="24" lean-forward="false" selection-start-line="155" selection-start-column="24" selection-end-line="155" selection-end-column="24" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
-            <marker date="1513174410938" expanded="true" signature="7383:7401" ph="..." />
-            <marker date="1513174410938" expanded="true" signature="7433:7451" ph="..." />
+            <marker date="1513176942941" expanded="true" signature="1076:1183" ph="{&quot;selector&quot;: 'page-home'...}" />
+            <marker date="1513176942941" expanded="true" signature="1207:7876" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="1928:1934" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="1955:2090" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="2094:2115" ph="/** EVENTS ...*/" />
+            <marker date="1513176942941" expanded="true" signature="2138:2322" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="2216:2316" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="2346:2393" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="2411:2453" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="2457:2480" ph="/** GET INFO ...*/" />
+            <marker date="1513176942941" expanded="true" signature="2501:2770" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="2578:2681" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="2696:2764" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="2784:3031" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="2860:2949" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="2964:3025" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="3046:3285" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="3111:3202" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="3217:3279" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="3307:3578" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="3383:3488" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="3503:3572" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="3582:3605" ph="/**TABLES INFO ...*/" />
+            <marker date="1513176942941" expanded="true" signature="3627:4501" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="3867:3915" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="3970:4454" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="4257:4396" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="4517:5240" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="4751:4799" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="4848:5193" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="5007:5135" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="5017:5127" ph="/*...*/" />
+            <marker date="1513176942941" expanded="true" signature="5263:6045" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="5504:5552" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="5608:5998" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="5820:5940" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="6060:6811" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="6293:6341" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="6389:6764" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="6586:6706" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="6815:6834" ph="/**DETAILS ...*/" />
+            <marker date="1513176942941" expanded="true" signature="6855:7152" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="7191:7806" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="7388:7610" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="7432:7450" ph="..." />
+            <marker date="1513176942941" expanded="true" signature="7482:7500" ph="..." />
+            <marker date="1513176942941" expanded="true" signature="7746:7802" ph="{...}" />
+            <marker date="1513176942941" expanded="true" signature="7828:7874" ph="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
-          <caret line="94" column="12" lean-forward="false" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -704,24 +655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -730,10 +663,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="743">
+          <caret line="94" column="12" lean-forward="false" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="88" column="14" lean-forward="false" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationTipoTarefa.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="24" column="47" lean-forward="false" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Controllers/TipoTarefaController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="28" column="48" lean-forward="false" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="29" column="30" lean-forward="false" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/providers/appointments/appointments.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="28" column="16" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="50" column="16" lean-forward="true" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
+        <state relative-caret-position="213">
+          <caret line="23" column="37" lean-forward="true" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="669">
+          <caret line="47" column="9" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="47" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="37" column="3" lean-forward="false" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/Model/TipoTarefa.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/PriIntegrationTarefa.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/Model/Tarefa.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Controllers/TarefasController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="32" column="18" lean-forward="false" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
           <folding />
         </state>
       </provider>

@@ -26,4 +26,14 @@ export class AppointmentsProvider {
     return this.http.get(url).map(res => res.json());
   }
 
+  public getType(codTipo){
+    var url = AppSettings.API_ENDPOINT + 'tipo_tarefa/' + encodeURI(codTipo);
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public getAllTypes(){
+    var url = AppSettings.API_ENDPOINT + 'tipo_tarefa';
+    return this.http.get(url).map(res => res.json());
+  }
+
 }

@@ -3,6 +3,7 @@ import { Component ,ViewChild,
 } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import {AppointmentsProvider} from "../../../providers/appointments/appointments";
 
 @IonicPage()
 @Component({
@@ -11,7 +12,9 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CreateAppointmentsModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public types = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public appointmentsProvider: AppointmentsProvider) {
   }
 
   ionViewDidLoad() {
@@ -22,6 +25,16 @@ export class CreateAppointmentsModalPage {
 
   resize() {
     this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+  }
+
+  getAppointmentsTypes(){
+    this.appointmentsProvider.getAllTypes().subscribe(
+      data => {
+        this.types = data;
+      },
+      err => {
+        console.log(err);
+      });
   }
 
 }
