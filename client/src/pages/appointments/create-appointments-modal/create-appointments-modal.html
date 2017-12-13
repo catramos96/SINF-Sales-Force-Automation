@@ -24,7 +24,7 @@
     <ion-item>
       <ion-label color="primary" stacked>Tipo</ion-label>
       <ion-select  formControlName="TipoDeTarefa" [(ngModel)]="type">
-        <div ng-repeat="t in types">
+        <div *ngFor="let t of types;">
           <ion-option>{{t.Descricao}}</ion-option>
         </div>
       </ion-select>
@@ -88,7 +88,6 @@
        <button ion-button outline (click)="getOpportunity()">Associate Opportunity</button>
       </ion-col>
     </ion-row>
-
       <ion-input  formControlName="IDTarefaOrigem" type="text"></ion-input>
   </ion-list>
   <ion-row  justify-content-center>

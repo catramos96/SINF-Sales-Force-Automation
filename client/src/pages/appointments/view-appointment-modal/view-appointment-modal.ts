@@ -32,11 +32,11 @@ export class ViewAppointmentModalPage {
         else
           false;
         this.resume = appointment.Resumo;
-        this.description = appointment.Descrição;
+        this.description = appointment.Descricao;
         this.startDate = appointment.DataInicio;
         this.endDate = appointment.DataFim;
         this.type = appointment.TipoDeTarefa;
-        this.location = appointment.Localização;
+        this.location = appointment.Localizacao;
         this.client = appointment.IDContacto;
         this.opportunity = appointment.IDTarefaOrigem;
 
