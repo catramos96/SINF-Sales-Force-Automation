@@ -92,6 +92,42 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+        public static IEnumerable<Model.Oportunidade> ListaOportunidadesVendedor(String vendedor)
+        {
+            StdBELista oppList;
+            Model.Oportunidade opp;          
+            List<Model.Oportunidade> listOpps = new List<Model.Oportunidade>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                oppList = PriEngine.Engine.Consulta(
+                    @"select ID, CabecOportunidadesVenda.Vendedor, CabecOportunidadesVenda.EstadoVenda AS EstadoVenda,
+                      Clientes.Nome AS NomeCliente, Clientes.Fac_Tel AS ContactoCliente, 
+                      CabecOportunidadesVenda.DataCriacao AS Data, CabecOportunidadesVenda.Descricao AS Descricao
+                      from CabecOportunidadesVenda JOIN Clientes ON Clientes.Cliente = CabecOportunidadesVenda.Entidade
+                      where EstadoVenda = 0 AND Vendedor = " +vendedor); //Oportunidades abertas
+
+                while (!oppList.NoFim())
+                {
+                    opp = new Model.Oportunidade();
+
+                    opp.ID = oppList.Valor("ID");
+                    opp.NomeCliente = oppList.Valor("NomeCliente");
+                    opp.ContactoCliente = oppList.Valor("ContactoCliente");
+                    opp.DataCriacao = oppList.Valor("Data");
+                    opp.Descricao = oppList.Valor("Descricao");
+
+                    listOpps.Add(opp);
+                    oppList.Seguinte();
+                }
+                return listOpps;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static IEnumerable<Model.Oportunidade> ListaOpportunidades()
         {
             StdBELista oppList;
