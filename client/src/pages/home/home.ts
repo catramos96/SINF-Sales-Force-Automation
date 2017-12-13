@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } fr
 import { CalendarEvent } from 'angular-calendar';
 import { Input,Output, EventEmitter } from '@angular/core';
 import { getDateString } from "../calendar-resources";
-import { AppointmentModal } from "../appointments/appointmentModal";
 import { ModalController} from 'ionic-angular';
 import { OpportunitiesPage } from '../opportunities/opportunities';
 import { OpportunitiesProvider } from '../../providers/opportunities/opportunities';
@@ -11,6 +10,8 @@ import { OpportunityModalPage } from '../opportunities/opportunity-modal/opportu
 import {AppointmentsProvider} from "../../providers/appointments/appointments";
 import {RoutesProvider} from "../../providers/routes/routes";
 import {CreateAppointmentsModalPage} from "../appointments/create-appointments-modal/create-appointments-modal"
+import {SchedulePage} from "../schedule/schedule";
+import {ViewAppointmentModalPage} from "../appointments/view-appointment-modal/view-appointment-modal";
 import { MyApp } from '../../app/app.component';
 
 @Component({
@@ -66,6 +67,10 @@ export class HomePage {
 
   goToOpportunities() {
     this.navCtrl.push(OpportunitiesPage);
+  }
+
+  goToSchedule(){
+    this.navCtrl.push(SchedulePage);
   }
 
   /**
@@ -139,13 +144,17 @@ export class HomePage {
     }
 
     for(var i = 0; i < this.appointments.length; i++){
+
       var e:HTMLElement = document.createElement('tr');
 
       e.innerHTML = '<td>' + this.appointments[i].DataInicio.toString() + '</td>' +
         '<td>' + this.appointments[i].Resumo + '</td>';
 
+      var id:string = this.appointments[i].ID;
+
       e.addEventListener("click",() =>{
-        let modal = this.modalCtrl.create(AppointmentModal);//,{ productID: productID });
+        console.log(id);
+        let modal = this.modalCtrl.create(ViewAppointmentModalPage,{ ID:  id});
         modal.present();
       });
 

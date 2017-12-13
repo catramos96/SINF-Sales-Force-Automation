@@ -1,70 +1,140 @@
 page-personal-statistics {
-   ion-grid {
-    min-width: 500px;
-    min-height: 550px;
+
+  ion-grid {
     height: 100%;
-    width: 100%;
   }
 
-  .row1 {
+  .topRow {
     height: 35%;
   }
 
-  .row2 {
-    height: 50%;
+  .bottomRow {
+    height: 65%;
   }
 
-  .label {
+  ion-card {
     height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+
+  .card-orange {
     background-color: #ffe599;
-    margin-right: 1.5%;
-    margin-left: 1.5%;
-    border: 1px solid black;
-    font-size: 35px;
+    position: relative;
     text-align: right;
-    padding: 5% 5% 0 0;
-    word-wrap: break-word;
   }
 
-  .bigNumber {
+  .card-title {
+    position: absolute;
+    top: 15%;
+    font-size: 8em;
+    width: 100%;
     font-weight: bold;
-    font-size: 85px;
+    padding-right: 6%;
   }
 
-  .panelHeader {
-    margin-top: 2%;
-    font-size: 20px;
-    margin-left: 1.5%;
-    margin-right: 1.5%;
-    border-bottom: 1px solid;
-    border-color: rgba(128, 128, 128, 0.45);
+  .card-subtitle {
+    font-size: 3.5em;
+    position: absolute;
+    top: 55%;
+    width: 100%;
+    padding-right: 6%;
   }
 
-  .pieChart {
-    padding-top: 1.5%;
+  .top5-text-index {
+    font-weight: bold;
   }
 
-  @media (max-width: 767px) {
-    .bigNumber {
-      font-size: 65px;
+  .top5-text {
+    font-size: 1.5em;
+  }
+
+  .textHeader {
+    font-size: 1.6em;
+  }
+
+  .chart {
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  @media (max-width: 1500px) {
+    .card-title {
+      font-size: 7em;
     }
 
-    .label {
-      font-size: 20px;
+    .card-subtitle {
+      font-size: 3em;
     }
   }
 
-  @media (max-width: 600px) {
-    .bigNumber {
-      font-size: 55px;
-      text-align: center;
-      line-height: 100px;
+  @media (max-width: 1300px) {
+    .card-title {
+      font-size: 6em;
+      top: 22%;
     }
 
-    .label {
-      text-align: center;
-      vertical-align: middle;
-      font-size: 15px;
+    .card-subtitle {
+      font-size: 2.5em;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .card-title {
+      font-size: 5em;
+      top: 25%;
+    }
+
+    .card-subtitle {
+      font-size: 2em;
+    }
+
+    .top5-text {
+      font-size: 1.2em;
+    }
+  }
+
+  @media (max-width: 950px) {
+    .card-title {
+      font-size: 4em;
+      top: 30%;
+    }
+
+    .card-subtitle {
+      font-size: 1.6em;
+    }
+
+    .top5-text {
+      font-size: 1.2em;
+    }
+  }
+
+  @media (max-width: 780px) {
+    .card-title {
+      font-size: 3em;
+      top: 35%;
+    }
+
+    .card-subtitle {
+      font-size: 1.2em;
+    }
+
+    .top5-text {
+      font-size: 0.9em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card-title {
+      font-size: 2.3em;
+      top: 40%;
     }
   }
 }

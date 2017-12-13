@@ -9,6 +9,7 @@ import { OpportunitiesPage } from '../pages/opportunities/opportunities';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
 import { ProductPage } from '../pages/product/product';
 import { ContactsPage } from '../pages/contacts/contacts';
+import { SchedulePage } from '../pages/schedule/schedule';
 import { StatisticsPage } from '../pages/statistics/statistics';
 import { RegisterPage } from '../pages/register/register';
 import { LoginPage } from '../pages/login/login';
@@ -26,8 +27,8 @@ export class MyApp {
 
   rootPage: any = LoginPage;
   pages: Array<{title: string, component: any, isVisible: boolean}>;
-  isLoggedIn: boolean = false;
-  isChefe: boolean = false;
+  isLoggedIn: boolean = true;
+  isChefe: boolean = true;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private nativeStorage: NativeStorage, public events: Events) {
     this.initializeApp();
@@ -47,12 +48,13 @@ export class MyApp {
       ];
     });
 
-    this.tryLogIn(nativeStorage);
+    //this.tryLogIn(nativeStorage);
 
     this.pages = [
       { title: 'Login', component: LoginPage, isVisible: !this.isLoggedIn},
       { title: 'Register', component: RegisterPage, isVisible : this.isChefe },
       { title: 'Home', component: HomePage, isVisible: this.isLoggedIn },
+      { title: 'Schedule', component: SchedulePage, isVisible: this.isLoggedIn  },
       { title: 'Opportunities', component: OpportunitiesPage, isVisible: this.isLoggedIn },
       { title: 'Sales History', component: SalesHistoryPage, isVisible: this.isLoggedIn },
       { title: 'Product', component: ProductPage, isVisible: this.isLoggedIn },
