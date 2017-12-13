@@ -103,7 +103,7 @@ namespace FirstREST.Controllers
         }
 
         //PUT api/oportunidades/
-        [HttpPut]
+        [HttpPost]
         [Route("api/oportunidades/{id}")]
         public HttpResponseMessage Put(string id, [FromBody] Lib_Primavera.Model.Proposta proposta)
         {
