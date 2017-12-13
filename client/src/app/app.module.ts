@@ -9,7 +9,6 @@ import { HttpModule } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
 import { ContactsPage } from '../pages/contacts/contacts';
@@ -41,7 +40,6 @@ import { LoginPage } from '../pages/login/login';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     ProductPage,
     ModalContentPage,
     ContactsPage,
@@ -69,7 +67,6 @@ import { LoginPage } from '../pages/login/login';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     ProductPage,
     ModalContentPage,
     ContactsPage,

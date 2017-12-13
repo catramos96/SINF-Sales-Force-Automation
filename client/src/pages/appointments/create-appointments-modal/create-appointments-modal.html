@@ -31,7 +31,7 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Title</ion-label>
-      <ion-input  formControlName="Resumo" type="text" required></ion-input>
+      <ion-input  formControlName="Resumo" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Description</ion-label>
@@ -43,13 +43,14 @@
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>Start Date</ion-label>
-          <ion-datetime  formControlName="DataInicio" required displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="startDate"></ion-datetime>
+          <ion-datetime  formControlName="DataInicio"
+                         max="2100-06-10T13:30" displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="startDate"></ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>Time</ion-label>
-          <ion-datetime  formControlName="DataInicio" required displayFormat="HH:mm" pickerFormat="HH_mm" [(ngModel)]="startDate"></ion-datetime>
+          <ion-datetime  formControlName="DataInicio" max="2100-06-10T13:30" displayFormat="HH:mm" pickerFormat="HH_mm" [(ngModel)]="startDate"></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -57,13 +58,13 @@
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>End Date</ion-label>
-          <ion-datetime  formControlName="DataFim" required displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="endDate"></ion-datetime>
+          <ion-datetime  formControlName="DataFim" max="2100-06-10T13:30" displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="endDate"></ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>Time</ion-label>
-          <ion-datetime  formControlName="DataFim" required displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="endDate"></ion-datetime>
+          <ion-datetime  formControlName="DataFim" max="2100-06-10T13:30" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="endDate"></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -85,7 +86,7 @@
         </ion-item>
       </ion-col>
       <ion-col col-5>
-       <button ion-button outline (click)="getOpportunity()">Associate Opportunity</button>
+       <button ion-button outline type="button"(click)="getOpportunity()">Associate Opportunity</button>
       </ion-col>
     </ion-row>
       <ion-input  formControlName="IDTarefaOrigem" type="text"></ion-input>
