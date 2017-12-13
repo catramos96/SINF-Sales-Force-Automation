@@ -59,6 +59,22 @@ namespace FirstREST.Controllers
             return Lib_Primavera.PriIntegrationDocVenda.QuantidadeProdutosVendidosPorCategoria_Vendedor(vendedor);
         }
 
+        // GET: api/docvendas/produtosvendidos_ano/
+        [Route("api/docvendas/produtosvendidos_ano/")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.VendaAno> GetNumeroProdutosVendidos_CadaAno()
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.Numero_ProdutosVendidos_CadaAno();
+        }
+
+        // GET: api/docvendas/produtosvendidos_ano/vendedor
+        [Route("api/docvendas/produtosvendidos_ano/{vendedor}")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.VendaAno> GetNumeroProdutosVendidosPorVendedor_CadaAno(int vendedor)
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.Numero_ProdutosVendidosPorVendedor_CadaAno(vendedor);
+        }
+
         // GET: api/docvendas/produtosvendidos/ano/
         [Route("api/docvendas/produtosvendidos/{ano}/")]
         [HttpGet]
@@ -73,6 +89,22 @@ namespace FirstREST.Controllers
         public double GetNumeroProdutosVendidosPorVendedor_Ano(int ano, int vendedor)
         {
             return Lib_Primavera.PriIntegrationDocVenda.Numero_ProdutosVendidosPorVendedor_Ano(ano, vendedor);
+        }
+
+        // GET: api/docvendas/dinheirofaturado_ano/
+        [Route("api/docvendas/dinheirofaturado_ano/")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.VendaAno> GetNumeroDinheiroFaturoEmProdutos_CadaAno()
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.Numero_DinheiroFaturadoEmProdutos_CadaAno();
+        }
+
+        // GET: api/docvendas/dinheirofaturado_ano/vendedor
+        [Route("api/docvendas/dinheirofaturado_ano/{vendedor}")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.VendaAno> GetNumeroDinheiroFaturoEmProdutosPorVendedor_CadaAno(int vendedor)
+        {
+            return Lib_Primavera.PriIntegrationDocVenda.Numero_DinheiroFaturadoEmProdutosPorVendedor_CadaAno(vendedor);
         }
 
         // GET: api/docvendas/dinheirofaturado/ano/
