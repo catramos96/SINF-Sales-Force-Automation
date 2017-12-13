@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, AbstractControl, Validators } from "@angular/forms";
 import { ContactsProvider } from '../../../../providers/contacts/contacts';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { HomePage } from '../../../../pages/home/home';
+import {SchedulePage} from "../../../schedule/schedule";
 
 @IonicPage()
 @Component({
@@ -56,7 +56,7 @@ export class CreateTargetPage {
           this.contacts.postTarget(dataSend).subscribe(
             data => {
               alert("Success creating Target!");
-              this.navCtrl.setRoot(HomePage, {}, {animate: true, direction: 'forward'});
+              this.navCtrl.setRoot(SchedulePage, {}, {animate: true, direction: 'forward'});
             },
             err => {
               alert("Error creating Target!");

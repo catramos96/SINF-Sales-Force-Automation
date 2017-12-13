@@ -2,10 +2,12 @@ import {
   Component, ViewChild,
   ElementRef
 } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AppointmentsProvider } from "../../../providers/appointments/appointments";
 import { OpportunitiesPage } from '../../opportunities/opportunities';
+import { ClientPage } from '../../contacts/client/client';
+import { TargetPage } from '../../contacts/target/target';
 
 @IonicPage()
 @Component({
@@ -14,8 +16,11 @@ import { OpportunitiesPage } from '../../opportunities/opportunities';
 })
 export class CreateAppointmentsModalPage {
 
+  //callbacks
   private opportunityId;
-  private tempName;
+  private contactId;
+  private tempNameOpp;
+  private tempNameCli;
 
   public createAppointmentForm;
   private groups: JSON[] = [];
@@ -24,11 +29,9 @@ export class CreateAppointmentsModalPage {
   public startDate = new Date();
   public endDate = new Date();
 
-
-
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public appointmentsProvider: AppointmentsProvider,
-    public formBuilder: FormBuilder) {
+    public formBuilder: FormBuilder, public toastCtrl: ToastController) {
 
     this.getAppointmentsTypes();
 
@@ -58,22 +61,45 @@ export class CreateAppointmentsModalPage {
   }
 
   getOpportunity() {
+    alert("get oportunity")
     this.navCtrl.push(OpportunitiesPage,
       {
         isApp: true,
-        callback: this.getData
+        callback: this.retOpportunity
       });
   }
 
-  getData = (Id, Nome) => {
+  retOpportunity = (Id, Nome) => {
     return new Promise((resolve, reject) => {
       this.opportunityId = Id;
-      this.tempName = Nome;
+      this.tempNameOpp = Nome;
       resolve();
     });
   };
 
+  getClient() {
+    this.navCtrl.push(ClientPage,
+      {
+        isOpportunity: true,
+        callback: this.retContact
+      });
+  }
 
+  getTarget() {
+    this.navCtrl.push(TargetPage,
+      {
+        isOpportunity: true,
+        callback: this.retContact
+      });
+  }
+
+  retContact = (Nome, Id) => {
+    return new Promise((resolve, reject) => {
+      this.contactId = Id;
+      this.tempNameCli = Nome;
+      resolve();
+    });
+  };
 
   getAppointmentsTypes() {
     this.appointmentsProvider.getAllTypes().subscribe(
@@ -86,9 +112,6 @@ export class CreateAppointmentsModalPage {
   }
 
   onSubmit(value: any): void {
-
-    //this.nativeStorage.getItem("Id").then(
-    //data =>{
 
     if (this.createAppointmentForm.valid) {
       var tmpPriority = 0;
@@ -112,28 +135,51 @@ export class CreateAppointmentsModalPage {
         "DataInicio": this.createAppointmentForm.value.DataInicio,
         "DataFim": this.createAppointmentForm.value.DataFim,
         "Localizacao": this.createAppointmentForm.value.Localizacao,
-        "IDUtilizador": this.createAppointmentForm.value.IDUtilizador,
+        "IDUtilizador": this.contactId,
         "Duracao": this.createAppointmentForm.value.Duracao,
         "IDTarefaOrigem": this.opportunityId,
         "IDContacto": this.createAppointmentForm.value.IDContacto,
       }
 
-      console.log(dataSend);
-      this.appointmentsProvider.postAppointment(dataSend).subscribe(
-        data => {
-          this.navCtrl.pop();
-          alert("Success creating Appointment!");
-        },
-        err => {
-          alert("Error creating Appointment!");
-        });
+      var sendRequest = true;
+      var message = "";
+      if(dataSend.IdTipo == ""){
+        message += "The appointment must have a type!\n";
+        sendRequest = false;
+      }
+      if(dataSend.Resumo == ""){
+          message += "The appointment must have a title!\n";
+          sendRequest = false;
+      }
+      if(dataSend.DataInicio >= dataSend.DataFim) {
+        message += "Start time can't be after or equal the end time!\n";
+        sendRequest = false;
+      }
 
-
+      if(sendRequest){
+        console.log(dataSend);
+        this.appointmentsProvider.postAppointment(dataSend).subscribe(
+          data => {
+            this.navCtrl.pop();
+            this.notification("Success creating Appointment!");
+          },
+          err => {
+            this.notification("Error creating Appointment!");
+          });
+      }
+      else
+        this.notification(message);
     }
+  }
 
-
-    // }
-    //  );
+  notification(message){
+      let toast = this.toastCtrl.create({
+        message: message,
+        duration: 5000,
+        showCloseButton: true,
+        position: 'top'
+      });
+      toast.present();
   }
 
 }

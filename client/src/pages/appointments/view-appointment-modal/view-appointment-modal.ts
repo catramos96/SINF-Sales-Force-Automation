@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {AppointmentsProvider} from "../../../providers/appointments/appointments";
+import {OpportunityDetailsPage} from "../../opportunities/opportunity-details/opportunity-details";
 
 @IonicPage()
 @Component({
@@ -20,7 +21,7 @@ export class ViewAppointmentModalPage {
   public opportunity:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public provider: AppointmentsProvider) {
+              public provider: AppointmentsProvider, public modalCtrl : ModalController) {
     let id = this.navParams.get('ID');
 
     this.provider.getAppointment(id).subscribe(
@@ -50,6 +51,10 @@ export class ViewAppointmentModalPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewAppointmentModalPage');
+  }
+
+  openOpportunity(){
+    this.navCtrl.push(OpportunityDetailsPage,{'opportunityID':this.opportunity});
   }
 
 }

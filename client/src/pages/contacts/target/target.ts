@@ -26,7 +26,7 @@ export class TargetPage {
     this.callback = this.navParams.get('callback');
   }
 
-  sendClient(Nome1,Nome2, ID){
+  sendClient(Nome1,Nome2,ID){
     this.callback(Nome1+Nome2,ID).then(()=>{ this.navCtrl.pop() });
   }
 

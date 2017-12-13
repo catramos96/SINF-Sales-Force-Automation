@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormGroup, FormBuilder, AbstractControl, Validators} from "@angular/forms";
 import { VendorsProvider } from '../../providers/vendors/vendors';
-import { HomePage } from '../../pages/home/home';
+import {SchedulePage} from "../schedule/schedule";
 
 @IonicPage()
 @Component({
@@ -14,9 +14,9 @@ export class RegisterPage {
   createVendorForm: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private vendors: VendorsProvider) {
-    
+
         var phones = [''];
-    
+
         this.createVendorForm = formBuilder.group({
           name: [''],
           email:[''],
@@ -32,11 +32,11 @@ export class RegisterPage {
       }
 
   ionViewDidLoad() {
-    
+
   }
 
-  onSubmit(value: any): void { 
-  
+  onSubmit(value: any): void {
+
     if(this.createVendorForm.valid) {
       var data = {
         "Nome":this.createVendorForm.value.name,
@@ -48,22 +48,22 @@ export class RegisterPage {
         "Telemovel":this.createVendorForm.value.cellphone,
         "Telefone":this.createVendorForm.value.homephone,
         "Fax":this.createVendorForm.value.fax,
-        "Notas":"Username:" + this.createVendorForm.value.username.trim() + 
+        "Notas":"Username:" + this.createVendorForm.value.username.trim() +
                 "&Password:" + this.createVendorForm.value.password.trim() +
                 "&Role:Vendedor",
       }
 
       this.vendors.createVendor(data).subscribe(
-        data => { 
+        data => {
           console.log(data);
           alert("Success creating Client!");
-          this.navCtrl.setRoot(HomePage, {}, {animate: true, direction: 'forward'});
+          this.navCtrl.setRoot(SchedulePage, {}, {animate: true, direction: 'forward'});
       },
       err => {
           console.log(err);
           alert("Error creating Client!");
-      })    
-        
+      })
+
     }
 
 
