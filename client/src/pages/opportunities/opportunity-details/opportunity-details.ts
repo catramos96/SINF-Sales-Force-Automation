@@ -90,23 +90,26 @@ export class OpportunityDetailsPage {
             hasElement = true;
           }
         });
-      }
-      //add in case of the element is new
-      if (!hasElement) {
-        alert("oix");
-        let dto = {
-          IdOportunidade: this.opp.ID,
-          NumProposta: NumProposal,
-          IdArtigo: json.IdArtigo
+
+
+        //add in case of the element is new
+        if (!hasElement) {
+          let dto = {
+            IdOportunidade: this.opp.ID,
+            NumProposta: NumProposal,
+            IdArtigo: json[i].IdArtigo
+          }
+          this.opportunitiesService.addProductOpportunity(dto).subscribe(
+            data => {
+              console.log("added");
+            },
+            err => {
+              console.log(err);
+            });
         }
-        this.opportunitiesService.addProductOpportunity(dto).subscribe(
-          data => {
-            console.log("added");
-          },
-          err => {
-            console.log(err);
-          });
+
       }
+
 
       resolve();
     });

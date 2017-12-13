@@ -68,7 +68,7 @@ export class OpportunitiesProvider {
   //verificar
   updateOpportunity(ID,proposal){
     var url = AppSettings.API_ENDPOINT+'oportunidades/update/'+encodeURI(ID);
-    var response = this.http.put(url,proposal).map(res => res.json());
+    var response = this.http.post(url,proposal).map(res => res.json());
     return response;
   }
 
