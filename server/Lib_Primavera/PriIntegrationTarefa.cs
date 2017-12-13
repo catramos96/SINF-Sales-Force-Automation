@@ -19,7 +19,7 @@ namespace FirstREST.Lib_Primavera
             {
 
                 objList = PriEngine.Engine.Consulta(
-                    "SELECT Tarefas.Id AS ID, TiposTarefa.IdTipoActividade AS Tipo, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDActividadeOrigem FROM Tarefas JOIN TiposTarefa ON Tarefas.IdTipoActividade = TiposTarefa.Id WHERE Tarefas.Id = '" + codTarefa + "'");
+                    "SELECT Tarefas.Id AS ID, TiposTarefa.Id AS idTipo, TiposTarefa.Descricao As Tipo, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDActividadeOrigem FROM Tarefas JOIN TiposTarefa ON Tarefas.IdTipoActividade = TiposTarefa.Id WHERE Tarefas.Id = '" + codTarefa + "'");
 
 
                 if (PriEngine.Engine.CRM.Actividades.Existe(codTarefa) == false)
@@ -34,6 +34,7 @@ namespace FirstREST.Lib_Primavera
                     act.DataFim = objList.Valor("DataFim");
                     act.Resumo = objList.Valor("Resumo");
                     act.Descricao = objList.Valor("Descricao");
+                    act.IdTipo = objList.Valor("idTipo");
                     act.TipoDeTarefa = objList.Valor("Tipo");
                     act.Prioridade = objList.Valor("Prioridade").ToString();
                     act.IDUtilizador = objList.Valor("Utilizador");
@@ -198,7 +199,7 @@ namespace FirstREST.Lib_Primavera
                     myT.set_DataFim(tarefa.DataFim);
                     myT.set_Resumo(tarefa.Resumo);
                     myT.set_Descricao(tarefa.Descricao);
-                    myT.set_IDTipoActividade(tarefa.TipoDeTarefa);
+                    myT.set_IDTipoActividade(tarefa.IdTipo);
                     myT.set_Prioridade(tarefa.Prioridade);
                     myT.set_Utilizador(tarefa.IDUtilizador);
                     myT.set_IDActividadeOrigem(tarefa.IDTarefaOrigem);
@@ -260,7 +261,7 @@ namespace FirstREST.Lib_Primavera
                         myT.set_DataFim(tarefa.DataFim);
                         myT.set_Resumo(tarefa.Resumo);
                         myT.set_Descricao(tarefa.Descricao);
-                        myT.set_IDTipoActividade(tarefa.TipoDeTarefa);
+                        myT.set_IDTipoActividade(tarefa.IdTipo);
                         myT.set_Prioridade(tarefa.Prioridade);
                         myT.set_Utilizador(tarefa.IDUtilizador);
                         myT.set_IDActividadeOrigem(tarefa.IDTarefaOrigem);
