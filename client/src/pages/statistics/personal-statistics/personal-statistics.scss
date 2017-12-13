@@ -65,6 +65,10 @@ page-personal-statistics {
     right: 0;
   }
 
+  ion-thumbnail {
+    cursor: pointer;
+  }
+
   @media (max-width: 1500px) {
     .card-title {
       font-size: 7em;
@@ -88,8 +92,8 @@ page-personal-statistics {
 
   @media (max-width: 1100px) {
     .card-title {
-      font-size: 5em;
-      top: 25%;
+      font-size: 5em;      
+      top: 19%;
     }
 
     .card-subtitle {

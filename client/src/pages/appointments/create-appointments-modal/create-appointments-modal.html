@@ -69,32 +69,50 @@
       </ion-col>
     </ion-row>
 
-    <ion-item>
-      <ion-label color="primary" stacked>Location</ion-label>
-      <ion-input  formControlName="Localizacao" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" stacked>Contact</ion-label>
-      <ion-input  formControlName="IDContacto" type="text"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label color="primary" stacked>Location</ion-label>
+        <ion-input formControlName="Localizacao" type="text"></ion-input>
+      </ion-item>
 
-    <ion-row>
-      <ion-col col-7>
-        <ion-item>
+      <ion-item>
+        <ion-label color="primary" stacked>Contact</ion-label>
+        <ion-input formControlName="IDContacto" type="text"></ion-input>
+      </ion-item>
+
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label color="primary" stacked>Contact</ion-label>
+            <ion-input formControlName="IDContacto" type="text" [(ngModel)]="tempNameCli" name="tempNameCli" disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button outline (click)="getClient()">Client</button>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button outline (click)="getTarget()">Target</button>
+        </ion-col>
+        <ion-input formControlName="IDContacto" type="text"></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
             <ion-label color="primary" stacked>Opportunity</ion-label>
-            <ion-input formControlName="IDTarefaOrigem" type="text" [(ngModel)]="tempName" name="tempName" disabled></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-5>
-       <button ion-button outline type="button"(click)="getOpportunity()">Associate Opportunity</button>
-      </ion-col>
+            <ion-input formControlName="IDTarefaOrigem" type="text" [(ngModel)]="tempNameOpp" name="tempNameOpp" disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button outline (click)="getOpportunity()">Associate Opportunity</button>
+        </ion-col>
+      </ion-row>
+      <ion-input formControlName="IDTarefaOrigem" type="text"></ion-input>
+    </ion-list>
+
+    <ion-row justify-content-center>
+      <button type="submit" ion-button style="margin:5%;">
+        Create Appointment
+      </button>
     </ion-row>
-      <ion-input  formControlName="IDTarefaOrigem" type="text"></ion-input>
-  </ion-list>
-  <ion-row  justify-content-center>
-    <button type="submit" ion-button style="margin:5%;">
-      Create Appointment
-    </button>
-  </ion-row>
   </form>
 </ion-content>
