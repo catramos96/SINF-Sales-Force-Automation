@@ -1,13 +1,8 @@
-import { Component } from '@angular/core';
+import { Component ,ViewChild,
+ ElementRef
+} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
-
-/**
- * Generated class for the CreateAppointmentsModalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -21,6 +16,12 @@ export class CreateAppointmentsModalPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateAppointmentsModalPage');
+  }
+
+  @ViewChild('myInput') myInput: ElementRef;
+
+  resize() {
+    this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
   }
 
 }

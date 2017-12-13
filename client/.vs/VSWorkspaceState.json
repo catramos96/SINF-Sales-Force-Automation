@@ -4,12 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\pages",
+    "\\src\\pages\\contacts",
+    "\\src\\pages\\contacts\\client",
     "\\src\\pages\\product",
     "\\src\\pages\\statistics",
     "\\src\\pages\\statistics\\personal-statistics",
-    "\\src\\providers",
-    "\\src\\providers\\statistics"
+    "\\src\\providers"
   ],
-  "SelectedNode": "\\src\\pages\\statistics\\personal-statistics\\personal-statistics.html",
+  "SelectedNode": "\\src\\pages\\product\\product.scss",
   "PreviewInSolutionExplorer": false
 }
