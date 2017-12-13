@@ -6,6 +6,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AppointmentsProvider } from "../../../providers/appointments/appointments";
 import { OpportunitiesPage } from '../../opportunities/opportunities';
+import { ClientPage } from '../../contacts/client/client';
+import { TargetPage } from '../../contacts/target/target';
 
 @IonicPage()
 @Component({
@@ -14,8 +16,11 @@ import { OpportunitiesPage } from '../../opportunities/opportunities';
 })
 export class CreateAppointmentsModalPage {
 
+  //callbacks
   private opportunityId;
-  private tempName;
+  private contactId;
+  private tempNameOpp;
+  private tempNameCli;
 
   public createAppointmentForm;
   private groups: JSON[] = [];
@@ -23,8 +28,6 @@ export class CreateAppointmentsModalPage {
   public priority = true;
   public startDate = new Date();
   public endDate = new Date();
-
-
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public appointmentsProvider: AppointmentsProvider,
@@ -61,19 +64,41 @@ export class CreateAppointmentsModalPage {
     this.navCtrl.push(OpportunitiesPage,
       {
         isApp: true,
-        callback: this.getData
+        callback: this.retOpportunity
       });
   }
 
-  getData = (Id, Nome) => {
+  retOpportunity = (Id, Nome) => {
     return new Promise((resolve, reject) => {
       this.opportunityId = Id;
-      this.tempName = Nome;
+      this.tempNameOpp = Nome;
       resolve();
     });
   };
 
+  getClient() {
+    this.navCtrl.push(ClientPage,
+      {
+        isOpportunity: true,
+        callback: this.retContact
+      });
+  }
 
+  getTarget() {
+    this.navCtrl.push(TargetPage,
+      {
+        isOpportunity: true,
+        callback: this.retContact
+      });
+  }
+
+  retContact = (Nome, Id) => {
+    return new Promise((resolve, reject) => {
+      this.contactId = Id;
+      this.tempNameCli = Nome;
+      resolve();
+    });
+  };
 
   getAppointmentsTypes() {
     this.appointmentsProvider.getAllTypes().subscribe(
@@ -112,7 +137,7 @@ export class CreateAppointmentsModalPage {
         "DataInicio": this.createAppointmentForm.value.DataInicio,
         "DataFim": this.createAppointmentForm.value.DataFim,
         "Localizacao": this.createAppointmentForm.value.Localizacao,
-        "IDUtilizador": this.createAppointmentForm.value.IDUtilizador,
+        "IDUtilizador": this.contactId,
         "Duracao": this.createAppointmentForm.value.Duracao,
         "IDTarefaOrigem": this.opportunityId,
         "IDContacto": this.createAppointmentForm.value.IDContacto,
