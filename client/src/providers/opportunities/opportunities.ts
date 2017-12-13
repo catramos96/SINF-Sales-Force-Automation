@@ -51,14 +51,14 @@ export class OpportunitiesProvider {
     return response;
   }
 
-  //verificar
+  //done
   removeProductOpportunity(json){
     var url = AppSettings.API_ENDPOINT+'oportunidades/removeproduto/';
     var response = this.http.post(url,json).map(res => res.json());
     return response;
   }
 
-  //verificar
+  //done
   addProductOpportunity(json){
     var url = AppSettings.API_ENDPOINT+'oportunidades/adicionaproduto/';
     var response = this.http.post(url,json).map(res => res.json());
@@ -66,13 +66,13 @@ export class OpportunitiesProvider {
   }
 
   //verificar
-  updateOpportunity(ID,proposal){
-    var url = AppSettings.API_ENDPOINT+'oportunidades/update/'+encodeURI(ID);
-    var response = this.http.post(url,proposal).map(res => res.json());
+  updateOpportunity(json){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/update/';
+    var response = this.http.post(url,json).map(res => res.json());
     return response;
   }
 
-  //verificar
+  //done
   endOportunity(opportunity){
     var url = AppSettings.API_ENDPOINT+'oportunidades/perder';
     var response = this.http.post(url,opportunity).map(res => res.json());

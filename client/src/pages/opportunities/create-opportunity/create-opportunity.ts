@@ -67,7 +67,6 @@ export class CreateOpportunityPage {
   createOpportunity() 
   {
     this.opp.CodCliente = this.tempCode;
-    console.log(">>>>>>>>" +this.opp);
     this.opportunitiesService.createOpportunity(this.opp).subscribe(
       data => { 
           console.log("created");
@@ -77,6 +76,7 @@ export class CreateOpportunityPage {
             buttons: ['Dismiss']
           });
           alert.present();
+          this.dismiss();
       },
       err => {
           console.log(err);

@@ -24,6 +24,7 @@ export class OpportunityDetailsPage {
   dataID = -1;
   shownGroup = null;
   currentSelected = -1;
+  IDreceived;
 
   constructor(
     public navCtrl: NavController,
@@ -31,8 +32,8 @@ export class OpportunityDetailsPage {
     private opportunitiesService: OpportunitiesProvider,
     private alertCtrl: AlertController
   ) {
-    let id = this.navParams.get('opportunityID');
-    this.getOpportunity(id);
+    this.IDreceived = this.navParams.get('opportunityID');
+    this.getOpportunity(this.IDreceived);
   }
 
   ionViewDidLoad() { }
@@ -62,7 +63,8 @@ export class OpportunityDetailsPage {
     }
     this.opportunitiesService.removeProductOpportunity(dto).subscribe(
       data => {
-        console.log("added");
+        console.log("removed");
+        this.getOpportunity(this.IDreceived);
       },
       err => {
         console.log(err);
@@ -102,6 +104,7 @@ export class OpportunityDetailsPage {
           this.opportunitiesService.addProductOpportunity(dto).subscribe(
             data => {
               console.log("added");
+              this.getOpportunity(this.IDreceived);
             },
             err => {
               console.log(err);
@@ -109,8 +112,6 @@ export class OpportunityDetailsPage {
         }
 
       }
-
-
       resolve();
     });
   };
@@ -169,11 +170,15 @@ export class OpportunityDetailsPage {
 
   //save changed proposal
   saveProposal(NumProposal) {
-    let proposal = this.opp.propostas[NumProposal - 1];
+    let json = {
+      ID: this.opp.ID,
+      Proposal: this.opp.propostas[NumProposal - 1]
+    };
 
-    this.opportunitiesService.updateOpportunity(this.opp.ID, proposal).subscribe(
+    this.opportunitiesService.updateOpportunity(json).subscribe(
       data => {
         console.log("updated");
+        this.getOpportunity(this.IDreceived);
       },
       err => {
         console.log(err);
@@ -239,11 +244,11 @@ export class OpportunityDetailsPage {
           buttons: ['Dismiss']
         });
         alert.present();
+        this.navCtrl.pop();
       },
       err => {
         console.log(err);
       });
-
   }
 
   //receive opportunity
