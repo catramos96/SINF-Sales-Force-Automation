@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {AppointmentsProvider} from "../../../providers/appointments/appointments";
-import {OpportunityModalPage} from "../../opportunities/opportunity-modal/opportunity-modal";
+import {OpportunityDetailsPage} from "../../opportunities/opportunity-details/opportunity-details";
 
 @IonicPage()
 @Component({
@@ -54,10 +54,7 @@ export class ViewAppointmentModalPage {
   }
 
   openOpportunity(){
-
-    alert(this.opportunity)
-    let modal = this.modalCtrl.create(OpportunityModalPage,{opportunityID: this.opportunity });
-    modal.present();
+    this.navCtrl.push(OpportunityDetailsPage,{'opportunityID':this.opportunity});
   }
 
 }
