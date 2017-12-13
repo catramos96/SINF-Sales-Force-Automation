@@ -12,9 +12,32 @@ import {AppointmentsProvider} from "../../../providers/appointments/appointments
 })
 export class CreateAppointmentsModalPage {
 
+  public createAppointmentForm;
+  private groups: JSON[] = [];
   public types = [];
+  public priority = true;
+  public startDate = new Date();
+  public endDate = new Date();
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public appointmentsProvider: AppointmentsProvider) {
+              public appointmentsProvider: AppointmentsProvider,
+              public formBuilder: FormBuilder) {
+
+    this.getAppointmentsTypes();
+
+    this.createAppointmentForm = formBuilder.group({
+      TipoDeTarefa: [''],
+      Prioridade: [''],
+      Resumo: [''],
+      Descricao: [''],
+      DataInicio: this.startDate,
+      DataFim: this.endDate,
+      Localizacao: [''],
+      IDUtilizador: [''],   //alterar pelo util
+      Duracao: ['0'],
+      IDTarefaOrigem: [''],
+      IDContacto: ['']
+    });
   }
 
   ionViewDidLoad() {
@@ -35,6 +58,50 @@ export class CreateAppointmentsModalPage {
       err => {
         console.log(err);
       });
+  }
+
+  onSubmit(value: any): void {
+
+    //this.nativeStorage.getItem("Id").then(
+      //data =>{
+
+        if (this.createAppointmentForm.valid) {
+          var tmpPriority = 0;
+
+          if(this.priority == true)
+            tmpPriority = 1;
+
+
+          var dataSend = {
+            "TipoDeTarefa":this.createAppointmentForm.value.TipoDeTarefa,
+              "Prioridade":tmpPriority,
+              "Resumo":this.createAppointmentForm.value.Resumo,
+              "Descricao":this.createAppointmentForm.value.Descricao,
+              "DataInicio":this.createAppointmentForm.value.DataInicio,
+              "DataFim":this.createAppointmentForm.value.DataFim,
+              "Localizacao":this.createAppointmentForm.value.Localizacao,
+              "IDUtilizador":this.createAppointmentForm.value.IDUtilizador,
+              "Duracao":this.createAppointmentForm.value.Duracao,
+              "IDTarefaOrigem":this.createAppointmentForm.value.IDTarefaOrigem,
+              "IDContacto":this.createAppointmentForm.value.IDContacto,
+        }
+
+        console.log(dataSend);
+          this.appointmentsProvider.postAppointment(dataSend).subscribe(
+            data => {
+              this.navCtrl.pop();
+              alert("Success creating Appointment!");
+            },
+            err => {
+              alert("Error creating Appointment!");
+            });
+
+
+        }
+
+
+     // }
+    //  );
   }
 
 }
