@@ -1,54 +1,96 @@
-import { NavController } from 'ionic-angular';
-import {ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import { CalendarEvent } from 'angular-calendar';
-import {Input,Output, EventEmitter } from '@angular/core';
-import {getDateString} from "../calendar-resources";
-import {window} from "rxjs/operator/window";
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { VendorsProvider } from '../../providers/vendors/vendors';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 @Component({
   selector: 'page-team',
   templateUrl: 'team.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamPage {
 
-  constructor(){
-    this.loadTeamMembers();
+  private teamChefe = {Nome: ""}
+  public teamMembers = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private vendorProvider: VendorsProvider, private nativeStorage: NativeStorage) {
   }
 
-  ngAfterViewInit() {
+  ionViewDidLoad() {
+
+    this.nativeStorage.getItem("Role").then(
+      role => {
+        this.nativeStorage.getItem("Id").then(
+          id => {
+            this.nativeStorage.getItem("Nome").then(
+              nome => {
+                if (role == "Chefe") {
+                  this.teamChefe = { Nome: nome };
+                  this.vendorProvider.getChiefTeam(id).subscribe(
+                    data => {
+                      while (data.length > 0)
+                        this.teamMembers.push(data.splice(0, 4));
+                    },
+                    err => {
+
+                    });
+
+                } else if (role == "Vendedor") {
+
+                  this.vendorProvider.getVendorChief(id).subscribe(
+                    data => {
+                      if (data.length > 0) {
+                        this.teamChefe = data[0];
+                      }
+                    },
+                    err => {
+
+                    });
+
+                  this.teamMembers.push({ Nome: nome });
+
+                  this.vendorProvider.getVendorTeam(id).subscribe(
+                    data => {
+                      let start = 1;
+                      while (data.length > 0) {
+                        if (start == 1) {
+                          this.teamMembers.push(data.splice(0, 3));
+                          start++;
+                        } else {
+                          this.teamMembers.push(data.splice(0, 4));
+                        }
+                      }
+                    },
+                    err => {
+
+                    });
+
+
+                } else {
+                  alert("Please Login!");
+                }
+
+
+
+
+              });
+
+          }
+        );
+
+
+
+
+      },
+      error => {
+
+      }
+    )
+
+
+
   }
 
-  loadTeamMembers(){  //param
 
-    //EXEMPLO
-    var team_members = [
-      {name: "Lydia Sun",type: "Sales Representative"},
-      {name: "John Valley",type: "Sales Representative"},
-      {name: "Lydia Sun",type: "Sales Representative"},
-      {name: "John Valley",type: "Sales Representative"},
-      {name: "Lydia Sun",type: "Sales Representative"},
-      {name: "John Valley",type: "Sales Representative"}
-    ];
-
-    var html:string;
-
-    for(var i=0 ; i < team_members.length; i++){
-      html = "<ion-col class=\"team-member\">\n" +
-        "        <ion-row justify-content-center>\n" +
-        "          <ion-img src=\"../../assets/imgs/user.png\" class=\"team-member-img\"></ion-img>\n" +
-        "        </ion-row>\n" +
-        "        <label class=\"team-label\">" + team_members[i].name + "</label>\n" +
-        "        <label class=\"team-label\">" + team_members[i].type + "</label>\n" +
-        "        <ion-row justify-content-center>\n" +
-        "          <button ion-button icon-only outline class=\"other-button\" style=\"height:3vh; width:3vh\">\n" +
-        "            <ion-icon name=\"remove\"></ion-icon></button>\n" +
-        "        </ion-row>\n" +
-        "      </ion-col>";
-
-
-      //insertAdjacentHTML("beforeend",html);
-    }
-  }
 }
+

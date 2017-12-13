@@ -23,6 +23,9 @@
             <ion-card-content >
               <b>Client</b> : {{c.NomeCliente}}  ,  {{c.ContactoCliente}} <br>
               <b>Date</b> : {{c.DataCriacao}} <br>
+              <button *ngIf="isApp === true" (click)="sendOpportunity(c.ID,c.Descricao)"
+                ion-button block color="secondary">Associate
+              </button>
             </ion-card-content>
             <div class="centered">
               <button ion-button outline item-end>

@@ -19,6 +19,8 @@ import { OpportunityModalPage } from './opportunity-modal/opportunity-modal';
 export class OpportunitiesPage {
 
   opp = [];
+  isApp = false;
+  callback = null;
 
   constructor(
     public navCtrl: NavController, 
@@ -27,6 +29,10 @@ export class OpportunitiesPage {
     private modalCtrl : ModalController) {}
 
   ionViewDidLoad() {
+
+    this.isApp = this.navParams.get('isApp');
+    this.callback = this.navParams.get('callback');
+
     this.getOpportunities();
   }
 
@@ -55,6 +61,10 @@ export class OpportunitiesPage {
     }
 
     this.opp = rows;
+  }
+  
+  sendOpportunity(ID,Name){
+    this.callback(ID,Name).then(()=>{ this.navCtrl.pop() });
   }
 
   getOpportunities(){

@@ -14,39 +14,42 @@
 
 
 <ion-content padding>
+
+  <form [formGroup]="createAppointmentForm" (ngSubmit)="onSubmit(createAppointmentForm.value)">
   <ion-list>
     <ion-item>
       <ion-label color="primary" stacked>Priority</ion-label>
-      <ion-checkbox [(ngModel)]="priority"></ion-checkbox>
+      <ion-checkbox [checked]="priority"></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Tipo</ion-label>
-      <ion-select [(ngModel)]="type">
-        <ion-option value="t">Telefonema</ion-option>       <!-- alterar -->
-        <ion-option value="r">Reunião</ion-option>
+      <ion-select  formControlName="TipoDeTarefa" [(ngModel)]="type">
+        <div *ngFor="let t of types;">
+          <ion-option>{{t.Descricao}}</ion-option>
+        </div>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Title</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input  formControlName="Resumo" type="text" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Description</ion-label>
     </ion-item>
     <ion-item text-wrap>
-      <textarea #myInput id="myInput" rows="1" maxLength="500" (keyup)="resize()"></textarea>
+      <textarea  formControlName="Descricao" #myInput id="myInput" rows="1" maxLength="500" (keyup)="resize()"></textarea>
     </ion-item>
     <ion-row no-padding>
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>Start Date</ion-label>
-          <ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="startDate"></ion-datetime>
+          <ion-datetime  formControlName="DataInicio" required displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="startDate"></ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>Time</ion-label>
-          <ion-datetime displayFormat="HH:mm" pickerFormat="HH_mm" [(ngModel)]="startDate"></ion-datetime>
+          <ion-datetime  formControlName="DataInicio" required displayFormat="HH:mm" pickerFormat="HH_mm" [(ngModel)]="startDate"></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -54,33 +57,43 @@
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>End Date</ion-label>
-          <ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="endDate"></ion-datetime>
+          <ion-datetime  formControlName="DataFim" required displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="endDate"></ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>Time</ion-label>
-          <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="endDate"></ion-datetime>
+          <ion-datetime  formControlName="DataFim" required displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="endDate"></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>
 
     <ion-item>
-      <ion-label color="primary" stacked>Localition</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label color="primary" stacked>Location</ion-label>
+      <ion-input  formControlName="Localizacao" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Contact</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input  formControlName="IDContacto" type="text"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label color="primary" stacked>Opportunity</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+
+    <ion-row>
+      <ion-col col-7>
+        <ion-item>
+            <ion-label color="primary" stacked>Opportunity</ion-label>
+            <ion-input formControlName="IDTarefaOrigem" type="text" [(ngModel)]="tempName" name="tempName" disabled></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-5>
+       <button ion-button outline (click)="getOpportunity()">Associate Opportunity</button>
+      </ion-col>
+    </ion-row>
+      <ion-input  formControlName="IDTarefaOrigem" type="text"></ion-input>
   </ion-list>
   <ion-row  justify-content-center>
-    <button ion-button style="margin:5%;">
+    <button type="submit" ion-button style="margin:5%;">
       Create Appointment
     </button>
   </ion-row>
+  </form>
 </ion-content>

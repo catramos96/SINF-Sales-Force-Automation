@@ -12,13 +12,15 @@ namespace FirstREST.Lib_Primavera.Model
         public string Prioridade { get; set; }
         //public int Estado {get;set;}
         public string Resumo { get; set; }
-        public string Descrição { get; set; }
+        public string Descricao { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
-        public string Localização { get; set; }
+        public string Localizacao { get; set; }
         public string IDUtilizador { get; set; }
         public int Duracao { get; set; }
         public string IDTarefaOrigem { get; set; }
         public string IDContacto { get; set; }
+
+        public string IdTipo { get; set; }
     }
 }

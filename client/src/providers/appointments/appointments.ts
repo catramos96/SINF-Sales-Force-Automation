@@ -21,9 +21,26 @@ export class AppointmentsProvider {
     return this.http.get(url).map(res => res.json());
   }
 
+  public postAppointment(data){
+    var url = AppSettings.API_ENDPOINT + 'tarefas';
+    return this.http.post(url,data);
+  }
+
   public  getAppointmentsInRange(d1:Date,d2:Date){
     var url = AppSettings.API_ENDPOINT + 'tarefas/rangeTarefas/' + encodeURI(d1.toDateString()) + '/' + encodeURI(d2.toDateString());
     return this.http.get(url).map(res => res.json());
   }
+
+  public getType(codTipo){
+    var url = AppSettings.API_ENDPOINT + 'tipo_tarefa/' + encodeURI(codTipo);
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public getAllTypes(){
+    var url = AppSettings.API_ENDPOINT + 'tipo_tarefa';
+    return this.http.get(url).map(res => res.json());
+  }
+
+
 
 }
