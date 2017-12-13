@@ -32,7 +32,9 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Description</ion-label>
-      <ion-textarea></ion-textarea>
+    </ion-item>
+    <ion-item text-wrap>
+      <textarea #myInput id="myInput" rows="1" maxLength="500" (keyup)="resize()"></textarea>
     </ion-item>
     <ion-row no-padding>
       <ion-col no-padding>
@@ -64,11 +66,15 @@
     </ion-row>
 
     <ion-item>
-      <ion-label color="primary" stacked>Localização</ion-label>
+      <ion-label color="primary" stacked>Localition</ion-label>
       <ion-input type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label color="primary" stacked>Contacto</ion-label>
+      <ion-label color="primary" stacked>Contact</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Opportunity</ion-label>
       <ion-input type="text"></ion-input>
     </ion-item>
   </ion-list>
