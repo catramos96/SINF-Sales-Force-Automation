@@ -91,7 +91,8 @@ export class HomePage {
   }
 
   getLeads(){
-    this.opportunitiesService.getOpportunities().subscribe(
+    //TODO meter aqui o vendedor
+    this.opportunitiesService.getOpportunities(1).subscribe(
       data => {
         console.log(data);
         this.leads = data;
@@ -117,7 +118,8 @@ export class HomePage {
   }
 
   getOpportunities(){
-    this.opportunitiesService.getOpportunities().subscribe(
+    //TODO meter aqui o vendedor
+    this.opportunitiesService.getOpportunities(1).subscribe(
       data => {
         console.log(data);
         this.opportunities = data;

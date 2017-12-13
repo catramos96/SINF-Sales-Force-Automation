@@ -18,7 +18,7 @@ export class OpportunitiesProvider {
 
   //verificar
   getOpportunities(Vendedor){
-    var url = AppSettings.API_ENDPOINT+'oportunidades/'+Vendedor;
+    var url = AppSettings.API_ENDPOINT+'oportunidades/vendedor/'+Vendedor;
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
