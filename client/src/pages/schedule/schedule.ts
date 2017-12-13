@@ -22,23 +22,21 @@ import {
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
 import {CreateAppointmentsModalPage} from "../appointments/create-appointments-modal/create-appointments-modal"
+import {AppointmentsProvider} from "../../providers/appointments/appointments";
+import {ViewAppointmentModalPage} from "../appointments/view-appointment-modal/view-appointment-modal";
 
 /*
 Colors of appointments in the map
  */
 const colors: any = {
-  red: {
-    primary: '#e80a22',
-    secondary: '#e88b90'
+  priority: {
+    primary: '#1522e8',
+    secondary: '#7598e8'
   },
-  blue: {
+  not_priority: {
     primary: '#1e90ff',
     secondary: '#D1E8FF'
   },
-  yellow: {
-    primary: '#25e322',
-    secondary: '#bdfdac'
-  }
 };
 
 @IonicPage()
@@ -59,13 +57,56 @@ export class SchedulePage {
     event: CalendarEvent;
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              public modalCtrl : ModalController) {
+  events: CalendarEvent[] = [];
 
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public modalCtrl : ModalController, private appointmentsService: AppointmentsProvider) {
+
+    this.getAppointments();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SchedulePage');
+  }
+
+  getAppointments(){
+    var appointments:Array<any> = [];
+    this.appointmentsService.getAllAppointments().subscribe(
+      data => {
+        console.log(data);
+        appointments = data;
+        this.loadAppointments(appointments);
+      },
+      err => {
+        console.log(err);
+        this.loadAppointments(appointments);
+      });
+  }
+
+  loadAppointments(appointments){
+
+    for(var i = 0 ; i < appointments.length; i++){
+      var color;
+
+      if(appointments[i].Prioridade)
+        color = colors.priority;
+      else
+        color = colors.not_priority;
+
+      this.events.push({
+        title: appointments[i].Resumo,
+        start: startOfDay(appointments[i].DataInicio),
+        end: endOfDay(appointments[i].DataFim),
+        meta: appointments[i].ID,
+        color: color,
+        draggable: false,
+        resizable: {
+          beforeStart: false,
+          afterEnd: false
+        }
+      });
+      this.refresh.next();
+    }
   }
 
   createNewAppointment(){
@@ -73,48 +114,70 @@ export class SchedulePage {
     modal.present()
   }
 
-  refresh: Subject<any> = new Subject();
+  /*
+  Changes in the calendar displayment
+   */
+  updateWithPrevious(){
+    switch (this.view){
+      case "month":{
+
+        break;
+      }
+      case "week":{
+
+        break;
+      }
+      case "day":{
+
+        break;
+      }
+    }
+
+    //Update events
+  }
+
+  updateWithToday(){
+    switch (this.view){
+      case "month":{
+
+        break;
+      }
+      case "week":{
+
+        break;
+      }
+      case "day":{
+
+        break;
+      }
+    }
+
+    //Update events
+  }
+
+  updateWithNext(){
+    switch (this.view){
+      case "month":{
+
+        break;
+      }
+      case "week":{
+
+        break;
+      }
+      case "day":{
+
+        break;
+      }
+    }
+
+    //Update events
+  }
 
   /*
-  EVENTS EXAMPLES
+  EVENTS
    */
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      meta: "id:_info"
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      meta: "id:_info"
-
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      meta: "id:_info"
-
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      meta: "id:_info",       //ALTERAR
-
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
+  refresh: Subject<any> = new Subject();
 
   activeDayIsOpen: boolean = false;
 
@@ -146,8 +209,8 @@ export class SchedulePage {
 
   handleEvent(action: string, event: CalendarEvent): void {
     var id = event.meta;
-    this.createNewAppointment();
-    //open appointment
+    let modal = this.modalCtrl.create(ViewAppointmentModalPage, { ID: id });
+    modal.present();
   }
 
   addEvent(): void {
@@ -155,7 +218,7 @@ export class SchedulePage {
       title: 'New event',
       start: startOfDay(new Date()),
       end: endOfDay(new Date()),
-      color: colors.red,
+      color: colors.not_priority,
       draggable: true,
       resizable: {
         beforeStart: true,

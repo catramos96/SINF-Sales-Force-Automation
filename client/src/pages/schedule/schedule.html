@@ -16,6 +16,7 @@
 
 <ion-content padding>
 
+  <!--Add appointment button -->
   <ion-fab bottom right>
     <button ion-fab (click)="createNewAppointment()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
@@ -52,19 +53,22 @@
         <button ion-button mwlCalendarPreviousView
                 [view]="view"
                 [(viewDate)]="viewDate"
-                (viewDateChange)="activeDayIsOpen = false">
+                (viewDateChange)="activeDayIsOpen = false"
+                (click)="updateWithPrevious()">
           Previous
         </button>
 
         <button ion-button mwlCalendarToday
-                [(viewDate)]="viewDate">
+                [(viewDate)]="viewDate"
+                (click)="updateWithToday()">
           Today
         </button>
 
         <button ion-button mwlCalendarNextView
                 [view]="view"
                 [(viewDate)]="viewDate"
-                (viewDateChange)="activeDayIsOpen = false">
+                (viewDateChange)="activeDayIsOpen = false"
+                (click)="updateWithNext()">
           Next
         </button>
       </div>
@@ -92,7 +96,7 @@
 
         <button ion-button (click)="view = 'day'"
                 [class.active]="view === 'day'">
-          Week
+          Day
         </button>
       </div>
     </ion-col>

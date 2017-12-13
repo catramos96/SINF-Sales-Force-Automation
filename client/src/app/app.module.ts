@@ -25,13 +25,13 @@ import { CalendarModule } from 'angular-calendar';
 import { ChartsModule } from 'ng2-charts';
 import { StatisticsProvider } from '../providers/statistics/statistics';
 import { TeamPage } from "../pages/team/team";
-import { AppointmentModal } from "../pages/appointments/appointmentModal"
 import { OpportunitiesProvider } from '../providers/opportunities/opportunities';
 import { AppointmentsProvider } from '../providers/appointments/appointments';
 import { SalesProvider } from '../providers/sales/sales';
 import { RoutesProvider } from '../providers/routes/routes';
 import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointments-modal/create-appointments-modal";
 import {SchedulePage} from "../pages/schedule/schedule";
+import {ViewAppointmentModalPage} from "../pages/appointments/view-appointment-modal/view-appointment-modal";
 
 @NgModule({
   declarations: [
@@ -39,7 +39,6 @@ import {SchedulePage} from "../pages/schedule/schedule";
     HomePage,
     ProductPage,
     ModalContentPage,
-    AppointmentModal,
     ContactsPage,
     StatisticsPage,
     TeamPage,
@@ -47,6 +46,7 @@ import {SchedulePage} from "../pages/schedule/schedule";
     OpportunityModalPage,
     CreateOpportunityPage,
     CreateAppointmentsModalPage,
+    ViewAppointmentModalPage,
     SalesHistoryPage,
     SchedulePage,
   ],
@@ -65,7 +65,6 @@ import {SchedulePage} from "../pages/schedule/schedule";
     HomePage,
     ProductPage,
     ModalContentPage,
-    AppointmentModal,
     ContactsPage,
     StatisticsPage,
     TeamPage,
@@ -75,6 +74,7 @@ import {SchedulePage} from "../pages/schedule/schedule";
     CreateAppointmentsModalPage,
     CreateOpportunityPage,
     SchedulePage,
+    ViewAppointmentModalPage
   ],
   providers: [
     StatusBar,
