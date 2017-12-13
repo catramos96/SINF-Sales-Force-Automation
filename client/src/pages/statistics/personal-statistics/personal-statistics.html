@@ -17,15 +17,15 @@
         <ion-row class="label">
           <ion-col col-12 class="bigNumber">{{soldProductsNumber}}</ion-col>
           <ion-col col-12>Products sold during the year</ion-col>
-          <ion-col col-10>See more</ion-col>
+         <ion-col col-10>See more</ion-col>
           <ion-col col-2>>>></ion-col>
         </ion-row>
       </ion-col>
       <ion-col col-6>
-        <ion-row class="label">          
+        <ion-row class="label">
           <ion-col col-12 class="bigNumber">{{billedMoneyNumber}}</ion-col>
           <ion-col col-12>Billed money during the year</ion-col>
-          <ion-col col-10>See more</ion-col>
+         <ion-col col-10>See more</ion-col>
           <ion-col col-2>>>></ion-col>
         </ion-row>
       </ion-col>
@@ -35,9 +35,14 @@
         <div class="panelHeader">
           Top 5 Products
         </div>
-          <div *ngFor="let product of top5Products; let i = index">
-            <ion-row>{{product?.DescArtigo}}</ion-row>
-          </div>
+        <ion-row>
+          <ion-col col-sm-6 col-md-5 col-lg-5 class="top5-margin" *ngFor="let product of top5Products ; let i = index">
+            <img class="imageTop5" [src]=top5Images[0] (click)="openModal(product.CodArtigo)">
+            <span class="textTop5">
+              #{{i + 1}} {{ product.DescArtigo }}
+            </span>
+          </ion-col>
+        </ion-row>
       </ion-col>
       <ion-col col-6>
         <div class="panelHeader">
@@ -48,7 +53,7 @@
                   [data]="pieChartData"
                   [labels]="pieChartLabels"
                   [chartType]="pieChartType"
-                  [legend]="false"                  
+                  [legend]="false"
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)" responsive="true"></canvas>
         </div>
