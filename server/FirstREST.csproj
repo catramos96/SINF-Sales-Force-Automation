@@ -237,6 +237,7 @@
     <Compile Include="Controllers\OpportunityLinesController.cs" />
     <Compile Include="Controllers\RotasController.cs" />
     <Compile Include="Controllers\TarefasController.cs" />
+    <Compile Include="Controllers\TipoTarefaController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\FamiliasController.cs" />
     <Compile Include="Controllers\SubFamiliasController.cs" />
@@ -260,6 +261,7 @@
     <Compile Include="Lib_Primavera\Model\LinhaDocCompra.cs" />
     <Compile Include="Lib_Primavera\Model\LinhaDocVenda.cs" />
     <Compile Include="Lib_Primavera\Model\RespostaErro.cs" />
+    <Compile Include="Lib_Primavera\Model\TipoTarefa.cs" />
     <Compile Include="Lib_Primavera\Model\VendasDTO.cs" />
     <Compile Include="Lib_Primavera\Model\Tarefa.cs" />
     <Compile Include="Lib_Primavera\Model\Vendedor.cs" />
@@ -276,6 +278,7 @@
     <Compile Include="Lib_Primavera\PriIntegrationSubfamilia.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationTarefa.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationRota.cs" />
+    <Compile Include="Lib_Primavera\PriIntegrationTipoTarefa.cs" />
     <Compile Include="Lib_Primavera\PriIntegrationVendedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
