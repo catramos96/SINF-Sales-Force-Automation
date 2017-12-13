@@ -20,5 +20,7 @@ namespace FirstREST.Lib_Primavera.Model
         public int Duracao { get; set; }
         public string IDTarefaOrigem { get; set; }
         public string IDContacto { get; set; }
+
+        public string IdTipo { get; set; }
     }
 }
