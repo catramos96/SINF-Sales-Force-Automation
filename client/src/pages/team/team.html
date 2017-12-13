@@ -13,33 +13,40 @@
 
     <!-- director -->
 
-    <div class="team-member">
-      <ion-row justify-content-center>
-        <ion-img src="assets/imgs/user.png" class="team-member-img"></ion-img>
-      </ion-row>
-      <label class="team-label">Max Lancaster</label>
-      <label class="team-label">Director of Sales</label>
-    </div>
-
-    <!-- Team Members -->
-    <ion-row id="TeamMembers">
-
-      <!-- REMOVER -->
-      <ion-col class="team-member">
+    <div *ngIf="teamChefe.name">
+      <div class="team-member">
         <ion-row justify-content-center>
           <ion-img src="assets/imgs/user.png" class="team-member-img"></ion-img>
         </ion-row>
-        <label class="team-label">Max Lancaster</label>
-        <label class="team-label">Director of Sales</label>
-        <ion-row justify-content-center>
-          <button ion-button icon-only outline class="other-button" style="height:3vh; width:3vh">
-            <ion-icon name="remove"></ion-icon></button>
-        </ion-row>
-      </ion-col>
+        <label class="team-label">{{teamChefe.name}}</label>
+        <label class="team-label">Chefão</label>
+      </div>
+    </div>
 
+    <!-- Team Members -->
+    <div *ngFor="let vendors of teamMembers; let i = index">
 
-    </ion-row>
+      <ion-row>
+        <!-- REMOVER -->
+        <div *ngFor="let vendor of vendors; let j = index">
 
+          <ion-col class="team-member">
+            <ion-row justify-content-center>
+              <ion-img src="assets/imgs/user.png" class="team-member-img"></ion-img>
+            </ion-row>
+            <label class="team-label">{{vendor.name}}</label>
+            <label class="team-label">Vendor</label>
+            <ion-row justify-content-center>
+              <button ion-button icon-only outline class="other-button" style="height:3vh; width:3vh">
+                <ion-icon name="remove"></ion-icon>
+              </button>
+            </ion-row>
+          </ion-col>
+
+        </div>
+      </ion-row>
+
+    </div>
   </ion-grid>
 
 </ion-content>
