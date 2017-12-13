@@ -9,6 +9,11 @@
 
 <ion-content padding>
     <ion-grid>
+      <ion-row style="padding-left:1%">
+        <button ion-button (click)="createOpportunity()">
+          Create Opportunity
+        </button>
+      </ion-row>
       <ion-row *ngIf="opp.length == 0">
         <br><br>
         <p> No opportunities to display</p>
@@ -31,7 +36,7 @@
               <button ion-button outline item-end>
                 Activities
               </button>
-              <button ion-button outline item-end (click)="openModal(c.ID)">
+              <button ion-button outline item-end (click)="openOpportunity(c.ID)">
                 Details
               </button>
             </div> 

@@ -232,9 +232,8 @@
     <Compile Include="Controllers\DocVendaController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LeadsController.cs" />
-    <Compile Include="Controllers\OpportunitiesController.cs" />
-    <Compile Include="Controllers\OpportunityLinesController.cs" />
+    <Compile Include="Controllers\OportunidadesController.cs" />
+    <Compile Include="Controllers\OportunidadeLinhasController.cs" />
     <Compile Include="Controllers\RotasController.cs" />
     <Compile Include="Controllers\TarefasController.cs" />
     <Compile Include="Controllers\TipoTarefaController.cs" />
@@ -245,6 +244,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Lib_Primavera\Model\OportunidadeDTO.cs" />
     <Compile Include="Lib_Primavera\Model\Contacto.cs" />
     <Compile Include="Lib_Primavera\Model\Grupo.cs" />
     <Compile Include="Lib_Primavera\Model\Familia.cs" />

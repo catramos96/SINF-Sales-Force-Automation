@@ -20,13 +20,22 @@ namespace FirstREST.Lib_Primavera
 
             GcpBELinhasDocumentoVenda myLinhas = new GcpBELinhasDocumentoVenda();
 
-            PreencheRelacaoVendas rl = new PreencheRelacaoVendas();
+            //PreencheRelacaoVendas rl = new PreencheRelacaoVendas();
             List<Model.LinhaDocVenda> lstlindv = new List<Model.LinhaDocVenda>();
 
             try
             {
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
+                    // Linhas do documento para a lista de linhas
+                    lstlindv = dv.LinhasDoc;
+                    if (lstlindv == null || lstlindv.Count == 0)
+                    {
+                        erro.Erro = 1;
+                        erro.Descricao = "Cannot make an order from an empty proposal.";
+                        return erro;
+                    }
+
                     //A designação fiscal não se encontra atribuída
                     // Atribui valores ao cabecalho do doc
                     //myEnc.set_DataDoc(dv.Data);
@@ -34,8 +43,7 @@ namespace FirstREST.Lib_Primavera
                     myEnc.set_Serie("A");
                     myEnc.set_Tipodoc("ECL");
                     myEnc.set_TipoEntidade("C");
-                    // Linhas do documento para a lista de linhas
-                    lstlindv = dv.LinhasDoc;
+                    
                     //PriEngine.Engine.Comercial.Vendas.PreencheDadosRelacionados(myEnc, rl);
                     PriEngine.Engine.Comercial.Vendas.PreencheDadosRelacionados(myEnc);
                     foreach (Model.LinhaDocVenda lin in lstlindv)

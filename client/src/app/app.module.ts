@@ -13,17 +13,19 @@ import { HomePage } from '../pages/home/home';
 import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
 import { ContactsPage } from '../pages/contacts/contacts';
+import { ClientPage } from '../pages/contacts/client/client';
+import { TargetPage } from '../pages/contacts/target/target';
 import { StatisticsPage } from '../pages/statistics/statistics';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
 import { OpportunitiesPage } from '../pages/opportunities/opportunities';
-import { OpportunityModalPage } from '../pages/opportunities/opportunity-modal/opportunity-modal';
+import { OpportunityDetailsPage } from '../pages/opportunities/opportunity-details/opportunity-details';
 import { CreateOpportunityPage } from '../pages/opportunities/create-opportunity/create-opportunity';
 
 import { ContactsProvider } from '../providers/contacts/contacts';
 import { ProductsProvider } from '../providers/products/products';
 
 import { CalendarModule } from 'angular-calendar';
-import { ChartsModule } from 'ng2-charts';
+//import { ChartsModule } from 'ng2-charts';
 import { StatisticsProvider } from '../providers/statistics/statistics';
 import { TeamPage } from "../pages/team/team";
 import { OpportunitiesProvider } from '../providers/opportunities/opportunities';
@@ -45,10 +47,12 @@ import { LoginPage } from '../pages/login/login';
     ProductPage,
     ModalContentPage,
     ContactsPage,
+    ClientPage,
+    TargetPage,
     StatisticsPage,
     TeamPage,
     OpportunitiesPage,
-    OpportunityModalPage,
+    OpportunityDetailsPage,
     CreateOpportunityPage,
     CreateAppointmentsModalPage,
     ViewAppointmentModalPage,
@@ -64,7 +68,7 @@ import { LoginPage } from '../pages/login/login';
     CalendarModule.forRoot(),
     BrowserAnimationsModule,
     HttpModule,
-    ChartsModule
+   // ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -73,10 +77,13 @@ import { LoginPage } from '../pages/login/login';
     ProductPage,
     ModalContentPage,
     ContactsPage,
+    ClientPage,
+    TargetPage,
     StatisticsPage,
     TeamPage,
     OpportunitiesPage,
-    OpportunityModalPage,
+    OpportunityDetailsPage,
+    SalesHistoryPage,
     CreateAppointmentsModalPage,
     CreateOpportunityPage,
     SchedulePage,

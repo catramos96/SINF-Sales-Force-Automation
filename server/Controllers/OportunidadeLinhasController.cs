@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace FirstREST.Controllers
 {
-    public class LeadsController : ApiController
+    public class OportunidadeLinhasController : ApiController
     {
     }
 }

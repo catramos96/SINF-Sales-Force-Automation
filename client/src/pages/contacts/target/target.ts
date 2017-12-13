@@ -13,8 +13,21 @@ export class TargetPage {
   private showElement: boolean[] = [];
   private targets: JSON[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private contacts: ContactsProvider, private nativeStorage: NativeStorage) {
+  isOpportunity = false;
+  callback = null;
 
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private contacts: ContactsProvider,
+    private nativeStorage: NativeStorage
+  ) {
+    this.isOpportunity = this.navParams.get('isOpportunity');
+    this.callback = this.navParams.get('callback');
+  }
+
+  sendClient(Nome1,Nome2, ID){
+    this.callback(Nome1+Nome2,ID).then(()=>{ this.navCtrl.pop() });
   }
 
   ionViewDidLoad() {
