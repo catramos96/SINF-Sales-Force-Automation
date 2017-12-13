@@ -20,6 +20,18 @@ export class ProductPage {
   callback = null;
   oppProducts = [];
 
+  imgProducts: Array<any> = [
+    {
+      url: 'assets/imgs/logo.png'
+    },
+    {
+      url: 'assets/imgs/logo.png'
+    },
+    {
+      url: 'assets/imgs/logo.png'
+    }
+  ];
+
   constructor(
     public navCtrl: NavController, 
     private navParams: NavParams,

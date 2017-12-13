@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -33,6 +34,10 @@ import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointm
 import {SchedulePage} from "../pages/schedule/schedule";
 import {ViewAppointmentModalPage} from "../pages/appointments/view-appointment-modal/view-appointment-modal";
 
+import { RegisterPage } from '../pages/register/register';
+import { VendorsProvider } from '../providers/vendors/vendors';
+import { LoginPage } from '../pages/login/login';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -49,6 +54,8 @@ import {ViewAppointmentModalPage} from "../pages/appointments/view-appointment-m
     ViewAppointmentModalPage,
     SalesHistoryPage,
     SchedulePage,
+    RegisterPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -70,11 +77,13 @@ import {ViewAppointmentModalPage} from "../pages/appointments/view-appointment-m
     TeamPage,
     OpportunitiesPage,
     OpportunityModalPage,
-    SalesHistoryPage,
     CreateAppointmentsModalPage,
     CreateOpportunityPage,
     SchedulePage,
-    ViewAppointmentModalPage
+    ViewAppointmentModalPage,
+    SalesHistoryPage,
+    RegisterPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -88,7 +97,9 @@ import {ViewAppointmentModalPage} from "../pages/appointments/view-appointment-m
     OpportunitiesProvider,
     AppointmentsProvider,
     SalesProvider,
-    RoutesProvider
+    RoutesProvider,
+    VendorsProvider,
+    NativeStorage
   ]
 })
 export class AppModule {}

@@ -28,8 +28,16 @@ namespace FirstREST.Controllers
 
         // GET api/contactos/5
         [HttpGet]
-        [Route("api/contactos/search/{search}")]
-        public IEnumerable<Lib_Primavera.Model.Contacto> Search(string search)
+        [Route("api/contactos/vendor/{id}")]
+        public IEnumerable<Lib_Primavera.Model.Contacto> GetContactoByVendorId(string id)
+        {
+            return Lib_Primavera.PriIntegrationContacto.GetContactoByVendorId(id);
+        }
+
+        // GET api/contactos/5
+        [HttpPost]
+        [Route("api/contactos/search")]
+        public IEnumerable<Lib_Primavera.Model.Contacto> Search(Lib_Primavera.Model.SearchAndVendorDTO search)
         {
             return Lib_Primavera.PriIntegrationContacto.SearchContacto(search);
         }
@@ -46,7 +54,7 @@ namespace FirstREST.Controllers
             {
                 var response = Request.CreateResponse(
                    HttpStatusCode.Created, contacto);
-                string uri = Url.Link("DefaultApi", new { Id = contacto.Id });
+                //string uri = Url.Link("DefaultApi", new { Id = contacto.Id });
                 //response.Headers.Location = new Uri(uri);
                 return response;
             }

@@ -28,10 +28,17 @@ namespace FirstREST.Controllers
            return Lib_Primavera.PriIntegrationCliente.GetCliente(id);
         }
 
-        // GET api/cliente/5
         [HttpGet]
-        [Route("api/clientes/search/{search}")]
-        public IEnumerable<Lib_Primavera.Model.Cliente> Search(string search)
+        [Route("api/clientes/vendor/{id}")]
+        public IEnumerable<Lib_Primavera.Model.Cliente> GetClienteByVendorId(string id)
+        {
+            return Lib_Primavera.PriIntegrationCliente.GetClienteByVendorId(id);
+        }
+
+        // GET api/cliente/5
+        [HttpPost]
+        [Route("api/clientes/search")]
+        public IEnumerable<Lib_Primavera.Model.Cliente> Search(Lib_Primavera.Model.SearchAndVendorDTO search)
         {
             return Lib_Primavera.PriIntegrationCliente.SearchCliente(search);
         }

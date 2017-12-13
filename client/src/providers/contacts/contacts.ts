@@ -11,13 +11,13 @@ export class ContactsProvider {
 
   }
 
-  public getAllContacts(){
-    var url = AppSettings.API_ENDPOINT + 'contactos';
+  public getAllContactsOfVendor(data){
+    var url = AppSettings.API_ENDPOINT + 'contactos/vendor/' + data;
     return this.http.get(url).map(res => res.json());
   }
 
-  public getAllClients(){
-    var url = AppSettings.API_ENDPOINT + 'clientes';
+  public getAllClientsOfVendor(data){
+    var url = AppSettings.API_ENDPOINT + 'clientes/vendor/' + data;
     return this.http.get(url).map(res => res.json());
   }
 
@@ -36,14 +36,14 @@ export class ContactsProvider {
     return this.http.get(url).map(res => res.json());
   }
 
-  public searchClient(nameCliente:string){
-    var url = AppSettings.API_ENDPOINT + 'clientes/search/' + nameCliente;
-    return this.http.get(url).map(res => res.json());
+  public searchClient(data){
+    var url = AppSettings.API_ENDPOINT + 'clientes/search';
+    return this.http.post(url, data).map(res => res.json());
   }
 
-  public searchContact(nameContacto:string){
-    var url = AppSettings.API_ENDPOINT + 'contactos/search/' + nameContacto;
-    return this.http.get(url).map(res => res.json());
+  public searchContact(data){
+    var url = AppSettings.API_ENDPOINT + 'contactos/search';
+    return this.http.post(url, data).map(res => res.json());
   }
 
   public postTarget(data){

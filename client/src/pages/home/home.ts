@@ -12,6 +12,7 @@ import {RoutesProvider} from "../../providers/routes/routes";
 import {CreateAppointmentsModalPage} from "../appointments/create-appointments-modal/create-appointments-modal"
 import {SchedulePage} from "../schedule/schedule";
 import {ViewAppointmentModalPage} from "../appointments/view-appointment-modal/view-appointment-modal";
+import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'page-home',
