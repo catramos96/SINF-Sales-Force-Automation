@@ -4,6 +4,7 @@ import { Component ,ViewChild,
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import {AppointmentsProvider} from "../../../providers/appointments/appointments";
+import { OpportunitiesPage } from '../../opportunities/opportunities';
 
 @IonicPage()
 @Component({
@@ -12,6 +13,10 @@ import {AppointmentsProvider} from "../../../providers/appointments/appointments
 })
 export class CreateAppointmentsModalPage {
 
+  private opportunityId;
+  private tempName;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   public createAppointmentForm;
   private groups: JSON[] = [];
   public types = [];
@@ -49,6 +54,25 @@ export class CreateAppointmentsModalPage {
   resize() {
     this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
   }
+
+  getOpportunity(){
+    this.navCtrl.push(OpportunitiesPage,
+      {
+        getApp: true,
+        callback: this.getData
+      });
+  }
+
+  getData = (Id,Nome) =>
+  {
+    return new Promise((resolve, reject) => { 
+      this.opportunityId = Id;
+      this.tempName = name;
+      resolve();
+    });
+  };
+
+
 
   getAppointmentsTypes(){
     this.appointmentsProvider.getAllTypes().subscribe(

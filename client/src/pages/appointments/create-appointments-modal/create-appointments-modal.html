@@ -76,10 +76,20 @@
       <ion-label color="primary" stacked>Contact</ion-label>
       <ion-input  formControlName="IDContacto" type="text"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label color="primary" stacked>Opportunity</ion-label>
+
+    <ion-row>
+      <ion-col col-7>
+        <ion-item>
+            <ion-label color="primary" stacked>Opportunity</ion-label>
+            <ion-input formControlName="IDTarefaOrigem" type="text" [(ngModel)]="tempName" name="tempName" disabled></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-5>
+       <button ion-button outline (click)="getOpportunity()">Associate Opportunity</button>
+      </ion-col>
+    </ion-row>
+
       <ion-input  formControlName="IDTarefaOrigem" type="text"></ion-input>
-    </ion-item>
   </ion-list>
   <ion-row  justify-content-center>
     <button type="submit" ion-button style="margin:5%;">

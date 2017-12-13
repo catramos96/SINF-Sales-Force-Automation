@@ -199,5 +199,132 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+
+        public static IEnumerable<Vendedor> ListaEquipaDeChefe(string id)
+        {
+            StdBELista objList;
+            List<Vendedor> listVendedores = new List<Vendedor>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                string query = @"
+SELECT Vendedores.Vendedor, Vendedores.Nome, Vendedores.Telefone, Vendedores.Telemovel, Vendedores.EMail, Vendedores.Morada, Vendedores.Localidade, Vendedores.CPostal, Vendedores.Fax
+FROM  Vendedores JOIN ChefeVendedores ON Vendedores.Vendedor = ChefeVendedores.Vendedor  WHERE ChefeVendedores.ChefeVendedores= {0} GROUP BY 
+Vendedores.Vendedor, Vendedores.Nome, Vendedores.Telefone, Vendedores.Telemovel, Vendedores.EMail, Vendedores.Morada, Vendedores.Localidade, Vendedores.CPostal, Vendedores.Fax
+";
+
+                query = string.Format(query, id);
+                objList = PriEngine.Engine.Consulta(query);
+
+
+                while (!objList.NoFim())
+                {
+                    listVendedores.Add(new Vendedor
+                    {
+                        Id = objList.Valor("Vendedor"),
+                        Nome = objList.Valor("Nome"),
+                        Telefone = objList.Valor("Telefone"),
+                        Telemovel = objList.Valor("Telemovel"),
+                        Email = objList.Valor("EMail"),
+                        Morada = objList.Valor("Morada"),
+                        Localidade = objList.Valor("Localidade"),
+                        CodPostal = objList.Valor("CPostal"),
+                        Fax = objList.Valor("Fax")
+                    });
+                    objList.Seguinte();
+
+                }
+                return listVendedores;
+            }
+            else
+                return null;
+        }
+
+
+                public static IEnumerable<Vendedor> ListaEquipaDeVendedor(string id)
+        {
+            StdBELista objList;
+            List<Vendedor> listVendedores = new List<Vendedor>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                string query = @"
+SELECT Vendedores.Vendedor, Vendedores.Nome, Vendedores.Telefone, Vendedores.Telemovel, Vendedores.EMail, Vendedores.Morada, Vendedores.Localidade, Vendedores.CPostal, Vendedores.Fax FROM (
+SELECT ChefeVendedores.ChefeVendedores 
+FROM  Vendedores JOIN ChefeVendedores ON Vendedores.Vendedor = ChefeVendedores.ChefeVendedores  WHERE ChefeVendedores.Vendedor = {0} ) 
+AS T1
+ JOIN ChefeVendedores AS T2 ON  T1.ChefeVendedores = T2.ChefeVendedores 
+ JOIN Vendedores ON T2.Vendedor = Vendedores.Vendedor
+WHERE Vendedores.Vendedor != {0}
+";
+
+                query = string.Format(query, id);
+                objList = PriEngine.Engine.Consulta(query);
+
+
+                while (!objList.NoFim())
+                {
+                    listVendedores.Add(new Vendedor
+                    {
+                        Id = objList.Valor("Vendedor"),
+                        Nome = objList.Valor("Nome"),
+                        Telefone = objList.Valor("Telefone"),
+                        Telemovel = objList.Valor("Telemovel"),
+                        Email = objList.Valor("EMail"),
+                        Morada = objList.Valor("Morada"),
+                        Localidade = objList.Valor("Localidade"),
+                        CodPostal = objList.Valor("CPostal"),
+                        Fax = objList.Valor("Fax")
+                    });
+                    objList.Seguinte();
+
+                }
+                return listVendedores;
+            }
+            else
+                return null;
+        }
+
+
+                        public static IEnumerable<Vendedor> ListaChefeDeVendedor(string id)
+        {
+            StdBELista objList;
+            List<Vendedor> listVendedores = new List<Vendedor>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                string query = @"
+SELECT Vendedores.Vendedor, Vendedores.Nome, Vendedores.Telefone, Vendedores.Telemovel, Vendedores.EMail, Vendedores.Morada, Vendedores.Localidade, Vendedores.CPostal, Vendedores.Fax
+FROM Vendedores JOIN ChefeVendedores ON Vendedores.Vendedor = ChefeVendedores.ChefeVendedores WHERE ChefeVendedores.Vendedor = {0} GROUP BY 
+Vendedores.Vendedor, Vendedores.Nome, Vendedores.Telefone, Vendedores.Telemovel, Vendedores.EMail, Vendedores.Morada, Vendedores.Localidade, Vendedores.CPostal, Vendedores.Fax
+";
+
+                query = string.Format(query, id);
+                objList = PriEngine.Engine.Consulta(query);
+
+
+                while (!objList.NoFim())
+                {
+                    listVendedores.Add(new Vendedor
+                    {
+                        Id = objList.Valor("Vendedor"),
+                        Nome = objList.Valor("Nome"),
+                        Telefone = objList.Valor("Telefone"),
+                        Telemovel = objList.Valor("Telemovel"),
+                        Email = objList.Valor("EMail"),
+                        Morada = objList.Valor("Morada"),
+                        Localidade = objList.Valor("Localidade"),
+                        CodPostal = objList.Valor("CPostal"),
+                        Fax = objList.Valor("Fax")
+                    });
+                    objList.Seguinte();
+
+                }
+                return listVendedores;
+            }
+            else
+                return null;
+        }
+
     }
 }
