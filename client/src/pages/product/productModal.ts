@@ -16,12 +16,6 @@ export class ModalContentPage {
     imgSlides: Array<any> = [
       {
         url: 'assets/imgs/logo.png'
-      },
-      {
-        url: 'assets/imgs/logo.png'
-      },
-      {
-        url: 'assets/imgs/logo.png'
       }
     ];
   
@@ -77,7 +71,7 @@ export class ModalContentPage {
         PVP1: "0.50",
         Desconto: "20",
         PrecoFinal: "",
-      };
-      */
+      };*/
+      
     }
   }

@@ -1,5 +1,5 @@
 page-personal-statistics {
-   ion-grid {
+  ion-grid {
     min-width: 500px;
     min-height: 550px;
     height: 100%;
@@ -44,6 +44,27 @@ page-personal-statistics {
     padding-top: 1.5%;
   }
 
+  .imageTop5 {
+    border-radius: 50%;
+    display: inline-block;
+    padding: 10px;
+    border: 5px solid black;
+    width: 35%;
+    cursor: pointer;
+  }
+
+  .textTop5 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+  .top5-margin {
+    margin: 15px 30px 0 30px;
+  }
+
   @media (max-width: 767px) {
     .bigNumber {
       font-size: 65px;
@@ -51,6 +72,14 @@ page-personal-statistics {
 
     .label {
       font-size: 20px;
+    }
+
+    .textTop5 {
+      font-size: 12px;
+    }
+
+    .top5-margin {
+      margin: 10px 20px 0 20px;
     }
   }
 
@@ -65,6 +94,14 @@ page-personal-statistics {
       text-align: center;
       vertical-align: middle;
       font-size: 15px;
+    }
+
+    .textTop5 {
+      font-size: 14px;
+    }
+
+    .top5-margin {
+      margin: 5px 15px 0 15px;
     }
   }
 }
