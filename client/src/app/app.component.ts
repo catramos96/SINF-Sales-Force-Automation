@@ -47,7 +47,8 @@ export class MyApp {
       ];
     });
 
-    this.tryLogIn(nativeStorage);
+    //this.tryLogIn(nativeStorage);
+    this.isLoggedIn = true;
 
     this.pages = [
       { title: 'Login', component: LoginPage, isVisible: !this.isLoggedIn},
