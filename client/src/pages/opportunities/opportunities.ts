@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { OpportunitiesProvider } from '../../providers/opportunities/opportunities';
 import { OpportunityDetailsPage } from './opportunity-details/opportunity-details';
 import { CreateOpportunityPage } from './create-opportunity/create-opportunity';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 /**
@@ -27,7 +28,9 @@ export class OpportunitiesPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private opportunitiesService: OpportunitiesProvider,
-    private modalCtrl : ModalController) {}
+    private modalCtrl : ModalController,
+    private nativeStorage: NativeStorage
+  ) {}
 
   ionViewDidLoad() {
 
@@ -76,15 +79,22 @@ export class OpportunitiesPage {
   }
 
   getOpportunities(){
-    
-    this.opportunitiesService.getOpportunities().subscribe(
-      data => { 
-        this.opp = data;
-        this.displayOpportunities();
+    this.nativeStorage.getItem("Id").then(
+      data => {
+        this.opportunitiesService.getOpportunities(data).subscribe(
+          data => { 
+            this.opp = data;
+            this.displayOpportunities();
+          },
+          err => {
+              console.log(err);
+          });
       },
       err => {
-          console.log(err);
-      });
+
+      }
+    );
+    
       /*
       
       this.opp = [

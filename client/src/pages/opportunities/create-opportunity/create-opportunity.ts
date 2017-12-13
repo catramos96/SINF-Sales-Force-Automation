@@ -4,6 +4,7 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { OpportunitiesProvider } from '../../../providers/opportunities/opportunities';
 import { ClientPage } from '../../contacts/client/client';
 import { TargetPage } from '../../contacts/target/target';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 /**
  * Generated class for the CreateOpportunityPage page.
@@ -18,7 +19,7 @@ import { TargetPage } from '../../contacts/target/target';
 })
 export class CreateOpportunityPage {
 
-  opp = { CodCliente:"" };
+  opp = { CodCliente:"", Vendedor: "" };
   tempName = "";
   tempCode = "";
 
@@ -27,7 +28,8 @@ export class CreateOpportunityPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     private opportunitiesService: OpportunitiesProvider,
-    private alertCtrl : AlertController
+    private alertCtrl : AlertController,
+    private nativeStorage: NativeStorage
   ) { }
 
   ionViewDidLoad() {
@@ -66,21 +68,24 @@ export class CreateOpportunityPage {
   //confirmar
   createOpportunity() 
   {
-    this.opp.CodCliente = this.tempCode;
-    this.opportunitiesService.createOpportunity(this.opp).subscribe(
-      data => { 
-          console.log("created");
-          let alert = this.alertCtrl.create({
-            title: 'Create Opportunity',
-            subTitle: 'Opportunity created successfuly',
-            buttons: ['Dismiss']
+    this.nativeStorage.getItem("Id").then(
+      data => {
+        this.opp.CodCliente = this.tempCode;
+        this.opp.Vendedor = data;
+        this.opportunitiesService.createOpportunity(this.opp).subscribe(
+          data => { 
+              console.log("created");
+              let alert = this.alertCtrl.create({
+                title: 'Create Opportunity',
+                subTitle: 'Opportunity created successfuly',
+                buttons: ['Dismiss']
+              });
+              alert.present();
+              this.dismiss();
+          },
+          err => {
+              console.log(err);
           });
-          alert.present();
-          this.dismiss();
-      },
-      err => {
-          console.log(err);
       });
   }
-
 }

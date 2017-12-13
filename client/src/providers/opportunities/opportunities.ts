@@ -16,9 +16,9 @@ export class OpportunitiesProvider {
     console.log('Hello OpportunitiesProvider Provider');
   }
 
-  //done
-  getOpportunities(){
-    var url = AppSettings.API_ENDPOINT+'oportunidades';
+  //verificar
+  getOpportunities(Vendedor){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/'+Vendedor;
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
