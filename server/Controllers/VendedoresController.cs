@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace FirstREST.Controllers
 {
@@ -65,6 +67,64 @@ namespace FirstREST.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
+        }
+
+
+        // GET: /Vendedores/team/chefe/1
+        [HttpGet]
+        [Route("api/vendedores/team/chefe/{id}")]
+        public IEnumerable<Lib_Primavera.Model.Vendedor> GetTeamByChiefId(string id)
+        {
+            return Lib_Primavera.PriIntegrationVendedor.ListaEquipaDeChefe(id);
+        }
+
+        // GET: /Vendedores/team/vendedor/vendedores/1
+        [HttpGet]
+        [Route("api/vendedores/team/vendedor/vendedores/{id}")]
+        public IEnumerable<Lib_Primavera.Model.Vendedor> GetTeamByVendorId(string id)
+        {
+            return Lib_Primavera.PriIntegrationVendedor.ListaEquipaDeVendedor(id);
+        }
+
+        // GET: /Vendedores/team/vendedor/chefe/1
+        [HttpGet]
+        [Route("api/vendedores/team/vendedor/chefe/{id}")]
+        public IEnumerable<Lib_Primavera.Model.Vendedor> GetChiefByVendorId(string id)
+        {
+            return Lib_Primavera.PriIntegrationVendedor.ListaChefeDeVendedor(id);
+        }
+
+
+        // GET: /authentication/
+        [HttpGet]
+        [Route("api/authentication")]
+        public IEnumerable<Lib_Primavera.Model.Vendedor> GetTemp()
+        {
+            SqlConnection conn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            conn.ConnectionString = "Data Source=User-PC\\PRIMAVERA;" +
+                "Initial Catalog=PrimaveraExtension;" +
+                "User id=sa;" +
+                "Password=Feup2014;";
+            cmd.CommandText = "Select * from Authentication";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var username = reader.GetValue(0);
+                }
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return Lib_Primavera.PriIntegrationVendedor.ListaVendedores();
         }
 
     }

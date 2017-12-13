@@ -20,4 +20,19 @@ export class VendorsProvider {
     return this.http.post(url,data);
   }
 
+  public getChiefTeam(id:string){
+    var url = AppSettings.API_ENDPOINT + 'vendedores/team/chefe/'+id;
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public getVendorTeam(id:string){
+    var url = AppSettings.API_ENDPOINT + 'vendedores/team/vendedor/vendedores/'+id;
+    return this.http.get(url).map(res => res.json());
+  }
+
+  public getVendorChief(id:string){
+    var url = AppSettings.API_ENDPOINT + 'vendedores/team/vendedor/chefe/'+id;
+    return this.http.get(url).map(res => res.json());
+  }
+
 }
