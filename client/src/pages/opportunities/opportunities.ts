@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { OpportunitiesProvider } from '../../providers/opportunities/opportunities';
-import { OpportunityModalPage } from './opportunity-modal/opportunity-modal';
+import { OpportunityDetailsPage } from './opportunity-details/opportunity-details';
+import { CreateOpportunityPage } from './create-opportunity/create-opportunity';
 
 
 /**
@@ -36,15 +37,22 @@ export class OpportunitiesPage {
     this.getOpportunities();
   }
 
-  openModal(oppID) {
-    let modal = this.modalCtrl.create(OpportunityModalPage,{ opportunityID: oppID });
+  createOpportunity(){
+    let modal = this.modalCtrl.create(CreateOpportunityPage);
     modal.present();
+  }
+  
+  openOpportunity(oppID) {
+    this.navCtrl.push(OpportunityDetailsPage,
+      {
+        opportunityID: oppID
+      });
   }
 
   displayOpportunities(){
     var colsLength = 3;
     var totalLength = this.opp.length;
-    var rowsLength = Math.round(totalLength/colsLength);
+    var rowsLength = Math.ceil(totalLength/colsLength);
     var rows = [];
     var r,c,maxCol;
     for(r = 0; r < rowsLength; r++)
@@ -77,8 +85,8 @@ export class OpportunitiesPage {
       err => {
           console.log(err);
       });
-      
       /*
+      
       this.opp = [
         {
           ID : "1",
@@ -98,6 +106,7 @@ export class OpportunitiesPage {
       this.displayOpportunities();
       console.log(this.opp);
       */
+      
   }
 
 }
