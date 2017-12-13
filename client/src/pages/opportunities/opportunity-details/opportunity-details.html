@@ -1,0 +1,129 @@
+<!--
+  Generated template for the OpportunityDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Opportunity</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <!-- OPPORTUNITY DETAILS -->
+  <div padding>
+    <h3 style="text-align:center">{{opp.Descricao}}, {{opp.DataCriacao}}</h3>
+    <h6 class="colored down">Contact</h6>
+    <p style="padding-left: 20px;">
+      <b>Name : </b>{{opp.NomeCliente}} <br> 
+      <b>Contact : </b>{{opp.ContactoCliente}} <br>
+      <b>Discount : </b> {{opp.DescontoCliente}} %
+    </p>
+    <h6 class="colored down">Info</h6>
+    <p style="padding-left: 20px">{{opp.Resumo}}</p>
+
+    <!-- PROPOSAL -->
+    <div class="inline colored">
+      <h6 class="left down"> My Proposals</h6>
+      <button class="right" ion-button small color="secondary" (click)="addNewProposal()">
+          Add Proposal
+      </button>
+    </div>
+
+    <ion-list inset>
+      <div *ngFor="let prop of opp.propostas; let i = index">
+        <!-- name and buttons -->
+        <ion-item (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}"
+            (click)="onItemClicked(i)" 
+            [class.selected]="i === currentSelected">
+          <h4 class="left down">Proposal #{{prop.NumProposta}} </h4>
+          <button ion-button outline class="right" (click)="makeOrder(prop.NumProposta)">
+            Make Order
+          </button>
+        </ion-item>
+        <!-- details -->
+        <ion-item *ngIf="isGroupShown(i)">
+          <ion-grid>
+            <!-- header -->
+            <ion-row align-items-center justify-content-center class="grid-header">
+              <ion-col col-1>Line</ion-col>
+              <ion-col col-2>Product</ion-col>
+              <ion-col col-2>Quantity</ion-col>
+              <ion-col col-1>Cost</ion-col>
+              <ion-col col-1>Price + VAT</ion-col>
+              <ion-col col-1>Discount</ion-col>
+              <ion-col col-1>Liquid Price</ion-col>
+              <ion-col col-1>Rentability</ion-col>
+              <ion-col col-1>Margin</ion-col>
+              <ion-col col-1></ion-col>
+            </ion-row>
+            <ion-row *ngIf="prop.Artigos.length == 0" justify-content-center>
+              <br><br><p> No products to display</p>
+            </ion-row>
+            <!-- artigos -->
+            <ion-row *ngFor="let art of prop.Artigos" justify-content-center>
+              <ion-col col-1 class="column-lines">{{art.Linha}}</ion-col>
+              <ion-col col-2 class="column-lines">{{art.IdArtigo}} : {{art.NomeArtigo}}</ion-col>
+              <ion-col col-2 class="column-lines">
+                <button ion-button clear small (click)="removeQuantity(art.IdArtigo,prop.NumProposta)">
+                  <ion-icon name="remove"></ion-icon>
+                </button>
+                {{art.Quantidade}}
+                <button ion-button clear small (click)="addQuantity(art.IdArtigo,prop.NumProposta)">
+                  <ion-icon name="add"></ion-icon>
+                </button>
+                UN
+              </ion-col>
+              <ion-col col-1 class="column-lines">{{art.Custo}} €</ion-col>
+              <ion-col col-1 class="column-lines">{{art.PrecoVenda}} €</ion-col>
+              <ion-col col-1 class="column-lines">{{art.Desconto}} €</ion-col>
+              <ion-col col-1 class="column-lines">{{art.PrecoFinal}} €</ion-col>
+              <ion-col col-1 class="column-lines">{{art.Rentabilidade}} €</ion-col>
+              <ion-col col-1 class="column-lines">{{art.Margem}} %</ion-col>
+              <ion-col col-1 class="column-lines">
+                <button ion-button clear color="danger" small (click)="removeProduct(art.IdArtigo,prop.NumProposta)">
+                  <ion-icon name="remove"></ion-icon>
+                </button>
+              </ion-col>
+            </ion-row>
+            <!-- add product -->
+            <ion-row>
+              <button ion-button clear color="secondary" (click)="addProducts(prop.NumProposta)">
+                <ion-icon name="add"></ion-icon>
+              </button>
+            </ion-row>
+            <!-- valor total -->
+            <ion-row align-items-center justify-content-center class="grid-header">
+              <ion-col col-7></ion-col>
+              <ion-col col-1>{{prop.Desconto}} €</ion-col> <!-- preco final-->
+              <ion-col col-1>{{prop.Valor}} €</ion-col> <!-- preco final-->
+              <ion-col col-1 >{{prop.Rentabilidade}} €</ion-col> <!-- rentabilidade -->
+              <ion-col col-1>{{prop.Margem}} %</ion-col> <!-- margem -->
+              <ion-col col-1></ion-col>
+            </ion-row> 
+          </ion-grid>
+          <div class="inline">
+            <button ion-button clear (click)="saveProposal(prop.NumProposta)" class="right">
+              Save Proposal
+            </button>
+            <button ion-button color="danger" clear class="right" (click)="cancelProposal(prop.NumProposta)">
+              Cancel Changes
+            </button>
+          </div>
+        </ion-item> <!-- fim item -->
+
+      </div>  <!-- fim proposals -->
+
+    </ion-list>
+    <!-- TODO centrar -->
+    <div class="inline center">
+      <button ion-button color="danger" small (click)="cancelOpportunity()">
+        Cancel Opportunity
+      </button>
+    </div>
+  </div>
+</ion-content>

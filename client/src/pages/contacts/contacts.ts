@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
+import { TargetPage } from './target/target';
+import { ClientPage } from './client/client';
 
 @IonicPage()
 @Component({
@@ -8,10 +10,13 @@ import { IonicPage, NavController } from 'ionic-angular';
 })
 export class ContactsPage {
 
-  targetRoot = 'TargetPage'
-  clientRoot = 'ClientPage'
+  targetRoot = TargetPage;
+  clientRoot = ClientPage;
 
+  constructor(
+    public navCtrl: NavController
+  ) {
 
-  constructor(public navCtrl: NavController) {}
+  }
 
 }

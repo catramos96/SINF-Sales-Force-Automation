@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { OpportunitiesProvider } from '../../providers/opportunities/opportunities';
-import { OpportunityModalPage } from './opportunity-modal/opportunity-modal';
+import { OpportunityDetailsPage } from './opportunity-details/opportunity-details';
+import { CreateOpportunityPage } from './create-opportunity/create-opportunity';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 /**
@@ -26,7 +28,9 @@ export class OpportunitiesPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private opportunitiesService: OpportunitiesProvider,
-    private modalCtrl : ModalController) {}
+    private modalCtrl : ModalController,
+    private nativeStorage: NativeStorage
+  ) {}
 
   ionViewDidLoad() {
 
@@ -36,15 +40,22 @@ export class OpportunitiesPage {
     this.getOpportunities();
   }
 
-  openModal(oppID) {
-    let modal = this.modalCtrl.create(OpportunityModalPage,{ opportunityID: oppID });
+  createOpportunity(){
+    let modal = this.modalCtrl.create(CreateOpportunityPage);
     modal.present();
+  }
+  
+  openOpportunity(oppID) {
+    this.navCtrl.push(OpportunityDetailsPage,
+      {
+        opportunityID: oppID
+      });
   }
 
   displayOpportunities(){
     var colsLength = 3;
     var totalLength = this.opp.length;
-    var rowsLength = Math.round(totalLength/colsLength);
+    var rowsLength = Math.ceil(totalLength/colsLength);
     var rows = [];
     var r,c,maxCol;
     for(r = 0; r < rowsLength; r++)
@@ -68,17 +79,24 @@ export class OpportunitiesPage {
   }
 
   getOpportunities(){
-    
-    this.opportunitiesService.getOpportunities().subscribe(
-      data => { 
-        this.opp = data;
-        this.displayOpportunities();
+    this.nativeStorage.getItem("Id").then(
+      data => {
+        this.opportunitiesService.getOpportunities(data).subscribe(
+          data => { 
+            this.opp = data;
+            this.displayOpportunities();
+          },
+          err => {
+              console.log(err);
+          });
       },
       err => {
-          console.log(err);
-      });
-      
+
+      }
+    );
+    
       /*
+      
       this.opp = [
         {
           ID : "1",
@@ -98,6 +116,7 @@ export class OpportunitiesPage {
       this.displayOpportunities();
       console.log(this.opp);
       */
+      
   }
 
 }
