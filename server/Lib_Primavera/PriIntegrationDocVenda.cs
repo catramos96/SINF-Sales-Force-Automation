@@ -136,7 +136,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("numeroProdutosVendidos");
+                    try
+                    {
+                        return objListLin.Valor("numeroProdutosVendidos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
                 }
             }
             return -1;
@@ -152,7 +159,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("numeroProdutosVendidos");
+                    try
+                    {
+                        return objListLin.Valor("numeroProdutosVendidos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }           
                 }
             }
             return -1;
@@ -214,7 +228,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    try
+                    {
+                        return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }                    
                 }
             }
             return -1;
@@ -230,7 +251,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    try
+                    {
+                        return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }      
                 }
             }
             return -1;
