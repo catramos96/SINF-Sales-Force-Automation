@@ -114,7 +114,7 @@ namespace FirstREST.Lib_Primavera
                       Clientes.Nome AS NomeCliente, Clientes.Fac_Tel AS ContactoCliente, 
                       CabecOportunidadesVenda.DataCriacao AS Data, CabecOportunidadesVenda.Descricao AS Descricao
                       from CabecOportunidadesVenda JOIN Clientes ON Clientes.Cliente = CabecOportunidadesVenda.Entidade
-                      where EstadoVenda = 0 AND CabecOportunidadesVenda.Vendedor = " + vendedor); //Oportunidades abertas
+                      where EstadoVenda = 0 AND CabecOportunidadesVenda.Vendedor = '" + vendedor + "';"); //Oportunidades abertas
 
                 while (!oppList.NoFim())
                 {
