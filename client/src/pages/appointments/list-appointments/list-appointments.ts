@@ -29,10 +29,6 @@ export class ListAppointmentsPage {
   ) {
     let id = this.navParams.get('opportunityID');
     this.getAppointments(id);
-<<<<<<< HEAD
-=======
-
->>>>>>> 09e8b17a1a05d99a4f24d403810962c74afb47eb
   }
 
   ionViewDidLoad() {

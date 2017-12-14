@@ -35,6 +35,10 @@ export class SalesHistoryPage {
     this.salesService.getSalesByDate().subscribe(
       data => { 
           this.sales = data;
+
+          this.sales.forEach(element => {
+            element.Data = element.Data.substring(0,10);
+          });
       },
       err => {
           console.log(err);

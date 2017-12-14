@@ -91,12 +91,16 @@ export class OpportunitiesPage {
       //data => {
         this.opportunitiesService.getOpportunities(1).subscribe(
           data => { 
-            alert(data);
             this.opp = data;
+
+            this.opp.forEach(element => {
+              let date : string = element.DataCriacao;
+              element.DataCriacao = date.substring(0,10);
+            });
+            
             this.displayOpportunities();
           },
           err => {
-            alert(err);
             console.log(err);
           });
       //},

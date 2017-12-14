@@ -258,10 +258,22 @@ export class OpportunityDetailsPage {
       data => {
         this.opp = data;
         this.opp.ID = id;
+        //compor datas
         let date : string = this.opp.DataCriacao;
-        date.substring(0,12);
-        this.opp.DataCriacao = date;
-        console.log(this.opp);
+        this.opp.DataCriacao = date.substring(0,10);
+        //para cada artigo -> corrigir precos
+        this.opp.propostas.forEach(proposta => {
+          proposta.Artigos.forEach(elem => {
+            elem.PrecoFinal = elem.PrecoFinal.toFixed(2);
+            elem.PrecoVenda = elem.PrecoVenda.toFixed(2);
+            elem.Margem = elem.Margem.toFixed(2);
+            elem.Custo = elem.Custo.toFixed(2);
+            elem.Desconto = elem.Desconto.toFixed(2);
+          });
+          proposta.Valor = proposta.Valor.toFixed(2);
+          proposta.Margem = proposta.Margem.toFixed(2);
+          proposta.Desconto = proposta.Desconto.toFixed(2);
+        });
       },
       err => {
         console.log(err);

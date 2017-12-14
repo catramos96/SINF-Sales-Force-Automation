@@ -49,14 +49,12 @@
           <ion-grid>
             <!-- header -->
             <ion-row align-items-center justify-content-center class="grid-header">
-              <ion-col col-1>Line</ion-col>
-              <ion-col col-2>Product</ion-col>
+              <ion-col col-4>Product</ion-col>
               <ion-col col-2>Quantity</ion-col>
               <ion-col col-1>Cost</ion-col>
-              <ion-col col-1>Price + VAT</ion-col>
+              <ion-col col-1>Price<br>+ VAT</ion-col>
               <ion-col col-1>Discount</ion-col>
-              <ion-col col-1>Liquid Price</ion-col>
-              <ion-col col-1>Rentability</ion-col>
+              <ion-col col-1>Liquid<br>Price</ion-col>
               <ion-col col-1>Margin</ion-col>
               <ion-col col-1></ion-col>
             </ion-row>
@@ -65,8 +63,7 @@
             </ion-row>
             <!-- artigos -->
             <ion-row *ngFor="let art of prop.Artigos" justify-content-center>
-              <ion-col col-1 class="column-lines">{{art.Linha}}</ion-col>
-              <ion-col col-2 class="column-lines">{{art.IdArtigo}} : {{art.NomeArtigo}}</ion-col>
+              <ion-col col-4 class="column-lines">{{art.IdArtigo}} : {{art.NomeArtigo}}</ion-col>
               <ion-col col-2 class="column-lines">
                 <button ion-button clear small (click)="removeQuantity(art.IdArtigo,prop.NumProposta)">
                   <ion-icon name="remove"></ion-icon>
@@ -75,13 +72,11 @@
                 <button ion-button clear small (click)="addQuantity(art.IdArtigo,prop.NumProposta)">
                   <ion-icon name="add"></ion-icon>
                 </button>
-                UN
               </ion-col>
               <ion-col col-1 class="column-lines">{{art.Custo}} €</ion-col>
               <ion-col col-1 class="column-lines">{{art.PrecoVenda}} €</ion-col>
               <ion-col col-1 class="column-lines">{{art.Desconto}} €</ion-col>
               <ion-col col-1 class="column-lines">{{art.PrecoFinal}} €</ion-col>
-              <ion-col col-1 class="column-lines">{{art.Rentabilidade}} €</ion-col>
               <ion-col col-1 class="column-lines">{{art.Margem}} %</ion-col>
               <ion-col col-1 class="column-lines">
                 <button ion-button clear color="danger" small (click)="removeProduct(art.IdArtigo,prop.NumProposta)">
@@ -97,10 +92,9 @@
             </ion-row>
             <!-- valor total -->
             <ion-row align-items-center justify-content-center class="grid-header">
-              <ion-col col-7></ion-col>
+              <ion-col col-8></ion-col>
               <ion-col col-1>{{prop.Desconto}} €</ion-col> <!-- preco final-->
               <ion-col col-1>{{prop.Valor}} €</ion-col> <!-- preco final-->
-              <ion-col col-1 >{{prop.Rentabilidade}} €</ion-col> <!-- rentabilidade -->
               <ion-col col-1>{{prop.Margem}} %</ion-col> <!-- margem -->
               <ion-col col-1></ion-col>
             </ion-row> 
