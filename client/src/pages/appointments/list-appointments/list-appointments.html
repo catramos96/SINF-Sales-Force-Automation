@@ -1,0 +1,44 @@
+<!--
+  Generated template for the ListAppointmentsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>List Appointments</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid>
+    <!-- header -->
+    <ion-row align-items-center justify-content-center class="grid-header">
+      <ion-col col-2>Type</ion-col>
+      <ion-col col-1>Priority</ion-col>
+      <ion-col col-2>Start Date</ion-col>
+      <ion-col col-2>End Date</ion-col>
+      <ion-col col-4>Summary</ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row> 
+    <ion-row *ngFor="let app of appointments" justify-content-center>
+      <ion-col col-2>{{app.TipoDeTarefa}}</ion-col>
+      <ion-col col-1>{{app.Prioridade}}</ion-col>
+      <ion-col col-2>{{app.DataInicio}}</ion-col>
+      <ion-col col-2>{{app.DataFim}}</ion-col>
+      <ion-col col-4>{{app.Resumo}}</ion-col>
+      <ion-col col-1>
+        <button ion-button clear small (click)="goToDetails(app.ID)">
+          See More
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <button ion-button (click)="createAppointment()">
+    Create new Appointment
+  </button>
+
+</ion-content>

@@ -1,6 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\pages",
+    "\\src\\pages\\contacts",
+    "\\src\\pages\\contacts\\client",
+    "\\src\\pages\\statistics",
+    "\\src\\pages\\statistics\\personal-statistics",
+    "\\src\\providers"
   ],
+  "SelectedNode": "\\src\\pages\\statistics\\personal-statistics\\personal-statistics.ts",
   "PreviewInSolutionExplorer": false
 }

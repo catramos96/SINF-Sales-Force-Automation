@@ -1,0 +1,94 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Target</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <form [formGroup]="createTargetForm" (ngSubmit)="onSubmit(createTargetForm.value)">
+        <h4>Basic Information</h4>
+        <ion-row>
+            <ion-col>
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.name.valid && createTargetForm.controls.name.touched}">
+                    <ion-label floating>Full Name</ion-label>
+                    <ion-input formControlName="name" type="text" ></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-item *ngIf="createTargetForm.controls.name.hasError('required') && createTargetForm.controls.name.touched">
+            <p>Sorry, name fields are required!</p>
+        </ion-item>
+        <ion-item *ngIf="createTargetForm.controls.name.hasError('pattern') && createTargetForm.controls.name.touched">
+            <p>Sorry, only small and capital letters are allowed!</p>
+        </ion-item>
+
+        <ion-row>
+            <ion-col>
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.address.valid && createTargetForm.controls.address.touched}">
+                    <ion-label floating>Address</ion-label>
+                    <ion-input formControlName="address" type="text"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.zipcode.valid && createTargetForm.controls.zipcode.touched}">
+                    <ion-label floating>Zipcode</ion-label>
+                    <ion-input formControlName="zipcode" type="text"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.location.valid && createTargetForm.controls.location.touched}">
+                    <ion-label floating>Location</ion-label>
+                    <ion-input formControlName="location" type="text"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.country.valid && createTargetForm.controls.country.touched}">
+                    <ion-label floating>Country</ion-label>
+                    <ion-input formControlName="country" type="text"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+
+        <h4>Contacts</h4>
+        <ion-row>
+            <ion-col>
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.email.valid && createTargetForm.controls.email.touched}">
+                    <ion-label floating>Email</ion-label>
+                    <ion-input formControlName="email" type="text"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.cellphone.valid && createTargetForm.controls.cellphone.touched}">
+                    <ion-label floating>Cell phone</ion-label>
+                    <ion-input formControlName="cellphone" type="text"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.homephone.valid && createTargetForm.controls.homephone.touched}">
+                    <ion-label floating>Home phone</ion-label>
+                    <ion-input formControlName="homephone" type="text"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item [ngClass]="{'error-border':!createTargetForm.controls.fax.valid && createTargetForm.controls.fax.touched}">
+                    <ion-label floating>Fax</ion-label>
+                    <ion-input formControlName="fax" type="text"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <button ion-button full color="primary" [disabled]="!createTargetForm.valid" style="margin-top: 20px;" type="submit">Edit Target</button>
+    </form>
+
+</ion-content>

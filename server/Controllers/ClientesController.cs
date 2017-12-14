@@ -20,20 +20,27 @@ namespace FirstREST.Controllers
         }
 
 
-        // GET api/cliente/5    
-        public Cliente Get(string id)
+        // GET api/cliente/5
+        [HttpGet]
+        [Route("api/clientes/{id}")]
+        public IEnumerable<Lib_Primavera.Model.Cliente> GetCliente(string id)
         {
-            Lib_Primavera.Model.Cliente cliente = Lib_Primavera.PriIntegrationCliente.GetCliente(id);
-            if (cliente == null)
-            {
-                throw new HttpResponseException(
-                        Request.CreateResponse(HttpStatusCode.NotFound));
+           return Lib_Primavera.PriIntegrationCliente.GetCliente(id);
+        }
 
-            }
-            else
-            {
-                return cliente;
-            }
+        [HttpGet]
+        [Route("api/clientes/vendor/{id}")]
+        public IEnumerable<Lib_Primavera.Model.Cliente> GetClienteByVendorId(string id)
+        {
+            return Lib_Primavera.PriIntegrationCliente.GetClienteByVendorId(id);
+        }
+
+        // GET api/cliente/5
+        [HttpPost]
+        [Route("api/clientes/search")]
+        public IEnumerable<Lib_Primavera.Model.Cliente> Search(Lib_Primavera.Model.SearchAndVendorDTO search)
+        {
+            return Lib_Primavera.PriIntegrationCliente.SearchCliente(search);
         }
 
         [HttpPost]
@@ -59,7 +66,8 @@ namespace FirstREST.Controllers
 
         }
 
-
+        [HttpPost]
+        [Route("api/clientes/{id}")]
         public HttpResponseMessage Put(string id, Lib_Primavera.Model.Cliente cliente)
         {
 

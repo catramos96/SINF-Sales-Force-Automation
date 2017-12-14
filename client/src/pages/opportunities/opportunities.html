@@ -9,6 +9,11 @@
 
 <ion-content padding>
     <ion-grid>
+      <ion-row style="padding-left:1%">
+        <button ion-button (click)="createOpportunity()">
+          Create Opportunity
+        </button>
+      </ion-row>
       <ion-row *ngIf="opp.length == 0">
         <br><br>
         <p> No opportunities to display</p>
@@ -18,17 +23,20 @@
           <!-- opportunity -->
           <ion-card *ngIf="c!=null">
             <ion-card-header class="inline">
-              {{c.Lead.Descricao}}
+              {{c.Descricao}}
             </ion-card-header>
             <ion-card-content >
-              <b>Client</b> : {{c.Lead.NomeCliente}}  ,  {{c.Lead.ContactoCliente}} <br>
-              <b>Date</b> : {{c.Lead.DataCriacao}} <br>
+              <b>Client</b> : {{c.NomeCliente}}  ,  {{c.ContactoCliente}} <br>
+              <b>Date</b> : {{c.DataCriacao}} <br>
+              <button *ngIf="isApp === true" (click)="sendOpportunity(c.ID,c.Descricao)"
+                ion-button block color="secondary">Associate
+              </button>
             </ion-card-content>
             <div class="centered">
-              <button ion-button outline item-end>
+              <button ion-button outline item-end (click)="openAppointments(c.ID)">
                 Activities
               </button>
-              <button ion-button outline item-end (click)="openModal(c.Lead.ID)">
+              <button ion-button outline item-end (click)="openOpportunity(c.ID)">
                 Details
               </button>
             </div> 

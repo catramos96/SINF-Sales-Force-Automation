@@ -16,25 +16,66 @@ export class OpportunitiesProvider {
     console.log('Hello OpportunitiesProvider Provider');
   }
 
-  //done
-  getOpportunities(){
-    var url = AppSettings.API_ENDPOINT+'opportunities';
+  //verificar
+  getOpportunities(Vendedor){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/vendedor/'+encodeURI(Vendedor);
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
   //done
   getOpportunity(name){
-    var url = AppSettings.API_ENDPOINT+'opportunities/'+encodeURI(name);
+    var url = AppSettings.API_ENDPOINT+'oportunidades/'+encodeURI(name);
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
-  //FAZER
-  updateOpportunity(opportunity){
-    var url = AppSettings.API_ENDPOINT+'opportunities/update/'+encodeURI(opportunity.ID);
-    var response = this.http.post(url,opportunity.Artigos).map(res => res.json());
+  //done
+  makeOrder(sale){
+    var url = AppSettings.API_ENDPOINT+'docvendas';
+    var response = this.http.post(url,sale).map(res => res.json());
     return response;
   }
 
+  //done
+  createOpportunity(opportunity){
+    var url = AppSettings.API_ENDPOINT+'oportunidades';
+    var response = this.http.post(url,opportunity).map(res => res.json());
+    return response;
+  }
+
+  //done
+  addProposal(oppID){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/proposta';
+    var response = this.http.post(url,{"ID":oppID}).map(res => res.json());
+    return response;
+  }
+
+  //done
+  removeProductOpportunity(json){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/removeproduto/';
+    var response = this.http.post(url,json).map(res => res.json());
+    return response;
+  }
+
+  //done
+  addProductOpportunity(json){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/adicionaproduto/';
+    var response = this.http.post(url,json).map(res => res.json());
+    return response;
+  }
+
+  //verificar
+  updateOpportunity(json){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/update/';
+    var response = this.http.post(url,json).map(res => res.json());
+    return response;
+  }
+
+  //done
+  endOportunity(opportunity){
+    var url = AppSettings.API_ENDPOINT+'oportunidades/perder';
+    var response = this.http.post(url,opportunity).map(res => res.json());
+    return response;
+  }
 }

@@ -4,10 +4,10 @@ import { TargetPage } from './target';
 
 @NgModule({
   declarations: [
-    TargetPage,
+    //TargetPage,
   ],
   imports: [
-    IonicPageModule.forChild(TargetPage),
+    //IonicPageModule.forChild(TargetPage),
   ],
 })
 export class TargetPageModule {}

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {FormGroup, FormBuilder, AbstractControl, Validators} from "@angular/forms";
+import { FormGroup, FormBuilder, AbstractControl, Validators } from "@angular/forms";
 import { ContactsProvider } from '../../../../providers/contacts/contacts';
+import { NativeStorage } from '@ionic-native/native-storage';
+import {SchedulePage} from "../../../schedule/schedule";
 
 @IonicPage()
 @Component({
@@ -12,63 +14,59 @@ export class CreateTargetPage {
 
   createTargetForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private contacts: ContactsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private contacts: ContactsProvider, private nativeStorage: NativeStorage) {
 
-    var names = ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*')])]
     var phones = [''];
 
     this.createTargetForm = formBuilder.group({
-      firstname: names,
-      intermediatenames: names,
-      lastname: names,
-      email:[''],
-      cellphone:phones,
-      homephone:phones,
-      notes:[''],
-      taxnumber:[''],
-      title:[''],
-      address:[''],
-      zipcode:[''],
-      location:[''],
-      country:[''],
-  });
+      name: [''],
+      email: [''],
+      cellphone: phones,
+      homephone: phones,
+      address: [''],
+      zipcode: [''],
+      location: [''],
+      country: [''],
+      fax:[''],
+    });
   }
-  
-  ionViewDidLoad(){
+
+  ionViewDidLoad() {
 
   }
 
-  onSubmit(value: any): void { 
+  onSubmit(value: any): void {
 
-    
+    if (this.createTargetForm.valid) {
+      this.nativeStorage.getItem("Id").then(
+        data => {
+          var dataSend = {
+            "Nome": this.createTargetForm.value.name,
+            "Morada": this.createTargetForm.value.address,
+            "CodPostal": this.createTargetForm.value.zipcode,
+            "Localidade": this.createTargetForm.value.location,
+            "Pais": this.createTargetForm.value.country,
+            "Email": this.createTargetForm.value.email,
+            "Telemovel": this.createTargetForm.value.cellphone,
+            "Telefone": this.createTargetForm.value.homephone,
+            "Fax":this.createTargetForm.value.fax,
+            "Vendedor": data
+          }
 
-    if(this.createTargetForm.valid) {
-      var data = {
-        "PrimeiroNome":this.createTargetForm.value.firstname,
-        "NomesIntermedios":this.createTargetForm.value.intermediatenames,
-        "UltimoNome":this.createTargetForm.value.lastname,
-        "NumContribuinte":this.createTargetForm.value.taxnumber,
-        "Titulo":this.createTargetForm.value.title,
-        "Morada":this.createTargetForm.value.address,
-        "CodPostal":this.createTargetForm.value.zipcode,
-        "Localidade":this.createTargetForm.value.location,
-        "Pais":this.createTargetForm.value.country,
-        "Email":this.createTargetForm.value.email,
-        "Telemovel":this.createTargetForm.value.cellphone,
-        "Telefone":this.createTargetForm.value.homephone,
-        "Notas":this.createTargetForm.value.notes
-      }
+          this.contacts.postTarget(dataSend).subscribe(
+            data => {
+              alert("Success creating Target!");
+              this.navCtrl.setRoot(SchedulePage, {}, {animate: true, direction: 'forward'});
+            },
+            err => {
+              alert("Error creating Target!");
+            })
 
-      this.contacts.postTarget(data).subscribe(
-        data => { 
-          console.log(data);
-      },
-      err => {
-          console.log(err);
-          alert("Error creating target!");
-      })    
-        
+        },
+        error =>{ alert("Please Login before you create a target!");}
+      );
+
     }
-}  
 
+  }
 }
