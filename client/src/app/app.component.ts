@@ -36,6 +36,7 @@ export class MyApp {
       this.pages = [
         { title: 'Login', component: LoginPage, isVisible: !isLoggedIn},
         { title: 'Register', component: RegisterPage, isVisible : isChefe },
+        { title: 'Schedule', component: SchedulePage, isVisible: isLoggedIn  },
         { title: 'Opportunities', component: OpportunitiesPage, isVisible: isLoggedIn },
         { title: 'Sales History', component: SalesHistoryPage, isVisible: isLoggedIn },
         { title: 'Product', component: ProductPage, isVisible: isLoggedIn },
