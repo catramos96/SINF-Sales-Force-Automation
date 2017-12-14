@@ -101,6 +101,42 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+        public static IEnumerable<Model.Oportunidade> ListaOportunidadesVendedor(string vendedor)
+        {
+            StdBELista oppList;
+            Model.Oportunidade opp;          
+            List<Model.Oportunidade> listOpps = new List<Model.Oportunidade>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                oppList = PriEngine.Engine.Consulta(
+                    @"select ID, CabecOportunidadesVenda.Vendedor AS Vendedor, CabecOportunidadesVenda.EstadoVenda AS EstadoVenda,
+                      Clientes.Nome AS NomeCliente, Clientes.Fac_Tel AS ContactoCliente, 
+                      CabecOportunidadesVenda.DataCriacao AS Data, CabecOportunidadesVenda.Descricao AS Descricao
+                      from CabecOportunidadesVenda JOIN Clientes ON Clientes.Cliente = CabecOportunidadesVenda.Entidade
+                      where EstadoVenda = 0 AND CabecOportunidadesVenda.Vendedor = '" + vendedor + "';"); //Oportunidades abertas
+
+                while (!oppList.NoFim())
+                {
+                    opp = new Model.Oportunidade();
+
+                    opp.ID = oppList.Valor("ID");
+                    opp.NomeCliente = oppList.Valor("NomeCliente");
+                    opp.ContactoCliente = oppList.Valor("ContactoCliente");
+                    opp.DataCriacao = oppList.Valor("Data");
+                    opp.Descricao = oppList.Valor("Descricao");
+
+                    listOpps.Add(opp);
+                    oppList.Seguinte();
+                }
+                return listOpps;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static IEnumerable<Model.Oportunidade> ListaOpportunidades()
         {
             StdBELista oppList;
@@ -154,7 +190,7 @@ namespace FirstREST.Lib_Primavera
                     objOport.set_Resumo(oportunidade.Resumo);
                     objOport.set_DataCriacao(DateTime.Now);
                     objOport.set_Entidade(oportunidade.CodCliente);
-                    objOport.set_Vendedor("1");    //TODO temp
+                    objOport.set_Vendedor(oportunidade.Vendedor);  
                     objOport.set_EstadoVenda(0);
                     objOport.set_TipoEntidade("C"); //obrigatorio
                     objOport.set_DataExpiracao(new DateTime(2020, 1, 1));   //obrigatorio
@@ -358,7 +394,7 @@ namespace FirstREST.Lib_Primavera
         }
 
         //so faz update das quantidades
-        public static RespostaErro UpdOportunidade(string id,Proposta proposta)
+        public static RespostaErro UpdOportunidade(PropostaDTO proposta)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
             CrmBEPropostaOPV objProp = new CrmBEPropostaOPV();
@@ -368,19 +404,19 @@ namespace FirstREST.Lib_Primavera
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
                     //oportunidade
-                    if (!PriEngine.Engine.CRM.OportunidadesVenda.ExisteID(id))
+                    if (!PriEngine.Engine.CRM.OportunidadesVenda.ExisteID(proposta.IdOportunidade))
                     {
                         erro.Erro = 1;
                         erro.Descricao = "Nao existe oportunidade";
                         return erro;
                     }
                     //proposta
-                    objProp = PriEngine.Engine.CRM.PropostasOPV.Edita(id,proposta.NumProposta,true);
+                    objProp = PriEngine.Engine.CRM.PropostasOPV.Edita(proposta.IdOportunidade, proposta.Proposta.NumProposta, true);
                     objProp.set_EmModoEdicao(true);
 
                     //vai buscar os artigos desta proposta
                     CrmBELinhasPropostaOPV objLinhas = objProp.get_Linhas();
-                    List<OportunidadeLinha> artigos = proposta.Artigos;
+                    List<OportunidadeLinha> artigos = proposta.Proposta.Artigos;
                     foreach (var art in artigos)
                     {
                         short n = art.Linha;
@@ -391,7 +427,6 @@ namespace FirstREST.Lib_Primavera
                    
                     //update
                     objProp.set_Linhas(objLinhas);
-                    objProp.set_EmModoEdicao(false);
                     PriEngine.Engine.CRM.PropostasOPV.Actualiza(objProp);
 
                     erro.Erro = 0;

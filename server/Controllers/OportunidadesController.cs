@@ -18,6 +18,14 @@ namespace FirstREST.Controllers
             return Lib_Primavera.PriIntegrationOportunidade.ListaOpportunidades();
         }
 
+        // GET: api/opportunities/vendedor/1
+        [HttpGet]
+        [Route("api/oportunidades/vendedor/{id}")]
+        public IEnumerable<Lib_Primavera.Model.Oportunidade> GetVendedor(string id)
+        {
+            return Lib_Primavera.PriIntegrationOportunidade.ListaOportunidadesVendedor(id);
+        }
+
         // GET api/opportunities/id    
         [HttpGet]
         [Route("api/oportunidades/{id}")]
@@ -102,15 +110,15 @@ namespace FirstREST.Controllers
             }
         }
 
-        //PUT api/oportunidades/
+        //post api/oportunidades/
         [HttpPost]
-        [Route("api/oportunidades/{id}")]
-        public HttpResponseMessage Put(string id, [FromBody] Lib_Primavera.Model.Proposta proposta)
+        [Route("api/oportunidades/update")]
+        public HttpResponseMessage Post(Lib_Primavera.Model.PropostaDTO proposta)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             try
             {
-                erro = Lib_Primavera.PriIntegrationOportunidade.UpdOportunidade(id,proposta);
+                erro = Lib_Primavera.PriIntegrationOportunidade.UpdOportunidade(proposta);
                 if (erro.Erro == 0)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, erro.Descricao);

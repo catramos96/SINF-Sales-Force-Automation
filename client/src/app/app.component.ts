@@ -2,8 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { HomePage } from '../pages/home/home';
 import { TeamPage } from '../pages/team/team';
 import { OpportunitiesPage } from '../pages/opportunities/opportunities';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
@@ -36,9 +34,8 @@ export class MyApp {
 
     events.subscribe('user:loggedin', (isLoggedIn, isChefe) => {
       this.pages = [
-        { title: 'Login', component: LoginPage, isVisible: !isLoggedIn },
-        { title: 'Register', component: RegisterPage, isVisible: isChefe },
-        { title: 'Home', component: HomePage, isVisible: isLoggedIn },
+        { title: 'Login', component: LoginPage, isVisible: !isLoggedIn},
+        { title: 'Register', component: RegisterPage, isVisible : isChefe },
         { title: 'Opportunities', component: OpportunitiesPage, isVisible: isLoggedIn },
         { title: 'Sales History', component: SalesHistoryPage, isVisible: isLoggedIn },
         { title: 'Product', component: ProductPage, isVisible: isLoggedIn },
@@ -51,10 +48,9 @@ export class MyApp {
     this.tryLogIn(nativeStorage);
 
     this.pages = [
-      { title: 'Login', component: LoginPage, isVisible: !this.isLoggedIn },
-      { title: 'Register', component: RegisterPage, isVisible: this.isChefe },
-      { title: 'Home', component: HomePage, isVisible: this.isLoggedIn },
-      { title: 'Schedule', component: SchedulePage, isVisible: this.isLoggedIn },
+      { title: 'Login', component: LoginPage, isVisible: !this.isLoggedIn},
+      { title: 'Register', component: RegisterPage, isVisible : this.isChefe },
+      { title: 'Schedule', component: SchedulePage, isVisible: this.isLoggedIn  },
       { title: 'Opportunities', component: OpportunitiesPage, isVisible: this.isLoggedIn },
       { title: 'Sales History', component: SalesHistoryPage, isVisible: this.isLoggedIn },
       { title: 'Product', component: ProductPage, isVisible: this.isLoggedIn },
@@ -74,8 +70,8 @@ export class MyApp {
         if (data == "Chefe") {
           this.isChefe = true;
         }
-        this.rootPage = HomePage;
-      },
+      this.rootPage = SchedulePage;
+    },
       error => {
         this.isLoggedIn = false;
         this.isLoggedIn = false;

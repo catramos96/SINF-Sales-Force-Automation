@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, AbstractControl, Validators } from "@angular/forms";
 import { VendorsProvider } from '../../providers/vendors/vendors';
-import { HomePage } from '../../pages/home/home';
+import {SchedulePage} from "../schedule/schedule";
 
 @IonicPage()
 @Component({
@@ -61,12 +61,12 @@ export class RegisterPage {
         data => {
           console.log(data);
           alert("Success creating Client!");
-          this.navCtrl.setRoot(HomePage, {}, { animate: true, direction: 'forward' });
-        },
-        err => {
+          this.navCtrl.setRoot(SchedulePage, {}, {animate: true, direction: 'forward'});
+      },
+      err => {
           console.log(err);
           alert("Error creating Client!");
-        })
+      })
 
     }
 

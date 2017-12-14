@@ -25,6 +25,14 @@ namespace FirstREST.Controllers
             return Lib_Primavera.PriIntegrationTarefa.GetRangeTarefas(d1, d2);
         }
 
+        // GET: api/tarefas/oportunidade/{id}
+        [Route("api/tarefas/oportunidade/{id}")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.Tarefa> GetRangeTarefas(string id)
+        {
+            return Lib_Primavera.PriIntegrationTarefa.GetTarefasOportunidade(id);
+        }
+
         // GET api/tarefas/id    
         [HttpGet]
         [Route("api/tarefas/{id}")]
