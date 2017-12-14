@@ -20,24 +20,22 @@ page-company-statistics {
 
   .card-orange {
     background-color: #ffe599;
-    position: relative;
     text-align: right;
   }
 
   .card-title {
-    position: absolute;
-    top: 15%;
     font-size: 8em;
-    width: 100%;
     font-weight: bold;
     padding-right: 6%;
   }
 
   .card-subtitle {
     font-size: 3.5em;
-    position: absolute;
-    top: 55%;
-    width: 100%;
+    padding-right: 6%;
+  }
+
+  .card-more {
+    color: black;
     padding-right: 6%;
   }
 
@@ -82,7 +80,6 @@ page-company-statistics {
   @media (max-width: 1300px) {
     .card-title {
       font-size: 6em;
-      top: 22%;
     }
 
     .card-subtitle {
@@ -93,7 +90,6 @@ page-company-statistics {
   @media (max-width: 1100px) {
     .card-title {
       font-size: 5em;
-      top: 19%;
     }
 
     .card-subtitle {
@@ -108,7 +104,6 @@ page-company-statistics {
   @media (max-width: 950px) {
     .card-title {
       font-size: 4em;
-      top: 30%;
     }
 
     .card-subtitle {
@@ -123,7 +118,6 @@ page-company-statistics {
   @media (max-width: 780px) {
     .card-title {
       font-size: 3em;
-      top: 35%;
     }
 
     .card-subtitle {
@@ -138,7 +132,6 @@ page-company-statistics {
   @media (max-width: 480px) {
     .card-title {
       font-size: 2.3em;
-      top: 40%;
     }
   }
 }

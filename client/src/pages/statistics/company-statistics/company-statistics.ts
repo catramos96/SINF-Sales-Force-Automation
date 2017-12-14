@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { StatisticsProvider } from '../../../providers/statistics/statistics';
 import { ModalContentPage } from '../../product/productModal';
+import { StatisticsModalPage } from '../statistics-modal/statistics-modal'
 import Chart from 'chart.js';
 
 @IonicPage()
@@ -18,7 +19,6 @@ export class CompanyStatisticsPage {
 
   private pieChartLabels: string[] = [];
   private pieChartData: number[] = [];
-  private pieChartType: string = "pie";
 
   private colorsChart: string[] = [
     'rgba(255, 99, 132, 0.2)',
@@ -104,15 +104,20 @@ export class CompanyStatisticsPage {
   private poolColors(length) {
     let colors = [];
     let i;
-    for (i = 0; i < this.colorsChart.length; i++) {
+    for (i = 0; i < length; i++) {
       colors[i] = this.colorsChart[i];
     }
 
     return colors;
   }
 
-  openModal(productID) {
+  openProductModal(productID) {
     let modal = this.modalCtrl.create(ModalContentPage, { productID: productID });
+    modal.present();
+  }
+
+  openStatisticsModal(option) {
+    let modal = this.modalCtrl.create(StatisticsModalPage, { option: option, salesman: false });
     modal.present();
   }
 
