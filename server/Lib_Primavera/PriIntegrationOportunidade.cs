@@ -394,7 +394,7 @@ namespace FirstREST.Lib_Primavera
         }
 
         //so faz update das quantidades
-        public static RespostaErro UpdOportunidade(string id,Proposta proposta)
+        public static RespostaErro UpdOportunidade(PropostaDTO proposta)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
             CrmBEPropostaOPV objProp = new CrmBEPropostaOPV();
@@ -404,19 +404,19 @@ namespace FirstREST.Lib_Primavera
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
                     //oportunidade
-                    if (!PriEngine.Engine.CRM.OportunidadesVenda.ExisteID(id))
+                    if (!PriEngine.Engine.CRM.OportunidadesVenda.ExisteID(proposta.IdOportunidade))
                     {
                         erro.Erro = 1;
                         erro.Descricao = "Nao existe oportunidade";
                         return erro;
                     }
                     //proposta
-                    objProp = PriEngine.Engine.CRM.PropostasOPV.Edita(id,proposta.NumProposta,true);
+                    objProp = PriEngine.Engine.CRM.PropostasOPV.Edita(proposta.IdOportunidade, proposta.Proposta.NumProposta, true);
                     objProp.set_EmModoEdicao(true);
 
                     //vai buscar os artigos desta proposta
                     CrmBELinhasPropostaOPV objLinhas = objProp.get_Linhas();
-                    List<OportunidadeLinha> artigos = proposta.Artigos;
+                    List<OportunidadeLinha> artigos = proposta.Proposta.Artigos;
                     foreach (var art in artigos)
                     {
                         short n = art.Linha;
@@ -427,7 +427,6 @@ namespace FirstREST.Lib_Primavera
                    
                     //update
                     objProp.set_Linhas(objLinhas);
-                    objProp.set_EmModoEdicao(false);
                     PriEngine.Engine.CRM.PropostasOPV.Actualiza(objProp);
 
                     erro.Erro = 0;
