@@ -143,7 +143,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, LinhasDoc.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL'group by LinhasDoc.Artigo, LinhasDoc.Descricao order by Quantidade DESC;");
+                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, Artigo.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc INNER JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo where CabecDoc.TipoDoc='ECL' GROUP by LinhasDoc.Artigo, Artigo.Descricao order by Quantidade DESC");
                 while (!objList.NoFim())
                 {
                     Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();
@@ -167,7 +167,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, LinhasDoc.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where LinhasDoc.Vendedor = "+vendedor+ "AND CabecDoc.TipoDoc='ECL'group by LinhasDoc.Artigo, LinhasDoc.Descricao order by Quantidade DESC;");
+                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, Artigo.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc INNER JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo where LinhasDoc.Vendedor = "+vendedor+" AND CabecDoc.TipoDoc='ECL' GROUP by LinhasDoc.Artigo, Artigo.Descricao order by Quantidade DESC");
                 while (!objList.NoFim())
                 {
                     Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();
