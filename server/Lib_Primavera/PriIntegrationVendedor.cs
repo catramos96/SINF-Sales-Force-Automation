@@ -5,6 +5,8 @@ using System.Web;
 using FirstREST.Lib_Primavera.Model;
 using Interop.StdBE900;
 using Interop.GcpBE900;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace FirstREST.Lib_Primavera
 {
@@ -31,7 +33,6 @@ namespace FirstREST.Lib_Primavera
                         Telefone = objList.Valor("Telefone"),
                         Telemovel = objList.Valor("Telemovel"),
                         Email = objList.Valor("EMail"),
-                        Notas = objList.Valor("Notas"),
                         Morada = objList.Valor("Morada"),
                         Localidade = objList.Valor("Localidade"),
                         CodPostal = objList.Valor("CPostal"),
@@ -61,19 +62,66 @@ namespace FirstREST.Lib_Primavera
             {
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
+                    // cria salesman
+                    vendedor.Id = NewSalesmanID;
                     mySalesman.set_Vendedor(NewSalesmanID);
                     mySalesman.set_Nome(vendedor.Nome);
                     mySalesman.set_CodigoPostal(vendedor.CodPostal);
                     mySalesman.set_Morada(vendedor.Morada);
                     mySalesman.set_Localidade(vendedor.Localidade);
-                    mySalesman.set_Observacoes(vendedor.Notas);
                     mySalesman.set_Telefone(vendedor.Telefone);
                     mySalesman.set_Telemovel(vendedor.Telemovel);
                     mySalesman.set_Email(vendedor.Email);
                     mySalesman.set_Fax(vendedor.Fax);
                     mySalesman.set_DataUltimaActualizacao(DateTime.Now);
+                    if (vendedor.Chefe != null)
+                    {
+                        PriEngine.Engine.Comercial.Vendedores.Actualiza(mySalesman);
+                    }
+                    else
+                    {
+                        erro.Erro = 1;
+                        erro.Descricao = "Erro vendedor nao tem chefe";
+                        return erro;
+                    }
+                    
 
-                    PriEngine.Engine.Comercial.Vendedores.Actualiza(mySalesman);
+                    //cria relacao ChefeVendedor
+
+                    GcpBEVendedorChefe ChefeVendedores = new GcpBEVendedorChefe();
+                    
+                    ChefeVendedores.set_Comissao(2);
+                    ChefeVendedores.set_ChefeVendedor(vendedor.Chefe);
+                    ChefeVendedores.set_Vendedor(vendedor.Id);
+                    Interop.GcpBE900.GcpBEVendedorChefe ola = new GcpBEVendedorChefe();
+
+                    SqlConnection conn = new SqlConnection();
+                    SqlCommand cmd = new SqlCommand();
+                    conn.ConnectionString = "Data Source=User-PC\\PRIMAVERA;" +
+                        "Initial Catalog=PRIDEMOSINF;" +
+                        "User id=sa;" +
+                        "Password=Feup2014;";
+
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "INSERT INTO ChefeVendedores (ChefeVendedores, Vendedor, Comissao) VALUES (@param1,@param2,@param3)";
+                    cmd.Parameters.AddWithValue("@param1", vendedor.Chefe);
+                    cmd.Parameters.AddWithValue("@param2", vendedor.Id);
+                    cmd.Parameters.AddWithValue("@param3", 2);
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+
+                    }
+
+
 
                     erro.Erro = 0;
                     erro.Descricao = "Sucesso";
@@ -85,6 +133,7 @@ namespace FirstREST.Lib_Primavera
                     erro.Descricao = "Erro ao abrir empresa";
                     return erro;
                 }
+
             }
 
             catch (Exception ex)
@@ -99,65 +148,51 @@ namespace FirstREST.Lib_Primavera
         public static RespostaErro CheckLoginDetails(Vendedor vendedor)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
-            string SalesmanInfo = vendedor.Notas;
-            if (SalesmanInfo == null)
+            if (vendedor == null || vendedor.Username == null || vendedor.Password == null || vendedor.Role == null)
             {
-                erro.Erro = -1;
-                erro.Descricao = "Username/Password inexistente";
+                erro.Erro = 1;
+                erro.Descricao = "Informação de vendedor invalida";
                 return erro;
             }
             else
             {
-                string username = "", password = "";
-                try
-                {
-                    username = SalesmanInfo.Substring(SalesmanInfo.IndexOf(':') + 1, SalesmanInfo.IndexOf('&') - SalesmanInfo.IndexOf(':') - 1);
-                    password = SalesmanInfo.Substring(SalesmanInfo.IndexOf('&') + 1).Substring(SalesmanInfo.IndexOf(':') + 1, SalesmanInfo.IndexOf('&') - SalesmanInfo.IndexOf(':') - 1);
-                }
-                catch (Exception ex)
-                {
-                    erro.Erro = -2;
-                    erro.Descricao = "Formato Username: &Password: &Role: errado";
-                    return erro;
-                }
 
-                StdBELista objList;
-
-                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
-                {
-                    objList = PriEngine.Engine.Consulta("SELECT Vendedor, Notas FROM  Vendedores");
-                    while (!objList.NoFim())
-                    {
-                        try
-                        {
-                            string notas = objList.Valor("Notas");
-                            if (notas != null && notas != "")
-                            {
-                                string tempUsername = notas.Substring(notas.IndexOf(':') + 1, notas.IndexOf('&') - notas.IndexOf(':') - 1);
-                                string tempPassword = notas.Substring(notas.IndexOf('&') + 1).Substring(notas.IndexOf(':') + 1, notas.IndexOf('&') - notas.IndexOf(':') - 1);
-
-                                if (tempUsername == username && tempPassword == password)
-                                {
-                                    erro.Erro = Int32.Parse(objList.Valor("Vendedor"));
-                                    erro.Descricao = "Sucesso";
-                                    return erro;
-                                }
-                            }
-                            objList.Seguinte();
-                            
-                        }
-                        catch (Exception ex)
-                        {
-                            erro.Erro = -3;
-                            erro.Descricao = "Internal Error";
-                            return erro;
-                        }
-                    }
-                }
             }
 
-            erro.Erro = -4;
-            erro.Descricao = "Username/Password not found.";
+            string username = vendedor.Username;
+            string password = vendedor.Password;
+
+            SqlConnection conn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            conn.ConnectionString = "Data Source=User-PC\\PRIMAVERA;" +
+                "Initial Catalog=PrimaveraExtension;" +
+                "User id=sa;" +
+                "Password=Feup2014;";
+            cmd.CommandText = "Select * from Authentication WHERE Username = '" + username + "' AND Password  = '" + password + "' ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    vendedor.Role = reader.GetValue(2).ToString();
+                    vendedor.Id = reader.GetValue(3).ToString();
+                }
+                conn.Close();
+                erro.Erro = 0;
+                erro.Descricao = "Sucesso";
+                return erro;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            erro.Erro = 2;
+            erro.Descricao = "Erro inesperado!";
             return erro;
         }
 
@@ -183,7 +218,6 @@ namespace FirstREST.Lib_Primavera
                     mySalesman.CodPostal = objVendedor.get_CodigoPostal();
                     mySalesman.Morada = objVendedor.get_Morada();
                     mySalesman.Localidade = objVendedor.get_Localidade();
-                    mySalesman.Notas = objVendedor.get_Observacoes();
                     mySalesman.Telefone = objVendedor.get_Telefone();
                     mySalesman.Telemovel = objVendedor.get_Telemovel();
                     mySalesman.Email = objVendedor.get_Email();
@@ -241,7 +275,7 @@ Vendedores.Vendedor, Vendedores.Nome, Vendedores.Telefone, Vendedores.Telemovel,
         }
 
 
-                public static IEnumerable<Vendedor> ListaEquipaDeVendedor(string id)
+        public static IEnumerable<Vendedor> ListaEquipaDeVendedor(string id)
         {
             StdBELista objList;
             List<Vendedor> listVendedores = new List<Vendedor>();
@@ -286,7 +320,7 @@ WHERE Vendedores.Vendedor != {0}
         }
 
 
-                        public static IEnumerable<Vendedor> ListaChefeDeVendedor(string id)
+        public static IEnumerable<Vendedor> ListaChefeDeVendedor(string id)
         {
             StdBELista objList;
             List<Vendedor> listVendedores = new List<Vendedor>();
