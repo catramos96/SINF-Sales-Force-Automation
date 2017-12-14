@@ -41,6 +41,10 @@ export class AppointmentsProvider {
     return this.http.get(url).map(res => res.json());
   }
 
+  public getAppointmentsByOpportunity(ID){
+    var url = AppSettings.API_ENDPOINT + 'tarefas/oportunidade/'+encodeURI(ID);
+    return this.http.get(url).map(res => res.json());
+  }
 
 
 }
