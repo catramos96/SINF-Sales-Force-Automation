@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {AppointmentsProvider} from "../../../providers/appointments/appointments";
+import {OpportunityDetailsPage} from "../../opportunities/opportunity-details/opportunity-details";
+import {OpportunitiesProvider} from "../../../providers/opportunities/opportunities";
+import {CreateAppointmentsModalPage} from "../create-appointments-modal/create-appointments-modal";
 
 @IonicPage()
 @Component({
@@ -18,16 +21,20 @@ export class ViewAppointmentModalPage {
   public location:string;
   public client:string;
   public opportunity:string;
+  public opportunityName:string;
+  public ID:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public provider: AppointmentsProvider) {
-    let id = this.navParams.get('ID');
+              public provider: AppointmentsProvider, public modalCtrl : ModalController,
+              public opportunityProvider:OpportunitiesProvider,
+              public toastCtrl: ToastController) {
+    this.ID = this.navParams.get('ID');
 
-    this.provider.getAppointment(id).subscribe(
+    this.provider.getAppointment(this.ID).subscribe(
       data => {
         var appointment = data;
 
-        if(appointment.Prioridade == 1)
+        if (appointment.Prioridade == 1)
           this.priority = true;
         else
           false;
@@ -40,6 +47,16 @@ export class ViewAppointmentModalPage {
         this.client = appointment.IDContacto;
         this.opportunity = appointment.IDTarefaOrigem;
 
+        if (this.opportunity != "") {
+          this.opportunityProvider.getOpportunity(this.opportunity).subscribe(
+            data => {
+              var op = data;
+              this.opportunityName = op.NomeOport;
+            },
+              err =>{
+              });
+        }
+
         console.log(appointment);
         console.log(this.resume + " " + this.description + " " + this.location);
       },
@@ -50,6 +67,38 @@ export class ViewAppointmentModalPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewAppointmentModalPage');
+  }
+
+  openOpportunity(){
+    if(this.opportunity != "")
+      this.navCtrl.push(OpportunityDetailsPage,{'opportunityID':this.opportunity});
+  }
+
+  editAppointment(){
+    this.navCtrl.pop();
+    let modal = this.modalCtrl.create(CreateAppointmentsModalPage,{ID:this.ID});
+    modal.present()
+  }
+
+  deleteAppointment(){
+    this.navCtrl.pop();
+    this.provider.removeAppointment(this.ID).subscribe(
+      data =>{
+        this.notification("Removed Appointment with success!");
+        },
+        err =>{this.notification("Error at removing appointment!")
+
+        });
+    }
+
+  notification(message){
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 5000,
+      showCloseButton: true,
+      position: 'top'
+    });
+    toast.present();
   }
 
 }

@@ -30,6 +30,34 @@ namespace FirstREST.Controllers
 
             if (erro.Erro == 0)
             {
+
+                SqlConnection conn = new SqlConnection();
+                SqlCommand cmd = new SqlCommand();
+                conn.ConnectionString = "Data Source=User-PC\\PRIMAVERA;" +
+                    "Initial Catalog=PrimaveraExtension;" +
+                    "User id=sa;" +
+                    "Password=Feup2014;";
+
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "INSERT INTO Authentication (Username, Password, Role, Vendedor) VALUES (@param1,@param2,@param3,@param4)";
+                cmd.Parameters.AddWithValue("@param1", vendedor.Username);
+                cmd.Parameters.AddWithValue("@param2", vendedor.Password);
+                cmd.Parameters.AddWithValue("@param3", vendedor.Role);
+                cmd.Parameters.AddWithValue("@param4", vendedor.Id);
+
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+
+                }
+
                 var response = Request.CreateResponse(
                    HttpStatusCode.Created, vendedor);
                 string uri = Url.Link("DefaultApi", new { Id = vendedor.Id });
@@ -52,21 +80,25 @@ namespace FirstREST.Controllers
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegrationVendedor.CheckLoginDetails(vendedor);
 
-            if (erro.Erro >= 0)
+            if (erro.Erro == 0)
             {
-                Lib_Primavera.Model.Vendedor myVendedor = Lib_Primavera.PriIntegrationVendedor.GetVendedor(erro.Erro);
-                var response = Request.CreateResponse(
-                   HttpStatusCode.Accepted, myVendedor);
-                string uri = Url.Link("DefaultApi", new { Id = vendedor.Id });
-                //response.Headers.Location = new Uri(uri);
-                return response;
+                try
+                {
+                    Lib_Primavera.Model.Vendedor myVendedor = Lib_Primavera.PriIntegrationVendedor.GetVendedor(Int32.Parse(vendedor.Id));
+                    var response = Request.CreateResponse(
+                       HttpStatusCode.Accepted, myVendedor);
+                    string uri = Url.Link("DefaultApi", new { Id = vendedor.Id });
+                    //response.Headers.Location = new Uri(uri);
+                    return response;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
             }
 
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
 
