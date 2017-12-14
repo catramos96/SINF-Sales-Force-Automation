@@ -87,8 +87,8 @@ export class OpportunitiesPage {
   }
 
   getOpportunities(){
-    //this.nativeStorage.getItem("Id").then(
-      //data => {
+    this.nativeStorage.getItem("Id").then(
+      data => {
         this.opportunitiesService.getOpportunities(1).subscribe(
           data => { 
             this.opp = data;
@@ -103,11 +103,11 @@ export class OpportunitiesPage {
           err => {
             console.log(err);
           });
-      //},
-      //err => {
+      },
+      err => {
 
-      //}
-    //);
+      }
+    };
     
       /*
       
