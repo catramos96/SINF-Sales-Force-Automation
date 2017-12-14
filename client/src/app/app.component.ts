@@ -65,7 +65,7 @@ export class MyApp {
 
 
   public tryLogIn(nativeStorage: NativeStorage) {
-    /*nativeStorage.getItem("Role").then(
+    nativeStorage.getItem("Role").then(
       data => {
         this.isLoggedIn = true;
         if (data == "Chefe") {
@@ -75,11 +75,10 @@ export class MyApp {
     },
       error => {
         this.isLoggedIn = false;
-        this.isLoggedIn = false;
       }
-    );*/
-    this.isChefe = true;
-    this.isLoggedIn = true;
+    );
+    //this.isChefe = true;
+    //this.isLoggedIn = true;
   }
 
   initializeApp() {
