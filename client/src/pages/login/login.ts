@@ -40,7 +40,7 @@ export class LoginPage {
       this.vendors.login(data).subscribe(
         data => { 
           alert("Sucesso!");
-          var role = data.json()["Notas"].substring(data.json()["Notas"].indexOf("Role") + 5);
+          var role = data.json()["Role"];
 
           this.nativeStorage.clear();
 

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, AbstractControl, Validators } from "@angular/forms";
 import { VendorsProvider } from '../../providers/vendors/vendors';
-import {SchedulePage} from "../schedule/schedule";
+import { SchedulePage } from "../schedule/schedule";
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()
 @Component({
@@ -38,9 +39,9 @@ export class RegisterPage {
   onSubmit(value: any): void {
 
     if (this.createVendorForm.valid) {
-      var data;
+
       this.nativeStorage.getItem("Id").then(chefeId => {
-        data = {
+        var data = {
           "Nome": this.createVendorForm.value.name,
           "Morada": this.createVendorForm.value.address,
           "Localidade": this.createVendorForm.value.location,
@@ -55,18 +56,22 @@ export class RegisterPage {
           "Role": "Vendedor",
           "Chefe": chefeId
         }
+
+        this.vendors.createVendor(data).subscribe(
+          data => {
+            console.log(data);
+            alert("Success creating Client!");
+            this.navCtrl.setRoot(SchedulePage, {}, { animate: true, direction: 'forward' });
+          },
+          err => {
+            console.log(err);
+            alert("Error creating Client!");
+          })
+
+
       });
 
-      this.vendors.createVendor(data).subscribe(
-        data => {
-          console.log(data);
-          alert("Success creating Client!");
-          this.navCtrl.setRoot(SchedulePage, {}, {animate: true, direction: 'forward'});
-      },
-      err => {
-          console.log(err);
-          alert("Error creating Client!");
-      })
+
 
     }
 
