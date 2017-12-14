@@ -78,10 +78,10 @@
                 <ion-card-content >
                   <img class="litle"  align="middle" src="assets/imgs/logo.png"/>
                   <br>
-                  <b>Price: </b>{{c.PrecoMedio}} €<br>
-                  <b>Quantity: </b>{{c.StockAtual}} UN
+                  <b>Price: </b>{{c.PrecoFinal}} €<br>
+                  <b>Quantity: </b>{{c.StockAtual}} {{c.UnidadeVenda}}
                 </ion-card-content>
-                <button *ngIf="isOpportunity === true" (click)="addProduct(c.ID,c.Nome,c.PrecoMedio)"
+                <button *ngIf="isOpportunity === true" (click)="addProduct(c.ID,c.Nome,c.PVP1,c.Desconto,c.PrecoFinal,c.UnidadeVenda)"
                   ion-button block color="secondary">Add To Opportunity
                 </button>
               </ion-card>

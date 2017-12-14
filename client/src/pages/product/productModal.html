@@ -25,25 +25,18 @@
                         </ion-slides>        
                     </ion-col>
                     <ion-col col-7>
-                        <b>Price : </b> {{product.PrecoMedio}} € <br>
-                        <b>IVA : </b> {{product.IVA}} % <br><br>
-                        <b>Actual Stock  : </b> {{product.StockAtual}} {{product.UnidadeVenda}} <br>
-                        <b>Reserved Stock  : </b> {{product.QuantidadeReservada}} {{product.UnidadeVenda}} <br><br>
-                        <b>Weight : </b> {{product.Peso}} g <br><br>
+                        <b>Brand name : </b> {{product.Marca}} <br><br>
+                        <b>Price : </b> {{product.PVP1}} € <br>
+                        <b>IVA : </b> {{product.IVA}} % <br>
+                        <b>Discount : </b> {{product.Desconto}} % <br>
+                        <b>Total : </b> {{product.PrecoFinal}} € <br><br>
+                        <b>Actual Stock  : </b> {{product.StockAtual}} {{product.UnidadeVenda}} <br><br>
                         <b>Delivery Estimated Time : </b> {{product.PrazoEntrega}} days<br><br>
                         <b>Description : </b><p class="breakline">{{product.Observacoes}}</p><br>
                     </ion-col>
                 </ion-row>
                 <ion-row >
-                    <!--<ion-col style="text-align: right" (click)="goToSalesHistory()">-->
-                        <button ion-button outline>Sales History</button>
-                    <!--</ion-col>
-                    <ion-col style="text-align: center" (click)="goToReserveStock()">
-                        <button ion-button outline>Reserve Stock</button>
-                    </ion-col>
-                    <ion-col style="text-align: left" (click)="goToMakeOrder()">
-                        <button ion-button outline>Make Order</button>
-                    </ion-col>-->
+                    <button ion-button outline>Sales History</button>
                 </ion-row>
             </ion-grid>
         </ion-item>

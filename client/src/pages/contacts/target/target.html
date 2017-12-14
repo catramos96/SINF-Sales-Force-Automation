@@ -5,7 +5,6 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
     <ion-title>Targets</ion-title>
   </ion-navbar>
 
@@ -17,7 +16,8 @@
 
     <ion-row class="first-row">
       <ion-col col-5 class="search-bar-col">
-        <ion-searchbar></ion-searchbar>
+        <ion-searchbar placeholder="Search for a target" [showCancelButton]="shouldShowCancel" (ionInput)="searchContact($event)"
+          (ionCancel)="onCancel($event)"></ion-searchbar>
       </ion-col>
       <ion-col class="create-btns-col">
         <button ion-button (click)="createTarget()" class="right-btn create-btn">Create Target</button>
@@ -25,82 +25,72 @@
     </ion-row>
 
     <ion-row class="grid-header">
+      <!-- TODO mudar -->
       <ion-col class="column-1-line">Name</ion-col>
-
       <ion-col class="column-1-line">Email</ion-col>
-
       <ion-col class="column-1-line">Phone Number</ion-col>
-
       <ion-col class="column-1-line">Country</ion-col>
-
     </ion-row>
     <!-- Contactos -->
 
     <div *ngFor="let target of targets; let i = index">
       <ion-row (click)="toggleElement(i)">
-        <ion-col class="column-1-line">{{target.PrimeiroNome}}{{target.UltimoNome}}</ion-col>
-
+        <ion-col class="column-1-line">{{target.Nome}}</ion-col>
         <ion-col class="column-1-line">{{target.Email}}</ion-col>
-
         <ion-col class="column-1-line">{{target.Telemovel}}</ion-col>
-
         <ion-col class="column-1-line">{{target.Pais}}</ion-col>
-
+        <ion-col col-1 class="column-1-line" *ngIf="isOpportunity">
+          <button ion-button clear color="secondary" 
+              (click)="sendClient(target.PrimeiroNome,target.UltimoNome, target.CodCliente)">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </button>
+        </ion-col>
       </ion-row>
-
 
       <div *ngIf="showElement[i]">
         <ion-row>
-          <ion-col col-2 class="element-image">
-            <!-- Image -->
-          </ion-col>
           <ion-col col-5 class="element-info">
-            <h2>Personal Information</h2>
-            <br>
-            <p>
-              <strong>Name:</strong> {{target.PrimeiroNome}}{{target.NomesIntermedios}}{{target.UltimoNome}}</p>
-            <p *ngIf="target.Titulo">
-              <strong>Title:</strong> {{target.Titulo}}</p>
-            <p *ngIf="target.Morada">
-              <strong>Address:</strong> {{target.Morada}}</p>
-            <p *ngIf="target.CodPostal">
-              <strong>Zipcode:</strong> {{target.CodPostal}}</p>
-            <p *ngIf="target.Localidade">
-              <strong>Location:</strong> {{target.Localidade}}</p>
-            <p *ngIf="target.Pais">
-              <strong>Country:</strong> {{target.Pais}}</p>
-            <p *ngIf="target.NumContribuinte">
-              <strong>Taxpayer Number:</strong> {{target.NumContribuinte}}</p>
-            <p *ngIf="target.Notas">
-              <strong>Notas:</strong> {{target.Notas}}</p>
+            <fieldset class="min-size">
+              <h4>Personal Information</h4>
+              <strong>Name:</strong> {{target.Nome}}
+              <p *ngIf="target.Morada">
+                <strong>Address:</strong> {{target.Morada}}</p>
+              <p *ngIf="target.CodPostal">
+                <strong>Zipcode:</strong> {{target.CodPostal}}</p>
+              <p *ngIf="target.Localidade">
+                <strong>Location:</strong> {{target.Localidade}}</p>
+              <p *ngIf="target.Pais">
+                <strong>Country:</strong> {{target.Pais}}</p>
+            </fieldset>
           </ion-col>
           <ion-col col-4 class="element-contacts">
-            <h2>Contacts</h2>
-            <br>
-            <div *ngIf="target.Telefone || target.Telemovel">
-              <h4>Phone Number(s)</h4>
-              <p>{{target.Telemovel}}</p>
-              <p>{{target.Telefone}}</p>
-            </div>
-            <div *ngIf="target.Email">
-              <h4>Email</h4>
-              <p>{{target.Email}}</p>
-            </div>
-
+            <fieldset class="min-size">
+              <h4>Contacts</h4>
+              <div *ngIf="target.Telefone || target.Telemovel">
+                <h5>Phone Number(s)</h5>
+                <p>{{target.Telemovel}}</p>
+                <p>{{target.Telefone}}</p>
+              </div>
+              <div *ngIf="target.Email">
+                <h5>Email</h5>
+                <p>{{target.Email}}</p>
+              </div>
+              <div *ngIf="target.Fax">
+                <h5>Fax</h5>
+                <p>{{target.Fax}}</p>
+              </div>
+            </fieldset>
           </ion-col>
         </ion-row>
-        <ion-row class="additional-info">
-          <ion-col class="additional-info-lb">
-            <button ion-button></button>
-          </ion-col>
+        <ion-row>
           <ion-col>
-            <button ion-button></button>
+            <button ion-button class="right-btn" outline (click)="editTarget(target.Entidade)">
+              <ion-icon name="create"></ion-icon>
+            </button>
           </ion-col>
         </ion-row>
       </div>
     </div>
-
-
 
   </ion-grid>
 

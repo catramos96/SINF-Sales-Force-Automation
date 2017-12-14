@@ -1,0 +1,112 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="createVendorForm" (ngSubmit)="onSubmit(createVendorForm.value)">
+    <h4>Login Information</h4>
+
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createVendorForm.controls.username.valid && createVendorForm.controls.username.touched}">
+          <ion-label floating>Username</ion-label>
+          <ion-input formControlName="username" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createVendorForm.controls.password.valid && createVendorForm.controls.password.touched}">
+          <ion-label floating>Password</ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <h4>Basic Information</h4>
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createVendorForm.controls.name.valid && createVendorForm.controls.name.touched}">
+          <ion-label floating>Name</ion-label>
+          <ion-input formControlName="name" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item *ngIf="createVendorForm.controls.name.hasError('required') && createVendorForm.controls.name.touched">
+      <p>Sorry, name fields are required!</p>
+    </ion-item>
+    <ion-item *ngIf="createVendorForm.controls.name.hasError('pattern') && createVendorForm.controls.name.touched">
+      <p>Sorry, only small and capital letters are allowed!</p>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createVendorForm.controls.address.valid && createVendorForm.controls.address.touched}">
+          <ion-label floating>Address</ion-label>
+          <ion-input formControlName="address" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createVendorForm.controls.location.valid && createVendorForm.controls.location.touched}">
+          <ion-label floating>Location</ion-label>
+          <ion-input formControlName="location" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createVendorForm.controls.zipcode.valid && createVendorForm.controls.zipcode.touched}">
+          <ion-label floating>Zipcode</ion-label>
+          <ion-input formControlName="zipcode" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <h4>Contacts</h4>
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createVendorForm.controls.cellphone.valid && createVendorForm.controls.cellphone.touched}">
+          <ion-label floating>Cell phone</ion-label>
+          <ion-input formControlName="cellphone" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createVendorForm.controls.homephone.valid && createVendorForm.controls.homephone.touched}">
+          <ion-label floating>Home phone</ion-label>
+          <ion-input formControlName="homephone" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createVendorForm.controls.email.valid && createVendorForm.controls.email.touched}">
+          <ion-label floating>Email</ion-label>
+          <ion-input formControlName="email" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item [ngClass]="{'error-border':!createVendorForm.controls.fax.valid && createVendorForm.controls.fax.touched}">
+          <ion-label floating>Fax</ion-label>
+          <ion-input formControlName="fax" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+    <button ion-button full color="primary" [disabled]="!createVendorForm.valid" style="margin-top: 20px;" type="submit">Create Vendor</button>
+  </form>
+
+</ion-content>

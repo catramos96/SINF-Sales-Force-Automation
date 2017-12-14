@@ -20,6 +20,18 @@ export class ProductPage {
   callback = null;
   oppProducts = [];
 
+  imgProducts: Array<any> = [
+    {
+      url: 'assets/imgs/logo.png'
+    },
+    {
+      url: 'assets/imgs/logo.png'
+    },
+    {
+      url: 'assets/imgs/logo.png'
+    }
+  ];
+
   constructor(
     public navCtrl: NavController, 
     private navParams: NavParams,
@@ -61,16 +73,23 @@ export class ProductPage {
     this.currentSelected = j;
   }
 
-  addProduct(prodID,prodName,prodPrice){
+  addProduct(prodID,prodName,prodPVP,prodDisc,prodPrice,cost,unidade){
     if(this.isOpportunity)
     {
+      let valorDesc : Number = (prodDisc/100)*prodPVP;
+
       let json = {
-        NomeArtigo : prodName,
+        //Linha: 0,
         IdArtigo: prodID,
-        PrecoVenda: Number(prodPrice),
-        Quantidade: Number(1),
-        Linha: 0,
-        Unidade: "UN",
+        //NomeArtigo : prodName,
+        //Quantidade: Number(1),
+        //Unidade: unidade,
+        //Custo: cost,
+        //PrecoVenda: Number(prodPVP),
+        //Desconto : valorDesc,
+        //PrecoFinal : Number(prodPrice),
+        //Rentabilidade : 0,
+        //Margem : 0,
       };
       this.oppProducts.push(json);
     }
