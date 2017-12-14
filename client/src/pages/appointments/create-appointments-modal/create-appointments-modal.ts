@@ -20,8 +20,8 @@ export class CreateAppointmentsModalPage {
   //callbacks
   private opportunityId;
   private contactId;
-  private tempNameOpp;
-  private tempNameCli;
+  private tempNameOpp = "";
+  private tempNameCli ="";
 
   public createAppointmentForm;
   private groups: JSON[] = [];
@@ -55,13 +55,18 @@ export class CreateAppointmentsModalPage {
       IDUtilizador: [''],   //alterar pelo util
       Duracao: ['0'],
       IDTarefaOrigem: [''],
-      IDContacto: ['']
+      IDContacto: [''],
+      Nada1:[''],
+      Nada2:['']
     });
 
     if(this.ID != ""){
       this.appointmentsProvider.getAppointment(this.ID).subscribe(
         data => {
           var appointment = data;
+
+          this.tempNameCli = "Same as before";
+          this.tempNameOpp = "Same as before";
 
           this.edit = true;
 
