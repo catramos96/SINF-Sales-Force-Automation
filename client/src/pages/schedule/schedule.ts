@@ -110,7 +110,7 @@ export class SchedulePage {
   }
 
   createNewAppointment(){
-    let modal = this.modalCtrl.create(CreateAppointmentsModalPage);
+    let modal = this.modalCtrl.create(CreateAppointmentsModalPage,{ID:""});
     modal.present()
   }
 
