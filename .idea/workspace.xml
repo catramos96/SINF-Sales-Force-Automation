@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c505134e-bc35-4d44-b9a9-d00cc3d2ae58" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts" afterPath="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/client/node_modules/reflect-metadata/Reflect.js/" />
@@ -51,56 +52,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schedule.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/pages/schedule/schedule.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="215" column="18" lean-forward="false" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-                <marker date="1513215105514" expanded="true" signature="1162:4719" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="2648:2741" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="2745:2791" ph="/*...*/" />
-                <marker date="1513215105514" expanded="true" signature="2814:3002" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="2838:2977" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="2859:2884" ph="..." />
-                <marker date="1513215105514" expanded="true" signature="2903:2928" ph="..." />
-                <marker date="1513215105514" expanded="true" signature="2946:2971" ph="..." />
-                <marker date="1513215105514" expanded="true" signature="3023:3211" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="3047:3186" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="3068:3093" ph="..." />
-                <marker date="1513215105514" expanded="true" signature="3112:3137" ph="..." />
-                <marker date="1513215105514" expanded="true" signature="3155:3180" ph="..." />
-                <marker date="1513215105514" expanded="true" signature="3231:3419" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="3255:3394" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="3276:3301" ph="..." />
-                <marker date="1513215105514" expanded="true" signature="3320:3345" ph="..." />
-                <marker date="1513215105514" expanded="true" signature="3363:3388" ph="..." />
-                <marker date="1513215105514" expanded="true" signature="3423:3440" ph="/*...*/" />
-                <marker date="1513215105514" expanded="true" signature="3598:3907" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="3642:3903" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="3768:3815" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="3821:3897" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="4082:4215" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="4276:4404" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="4425:4716" ph="{...}" />
-                <marker date="1513215105514" expanded="true" signature="4448:4685" ph="{&quot;title&quot;: 'New event'...}" />
-                <marker date="1513215105514" expanded="true" signature="4620:4679" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TipoTarefaController.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/Controllers/TipoTarefaController.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="28" column="48" lean-forward="false" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="create-appointments-modal.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -109,16 +60,6 @@
               <folding>
                 <element signature="n#style#0;n#button#0;n#ion-row#0;n#form#0;n#ion-content#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="appointments.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/providers/appointments/appointments.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -136,10 +77,22 @@
       <file leaf-file-name="create-appointments-modal.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="73" column="64" lean-forward="true" selection-start-line="73" selection-start-column="64" selection-end-line="73" selection-end-column="64" />
+            <state relative-caret-position="334">
+              <caret line="59" column="4" lean-forward="false" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
               <folding>
-                <marker date="1513215117946" expanded="true" signature="7:8" ph="..." />
+                <marker date="1513216687421" expanded="true" signature="7:8" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="opportunity-details.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/pages/opportunities/opportunity-details/opportunity-details.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="38" column="15" lean-forward="false" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -182,6 +135,7 @@
       <find>getDate</find>
       <find>required</find>
       <find>let m</find>
+      <find>appoi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -289,6 +243,23 @@
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="opportunities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="opportunities" type="462c0819:PsiDirectoryNode" />
+              <item name="opportunity-details" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
@@ -407,7 +378,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102529000" />
+    <option name="totallyTimeSpent" value="104053000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -760,13 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/opportunities/opportunity-details/opportunity-details.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="34" column="56" lean-forward="false" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/schedule/schedule.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -859,22 +823,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="73" column="64" lean-forward="true" selection-start-line="73" selection-start-column="64" selection-end-line="73" selection-end-column="64" />
-          <folding>
-            <marker date="1513215117946" expanded="true" signature="7:8" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
           <caret line="93" column="2" lean-forward="false" selection-start-line="93" selection-start-column="2" selection-end-line="101" selection-end-column="3" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/opportunities/opportunity-details/opportunity-details.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="38" column="15" lean-forward="false" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="59" column="4" lean-forward="false" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
+          <folding>
+            <marker date="1513216687421" expanded="true" signature="7:8" ph="..." />
           </folding>
         </state>
       </provider>
