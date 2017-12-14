@@ -22,13 +22,17 @@ export class ListAppointmentsPage {
   private appointments;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private appService: AppointmentsProvider,
     private modalCtrl: ModalController
   ) {
     let id = this.navParams.get('opportunityID');
     this.getAppointments(id);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 09e8b17a1a05d99a4f24d403810962c74afb47eb
   }
 
   ionViewDidLoad() {
@@ -37,7 +41,7 @@ export class ListAppointmentsPage {
 
   getAppointments(id){
     this.appService.getAppointmentsByOpportunity(id).subscribe(
-      data => { 
+      data => {
         this.appointments = data;
         //change date
         this.appointments.forEach(element => {
