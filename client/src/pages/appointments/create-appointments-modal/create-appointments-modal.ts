@@ -43,6 +43,7 @@ export class CreateAppointmentsModalPage {
 
     this.ID = this.navParams.get('ID');
     this.hasOpp = this.navParams.get('hasOpp');
+    this.opportunityId = this.navParams.get('opportunityId');
 
     this.createAppointmentForm = formBuilder.group({
       TipoDeTarefa: [''],
