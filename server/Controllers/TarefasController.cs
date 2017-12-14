@@ -41,8 +41,7 @@ namespace FirstREST.Controllers
             Lib_Primavera.Model.Tarefa tarefa = Lib_Primavera.PriIntegrationTarefa.GetTarefa(id);
             if (tarefa == null)
             {
-                throw new HttpResponseException(
-                  Request.CreateResponse(HttpStatusCode.NotFound));
+                return null;
             }
             else
             {
