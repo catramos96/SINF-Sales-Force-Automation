@@ -171,8 +171,8 @@ export class OpportunityDetailsPage {
   //save changed proposal
   saveProposal(NumProposal) {
     let json = {
-      ID: this.opp.ID,
-      Proposal: this.opp.propostas[NumProposal - 1]
+      IdOportunidade: this.opp.ID,
+      Proposta: this.opp.propostas[NumProposal - 1]
     };
 
     this.opportunitiesService.updateOpportunity(json).subscribe(
@@ -258,6 +258,9 @@ export class OpportunityDetailsPage {
       data => {
         this.opp = data;
         this.opp.ID = id;
+        let date : string = this.opp.DataCriacao;
+        date.substring(0,12);
+        this.opp.DataCriacao = date;
         console.log(this.opp);
       },
       err => {
