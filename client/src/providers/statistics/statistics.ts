@@ -6,9 +6,13 @@ import { NativeStorage } from '@ionic-native/native-storage';
 
 @Injectable()
 export class StatisticsProvider {
+  private salesman: number;
 
   constructor(public http: Http, public nativeStorage: NativeStorage) {
-
+    this.nativeStorage.getItem("Id").then(
+      data => {
+        this.salesman = data;
+      });
   }
 
   public getSoldProductsNumber() {
@@ -25,18 +29,16 @@ export class StatisticsProvider {
 
   public getSoldProductsNumberHistoryBySalesman() {
     //let salesman: number = 2;
-    let salesman: any = this.nativeStorage.getItem("Id");
 
-    var url = AppSettings.API_ENDPOINT + 'docvendas/produtosvendidos_ano/' + parseInt(salesman);
+    var url = AppSettings.API_ENDPOINT + 'docvendas/produtosvendidos_ano/' + this.salesman;
     return this.http.get(url).map(res => res.json());
   }
 
   public getSoldProductsNumberBySalesman() {
     let year: number = (new Date()).getFullYear();  
     //let salesman: number = 2;  
-    let salesman: any = this.nativeStorage.getItem("Id");
 
-    var url = AppSettings.API_ENDPOINT + 'docvendas/produtosvendidos/' + year + '/' + parseInt(salesman);
+    var url = AppSettings.API_ENDPOINT + 'docvendas/produtosvendidos/' + year + '/' + this.salesman;
     return this.http.get(url).map(res => res.json());
   }
 
@@ -47,9 +49,8 @@ export class StatisticsProvider {
 
   public getBilledMoneyNumberHistoryBySalesman() {
     //let salesman: number = 2;
-    let salesman: any = this.nativeStorage.getItem("Id");
 
-    var url = AppSettings.API_ENDPOINT + 'docvendas/dinheirofaturado_ano/' + parseInt(salesman);
+    var url = AppSettings.API_ENDPOINT + 'docvendas/dinheirofaturado_ano/' + this.salesman;
     return this.http.get(url).map(res => res.json());
   }
 
@@ -63,9 +64,8 @@ export class StatisticsProvider {
   public getBilledMoneyNumberBySalesman() {
     let year: number = (new Date()).getFullYear();
     //let salesman: number = 2;  
-    let salesman: any = this.nativeStorage.getItem("Id");
 
-    var url = AppSettings.API_ENDPOINT + 'docvendas/dinheirofaturado/' + year + '/' + parseInt(salesman);
+    var url = AppSettings.API_ENDPOINT + 'docvendas/dinheirofaturado/' + year + '/' + this.salesman;
     return this.http.get(url).map(res => res.json());
   }
 
@@ -76,9 +76,8 @@ export class StatisticsProvider {
 
   public getTop5ProductsBySalesman() {
     //let salesman: number = 2;   
-    let salesman: any = this.nativeStorage.getItem("Id");
 
-    var url = AppSettings.API_ENDPOINT + 'docvendas/top5produtos/' + parseInt(salesman);
+    var url = AppSettings.API_ENDPOINT + 'docvendas/top5produtos/' + this.salesman;
     return this.http.get(url).map(res => res.json());
   }
 
@@ -89,9 +88,8 @@ export class StatisticsProvider {
 
   public getSoldProductsByCategoryBySalesman() {
     //let salesman: number = 2;
-    let salesman: any = this.nativeStorage.getItem("Id");
 
-    var url = AppSettings.API_ENDPOINT + 'docvendas/produtoscategoria/' + parseInt(salesman);
+    var url = AppSettings.API_ENDPOINT + 'docvendas/produtoscategoria/' + this.salesman;
     return this.http.get(url).map(res => res.json());
   }
 
