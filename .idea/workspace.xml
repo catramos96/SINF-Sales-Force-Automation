@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c505134e-bc35-4d44-b9a9-d00cc3d2ae58" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.html" afterPath="$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.ts" afterPath="$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html" afterPath="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html" />
     </list>
     <ignored path="$PROJECT_DIR$/client/node_modules/reflect-metadata/Reflect.js/" />
     <ignored path="$PROJECT_DIR$/client/node_modules/reflect-metadata/Reflect.d.ts/" />
@@ -52,11 +52,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Contacto.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Contacto.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/Lib_Primavera/Model/Contacto.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create-appointments-modal.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="55" column="34" lean-forward="false" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -68,6 +78,18 @@
             <state relative-caret-position="585">
               <caret line="75" column="42" lean-forward="false" selection-start-line="75" selection-start-column="42" selection-end-line="75" selection-end-column="42" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create-appointments-modal.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2958">
+              <caret line="183" column="39" lean-forward="false" selection-start-line="183" selection-start-column="39" selection-end-line="183" selection-end-column="39" />
+              <folding>
+                <marker date="1513219591469" expanded="true" signature="7:8" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,6 +132,7 @@
       <find>required</find>
       <find>let m</find>
       <find>appoi</find>
+      <find>ngModel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,10 +178,10 @@
         <option value="$PROJECT_DIR$/client/src/providers/appointments/appointments.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/schedule/schedule.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/list-appointments/list-appointments.ts" />
-        <option value="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.html" />
         <option value="$PROJECT_DIR$/client/src/pages/appointments/view-appointment-modal/view-appointment-modal.ts" />
+        <option value="$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html" />
       </list>
     </option>
   </component>
@@ -234,31 +257,16 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="appointments" type="462c0819:PsiDirectoryNode" />
+              <item name="create-appointments-modal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="appointments" type="462c0819:PsiDirectoryNode" />
               <item name="view-appointment-modal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="Lib_Primavera" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SINF_Sales_Force_Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SINF_Sales_Force_Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="Lib_Primavera" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -337,7 +345,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106488000" />
+    <option name="totallyTimeSpent" value="106952000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -739,32 +747,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="183" column="39" lean-forward="false" selection-start-line="183" selection-start-column="39" selection-end-line="183" selection-end-column="39" />
-          <folding>
-            <marker date="1513218300458" expanded="true" signature="7:8" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/contacts/client/client.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="85" column="22" lean-forward="false" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#ion-row#0;n#form#0;n#ion-content#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -799,6 +787,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2958">
+          <caret line="183" column="39" lean-forward="false" selection-start-line="183" selection-start-column="39" selection-end-line="183" selection-end-column="39" />
+          <folding>
+            <marker date="1513219591469" expanded="true" signature="7:8" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/appointments/create-appointments-modal/create-appointments-modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="55" column="34" lean-forward="false" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="34" />
           <folding />
         </state>
       </provider>
