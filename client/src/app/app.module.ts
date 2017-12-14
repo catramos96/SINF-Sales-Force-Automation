@@ -12,6 +12,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
+import { StatisticsModalPage } from '../pages/statistics/statistics-modal/statistics-modal';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { StatisticsPage } from '../pages/statistics/statistics';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
@@ -55,7 +56,8 @@ import { LoginPage } from '../pages/login/login';
     SalesHistoryPage,
     SchedulePage,
     RegisterPage,
-    LoginPage
+    LoginPage,
+    StatisticsModalPage
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,8 @@ import { LoginPage } from '../pages/login/login';
     ViewAppointmentModalPage,
     SalesHistoryPage,
     RegisterPage,
-    LoginPage
+    LoginPage,
+    StatisticsModalPage
   ],
   providers: [
     StatusBar,
