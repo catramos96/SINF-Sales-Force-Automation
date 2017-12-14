@@ -74,6 +74,8 @@ namespace FirstREST.Controllers
 
         }
 
+        [HttpPost]
+        [Route("api/tarefas/remove/{id}")]
         public HttpResponseMessage Delete(string id)
         {
 
@@ -104,7 +106,8 @@ namespace FirstREST.Controllers
 
         }
 
-
+        [HttpPost]
+        [Route("api/tarefas/update")]
         public HttpResponseMessage Put(Lib_Primavera.Model.Tarefa tarefa)
         {
 

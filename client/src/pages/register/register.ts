@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {FormGroup, FormBuilder, AbstractControl, Validators} from "@angular/forms";
+import { FormGroup, FormBuilder, AbstractControl, Validators } from "@angular/forms";
 import { VendorsProvider } from '../../providers/vendors/vendors';
-import {SchedulePage} from "../schedule/schedule";
+import { SchedulePage } from "../schedule/schedule";
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()
 @Component({
@@ -13,23 +14,23 @@ export class RegisterPage {
 
   createVendorForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private vendors: VendorsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private vendors: VendorsProvider, private nativeStorage: NativeStorage) {
 
-        var phones = [''];
+    var phones = [''];
 
-        this.createVendorForm = formBuilder.group({
-          name: [''],
-          email:[''],
-          fax: [''],
-          cellphone:phones,
-          homephone:phones,
-          address:[''],
-          zipcode:[''],
-          location:[''],
-          username:[''],
-          password:[''],
-      });
-      }
+    this.createVendorForm = formBuilder.group({
+      name: [''],
+      email: [''],
+      fax: [''],
+      cellphone: phones,
+      homephone: phones,
+      address: [''],
+      zipcode: [''],
+      location: [''],
+      username: [''],
+      password: [''],
+    });
+  }
 
   ionViewDidLoad() {
 
@@ -37,32 +38,40 @@ export class RegisterPage {
 
   onSubmit(value: any): void {
 
-    if(this.createVendorForm.valid) {
-      var data = {
-        "Nome":this.createVendorForm.value.name,
-        "Morada":this.createVendorForm.value.address,
-        "Localidade":this.createVendorForm.value.location,
-        "CodPostal":this.createVendorForm.value.zipcode,
-        "Pais":this.createVendorForm.value.country,
-        "Email":this.createVendorForm.value.email,
-        "Telemovel":this.createVendorForm.value.cellphone,
-        "Telefone":this.createVendorForm.value.homephone,
-        "Fax":this.createVendorForm.value.fax,
-        "Notas":"Username:" + this.createVendorForm.value.username.trim() +
-                "&Password:" + this.createVendorForm.value.password.trim() +
-                "&Role:Vendedor",
-      }
+    if (this.createVendorForm.valid) {
 
-      this.vendors.createVendor(data).subscribe(
-        data => {
-          console.log(data);
-          alert("Success creating Client!");
-          this.navCtrl.setRoot(SchedulePage, {}, {animate: true, direction: 'forward'});
-      },
-      err => {
-          console.log(err);
-          alert("Error creating Client!");
-      })
+      this.nativeStorage.getItem("Id").then(chefeId => {
+        var data = {
+          "Nome": this.createVendorForm.value.name,
+          "Morada": this.createVendorForm.value.address,
+          "Localidade": this.createVendorForm.value.location,
+          "CodPostal": this.createVendorForm.value.zipcode,
+          "Pais": this.createVendorForm.value.country,
+          "Email": this.createVendorForm.value.email,
+          "Telemovel": this.createVendorForm.value.cellphone,
+          "Telefone": this.createVendorForm.value.homephone,
+          "Fax": this.createVendorForm.value.fax,
+          "Username": this.createVendorForm.value.username.trim(),
+          "Password": this.createVendorForm.value.password.trim(),
+          "Role": "Vendedor",
+          "Chefe": chefeId
+        }
+
+        this.vendors.createVendor(data).subscribe(
+          data => {
+            console.log(data);
+            alert("Success creating Client!");
+            this.navCtrl.setRoot(SchedulePage, {}, { animate: true, direction: 'forward' });
+          },
+          err => {
+            console.log(err);
+            alert("Error creating Client!");
+          })
+
+
+      });
+
+
 
     }
 
