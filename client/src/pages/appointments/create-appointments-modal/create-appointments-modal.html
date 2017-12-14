@@ -23,7 +23,7 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Tipo</ion-label>
-      <ion-select  formControlName="TipoDeTarefa" [(ngModel)]="type">
+      <ion-select  formControlName="TipoDeTarefa" [(ngModel)]="createAppointmentForm.TipoDeTarefa">
         <div *ngFor="let t of types;">
           <ion-option>{{t.Descricao}}</ion-option>
         </div>
@@ -31,26 +31,29 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Title</ion-label>
-      <ion-input  formControlName="Resumo" type="text"></ion-input>
+      <ion-input  formControlName="Resumo" type="text" [(ngModel)]="createAppointmentForm.Resumo"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Description</ion-label>
     </ion-item>
     <ion-item text-wrap>
-      <textarea  formControlName="Descricao" #myInput id="myInput" rows="1" maxLength="500" (keyup)="resize()"></textarea>
+      <textarea  formControlName="Descricao" #myInput id="myInput" rows="1" maxLength="500" (keyup)="resize()"
+      [ngModel]="createAppointmentForm.Descricao"></textarea>
     </ion-item>
     <ion-row no-padding>
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>Start Date</ion-label>
           <ion-datetime  formControlName="DataInicio"
-                         max="2100-06-10T13:30" displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="startDate"></ion-datetime>
+                         max="2100-06-10T13:30" displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD"
+                         [(ngModel)]="createAppointmentForm.DataInicio"></ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>Time</ion-label>
-          <ion-datetime  formControlName="DataInicio" max="2100-06-10T13:30" displayFormat="HH:mm" pickerFormat="HH_mm" [(ngModel)]="startDate"></ion-datetime>
+          <ion-datetime  formControlName="DataInicio" max="2100-06-10T13:30" displayFormat="HH:mm" pickerFormat="HH_mm"
+                         [(ngModel)]="createAppointmentForm.DataInicio"></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -58,25 +61,22 @@
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>End Date</ion-label>
-          <ion-datetime  formControlName="DataFim" max="2100-06-10T13:30" displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="endDate"></ion-datetime>
+          <ion-datetime  formControlName="DataFim" max="2100-06-10T13:30" displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD"
+                         [(ngModel)]="createAppointmentForm.DataFim"></ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col no-padding>
         <ion-item>
           <ion-label color="primary" stacked>Time</ion-label>
-          <ion-datetime  formControlName="DataFim" max="2100-06-10T13:30" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="endDate"></ion-datetime>
+          <ion-datetime  formControlName="DataFim" max="2100-06-10T13:30" displayFormat="HH:mm" pickerFormat="HH:mm"
+                         [(ngModel)]="createAppointmentForm.DataFim"></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>
 
       <ion-item>
         <ion-label color="primary" stacked>Location</ion-label>
-        <ion-input formControlName="Localizacao" type="text"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label color="primary" stacked>Contact</ion-label>
-        <ion-input formControlName="IDContacto" type="text"></ion-input>
+        <ion-input formControlName="Localizacao" type="text" [ngModel]="createAppointmentForm.Localizacao"></ion-input>
       </ion-item>
 
       <ion-row>
@@ -111,7 +111,7 @@
 
     <ion-row justify-content-center>
       <button type="submit" ion-button style="margin:5%;">
-        Create Appointment
+        {{textButton}}
       </button>
     </ion-row>
   </form>
