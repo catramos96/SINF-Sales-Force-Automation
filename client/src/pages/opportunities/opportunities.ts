@@ -87,23 +87,27 @@ export class OpportunitiesPage {
   }
 
   getOpportunities(){
-    //this.nativeStorage.getItem("Id").then(
-      //data => {
+    this.nativeStorage.getItem("Id").then(
+      data => {
         this.opportunitiesService.getOpportunities(1).subscribe(
           data => { 
-            alert(data);
             this.opp = data;
+
+            this.opp.forEach(element => {
+              let date : string = element.DataCriacao;
+              element.DataCriacao = date.substring(0,10);
+            });
+            
             this.displayOpportunities();
           },
           err => {
-            alert(err);
             console.log(err);
           });
-      //},
-      //err => {
+      },
+      err => {
 
-      //}
-    //);
+      });
+    }
     
       /*
       
@@ -127,6 +131,5 @@ export class OpportunitiesPage {
       console.log(this.opp);
       */
       
-  }
 
 }

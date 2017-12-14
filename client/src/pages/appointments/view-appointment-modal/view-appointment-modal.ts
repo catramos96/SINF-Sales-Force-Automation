@@ -99,7 +99,7 @@ export class ViewAppointmentModalPage {
 
   editAppointment(){
     this.navCtrl.pop();
-    let modal = this.modalCtrl.create(CreateAppointmentsModalPage,{ID:this.ID});
+    let modal = this.modalCtrl.create(CreateAppointmentsModalPage,{ID:this.ID,hasOpp:false});
     modal.present()
   }
 
