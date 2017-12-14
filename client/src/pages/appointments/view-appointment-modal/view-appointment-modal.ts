@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {AppointmentsProvider} from "../../../providers/appointments/appointments";
 import {OpportunityDetailsPage} from "../../opportunities/opportunity-details/opportunity-details";
 import {OpportunitiesProvider} from "../../../providers/opportunities/opportunities";
@@ -26,7 +26,8 @@ export class ViewAppointmentModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public provider: AppointmentsProvider, public modalCtrl : ModalController,
-              public opportunityProvider:OpportunitiesProvider) {
+              public opportunityProvider:OpportunitiesProvider,
+              public toastCtrl: ToastController) {
     this.ID = this.navParams.get('ID');
 
     this.provider.getAppointment(this.ID).subscribe(
@@ -81,7 +82,23 @@ export class ViewAppointmentModalPage {
 
   deleteAppointment(){
     this.navCtrl.pop();
-    //DELETE
+    this.provider.removeAppointment(this.ID).subscribe(
+      data =>{
+        this.notification("Removed Appointment with success!");
+        },
+        err =>{this.notification("Error at removing appointment!")
+
+        });
+    }
+
+  notification(message){
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 5000,
+      showCloseButton: true,
+      position: 'top'
+    });
+    toast.present();
   }
 
 }
