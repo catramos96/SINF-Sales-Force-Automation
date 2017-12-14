@@ -62,8 +62,6 @@ export class MyApp {
 
   }
 
-
-
   public tryLogIn(nativeStorage: NativeStorage) {
     nativeStorage.getItem("Role").then(
       data => {
