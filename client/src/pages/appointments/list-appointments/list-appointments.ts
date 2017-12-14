@@ -29,7 +29,7 @@ export class ListAppointmentsPage {
     private modalCtrl: ModalController
   ) {
     this.IdOpportunity = this.navParams.get('opportunityID');
-    this.getAppointments(IdOpportunity);
+    this.getAppointments(this.IdOpportunity);
   }
 
   ionViewDidLoad() {
