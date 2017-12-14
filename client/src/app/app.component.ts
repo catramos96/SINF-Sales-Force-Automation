@@ -2,8 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { HomePage } from '../pages/home/home';
 import { TeamPage } from '../pages/team/team';
 import { OpportunitiesPage } from '../pages/opportunities/opportunities';
 import { SalesHistoryPage } from '../pages/sales-history/sales-history';
@@ -26,9 +24,9 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = LoginPage;
-  pages: Array<{title: string, component: any, isVisible: boolean}>;
-  isLoggedIn: boolean = true; //;false;
-  isChefe: boolean = true; //;false;
+  pages: Array<{ title: string, component: any, isVisible: boolean }>;
+  isLoggedIn: boolean = true;
+  isChefe: boolean = false;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private nativeStorage: NativeStorage, public events: Events) {
     this.initializeApp();
@@ -38,7 +36,7 @@ export class MyApp {
       this.pages = [
         { title: 'Login', component: LoginPage, isVisible: !isLoggedIn},
         { title: 'Register', component: RegisterPage, isVisible : isChefe },
-        { title: 'Home', component: HomePage, isVisible: isLoggedIn },
+        { title: 'Schedule', component: SchedulePage, isVisible: isLoggedIn  },
         { title: 'Opportunities', component: OpportunitiesPage, isVisible: isLoggedIn },
         { title: 'Sales History', component: SalesHistoryPage, isVisible: isLoggedIn },
         { title: 'Product', component: ProductPage, isVisible: isLoggedIn },
@@ -48,12 +46,11 @@ export class MyApp {
       ];
     });
 
-   // this.tryLogIn(nativeStorage);
+    //this.tryLogIn(nativeStorage);
 
     this.pages = [
       { title: 'Login', component: LoginPage, isVisible: !this.isLoggedIn},
       { title: 'Register', component: RegisterPage, isVisible : this.isChefe },
-      { title: 'Home', component: HomePage, isVisible: this.isLoggedIn },
       { title: 'Schedule', component: SchedulePage, isVisible: this.isLoggedIn  },
       { title: 'Opportunities', component: OpportunitiesPage, isVisible: this.isLoggedIn },
       { title: 'Sales History', component: SalesHistoryPage, isVisible: this.isLoggedIn },
@@ -67,21 +64,22 @@ export class MyApp {
 
 
 
-  public tryLogIn(nativeStorage : NativeStorage){
-    nativeStorage.getItem("Role").then(
+  public tryLogIn(nativeStorage: NativeStorage) {
+    /*nativeStorage.getItem("Role").then(
       data => {
         this.isLoggedIn = true;
-        if(data == "Chefe"){
+        if (data == "Chefe") {
           this.isChefe = true;
         }
-      this.rootPage = HomePage;
+      this.rootPage = SchedulePage;
     },
       error => {
         this.isLoggedIn = false;
         this.isLoggedIn = false;
       }
-    );
-
+    );*/
+    this.isChefe = true;
+    this.isLoggedIn = true;
   }
 
   initializeApp() {

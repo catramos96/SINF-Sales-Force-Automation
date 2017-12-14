@@ -20,13 +20,22 @@ namespace FirstREST.Lib_Primavera
 
             GcpBELinhasDocumentoVenda myLinhas = new GcpBELinhasDocumentoVenda();
 
-            PreencheRelacaoVendas rl = new PreencheRelacaoVendas();
+            //PreencheRelacaoVendas rl = new PreencheRelacaoVendas();
             List<Model.LinhaDocVenda> lstlindv = new List<Model.LinhaDocVenda>();
 
             try
             {
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
+                    // Linhas do documento para a lista de linhas
+                    lstlindv = dv.LinhasDoc;
+                    if (lstlindv == null || lstlindv.Count == 0)
+                    {
+                        erro.Erro = 1;
+                        erro.Descricao = "Cannot make an order from an empty proposal.";
+                        return erro;
+                    }
+
                     //A designação fiscal não se encontra atribuída
                     // Atribui valores ao cabecalho do doc
                     //myEnc.set_DataDoc(dv.Data);
@@ -34,8 +43,7 @@ namespace FirstREST.Lib_Primavera
                     myEnc.set_Serie("A");
                     myEnc.set_Tipodoc("ECL");
                     myEnc.set_TipoEntidade("C");
-                    // Linhas do documento para a lista de linhas
-                    lstlindv = dv.LinhasDoc;
+                    
                     //PriEngine.Engine.Comercial.Vendas.PreencheDadosRelacionados(myEnc, rl);
                     PriEngine.Engine.Comercial.Vendas.PreencheDadosRelacionados(myEnc);
                     foreach (Model.LinhaDocVenda lin in lstlindv)
@@ -72,6 +80,52 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+        public static List<Model.VendaAno> Numero_ProdutosVendidosPorVendedor_CadaAno(int vendedor)
+        {
+
+            StdBELista objList;
+
+            List<Model.VendaAno> lista = new List<Model.VendaAno>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND LinhasDoc.Vendedor = " + vendedor + " GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
+                while (!objList.NoFim())
+                {
+                    Model.VendaAno vendaAno = new Model.VendaAno();
+                    vendaAno.Quantidade = objList.Valor("Quantidade");
+                    vendaAno.Ano = objList.Valor("Ano").ToString();
+
+                    lista.Add(vendaAno);
+                    objList.Seguinte();
+                }
+            }
+            return lista;
+        }
+
+        public static List<Model.VendaAno> Numero_ProdutosVendidos_CadaAno()
+        {
+
+            StdBELista objList;
+
+            List<Model.VendaAno> lista = new List<Model.VendaAno>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
+                while (!objList.NoFim())
+                {
+                    Model.VendaAno vendaAno = new Model.VendaAno();
+                    vendaAno.Quantidade = objList.Valor("Quantidade");
+                    vendaAno.Ano = objList.Valor("Ano").ToString();
+
+                    lista.Add(vendaAno);
+                    objList.Seguinte();
+                }
+            }
+            return lista;
+        }
+
         public static double Numero_ProdutosVendidosPorAno(int ano)
         {
             StdBELista objListLin;
@@ -82,7 +136,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("numeroProdutosVendidos");
+                    try
+                    {
+                        return objListLin.Valor("numeroProdutosVendidos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
                 }
             }
             return -1;
@@ -98,10 +159,63 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("numeroProdutosVendidos");
+                    try
+                    {
+                        return objListLin.Valor("numeroProdutosVendidos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }           
                 }
             }
             return -1;
+        }
+
+        public static List<Model.VendaAno> Numero_DinheiroFaturadoEmProdutos_CadaAno()
+        {
+
+            StdBELista objList;
+
+            List<Model.VendaAno> lista = new List<Model.VendaAno>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
+                while (!objList.NoFim())
+                {
+                    Model.VendaAno vendaAno = new Model.VendaAno();
+                    vendaAno.Quantidade = objList.Valor("Quantidade");
+                    vendaAno.Ano = objList.Valor("Ano").ToString();
+
+                    lista.Add(vendaAno);
+                    objList.Seguinte();
+                }
+            }
+            return lista;
+        }
+
+        public static List<Model.VendaAno> Numero_DinheiroFaturadoEmProdutosPorVendedor_CadaAno(int vendedor)
+        {
+
+            StdBELista objList;
+
+            List<Model.VendaAno> lista = new List<Model.VendaAno>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND LinhasDoc.Vendedor = " + vendedor + " GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
+                while (!objList.NoFim())
+                {
+                    Model.VendaAno vendaAno = new Model.VendaAno();                    
+                    vendaAno.Quantidade = objList.Valor("Quantidade");
+                    vendaAno.Ano = objList.Valor("Ano").ToString();
+
+                    lista.Add(vendaAno);
+                    objList.Seguinte();
+                }
+            }
+            return lista;
         }
 
         public static double Numero_DinheiroFaturadoEmProdutosPorAno(int ano)
@@ -114,7 +228,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    try
+                    {
+                        return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }                    
                 }
             }
             return -1;
@@ -130,7 +251,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    try
+                    {
+                        return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }      
                 }
             }
             return -1;
@@ -145,7 +273,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, LinhasDoc.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL'group by LinhasDoc.Artigo, LinhasDoc.Descricao order by Quantidade DESC;");
+                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, Artigo.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc INNER JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo where CabecDoc.TipoDoc='ECL' GROUP by LinhasDoc.Artigo, Artigo.Descricao order by Quantidade DESC");
                 while (!objList.NoFim())
                 {
                     Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();
@@ -215,7 +343,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, LinhasDoc.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where LinhasDoc.Vendedor = "+vendedor+ "AND CabecDoc.TipoDoc='ECL'group by LinhasDoc.Artigo, LinhasDoc.Descricao order by Quantidade DESC;");
+                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, Artigo.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc INNER JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo where LinhasDoc.Vendedor = "+vendedor+" AND CabecDoc.TipoDoc='ECL' GROUP by LinhasDoc.Artigo, Artigo.Descricao order by Quantidade DESC");
                 while (!objList.NoFim())
                 {
                     Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();

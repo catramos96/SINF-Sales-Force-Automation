@@ -17,10 +17,8 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-
                 objList = PriEngine.Engine.Consulta(
                     "SELECT Tarefas.Id AS ID, TiposTarefa.Id AS idTipo, TiposTarefa.Descricao As Tipo, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDActividadeOrigem FROM Tarefas JOIN TiposTarefa ON Tarefas.IdTipoActividade = TiposTarefa.Id WHERE Tarefas.Id = '" + codTarefa + "'");
-
 
                 if (PriEngine.Engine.CRM.Actividades.Existe(codTarefa) == false)
                 {
@@ -52,6 +50,50 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+        public static IEnumerable<Model.Tarefa> GetTarefasOportunidade(string id)
+        {
+            StdBELista objList;
+
+            Model.Tarefa act = new Model.Tarefa();
+            List<Model.Tarefa> listActs = new List<Model.Tarefa>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta(
+                    @"SELECT Tarefas.Id AS ID, TiposTarefa.Descricao AS Tipo, IdTipoActividade, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda 
+                    FROM Tarefas JOIN TiposTarefa ON Tarefas.IdTipoActividade = TiposTarefa.Id
+                    where IDCabecOVenda = '" + id + "';");
+
+                while (!objList.NoFim())
+                {
+                    act = new Model.Tarefa();
+                    act.ID = objList.Valor("ID");
+                    act.DataInicio = objList.Valor("DataInicio");
+                    act.DataFim = objList.Valor("DataFim");
+                    act.Resumo = objList.Valor("Resumo");
+                    ///act.Descricao = objList.Valor("Descricao");
+                    act.TipoDeTarefa = objList.Valor("Tipo");
+                    act.Prioridade = objList.Valor("Prioridade").ToString();
+                    //act.IDUtilizador = objList.Valor("Utilizador");
+                    act.IDTarefaOrigem = objList.Valor("IDCabecOVenda");    //oportunidade
+                    /*act.Localizacao = objList.Valor("LocalRealizacao");
+                    act.Duracao = objList.Valor("Duracao");
+                    act.IDContacto = objList.Valor("IdContactoPrincipal");*/
+
+                    listActs.Add(act);
+                    objList.Seguinte();
+                }
+
+                return listActs;
+
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static List<Model.Tarefa> ListaTarefas()
         {
             StdBELista objList;
@@ -63,7 +105,7 @@ namespace FirstREST.Lib_Primavera
             {
 
                 objList = PriEngine.Engine.Consulta(
-                    "SELECT Tarefas.Id AS ID, IdTipoActividade, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDActividadeOrigem FROM Tarefas");
+                    "SELECT Tarefas.Id AS ID, IdTipoActividade, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda FROM Tarefas");
 
                 while (!objList.NoFim())
                 {
@@ -76,7 +118,7 @@ namespace FirstREST.Lib_Primavera
                     act.TipoDeTarefa = objList.Valor("idTipoActividade");
                     act.Prioridade = objList.Valor("Prioridade").ToString();
                     act.IDUtilizador = objList.Valor("Utilizador");
-                    act.IDTarefaOrigem = objList.Valor("IDActividadeOrigem");
+                    act.IDTarefaOrigem = objList.Valor("IDCabecOVenda");
                     act.Localizacao = objList.Valor("LocalRealizacao");
                     act.Duracao = objList.Valor("Duracao");
                     act.IDContacto = objList.Valor("IdContactoPrincipal");
@@ -106,7 +148,7 @@ namespace FirstREST.Lib_Primavera
             {
 
                 objList = PriEngine.Engine.Consulta(
-                    "SELECT Tarefas.Id AS ID, IDTiposTarefa, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDActividadeOrigem FROM Tarefas WHERE DataInicio >= CAST('" + dataInicio + "' AS datetime) AND DataFim <= CAST('" + dataFim + "' AS datetime);");
+                    "SELECT Tarefas.Id AS ID, IDTiposTarefa, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda FROM Tarefas WHERE DataInicio >= CAST('" + dataInicio + "' AS datetime) AND DataFim <= CAST('" + dataFim + "' AS datetime);");
 
                 while (!objList.NoFim())
                 {
@@ -119,7 +161,7 @@ namespace FirstREST.Lib_Primavera
                     act.TipoDeTarefa = objList.Valor("IDTiposTarefa");
                     act.Prioridade = objList.Valor("Prioridade").ToString();
                     act.IDUtilizador = objList.Valor("Utilizador");
-                    act.IDTarefaOrigem = objList.Valor("IDActividadeOrigem");
+                    act.IDTarefaOrigem = objList.Valor("IDCabecOVenda");
                     act.Localizacao = objList.Valor("LocalRealizacao");
                     act.Duracao = objList.Valor("Duracao");
                     act.IDContacto = objList.Valor("IdContactoPrincipal");
@@ -264,7 +306,7 @@ namespace FirstREST.Lib_Primavera
                         myT.set_IDTipoActividade(tarefa.IdTipo);
                         myT.set_Prioridade(tarefa.Prioridade);
                         myT.set_Utilizador(tarefa.IDUtilizador);
-                        myT.set_IDActividadeOrigem(tarefa.IDTarefaOrigem);
+                        myT.set_IDCabecOVenda(tarefa.IDTarefaOrigem);
                         myT.set_LocalRealizacao(tarefa.Localizacao);
                         myT.set_Duracao(tarefa.Duracao);
                         myT.set_IDContactoPrincipal(tarefa.IDContacto);
@@ -295,7 +337,5 @@ namespace FirstREST.Lib_Primavera
             }
 
         }
-
-       
     }
 }

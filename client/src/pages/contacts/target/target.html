@@ -5,7 +5,6 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
     <ion-title>Targets</ion-title>
   </ion-navbar>
 
@@ -26,6 +25,7 @@
     </ion-row>
 
     <ion-row class="grid-header">
+      <!-- TODO mudar -->
       <ion-col class="column-1-line">Name</ion-col>
       <ion-col class="column-1-line">Email</ion-col>
       <ion-col class="column-1-line">Phone Number</ion-col>
@@ -39,14 +39,16 @@
         <ion-col class="column-1-line">{{target.Email}}</ion-col>
         <ion-col class="column-1-line">{{target.Telemovel}}</ion-col>
         <ion-col class="column-1-line">{{target.Pais}}</ion-col>
+        <ion-col col-1 class="column-1-line" *ngIf="isOpportunity">
+          <button ion-button clear color="secondary" 
+              (click)="sendClient(target.PrimeiroNome,target.UltimoNome, target.CodCliente)">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </button>
+        </ion-col>
       </ion-row>
 
       <div *ngIf="showElement[i]">
         <ion-row>
-          <!--
-          <ion-col col-2 class="element-image">
-            <!-- Image 
-          </ion-col>-->
           <ion-col col-5 class="element-info">
             <fieldset class="min-size">
               <h4>Personal Information</h4>

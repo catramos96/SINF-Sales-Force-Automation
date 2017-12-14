@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>view-appointment-modal</ion-title>
+    <ion-title>{{resume}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -76,22 +76,22 @@
       <ion-label color="primary" stacked>Contact</ion-label>
     </ion-item>
     <ion-item text-wrap>
-      {{client}}
+      {{nomeClie}}
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Opportunity</ion-label>
     </ion-item>
     <ion-item text-wrap>
-      {{opportunity}}
+      <a (click)="openOpportunity()">{{this.opportunityName}}</a>
     </ion-item>
   </ion-list>
   <ion-row  justify-content-center>
-    <button ion-button style="margin:5%;">
+    <button (click)="editAppointment()" ion-button style="margin:5%;">
       Edit Appointment
     </button>
   </ion-row>
   <ion-row  justify-content-center>
-    <button ion-button style="margin:5%;">
+    <button (click)="deleteAppointment()" ion-button style="margin:5%;">
       Delete Appointment
     </button>
   </ion-row>

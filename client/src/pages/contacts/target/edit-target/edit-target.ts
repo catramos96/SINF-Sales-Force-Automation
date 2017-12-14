@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormGroup, FormBuilder, AbstractControl, Validators} from "@angular/forms";
 import { ContactsProvider } from '../../../../providers/contacts/contacts';
-import { HomePage } from '../../../../pages/home/home';
+import {SchedulePage} from "../../../schedule/schedule";
 
 
 @IonicPage()
@@ -13,7 +13,7 @@ import { HomePage } from '../../../../pages/home/home';
 export class EditTargetPage {
 
   createTargetForm: FormGroup;
-  
+
     private groups: JSON[] = [];
     private currenttargets: JSON[] = [];
     private currenttarget: JSON;
@@ -42,17 +42,17 @@ export class EditTargetPage {
   ionViewDidLoad() {
 
     this.contacts.getAllGroups().subscribe(
-      data => { 
+      data => {
           this.groups = data;
           console.log(data);
       },
       err => {
-        
+
       });
 
 
       this.contacts.getContactById(this.IdTarget).subscribe(
-        data => { 
+        data => {
           this.currenttargets = data;
           if(this.currenttargets.length != 0){
             this.currenttarget = this.currenttargets[0];
@@ -74,8 +74,8 @@ export class EditTargetPage {
   }
 
 
-  onSubmit(value: any): void { 
-    
+  onSubmit(value: any): void {
+
         if(this.createTargetForm.valid) {
           var data = {
             "Entidade": this.currenttarget["Entidade"],
@@ -89,17 +89,17 @@ export class EditTargetPage {
             "Telefone": this.createTargetForm.value.homephone,
             "Fax":this.createTargetForm.value.fax,
           }
-    
+
           this.contacts.editContact(data, this.IdTarget).subscribe(
-            data => { 
+            data => {
               alert("Success editing Target!");
-              this.navCtrl.setRoot(HomePage, {}, {animate: true, direction: 'forward'});
+              this.navCtrl.setRoot(SchedulePage, {}, {animate: true, direction: 'forward'});
           },
           err => {
               alert("Error editing target!");
-          })    
-            
+          })
+
         }
-    }  
+    }
 
 }

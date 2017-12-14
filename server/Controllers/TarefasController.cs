@@ -25,6 +25,14 @@ namespace FirstREST.Controllers
             return Lib_Primavera.PriIntegrationTarefa.GetRangeTarefas(d1, d2);
         }
 
+        // GET: api/tarefas/oportunidade/{id}
+        [Route("api/tarefas/oportunidade/{id}")]
+        [HttpGet]
+        public IEnumerable<Lib_Primavera.Model.Tarefa> GetRangeTarefas(string id)
+        {
+            return Lib_Primavera.PriIntegrationTarefa.GetTarefasOportunidade(id);
+        }
+
         // GET api/tarefas/id    
         [HttpGet]
         [Route("api/tarefas/{id}")]
@@ -34,7 +42,7 @@ namespace FirstREST.Controllers
             if (tarefa == null)
             {
                 throw new HttpResponseException(
-                  Request.CreateResponse(HttpStatusCode.NotFound));
+  Request.CreateResponse(HttpStatusCode.NotFound));
             }
             else
             {
@@ -66,6 +74,8 @@ namespace FirstREST.Controllers
 
         }
 
+        [HttpPost]
+        [Route("api/tarefas/remove/{id}")]
         public HttpResponseMessage Delete(string id)
         {
 
@@ -96,7 +106,8 @@ namespace FirstREST.Controllers
 
         }
 
-
+        [HttpPost]
+        [Route("api/tarefas/update")]
         public HttpResponseMessage Put(Lib_Primavera.Model.Tarefa tarefa)
         {
 
@@ -120,6 +131,6 @@ namespace FirstREST.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, erro.Descricao);
             }
         }
-   
+
     }
 }
