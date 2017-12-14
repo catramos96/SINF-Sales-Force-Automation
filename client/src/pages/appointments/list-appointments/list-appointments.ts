@@ -20,7 +20,7 @@ export class ListAppointmentsPage {
   private appointments;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private appService: AppointmentsProvider,
     private modalCtrl: ModalController
@@ -28,7 +28,7 @@ export class ListAppointmentsPage {
 
     let id = this.navParams.get('opportunityID');
     this.getAppointments(id);
-    
+
   }
 
   ionViewDidLoad() {
@@ -37,7 +37,7 @@ export class ListAppointmentsPage {
 
   getAppointments(id){
     this.appService.getAppointmentsByOpportunity(id).subscribe(
-      data => { 
+      data => {
         this.appointments = data;
       },
       err => {
@@ -46,7 +46,7 @@ export class ListAppointmentsPage {
   }
 
   goToDetails(id){
-    let modal = this.modalCtrl.create(ViewAppointmentModalPage);
+    let modal = this.modalCtrl.create(ViewAppointmentModalPage,{ID:id});
     modal.present();
   }
 }
