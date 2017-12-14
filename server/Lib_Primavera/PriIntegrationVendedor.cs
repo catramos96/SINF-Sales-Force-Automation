@@ -148,7 +148,7 @@ namespace FirstREST.Lib_Primavera
         public static RespostaErro CheckLoginDetails(Vendedor vendedor)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
-            if (vendedor == null || vendedor.Username == null || vendedor.Password == null || vendedor.Role == null)
+            if (vendedor == null || vendedor.Username == null || vendedor.Password == null)
             {
                 erro.Erro = 1;
                 erro.Descricao = "Informação de vendedor invalida";
