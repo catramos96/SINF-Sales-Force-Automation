@@ -33,13 +33,14 @@ export class LoginPage {
 
     if(this.loginVendorForm.valid) {
       var data = {
-        "Notas":"Username:"+this.loginVendorForm.value.username.trim()+"&Password:"+this.loginVendorForm.value.password.trim()+"&"
+        "Username":this.loginVendorForm.value.username.trim(),
+        "Password":this.loginVendorForm.value.password.trim()
       }
 
       this.vendors.login(data).subscribe(
-        data => {
-          alert("sucesso");
-          var role = data.json()["Notas"].substring(data.json()["Notas"].indexOf("Role") + 5);
+        data => { 
+          alert("Sucesso!");
+          var role = data.json()["Role"];
 
           this.nativeStorage.clear();
 

@@ -89,7 +89,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND LinhasDoc.Vendedor = " + vendedor + " GROUP BY YEAR(LinhasDoc.Data)");
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND LinhasDoc.Vendedor = " + vendedor + " GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
                 while (!objList.NoFim())
                 {
                     Model.VendaAno vendaAno = new Model.VendaAno();
@@ -112,7 +112,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' GROUP BY YEAR(LinhasDoc.Data)");
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
                 while (!objList.NoFim())
                 {
                     Model.VendaAno vendaAno = new Model.VendaAno();
@@ -136,7 +136,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("numeroProdutosVendidos");
+                    try
+                    {
+                        return objListLin.Valor("numeroProdutosVendidos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
                 }
             }
             return -1;
@@ -152,7 +159,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("numeroProdutosVendidos");
+                    try
+                    {
+                        return objListLin.Valor("numeroProdutosVendidos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }           
                 }
             }
             return -1;
@@ -167,7 +181,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' GROUP BY YEAR(LinhasDoc.Data)");
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
                 while (!objList.NoFim())
                 {
                     Model.VendaAno vendaAno = new Model.VendaAno();
@@ -190,7 +204,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND LinhasDoc.Vendedor = "+vendedor+" GROUP BY YEAR(LinhasDoc.Data)");
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND LinhasDoc.Vendedor = " + vendedor + " GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
                 while (!objList.NoFim())
                 {
                     Model.VendaAno vendaAno = new Model.VendaAno();                    
@@ -214,7 +228,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    try
+                    {
+                        return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }                    
                 }
             }
             return -1;
@@ -230,7 +251,14 @@ namespace FirstREST.Lib_Primavera
 
                 while (!objListLin.NoFim())
                 {
-                    return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    try
+                    {
+                        return objListLin.Valor("dinheiroFaturadoEmProdutos");
+                    }
+                    catch
+                    {
+                        return 0;
+                    }      
                 }
             }
             return -1;

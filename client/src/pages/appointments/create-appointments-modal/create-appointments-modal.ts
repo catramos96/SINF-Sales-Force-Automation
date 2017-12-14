@@ -56,7 +56,7 @@ export class CreateAppointmentsModalPage {
       IDContacto: ['']
     });
 
-    if(this.ID != ""){
+    if(this.ID != null){
       this.appointmentsProvider.getAppointment(this.ID).subscribe(
         data => {
           var appointment = data;
@@ -228,7 +228,14 @@ export class CreateAppointmentsModalPage {
             });
         }
         else{
-          //por aqui o edit
+          this.appointmentsProvider.updateAppointment(dataSend).subscribe(
+            data => {
+              this.navCtrl.pop();
+              this.notification("Success editing Appointment!");
+            },
+            err => {
+              this.notification("Error editing Appointment!");
+            });
         }
 
       }

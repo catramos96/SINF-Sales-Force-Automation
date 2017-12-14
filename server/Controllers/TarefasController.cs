@@ -41,8 +41,7 @@ namespace FirstREST.Controllers
             Lib_Primavera.Model.Tarefa tarefa = Lib_Primavera.PriIntegrationTarefa.GetTarefa(id);
             if (tarefa == null)
             {
-                throw new HttpResponseException(
-                  Request.CreateResponse(HttpStatusCode.NotFound));
+                return null;
             }
             else
             {
@@ -74,6 +73,8 @@ namespace FirstREST.Controllers
 
         }
 
+        [HttpPost]
+        [Route("api/tarefas/remove/{id}")]
         public HttpResponseMessage Delete(string id)
         {
 
@@ -104,7 +105,8 @@ namespace FirstREST.Controllers
 
         }
 
-
+        [HttpPost]
+        [Route("api/tarefas/update")]
         public HttpResponseMessage Put(Lib_Primavera.Model.Tarefa tarefa)
         {
 

@@ -17,7 +17,10 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-
+                if (codTarefa == "undefined")
+                {
+                    return null;
+                }
                 objList = PriEngine.Engine.Consulta(
                     "SELECT Tarefas.Id AS ID, TiposTarefa.Id AS idTipo, TiposTarefa.Descricao As Tipo, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDActividadeOrigem FROM Tarefas JOIN TiposTarefa ON Tarefas.IdTipoActividade = TiposTarefa.Id WHERE Tarefas.Id = '" + codTarefa + "'");
 

@@ -31,6 +31,16 @@ export class AppointmentsProvider {
     return this.http.get(url).map(res => res.json());
   }
 
+  public  updateAppointment(data){
+    var url = AppSettings.API_ENDPOINT + 'tarefas/update';
+    return this.http.post(url,data);
+  }
+
+  public  removeAppointment(id){
+    var url = AppSettings.API_ENDPOINT + 'tarefas/remove/' + encodeURI(id);
+    return this.http.post(url,"");
+  }
+
   public getType(codTipo){
     var url = AppSettings.API_ENDPOINT + 'tipo_tarefa/' + encodeURI(codTipo);
     return this.http.get(url).map(res => res.json());
