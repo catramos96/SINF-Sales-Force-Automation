@@ -1,8 +1,8 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Edit Target</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Edit Target</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -15,7 +15,7 @@
             <ion-col>
                 <ion-item [ngClass]="{'error-border':!createTargetForm.controls.name.valid && createTargetForm.controls.name.touched}">
                     <ion-label floating>Full Name</ion-label>
-                    <ion-input formControlName="name" type="text" ></ion-input>
+                    <ion-input formControlName="name" type="text"></ion-input>
                 </ion-item>
             </ion-col>
         </ion-row>
@@ -88,7 +88,7 @@
             </ion-col>
         </ion-row>
 
-        <button ion-button full color="primary" [disabled]="!createTargetForm.valid" style="margin-top: 20px;" type="submit">Edit Target</button>
+        <button ion-button full color="primary" [disabled]="!createTargetForm.valid" style="margin-top: 20px;" type="submit">Create Target</button>
     </form>
 
 </ion-content>

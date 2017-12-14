@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, AbstractControl, Validators } from "@angular/fo
 import { ContactsProvider } from '../../../../providers/contacts/contacts';
 import { NativeStorage } from '@ionic-native/native-storage';
 import {SchedulePage} from "../../../schedule/schedule";
+import { ClientPage } from '../client';
 
 @IonicPage()
 @Component({
@@ -23,7 +24,6 @@ export class EditClientPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private contacts: ContactsProvider, private nativeStorage: NativeStorage) {
 
     this.CodCliente = navParams.get("firstParam");
-
     var names = [''];
     var phones = [''];
 
@@ -112,10 +112,10 @@ export class EditClientPage {
             "Moeda": this.createClientForm.value.currency
           }
 
-          this.contacts.editClient(data, this.createClientForm.value.codcliente).subscribe(
+          this.contacts.editClient(dataSend, this.CodCliente).subscribe(
             data => {
               alert("Success editing Client!");
-              this.navCtrl.setRoot(SchedulePage, {}, { animate: true, direction: 'forward' });
+              this.navCtrl.setRoot(ClientPage, {}, { animate: true, direction: 'forward' });
             },
             err => {
               alert("Error editing Client!");

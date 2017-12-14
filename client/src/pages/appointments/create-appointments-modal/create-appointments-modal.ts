@@ -228,7 +228,6 @@ export class CreateAppointmentsModalPage {
         console.log(dataSend);
 
         if(!this.edit){
-          alert("CREATE");
           this.appointmentsProvider.postAppointment(dataSend).subscribe(
             data => {
               this.navCtrl.pop();
@@ -239,7 +238,6 @@ export class CreateAppointmentsModalPage {
             });
         }
         else{
-          alert("edit");
           this.appointmentsProvider.updateAppointment(dataSend).subscribe(
             data => {
               this.navCtrl.pop();
