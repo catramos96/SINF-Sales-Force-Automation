@@ -11,6 +11,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { MyApp } from './app.component';
 import { ProductPage } from '../pages/product/product';
 import { ModalContentPage } from '../pages/product/productModal';
+import { StatisticsModalPage } from '../pages/statistics/statistics-modal/statistics-modal';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { ClientPage } from '../pages/contacts/client/client';
 import { TargetPage } from '../pages/contacts/target/target';
@@ -59,7 +60,8 @@ import { LoginPage } from '../pages/login/login';
     SalesHistoryPage,
     SchedulePage,
     RegisterPage,
-    LoginPage
+    LoginPage,
+    StatisticsModalPage
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ import { LoginPage } from '../pages/login/login';
     ListAppointmentsPage,
     SalesHistoryPage,
     RegisterPage,
-    LoginPage
+    LoginPage,
+    StatisticsModalPage
   ],
   providers: [
     StatusBar,

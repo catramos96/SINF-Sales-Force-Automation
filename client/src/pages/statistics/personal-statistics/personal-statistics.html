@@ -12,14 +12,32 @@
     <ion-row class="topRow">
       <ion-col col-6>
         <ion-card class="card-orange">
-          <div class="card-title">{{soldProductsNumber}}</div>
-          <div class="card-subtitle">Products sold during the year</div>
+          <ion-row align-items: center>
+            <ion-col col-12 class="card-title">
+              {{soldProductsNumber}}
+            </ion-col>
+            <ion-col col-12 class="card-subtitle">
+              Products sold during the year
+            </ion-col>
+            <ion-col col-12 class="card-more">
+              <button ion-button color="dark" clear item-end (click)="openStatisticsModal('Products Sold History')">See more >></button>
+            </ion-col>
+          </ion-row>
         </ion-card>
       </ion-col>
       <ion-col col-6>
         <ion-card class="card-orange">
-          <div class="card-title">{{billedMoneyNumber}}</div>
-          <div class="card-subtitle">Billed money during the year</div>
+          <ion-row>
+            <ion-col col-12 class="card-title">
+              {{billedMoneyNumber}}€
+            </ion-col>
+            <ion-col col-12 class="card-subtitle">
+              Billed money during the year
+            </ion-col>
+            <ion-col col-12 class="card-more">
+              <button ion-button color="dark" clear item-end (click)="openStatisticsModal('Billed Money History')">See more >></button>
+            </ion-col>
+          </ion-row>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -34,7 +52,7 @@
               <ion-col col-xl-6 col-lg-12 class="top5-margin" *ngFor="let product of top5Products ; let i = index">
                 <ion-item text-wrap>
                   <ion-thumbnail item-start>
-                    <img class="top5image" [src]=top5Images[0] (click)="openModal(product.CodArtigo)">
+                    <img class="top5image" [src]=top5Images[0] (click)="openProductModal(product.CodArtigo)">
                   </ion-thumbnail>
                   <span class="top5-text">
                     <span class="top5-text-index">#{{i + 1}}</span>
@@ -47,7 +65,7 @@
         </ion-card>
       </ion-col>
       <ion-col col-6>
-        <ion-card class="card-chart">
+        <ion-card>
           <ion-card-header class="textHeader" text-wrap>
             Products Sold By Category
           </ion-card-header>
