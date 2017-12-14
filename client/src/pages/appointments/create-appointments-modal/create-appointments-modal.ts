@@ -31,6 +31,7 @@ export class CreateAppointmentsModalPage {
   public edit = false;
 
   public ID="";
+  public hasOpp = false;
 
   public textButton = "Create";
 
@@ -41,6 +42,7 @@ export class CreateAppointmentsModalPage {
     this.getAppointmentsTypes();
 
     this.ID = this.navParams.get('ID');
+    this.hasOpp = this.navParams.get('hasOpp');
 
     this.createAppointmentForm = formBuilder.group({
       TipoDeTarefa: [''],

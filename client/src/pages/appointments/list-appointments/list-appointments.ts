@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AppointmentsProvider } from '../../../providers/appointments/appointments';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { ViewAppointmentModalPage } from '../view-appointment-modal/view-appointment-modal';
+import { CreateAppointmentsModalPage } from '../create-appointments-modal/create-appointments-modal';
+
 
 /**
  * Generated class for the ListAppointmentsPage page.
@@ -25,10 +27,12 @@ export class ListAppointmentsPage {
     private appService: AppointmentsProvider,
     private modalCtrl: ModalController
   ) {
-
     let id = this.navParams.get('opportunityID');
     this.getAppointments(id);
+<<<<<<< HEAD
+=======
 
+>>>>>>> 09e8b17a1a05d99a4f24d403810962c74afb47eb
   }
 
   ionViewDidLoad() {
@@ -39,6 +43,14 @@ export class ListAppointmentsPage {
     this.appService.getAppointmentsByOpportunity(id).subscribe(
       data => {
         this.appointments = data;
+        //change date
+        this.appointments.forEach(element => {
+          let date1 = element.DataInicio;
+          element.DataInicio = date1.substr(0,10) + ", " +date1.substr(11,15);
+
+          let date2 = element.DataFim;
+          element.DataFim = date2.substr(0,10) + ", " +date2.substr(11,15);
+        });
       },
       err => {
           console.log(err);
@@ -46,7 +58,12 @@ export class ListAppointmentsPage {
   }
 
   goToDetails(id){
-    let modal = this.modalCtrl.create(ViewAppointmentModalPage,{ID:id});
+    let modal = this.modalCtrl.create(ViewAppointmentModalPage, {ID: id});
+    modal.present();
+  }
+
+  createAppointment(){
+    let modal = this.modalCtrl.create(CreateAppointmentsModalPage, {ID: "",hasOpp: "true"});
     modal.present();
   }
 }
