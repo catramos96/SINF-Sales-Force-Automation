@@ -57,7 +57,7 @@ export class CreateAppointmentsModalPage {
     });
 
     alert("ID: " + this.ID);
-    
+
     if(this.ID != ""){
       this.appointmentsProvider.getAppointment(this.ID).subscribe(
         data => {
