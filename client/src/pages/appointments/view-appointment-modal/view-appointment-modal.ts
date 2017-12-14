@@ -4,6 +4,7 @@ import {AppointmentsProvider} from "../../../providers/appointments/appointments
 import {OpportunityDetailsPage} from "../../opportunities/opportunity-details/opportunity-details";
 import {OpportunitiesProvider} from "../../../providers/opportunities/opportunities";
 import {CreateAppointmentsModalPage} from "../create-appointments-modal/create-appointments-modal";
+import {ContactsProvider} from "../../../providers/contacts/contacts";
 
 @IonicPage()
 @Component({
@@ -23,11 +24,13 @@ export class ViewAppointmentModalPage {
   public opportunity:string;
   public opportunityName:string;
   public ID:string;
+  public nomeClie:string ="";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public provider: AppointmentsProvider, public modalCtrl : ModalController,
               public opportunityProvider:OpportunitiesProvider,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public contactProvider: ContactsProvider) {
     this.ID = this.navParams.get('ID');
 
     this.provider.getAppointment(this.ID).subscribe(
@@ -55,6 +58,26 @@ export class ViewAppointmentModalPage {
             },
               err =>{
               });
+        }
+
+        if(this.client != ""){
+          this.contactProvider.getClientById(this.client).subscribe(
+            data=> {
+              var tmp = data;
+              this.nomeClie = tmp.Nome;
+
+            },
+            err=>{
+              this.contactProvider.getContactById(this.client).subscribe(
+                data=>{
+                  var tmp = data;
+                  this.nomeClie = tmp.Nome;
+              },
+              err=>{
+
+              }
+              );
+          });
         }
 
         console.log(appointment);
