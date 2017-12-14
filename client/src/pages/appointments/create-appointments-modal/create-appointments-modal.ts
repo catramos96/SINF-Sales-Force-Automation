@@ -78,6 +78,9 @@ export class CreateAppointmentsModalPage {
           this.createAppointmentForm.IDTarefaOrigem = data.IDTarefaOrigem;
           this.createAppointmentForm.IDContacto = data.IDContacto;
 
+          this.contactId = data.IDContacto;
+          this.opportunityId = data.IDTarefaOrigem;
+
           this.textButton = "Edit";
         },
         err => {
@@ -175,10 +178,10 @@ export class CreateAppointmentsModalPage {
           "DataInicio": this.createAppointmentForm.value.DataInicio,
           "DataFim": this.createAppointmentForm.value.DataFim,
           "Localizacao": this.createAppointmentForm.value.Localizacao,
-          "IDUtilizador": this.contactId,
+          "IDUtilizador":this.createAppointmentForm.value.IDUtilizador,
           "Duracao": this.createAppointmentForm.value.Duracao,
           "IDTarefaOrigem": this.opportunityId,
-          "IDContacto": this.createAppointmentForm.value.IDContacto,
+          "IDContacto": this.contactId,
         }
       }
       else{
@@ -192,10 +195,10 @@ export class CreateAppointmentsModalPage {
           "DataInicio": this.createAppointmentForm.value.DataInicio,
           "DataFim": this.createAppointmentForm.value.DataFim,
           "Localizacao": this.createAppointmentForm.value.Localizacao,
-          "IDUtilizador": this.contactId,
+          "IDUtilizador":this.createAppointmentForm.value.IDUtilizador,
           "Duracao": this.createAppointmentForm.value.Duracao,
           "IDTarefaOrigem": this.opportunityId,
-          "IDContacto": this.createAppointmentForm.value.IDContacto,
+          "IDContacto": this.contactId,
         }
       }
 
