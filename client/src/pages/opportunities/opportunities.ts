@@ -4,6 +4,7 @@ import { OpportunitiesProvider } from '../../providers/opportunities/opportuniti
 import { OpportunityDetailsPage } from './opportunity-details/opportunity-details';
 import { CreateOpportunityPage } from './create-opportunity/create-opportunity';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { ListAppointmentsPage } from '../appointments/list-appointments/list-appointments';
 
 
 /**
@@ -52,6 +53,13 @@ export class OpportunitiesPage {
       });
   }
 
+  openAppointments(oppID){
+    this.navCtrl.push(ListAppointmentsPage,
+      {
+        opportunityID: oppID
+      });
+  }
+
   displayOpportunities(){
     var colsLength = 3;
     var totalLength = this.opp.length;
@@ -79,21 +87,23 @@ export class OpportunitiesPage {
   }
 
   getOpportunities(){
-    this.nativeStorage.getItem("Id").then(
-      data => {
-        this.opportunitiesService.getOpportunities(data).subscribe(
+    //this.nativeStorage.getItem("Id").then(
+      //data => {
+        this.opportunitiesService.getOpportunities(1).subscribe(
           data => { 
+            alert(data);
             this.opp = data;
             this.displayOpportunities();
           },
           err => {
-              console.log(err);
+            alert(err);
+            console.log(err);
           });
-      },
-      err => {
+      //},
+      //err => {
 
-      }
-    );
+      //}
+    //);
     
       /*
       

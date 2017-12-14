@@ -34,6 +34,7 @@ import { RoutesProvider } from '../providers/routes/routes';
 import {CreateAppointmentsModalPage} from "../pages/appointments/create-appointments-modal/create-appointments-modal";
 import {SchedulePage} from "../pages/schedule/schedule";
 import {ViewAppointmentModalPage} from "../pages/appointments/view-appointment-modal/view-appointment-modal";
+import { ListAppointmentsPage } from '../pages/appointments/list-appointments/list-appointments';
 
 import { RegisterPage } from '../pages/register/register';
 import { VendorsProvider } from '../providers/vendors/vendors';
@@ -54,6 +55,7 @@ import { LoginPage } from '../pages/login/login';
     CreateOpportunityPage,
     CreateAppointmentsModalPage,
     ViewAppointmentModalPage,
+    ListAppointmentsPage,
     SalesHistoryPage,
     SchedulePage,
     RegisterPage,
@@ -85,6 +87,7 @@ import { LoginPage } from '../pages/login/login';
     CreateOpportunityPage,
     SchedulePage,
     ViewAppointmentModalPage,
+    ListAppointmentsPage,
     SalesHistoryPage,
     RegisterPage,
     LoginPage

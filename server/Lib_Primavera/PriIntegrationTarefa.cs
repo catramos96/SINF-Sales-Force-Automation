@@ -61,8 +61,8 @@ namespace FirstREST.Lib_Primavera
             {
 
                 objList = PriEngine.Engine.Consulta(
-                    @"SELECT Tarefas.Id AS ID, IdTipoActividade, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda 
-                    FROM Tarefas
+                    @"SELECT Tarefas.Id AS ID, TiposTarefa.Descricao AS Tipo, IdTipoActividade, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda 
+                    FROM Tarefas JOIN TiposTarefa ON Tarefas.IdTipoActividade = TiposTarefa.Id
                     where IDCabecOVenda = '" + id + "';");
 
                 while (!objList.NoFim())
@@ -72,14 +72,14 @@ namespace FirstREST.Lib_Primavera
                     act.DataInicio = objList.Valor("DataInicio");
                     act.DataFim = objList.Valor("DataFim");
                     act.Resumo = objList.Valor("Resumo");
-                    act.Descricao = objList.Valor("Descricao");
-                    act.TipoDeTarefa = objList.Valor("idTipoActividade");
+                    ///act.Descricao = objList.Valor("Descricao");
+                    act.TipoDeTarefa = objList.Valor("Tipo");
                     act.Prioridade = objList.Valor("Prioridade").ToString();
-                    act.IDUtilizador = objList.Valor("Utilizador");
+                    //act.IDUtilizador = objList.Valor("Utilizador");
                     act.IDTarefaOrigem = objList.Valor("IDCabecOVenda");    //oportunidade
-                    act.Localizacao = objList.Valor("LocalRealizacao");
+                    /*act.Localizacao = objList.Valor("LocalRealizacao");
                     act.Duracao = objList.Valor("Duracao");
-                    act.IDContacto = objList.Valor("IdContactoPrincipal");
+                    act.IDContacto = objList.Valor("IdContactoPrincipal");*/
 
                     listActs.Add(act);
                     objList.Seguinte();

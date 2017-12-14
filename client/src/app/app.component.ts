@@ -25,7 +25,7 @@ export class MyApp {
 
   rootPage: any = LoginPage;
   pages: Array<{ title: string, component: any, isVisible: boolean }>;
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = true;
   isChefe: boolean = false;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private nativeStorage: NativeStorage, public events: Events) {
@@ -36,6 +36,7 @@ export class MyApp {
       this.pages = [
         { title: 'Login', component: LoginPage, isVisible: !isLoggedIn},
         { title: 'Register', component: RegisterPage, isVisible : isChefe },
+        { title: 'Schedule', component: SchedulePage, isVisible: isLoggedIn  },
         { title: 'Opportunities', component: OpportunitiesPage, isVisible: isLoggedIn },
         { title: 'Sales History', component: SalesHistoryPage, isVisible: isLoggedIn },
         { title: 'Product', component: ProductPage, isVisible: isLoggedIn },
@@ -45,7 +46,7 @@ export class MyApp {
       ];
     });
 
-    this.tryLogIn(nativeStorage);
+    //this.tryLogIn(nativeStorage);
 
     this.pages = [
       { title: 'Login', component: LoginPage, isVisible: !this.isLoggedIn},
