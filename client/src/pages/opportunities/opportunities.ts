@@ -106,8 +106,8 @@ export class OpportunitiesPage {
       },
       err => {
 
-      }
-    };
+      });
+    }
     
       /*
       
@@ -131,6 +131,5 @@ export class OpportunitiesPage {
       console.log(this.opp);
       */
       
-  }
 
 }
