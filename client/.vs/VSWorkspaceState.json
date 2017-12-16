@@ -10,9 +10,8 @@
     "\\src\\pages\\statistics\\personal-statistics",
     "\\src\\pages\\statistics\\statistics-modal",
     "\\src\\providers",
-    "\\src\\providers\\appointments",
     "\\src\\providers\\statistics"
   ],
-  "SelectedNode": "\\src\\pages\\statistics\\statistics-modal\\statistics-modal.ts",
+  "SelectedNode": "\\src\\providers\\statistics\\statistics.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -90,7 +90,7 @@ export class StatisticsProvider {
     //let salesman: number = 2;
 
     var url = AppSettings.API_ENDPOINT + 'docvendas/produtoscategoria/' + this.salesman;
-    return this.http.get(url).map(res => res.json());
+    return this.http.get(url).map(res => this.convertToPercentage(res.json()));
   }
 
   private convertToPercentage(response) {
@@ -102,7 +102,7 @@ export class StatisticsProvider {
 
     for (i = 0; i < response.length; i++) {
       var percentagem = (response[i].Quantidade * 100) / quantidadeTotal;
-      response[i].Quantidade = percentagem.toFixed(2);
+      response[i].Quantidade = percentagem.toFixed(2) + "%";
     }
 
     return response;

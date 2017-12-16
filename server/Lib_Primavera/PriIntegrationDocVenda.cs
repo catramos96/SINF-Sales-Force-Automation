@@ -89,7 +89,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND LinhasDoc.Vendedor = " + vendedor + " GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='FA' AND LinhasDoc.Vendedor = " + vendedor + " GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
                 while (!objList.NoFim())
                 {
                     Model.VendaAno vendaAno = new Model.VendaAno();
@@ -112,7 +112,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='FA' GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
                 while (!objList.NoFim())
                 {
                     Model.VendaAno vendaAno = new Model.VendaAno();
@@ -132,7 +132,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS numeroProdutosVendidos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND YEAR(LinhasDoc.Data) =" + ano);
+                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS numeroProdutosVendidos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='FA' AND YEAR(LinhasDoc.Data) =" + ano);
 
                 while (!objListLin.NoFim())
                 {
@@ -155,7 +155,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS numeroProdutosVendidos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND YEAR(LinhasDoc.Data) =" + ano + " AND LinhasDoc.Vendedor = "+vendedor);
+                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.Quantidade) AS numeroProdutosVendidos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='FA' AND YEAR(LinhasDoc.Data) =" + ano + " AND LinhasDoc.Vendedor = "+vendedor);
 
                 while (!objListLin.NoFim())
                 {
@@ -181,7 +181,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='FA' GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
                 while (!objList.NoFim())
                 {
                     Model.VendaAno vendaAno = new Model.VendaAno();
@@ -204,7 +204,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND LinhasDoc.Vendedor = " + vendedor + " GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
+                objList = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS Quantidade, YEAR(LinhasDoc.Data) AS Ano FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='FA' AND LinhasDoc.Vendedor = " + vendedor + " GROUP BY YEAR(LinhasDoc.Data) ORDER BY YEAR(LinhasDoc.Data) DESC");
                 while (!objList.NoFim())
                 {
                     Model.VendaAno vendaAno = new Model.VendaAno();                    
@@ -224,7 +224,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS dinheiroFaturadoEmProdutos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND YEAR(LinhasDoc.Data) =" + ano);
+                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS dinheiroFaturadoEmProdutos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='FA' AND YEAR(LinhasDoc.Data) =" + ano);
 
                 while (!objListLin.NoFim())
                 {
@@ -247,7 +247,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS dinheiroFaturadoEmProdutos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='ECL' AND YEAR(LinhasDoc.Data) =" + ano + " AND LinhasDoc.Vendedor = " + vendedor);
+                objListLin = PriEngine.Engine.Consulta("SELECT sum(LinhasDoc.TotalIliquido) AS dinheiroFaturadoEmProdutos FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc where CabecDoc.TipoDoc='FA' AND YEAR(LinhasDoc.Data) =" + ano + " AND LinhasDoc.Vendedor = " + vendedor);
 
                 while (!objListLin.NoFim())
                 {
@@ -273,7 +273,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, Artigo.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc INNER JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo where CabecDoc.TipoDoc='ECL' GROUP by LinhasDoc.Artigo, Artigo.Descricao order by Quantidade DESC");
+                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, Artigo.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc INNER JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo where CabecDoc.TipoDoc='FA' GROUP by LinhasDoc.Artigo, Artigo.Descricao order by Quantidade DESC");
                 while (!objList.NoFim())
                 {
                     Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();
@@ -297,7 +297,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT Familias.Descricao AS Categoria, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo Join Familias ON Familias.Familia = Artigo.Familia where CabecDoc.TipoDoc='ECL' group by Familias.Descricao order by Familias.Descricao");
+                objList = PriEngine.Engine.Consulta("SELECT Familias.Descricao AS Categoria, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo Join Familias ON Familias.Familia = Artigo.Familia where CabecDoc.TipoDoc='FA' group by Familias.Descricao order by Familias.Descricao");
                 while (!objList.NoFim())
                 {
                     Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();
@@ -320,7 +320,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT Familias.Descricao AS Categoria, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo Join Familias ON Familias.Familia = Artigo.Familia where CabecDoc.TipoDoc='ECL' AND Vendedor = "+vendedor+"group by Familias.Descricao order by Familias.Descricao");
+                objList = PriEngine.Engine.Consulta("SELECT Familias.Descricao AS Categoria, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo Join Familias ON Familias.Familia = Artigo.Familia where CabecDoc.TipoDoc='FA' AND Vendedor = "+vendedor+"group by Familias.Descricao order by Familias.Descricao");
                 while (!objList.NoFim())
                 {
                     Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();
@@ -343,7 +343,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, Artigo.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc INNER JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo where LinhasDoc.Vendedor = "+vendedor+" AND CabecDoc.TipoDoc='ECL' GROUP by LinhasDoc.Artigo, Artigo.Descricao order by Quantidade DESC");
+                objList = PriEngine.Engine.Consulta("SELECT TOP 5 LinhasDoc.Artigo AS Artigo, Artigo.Descricao AS Descricao, sum(LinhasDoc.Quantidade) AS Quantidade FROM CabecDoc INNER JOIN LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc INNER JOIN Artigo ON LinhasDoc.Artigo = Artigo.Artigo where LinhasDoc.Vendedor = "+vendedor+" AND CabecDoc.TipoDoc='FA' GROUP by LinhasDoc.Artigo, Artigo.Descricao order by Quantidade DESC");
                 while (!objList.NoFim())
                 {
                     Model.LinhaDocVenda lindv = new Model.LinhaDocVenda();
