@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, AbstractControl, Validators } from "@angular/fo
 import { ContactsProvider } from '../../../../providers/contacts/contacts';
 import { NativeStorage } from '@ionic-native/native-storage';
 import {SchedulePage} from "../../../schedule/schedule";
+import { ClientPage } from '../client';
 
 @IonicPage()
 @Component({
@@ -83,7 +84,7 @@ export class CreateClientPage {
           this.contacts.postClient(dataSend).subscribe(
             data => {
               alert("Success creating Client!");
-              this.navCtrl.setRoot(SchedulePage, {}, {animate: true, direction: 'forward'});
+              this.navCtrl.setRoot(ClientPage, {}, {animate: true, direction: 'forward'});
             },
             err => {
               alert("Error creating Client!");

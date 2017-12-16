@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, AbstractControl, Validators } from "@angular/forms";
 import { ContactsProvider } from '../../../../providers/contacts/contacts';
 import { NativeStorage } from '@ionic-native/native-storage';
-import {SchedulePage} from "../../../schedule/schedule";
+import { SchedulePage } from "../../../schedule/schedule";
+import { TargetPage } from '../target';
 
 @IonicPage()
 @Component({
@@ -27,7 +28,7 @@ export class CreateTargetPage {
       zipcode: [''],
       location: [''],
       country: [''],
-      fax:[''],
+      fax: [''],
     });
   }
 
@@ -49,21 +50,21 @@ export class CreateTargetPage {
             "Email": this.createTargetForm.value.email,
             "Telemovel": this.createTargetForm.value.cellphone,
             "Telefone": this.createTargetForm.value.homephone,
-            "Fax":this.createTargetForm.value.fax,
+            "Fax": this.createTargetForm.value.fax,
             "Vendedor": data
           }
 
           this.contacts.postTarget(dataSend).subscribe(
             data => {
               alert("Success creating Target!");
-              this.navCtrl.setRoot(SchedulePage, {}, {animate: true, direction: 'forward'});
+              this.navCtrl.setRoot(TargetPage, {}, { animate: true, direction: 'forward' });
             },
             err => {
               alert("Error creating Target!");
             })
 
         },
-        error =>{ alert("Please Login before you create a target!");}
+        error => { alert("Please Login before you create a target!"); }
       );
 
     }

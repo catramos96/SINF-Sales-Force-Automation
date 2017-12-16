@@ -6,7 +6,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 
 @Injectable()
 export class StatisticsProvider {
-  private salesman: number;
+  private salesman: string;
 
   constructor(public http: Http, public nativeStorage: NativeStorage) {
     this.nativeStorage.getItem("Id").then(
