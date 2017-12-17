@@ -234,8 +234,8 @@ namespace FirstREST.Lib_Primavera
                     }
                     else
                     {
-
                         myContact = PriEngine.Engine.CRM.EntidadesExternas.Edita(contacto.Entidade);
+                       
                         myContact.set_EmModoEdicao(true);
 
                         myContact.set_Morada(contacto.Morada);
@@ -248,7 +248,9 @@ namespace FirstREST.Lib_Primavera
                         myContact.set_Entidade(contacto.Nome.ToUpper());
                         myContact.set_Nome(contacto.Nome);
                         myContact.set_Fax(contacto.Fax);
-                        
+
+                       
+
                         PriEngine.Engine.CRM.EntidadesExternas.Actualiza(myContact);
 
                         erro.Erro = 0;

@@ -51,11 +51,11 @@ namespace FirstREST.Lib_Primavera
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
             GcpBEVendedor mySalesman = new GcpBEVendedor();
-            StdBELista maxIdList = PriEngine.Engine.Consulta("SELECT Max(Vendedor) As Max FROM  Vendedores");
+            StdBELista maxIdList = PriEngine.Engine.Consulta("SELECT Vendedores.Vendedor FROM  Vendedores group by Vendedores.Vendedor order by Vendedores.Vendedor + 0 desc ");
             string NewSalesmanID = "1";
             if (maxIdList.NumColunas() != 0)
             {
-                NewSalesmanID = ((int)(Int32.Parse(maxIdList.Valor("Max")) + 1)).ToString();
+                NewSalesmanID = ((int)(Int32.Parse(maxIdList.Valor("Vendedor")) + 1)).ToString();
             }
 
             try
