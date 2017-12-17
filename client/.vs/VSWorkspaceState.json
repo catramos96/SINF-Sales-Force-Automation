@@ -2,14 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app",
     "\\src\\pages",
-    "\\src\\pages\\contacts",
-    "\\src\\pages\\contacts\\client",
+    "\\src\\pages\\appointments",
+    "\\src\\pages\\appointments\\list-appointments",
     "\\src\\pages\\statistics",
+    "\\src\\pages\\statistics\\company-statistics",
     "\\src\\pages\\statistics\\personal-statistics",
-    "\\src\\providers"
+    "\\src\\pages\\statistics\\statistics-modal",
+    "\\src\\providers",
+    "\\src\\providers\\statistics"
   ],
-  "SelectedNode": "\\src\\pages\\statistics\\personal-statistics\\personal-statistics.ts",
+  "SelectedNode": "\\src\\providers\\statistics\\statistics.ts",
   "PreviewInSolutionExplorer": false
 }

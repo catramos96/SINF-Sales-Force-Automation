@@ -25,7 +25,7 @@ export class MyApp {
 
   rootPage: any = LoginPage;
   pages: Array<{ title: string, component: any, isVisible: boolean }>;
-  isLoggedIn: boolean = true;
+  isLoggedIn: boolean = false;
   isChefe: boolean = false;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private nativeStorage: NativeStorage, public events: Events) {
@@ -46,7 +46,7 @@ export class MyApp {
       ];
     });
 
-    //this.tryLogIn(nativeStorage);
+    this.tryLogIn(nativeStorage);
 
     this.pages = [
       { title: 'Login', component: LoginPage, isVisible: !this.isLoggedIn},
@@ -62,10 +62,8 @@ export class MyApp {
 
   }
 
-
-
   public tryLogIn(nativeStorage: NativeStorage) {
-    /*nativeStorage.getItem("Role").then(
+    nativeStorage.getItem("Role").then(
       data => {
         this.isLoggedIn = true;
         if (data == "Chefe") {
@@ -75,11 +73,10 @@ export class MyApp {
     },
       error => {
         this.isLoggedIn = false;
-        this.isLoggedIn = false;
       }
-    );*/
-    this.isChefe = true;
-    this.isLoggedIn = true;
+    );
+    //this.isChefe = true;
+    //this.isLoggedIn = true;
   }
 
   initializeApp() {

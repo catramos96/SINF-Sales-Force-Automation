@@ -20,6 +20,7 @@ import { CreateAppointmentsModalPage } from '../create-appointments-modal/create
 export class ListAppointmentsPage {
 
   private appointments;
+  private IdOpportunity;
 
   constructor(
     public navCtrl: NavController,
@@ -27,12 +28,8 @@ export class ListAppointmentsPage {
     private appService: AppointmentsProvider,
     private modalCtrl: ModalController
   ) {
-    let id = this.navParams.get('opportunityID');
-    this.getAppointments(id);
-<<<<<<< HEAD
-=======
-
->>>>>>> 09e8b17a1a05d99a4f24d403810962c74afb47eb
+    this.IdOpportunity = this.navParams.get('opportunityID');
+    this.getAppointments(this.IdOpportunity);
   }
 
   ionViewDidLoad() {
@@ -63,7 +60,12 @@ export class ListAppointmentsPage {
   }
 
   createAppointment(){
-    let modal = this.modalCtrl.create(CreateAppointmentsModalPage, {ID: "",hasOpp: "true"});
+    let modal = this.modalCtrl.create(CreateAppointmentsModalPage, 
+      {
+        ID: "",
+        hasOpp: "true",
+        opportunityId: this.IdOpportunity
+      });
     modal.present();
   }
 }

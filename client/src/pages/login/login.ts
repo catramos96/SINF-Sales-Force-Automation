@@ -55,7 +55,12 @@ export class LoginPage {
             this.nativeStorage.setItem("Role",role);
           }
 
-         this.events.publish('user:loggedin', true, true);
+          if(role == "Chefe"){
+            this.events.publish('user:loggedin', true, true);
+          } else {
+            this.events.publish('user:loggedin', true, false);
+          }
+         
          this.navCtrl.setRoot(SchedulePage, {}, {animate: true, direction: 'forward'});
       },
       err => {
