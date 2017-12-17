@@ -18,7 +18,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
                 objList = PriEngine.Engine.Consulta(
-                    "SELECT Tarefas.Id AS ID, TiposTarefa.Id AS idTipo, TiposTarefa.Descricao As Tipo, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDActividadeOrigem FROM Tarefas JOIN TiposTarefa ON Tarefas.IdTipoActividade = TiposTarefa.Id WHERE Tarefas.Id = '" + codTarefa + "'");
+                    "SELECT Tarefas.Id AS ID, TiposTarefa.Id AS idTipo, TiposTarefa.Descricao As Tipo, Prioridade, Resumo, Tarefas.Descricao,EntidadePrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDActividadeOrigem FROM Tarefas JOIN TiposTarefa ON Tarefas.IdTipoActividade = TiposTarefa.Id WHERE Tarefas.Id = '" + codTarefa + "'");
 
                 if (PriEngine.Engine.CRM.Actividades.Existe(codTarefa) == false)
                 {
@@ -39,7 +39,7 @@ namespace FirstREST.Lib_Primavera
                     act.IDTarefaOrigem = objList.Valor("IDActividadeOrigem");
                     act.Localizacao = objList.Valor("LocalRealizacao");
                     act.Duracao = objList.Valor("Duracao");
-                    act.IDContacto = objList.Valor("IdContactoPrincipal");
+                    act.IDContacto = objList.Valor("EntidadePrincipal");
 
                     return act;
                 }
@@ -61,7 +61,7 @@ namespace FirstREST.Lib_Primavera
             {
 
                 objList = PriEngine.Engine.Consulta(
-                    @"SELECT Tarefas.Id AS ID, TiposTarefa.Descricao AS Tipo, IdTipoActividade, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda 
+                    @"SELECT Tarefas.Id AS ID, TiposTarefa.Descricao AS Tipo, IdTipoActividade, Prioridade, Resumo, Tarefas.Descricao,EntidadePrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda 
                     FROM Tarefas JOIN TiposTarefa ON Tarefas.IdTipoActividade = TiposTarefa.Id
                     where IDCabecOVenda = '" + id + "';");
 
@@ -105,7 +105,7 @@ namespace FirstREST.Lib_Primavera
             {
 
                 objList = PriEngine.Engine.Consulta(
-                    "SELECT Tarefas.Id AS ID, IdTipoActividade, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda FROM Tarefas");
+                    "SELECT Tarefas.Id AS ID, IdTipoActividade, Prioridade, Resumo, Tarefas.Descricao,EntidadePrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda FROM Tarefas");
 
                 while (!objList.NoFim())
                 {
@@ -121,7 +121,7 @@ namespace FirstREST.Lib_Primavera
                     act.IDTarefaOrigem = objList.Valor("IDCabecOVenda");
                     act.Localizacao = objList.Valor("LocalRealizacao");
                     act.Duracao = objList.Valor("Duracao");
-                    act.IDContacto = objList.Valor("IdContactoPrincipal");
+                    act.IDContacto = objList.Valor("EntidadePrincipal");
 
                     listActs.Add(act);
                     objList.Seguinte();
@@ -148,7 +148,7 @@ namespace FirstREST.Lib_Primavera
             {
 
                 objList = PriEngine.Engine.Consulta(
-                    "SELECT Tarefas.Id AS ID, IDTiposTarefa, Prioridade, Resumo, Tarefas.Descricao,IdContactoPrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda FROM Tarefas WHERE DataInicio >= CAST('" + dataInicio + "' AS datetime) AND DataFim <= CAST('" + dataFim + "' AS datetime);");
+                    "SELECT Tarefas.Id AS ID, IDTiposTarefa, Prioridade, Resumo, Tarefas.Descricao,EntidadePrincipal, DataInicio, Duracao,DataFim, LocalRealizacao, Utilizador,IDCabecOVenda FROM Tarefas WHERE DataInicio >= CAST('" + dataInicio + "' AS datetime) AND DataFim <= CAST('" + dataFim + "' AS datetime);");
 
                 while (!objList.NoFim())
                 {
@@ -164,7 +164,7 @@ namespace FirstREST.Lib_Primavera
                     act.IDTarefaOrigem = objList.Valor("IDCabecOVenda");
                     act.Localizacao = objList.Valor("LocalRealizacao");
                     act.Duracao = objList.Valor("Duracao");
-                    act.IDContacto = objList.Valor("IdContactoPrincipal");
+                    act.IDContacto = objList.Valor("EntidadePrincipal");
 
                     listActs.Add(act);
                     objList.Seguinte();
@@ -247,8 +247,9 @@ namespace FirstREST.Lib_Primavera
                     myT.set_IDActividadeOrigem(tarefa.IDTarefaOrigem);
                     myT.set_LocalRealizacao(tarefa.Localizacao);
                     myT.set_Duracao(tarefa.Duracao);
-                    myT.set_IDContactoPrincipal(tarefa.IDContacto);
+                    myT.set_EntidadePrincipal(tarefa.IDContacto);
                     myT.set_TipoEntidadePrincipal(null);
+                    myT.set_Estado("0");
 
                     PriEngine.Engine.CRM.Actividades.Actualiza(myT);
 
@@ -309,7 +310,7 @@ namespace FirstREST.Lib_Primavera
                         myT.set_IDCabecOVenda(tarefa.IDTarefaOrigem);
                         myT.set_LocalRealizacao(tarefa.Localizacao);
                         myT.set_Duracao(tarefa.Duracao);
-                        myT.set_IDContactoPrincipal(tarefa.IDContacto);
+                        myT.set_EntidadePrincipal(tarefa.IDContacto);
                         myT.set_TipoEntidadePrincipal(null);
 
                         PriEngine.Engine.CRM.Actividades.Actualiza(myT);

@@ -85,6 +85,8 @@ namespace FirstREST.Controllers
                 try
                 {
                     Lib_Primavera.Model.Vendedor myVendedor = Lib_Primavera.PriIntegrationVendedor.GetVendedor(Int32.Parse(vendedor.Id));
+                    myVendedor.Chefe = vendedor.Chefe;
+                    myVendedor.Role = vendedor.Role;
                     var response = Request.CreateResponse(
                        HttpStatusCode.Accepted, myVendedor);
                     string uri = Url.Link("DefaultApi", new { Id = vendedor.Id });
