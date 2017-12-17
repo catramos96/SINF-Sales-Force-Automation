@@ -102,7 +102,7 @@ export class StatisticsProvider {
 
     for (i = 0; i < response.length; i++) {
       var percentagem = (response[i].Quantidade * 100) / quantidadeTotal;
-      response[i].Quantidade = percentagem.toFixed(2) + "%";
+      response[i].Quantidade = percentagem.toFixed(2);
     }
 
     return response;
